@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
+import Navbar from "./components/common/Navbar";
 import Home from "./pages/Home";
 import Universe from "./pages/Universe";
 import Sight from "./pages/Sight";
@@ -16,6 +17,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-brand-black text-white selection:bg-brand-red selection:text-white transition-colors duration-500">
+      <Navbar />
       <main key={location.pathname}>
         <Routes>
           <Route path="/" element={<Home />} />
