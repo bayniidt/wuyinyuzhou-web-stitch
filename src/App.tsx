@@ -2,6 +2,8 @@ import SiteFooter from "@/components/layout/SiteFooter";
 import SiteHeader from "@/components/layout/SiteHeader";
 import HomePage from "@/pages/HomePage";
 import NarrativePage from "@/pages/NarrativePage";
+import NftsPage from "@/pages/NftsPage";
+import TimelinePage from "@/pages/TimelinePage";
 import { Route, Routes } from "react-router-dom";
 
 export default function App() {
@@ -12,6 +14,8 @@ export default function App() {
         <Routes>
           <Route index element={<HomePage />} />
           <Route path="narrative" element={<NarrativePage />} />
+          <Route path="timeline" element={<TimelinePage />} />
+          <Route path="nfts" element={<NftsPage />} />
         </Routes>
       </main>
       <SiteFooter />

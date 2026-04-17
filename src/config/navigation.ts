@@ -43,16 +43,16 @@ export const navGroups: NavGroup[] = [
     id: "timeline",
     label: "Timeline",
     children: [
-      { label: "Road Ahead", href: "#timeline", description: "里程碑占位" },
-      { label: "Manifesto", href: "#manifesto", description: "叙事延展" },
+      { label: "Road Ahead", href: "/timeline#timeline-road", description: "里程碑与路线" },
+      { label: "Manifesto", href: "/timeline#timeline-manifesto", description: "叙事延展" },
     ],
   },
   {
     id: "nfts",
     label: "NFTs",
     children: [
-      { label: "Artifacts", href: "#nfts", description: "数字藏品入口" },
-      { label: "Connect", href: "#final-cta", description: "参与生态" },
+      { label: "Artifacts", href: "/nfts#nfts-artifacts", description: "数字藏品入口" },
+      { label: "Minting", href: "/nfts#nfts-minting", description: "进入锻造工坊" },
     ],
   },
 ];

@@ -4,6 +4,13 @@ import { navigateToHref } from "@/lib/navigateToHref";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
+function primaryRouteForNavGroup(id: string): "/narrative" | "/timeline" | "/nfts" | null {
+  if (id === "narrative") return "/narrative";
+  if (id === "timeline") return "/timeline";
+  if (id === "nfts") return "/nfts";
+  return null;
+}
+
 function Logo() {
   return (
     <Link
@@ -98,11 +105,13 @@ export default function SiteHeader() {
           className="hidden items-center gap-1 lg:flex"
           aria-label="主导航"
         >
-          {navGroups.map((group) => (
+          {navGroups.map((group) => {
+            const primaryTo = primaryRouteForNavGroup(group.id);
+            return (
             <div key={group.id} className="group relative">
-              {group.id === "narrative" ? (
+              {primaryTo ? (
                 <NavLink
-                  to="/narrative"
+                  to={primaryTo}
                   className={({ isActive }) =>
                     [
                       "flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff8080]",
@@ -158,7 +167,8 @@ export default function SiteHeader() {
                 </ul>
               </div>
             </div>
-          ))}
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-3">
@@ -232,11 +242,12 @@ export default function SiteHeader() {
               </button>
             </div>
             <nav className="flex-1 overflow-y-auto px-3 py-4" aria-label="移动端主导航">
-              {navGroups.map((group) =>
-                group.id === "narrative" ? (
+              {navGroups.map((group) => {
+                const primaryTo = primaryRouteForNavGroup(group.id);
+                return primaryTo ? (
                   <div key={group.id} className="border-b border-white/5 py-1">
                     <NavLink
-                      to="/narrative"
+                      to={primaryTo}
                       className={({ isActive }) =>
                         [
                           "block rounded-lg px-3 py-3 text-sm font-medium transition",
@@ -291,8 +302,8 @@ export default function SiteHeader() {
                       ))}
                     </ul>
                   </details>
-                ),
-              )}
+                );
+              })}
             </nav>
             <div className="border-t border-white/10 p-4">
               <GradientButton

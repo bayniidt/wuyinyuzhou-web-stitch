@@ -1,7 +1,24 @@
 import GhostButton from "@/components/ui/GhostButton";
 import GradientButton from "@/components/ui/GradientButton";
+import heroPoster from "@/images/pexels-3d-render-1058120333-33441875.jpg";
+import heroAmbienceMp4 from "@/videos/8950635-hd_1920_1080_30fps.mp4";
+import { useEffect, useState } from "react";
+
+function usePrefersReducedMotion() {
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(mq.matches);
+    const onChange = () => setReduced(mq.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+  return reduced;
+}
 
 export default function HeroSection() {
+  const reducedMotion = usePrefersReducedMotion();
+
   return (
     <section
       id="hero"
@@ -11,6 +28,27 @@ export default function HeroSection() {
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,77,77,0.15),_transparent_55%),linear-gradient(180deg,#050505_0%,#0a0a0a_45%,#050505_100%)]"
         aria-hidden
       />
+      <img
+        src={heroPoster}
+        alt=""
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.38] lg:opacity-[0.3]"
+        decoding="async"
+        aria-hidden
+      />
+      {!reducedMotion ? (
+        <video
+          className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover opacity-[0.34] lg:block"
+          autoPlay
+          muted
+          playsInline
+          loop
+          preload="metadata"
+          poster={heroPoster}
+          aria-hidden
+        >
+          <source src={heroAmbienceMp4} type="video/mp4" />
+        </video>
+      ) : null}
       <div
         className="pointer-events-none absolute inset-0 bg-[url('/images/hero-kernel.svg')] bg-cover bg-center opacity-90 mix-blend-screen"
         aria-hidden

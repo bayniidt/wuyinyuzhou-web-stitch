@@ -1,5 +1,6 @@
 import GhostButton from "@/components/ui/GhostButton";
 import GradientButton from "@/components/ui/GradientButton";
+import narrativeMapBg from "@/images/pexels-sejio402-6477204.jpg";
 import { scrollToSelector } from "@/lib/scroll";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -99,6 +100,13 @@ export default function NarrativePage() {
           </h2>
           <div className="mt-12 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-cyan-500/20 bg-neutral-950 shadow-[0_0_80px_rgba(34,211,238,0.08)]">
+              <img
+                src={narrativeMapBg}
+                alt=""
+                className="absolute inset-0 h-full w-full object-cover opacity-[0.22]"
+                decoding="async"
+                aria-hidden
+              />
               <div
                 className="absolute inset-0 opacity-90"
                 style={{

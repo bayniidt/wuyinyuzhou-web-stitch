@@ -1,3 +1,5 @@
+import manifestoVisual from "@/images/pexels-eddson-lens-748406628-33284058.jpg";
+
 export default function ManifestoSection() {
   return (
     <section
@@ -9,8 +11,14 @@ export default function ManifestoSection() {
           className="relative aspect-square max-h-[420px] w-full overflow-hidden rounded-2xl border border-white/10 bg-neutral-950 shadow-wuyin-glow"
           aria-hidden
         >
-          <div className="absolute inset-0 bg-[conic-gradient(at_30%_30%,#ff4d4d,#1a0505,#ff8080,#2a0a0a)] opacity-90" />
-          <div className="absolute inset-0 mix-blend-multiply bg-[radial-gradient(circle_at_70%_70%,transparent_0%,#000_75%)]" />
+          <img
+            src={manifestoVisual}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover"
+            decoding="async"
+          />
+          <div className="absolute inset-0 bg-linear-to-br from-black/70 via-red-950/35 to-black/80" />
+          <div className="absolute inset-0 mix-blend-soft-light bg-[radial-gradient(circle_at_30%_25%,rgba(255,77,77,0.22),transparent_55%)]" />
         </div>
         <div>
           <h2 className="flex items-center gap-3 font-serif text-3xl font-bold text-white sm:text-4xl">
