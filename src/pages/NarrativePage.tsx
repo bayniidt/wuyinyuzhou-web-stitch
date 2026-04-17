@@ -2,10 +2,12 @@ import ScrollReveal from "@/components/motion/ScrollReveal";
 import GhostButton from "@/components/ui/GhostButton";
 import GradientButton from "@/components/ui/GradientButton";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
-import imgLineageIron from "@/images/pexels-akwice-3094799.jpg";
-import imgLineageObsidian from "@/images/pexels-akoonie-19984728.jpg";
-import imgLineageVoid from "@/images/pexels-alexquezada-9866073.jpg";
-import narrativeMapBg from "@/images/pexels-sejio402-6477204.jpg";
+import imgConceptTrinity from "@/images/page2(2).png";
+import imgLineageIron from "@/images/page2(5).png";
+import imgLineageObsidian from "@/images/page2(3).png";
+import imgLineageVoid from "@/images/page2(4).png";
+import narrativeBanner from "@/images/page2(6).png";
+import narrativeMapBg from "@/images/page2(7).png";
 import { scrollToSelector } from "@/lib/scroll";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -67,6 +69,13 @@ export default function NarrativePage() {
           ].join(" ")}
           aria-hidden
         />
+        <img
+          src={narrativeBanner}
+          alt=""
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.22]"
+          decoding="async"
+          aria-hidden
+        />
         <div
           className="pointer-events-none absolute inset-0 opacity-30 mix-blend-screen"
           style={{
@@ -75,7 +84,13 @@ export default function NarrativePage() {
           }}
           aria-hidden
         />
-        <div className="container-wuyin relative z-10 flex flex-col items-center py-24 text-center sm:py-28">
+        <ScrollReveal
+          variant="upGlow"
+          className="container-wuyin relative z-10 flex flex-col items-center py-24 text-center sm:py-28 wuyin-reveal-tech"
+          visibleClassName="wuyin-reveal-tech-visible"
+          staggerChildren
+          staggerStepMs={90}
+        >
           <p className="text-xs font-semibold uppercase tracking-[0.45em] text-wuyin-muted sm:text-sm">
             The Scroll of Wuyin
           </p>
@@ -99,14 +114,14 @@ export default function NarrativePage() {
               返回主站
             </GhostButton>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       <section
         id="narrative-map"
         className="border-b border-white/5 bg-wuyin-bg py-20 sm:py-28"
       >
-        <ScrollReveal className="container-wuyin">
+        <div className="container-wuyin">
           <h2 className="font-serif text-3xl font-bold text-white sm:text-4xl">
             虚空制图
             <span className="mt-2 block text-sm font-normal tracking-wide text-wuyin-muted sm:text-base">
@@ -114,85 +129,110 @@ export default function NarrativePage() {
             </span>
           </h2>
           <div className="mt-12 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-cyan-500/20 bg-neutral-950 shadow-[0_0_80px_rgba(34,211,238,0.08)]">
-              <img
-                src={narrativeMapBg}
-                alt=""
-                className="absolute inset-0 h-full w-full object-cover opacity-[0.22]"
-                decoding="async"
-                aria-hidden
-              />
-              <div
-                className="absolute inset-0 opacity-90"
-                style={{
-                  backgroundImage: `linear-gradient(rgba(34,211,238,0.15) 1px, transparent 1px),
+            <ScrollReveal variant="leftSoft" className="wuyin-reveal-tech" visibleClassName="wuyin-reveal-tech-visible">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-cyan-500/20 bg-neutral-950 shadow-[0_0_80px_rgba(34,211,238,0.08)]">
+                <img
+                  src={narrativeMapBg}
+                  alt=""
+                  className="absolute inset-0 h-full w-full object-cover opacity-[0.22]"
+                  decoding="async"
+                  aria-hidden
+                />
+                <div
+                  className="absolute inset-0 opacity-90"
+                  style={{
+                    backgroundImage: `linear-gradient(rgba(34,211,238,0.15) 1px, transparent 1px),
                     linear-gradient(90deg, rgba(34,211,238,0.15) 1px, transparent 1px)`,
-                  backgroundSize: "28px 28px",
-                }}
-                aria-hidden
-              />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_40%_45%,transparent_0%,#000_70%)]" aria-hidden />
-              <div className="absolute left-[18%] top-[58%] flex items-center gap-2 rounded-full border border-cyan-400/40 bg-black/60 px-3 py-1.5 text-xs text-cyan-100 backdrop-blur">
-                <span className="h-2 w-2 rounded-full bg-cyan-400 shadow-[0_0_12px_#22d3ee]" />
-                黑曜裂谷
+                    backgroundSize: "28px 28px",
+                  }}
+                  aria-hidden
+                />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_40%_45%,transparent_0%,#000_70%)]" aria-hidden />
+                <div className="absolute left-[18%] top-[58%] flex items-center gap-2 rounded-full border border-cyan-400/40 bg-black/60 px-3 py-1.5 text-xs text-cyan-100 backdrop-blur">
+                  <span className="h-2 w-2 rounded-full bg-cyan-400 shadow-[0_0_12px_#22d3ee]" />
+                  黑曜裂谷
+                </div>
+                <div className="absolute right-[22%] top-[32%] flex items-center gap-2 rounded-full border border-[#ff8080]/40 bg-black/60 px-3 py-1.5 text-xs text-[#ffc9c9] backdrop-blur">
+                  <span className="h-2 w-2 rounded-full bg-[#ff4d4d] shadow-[0_0_12px_#ff4d4d]" />
+                  数字灵脉
+                </div>
               </div>
-              <div className="absolute right-[22%] top-[32%] flex items-center gap-2 rounded-full border border-[#ff8080]/40 bg-black/60 px-3 py-1.5 text-xs text-[#ffc9c9] backdrop-blur">
-                <span className="h-2 w-2 rounded-full bg-[#ff4d4d] shadow-[0_0_12px_#ff4d4d]" />
-                数字灵脉
-              </div>
-            </div>
-            <div className="space-y-5 text-sm leading-relaxed text-neutral-300 sm:text-base">
+            </ScrollReveal>
+            <ScrollReveal
+              variant="rightSoft"
+              delayMs={90}
+              className="space-y-5 text-sm leading-relaxed text-neutral-300 sm:text-base"
+            >
               <p>
                 卷轴上的「地形」并非装饰：它标记风险、机遇与社群节点。每一处高光，都是可被进入的故事入口；每一条等高线，都是规则与激励的边界。
               </p>
               <p className="text-wuyin-muted">
                 当你在此落印，地图会记住你——不是记住你的面孔，而是记住你的选择与轨迹。
               </p>
-            </div>
+            </ScrollReveal>
           </div>
-        </ScrollReveal>
+        </div>
       </section>
 
       <section
         id="narrative-concepts"
         className="border-b border-white/5 bg-wuyin-surface py-20 sm:py-28"
       >
-        <ScrollReveal className="container-wuyin grid gap-12 lg:grid-cols-2 lg:items-center">
-          <div className="space-y-8">
-            <h2 className="font-serif text-3xl font-bold text-white sm:text-4xl">武道三念</h2>
-            <div className="space-y-6">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff8080]">Zhi · 止</p>
-                <p className="mt-2 text-sm text-neutral-300 sm:text-base">
-                  在噪声里学会停：止不是退缩，而是把力量收束到唯一正确的落点。
-                </p>
-              </div>
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff8080]">Ge · 格</p>
-                <p className="mt-2 text-sm text-neutral-300 sm:text-base">
-                  格挡与对话同源：与系统博弈，与自我对齐，在边界上雕刻出风格。
-                </p>
-              </div>
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff8080]">Yin · 印</p>
-                <p className="mt-2 text-sm text-neutral-300 sm:text-base">
-                  印是证据，也是誓言：一次吐纳、一场对决、一枚藏品，皆可成为可被继承的记忆。
-                </p>
+        <div className="container-wuyin grid gap-12 lg:grid-cols-2 lg:items-center">
+          <ScrollReveal variant="leftSoft">
+            <div className="space-y-8">
+              <h2 className="font-serif text-3xl font-bold text-white sm:text-4xl">武道三念</h2>
+              <div className="space-y-6">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff8080]">Zhi · 止</p>
+                  <p className="mt-2 text-sm text-neutral-300 sm:text-base">
+                    在噪声里学会停：止不是退缩，而是把力量收束到唯一正确的落点。
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff8080]">Ge · 格</p>
+                  <p className="mt-2 text-sm text-neutral-300 sm:text-base">
+                    格挡与对话同源：与系统博弈，与自我对齐，在边界上雕刻出风格。
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff8080]">Yin · 印</p>
+                  <p className="mt-2 text-sm text-neutral-300 sm:text-base">
+                    印是证据，也是誓言：一次吐纳、一场对决、一枚藏品，皆可成为可被继承的记忆。
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-          <div
-            className="relative aspect-square max-h-[420px] w-full overflow-hidden rounded-2xl border border-white/10 bg-neutral-950"
-            aria-hidden
+          </ScrollReveal>
+          <ScrollReveal
+            variant="rightSoft"
+            delayMs={90}
+            className="wuyin-reveal-tech"
+            visibleClassName="wuyin-reveal-tech-visible"
           >
-            <div className="absolute inset-0 bg-[conic-gradient(at_40%_40%,#ff4d4d,#0a0303,#ff8080,#1a0505)] opacity-95" />
-            <div className="absolute inset-0 mix-blend-overlay opacity-70 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.35),transparent_55%)]" />
-          </div>
-        </ScrollReveal>
+            <div
+              className="relative aspect-square max-h-[420px] w-full overflow-hidden rounded-2xl border border-white/10 bg-neutral-950"
+              aria-hidden
+            >
+              <img
+                src={imgConceptTrinity}
+                alt=""
+                className="absolute inset-0 h-full w-full object-cover"
+                decoding="async"
+              />
+              <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/15 to-transparent" />
+            </div>
+          </ScrollReveal>
+        </div>
       </section>
 
       <section id="narrative-lineage" className="border-b border-white/5 py-20 sm:py-28">
-        <ScrollReveal className="container-wuyin">
+        <ScrollReveal
+          variant="leftSoft"
+          delayMs={100}
+          className="container-wuyin wuyin-reveal-tech"
+          visibleClassName="wuyin-reveal-tech-visible"
+        >
           <h2 className="font-serif text-3xl font-bold text-white sm:text-4xl">刃之谱系</h2>
           <p className="mt-3 max-w-2xl text-sm text-neutral-400 sm:text-base">
             Lineage of the Blade — 他们不是「角色卡」，而是叙事引擎的人格化切片。
@@ -228,7 +268,12 @@ export default function NarrativePage() {
       </section>
 
       <section id="narrative-fusion" className="py-20 sm:py-28">
-        <ScrollReveal className="container-wuyin">
+        <ScrollReveal
+          variant="upGlow"
+          delayMs={120}
+          className="container-wuyin wuyin-reveal-tech"
+          visibleClassName="wuyin-reveal-tech-visible"
+        >
           <h2 className="text-center font-serif text-3xl font-bold text-white sm:text-4xl">
             熔铸不可抹除之物
           </h2>

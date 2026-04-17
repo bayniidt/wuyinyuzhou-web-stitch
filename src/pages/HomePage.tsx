@@ -3,6 +3,7 @@ import EcosystemMatrixSection from "@/sections/EcosystemMatrixSection";
 import FinalCtaSection from "@/sections/FinalCtaSection";
 import HeroSection from "@/sections/HeroSection";
 import ManifestoSection from "@/sections/ManifestoSection";
+import ScrollReveal from "@/components/motion/ScrollReveal";
 import { scrollToSelector } from "@/lib/scroll";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
@@ -20,11 +21,20 @@ export default function HomePage() {
 
   return (
     <>
-      <HeroSection />
+      <ScrollReveal variant="upGlow" visibleClassName="wuyin-reveal-tech-visible" className="wuyin-reveal-tech">
+        <HeroSection />
+      </ScrollReveal>
       <ManifestoSection />
       <DomainCardsSection />
       <EcosystemMatrixSection />
-      <FinalCtaSection />
+      <ScrollReveal
+        variant="upSoft"
+        delayMs={120}
+        visibleClassName="wuyin-reveal-tech-visible"
+        className="wuyin-reveal-tech"
+      >
+        <FinalCtaSection />
+      </ScrollReveal>
     </>
   );
 }

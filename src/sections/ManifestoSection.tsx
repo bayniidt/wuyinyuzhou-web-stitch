@@ -1,5 +1,5 @@
 import ScrollReveal from "@/components/motion/ScrollReveal";
-import manifestoVisual from "@/images/pexels-eddson-lens-748406628-33284058.jpg";
+import manifestoVisual from "@/images/index2.png";
 
 export default function ManifestoSection() {
   return (

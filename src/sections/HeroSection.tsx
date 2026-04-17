@@ -1,6 +1,6 @@
 import GhostButton from "@/components/ui/GhostButton";
 import GradientButton from "@/components/ui/GradientButton";
-import heroPoster from "@/images/pexels-3d-render-1058120333-33441875.jpg";
+import heroPoster from "@/images/index1.png";
 import heroAmbienceMp4 from "@/videos/8950635-hd_1920_1080_30fps.mp4";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 
@@ -52,7 +52,12 @@ export default function HeroSection() {
         }}
         aria-hidden
       />
-      <div className="container-wuyin relative z-10 flex flex-col items-center py-28 text-center sm:py-32">
+      <div
+        className={[
+          "container-wuyin relative z-10 flex flex-col items-center py-28 text-center sm:py-32",
+          reducedMotion ? "" : "wuyin-cinematic-enter",
+        ].join(" ")}
+      >
         <p className="wuyin-hero-entrance text-xs font-semibold uppercase tracking-[0.45em] text-wuyin-muted sm:text-sm">
           Ancient Soul • Future Core
         </p>

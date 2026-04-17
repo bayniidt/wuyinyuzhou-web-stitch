@@ -2,15 +2,13 @@ import ScrollReveal from "@/components/motion/ScrollReveal";
 import GhostButton from "@/components/ui/GhostButton";
 import GradientButton from "@/components/ui/GradientButton";
 import { scrollToSelector } from "@/lib/scroll";
-import imgTimelineRoad from "@/images/pexels-adrien-olichon-1257089-2387532.jpg";
-import imgTimelineManifesto from "@/images/pexels-simonptr-33607952.jpg";
-import imgTimelineKinetic from "@/images/pexels-cottonbro-6153741.jpg";
-import imgTimelineRoster from "@/images/pexels-francesco-ungaro-9973336.jpg";
-import imgRosterGhost from "@/images/pexels-jonathanborba-14268859.jpg";
-import imgRosterIron from "@/images/pexels-jonathanborba-14358449.jpg";
-import imgRosterNeon from "@/images/pexels-leonbastian-35010154.jpg";
-import imgRosterVoid from "@/images/pexels-rudonni-7174683.jpg";
-import kineticPreviewMp4 from "@/videos/15402275_1920_1080_30fps.mp4";
+import imgTimelineHero from "@/images/page3 (7).png";
+import imgTimelineRoad from "@/images/page3 (1).png";
+import imgTimelineManifesto from "@/images/page3 (6).png";
+import imgRosterGhost from "@/images/page3 (2).png";
+import imgRosterIron from "@/images/page3 (3).png";
+import imgRosterNeon from "@/images/page3 (4).png";
+import imgRosterVoid from "@/images/page3 (5).png";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -53,27 +51,7 @@ const modules: TimelineModule[] = [
     imageAlt: "叙事与空间光影",
     imageOnLeft: false,
     statLine: "2.4m · 站立高度（示意数据）",
-  },
-  {
-    id: "timeline-kinetic",
-    kicker: "Kinetic Era",
-    title: "机甲拳击：动能时代",
-    body:
-      "动能模块用于承载预告片、幕后纪录片或实机演示。下图块为本地素材；点击下方按钮可跳转至本页内嵌的预发布影像。",
-    imageSrc: imgTimelineKinetic,
-    imageAlt: "动能训练与竞技氛围",
-    imageOnLeft: true,
-  },
-  {
-    id: "timeline-roster",
-    kicker: "Warrior Roster",
-    title: "战士名册与身份延展",
-    body:
-      "名册区块可与检索、筛选及链上身份展示对接；此处延续一比一版式，用影像先建立名册气质与对比度。",
-    imageSrc: imgTimelineRoster,
-    imageAlt: "团队与名册视觉",
-    imageOnLeft: false,
-  },
+  }
 ];
 
 function IconLightning({ className = "h-3.5 w-3.5 shrink-0 text-[#ff4d4d]" }: { className?: string }) {
@@ -90,7 +68,11 @@ function AccessTiersSection() {
       id="timeline-access-tiers"
       className="border-b border-white/5 bg-wuyin-bg py-16 sm:py-20 lg:py-24"
     >
-      <div className="container-wuyin">
+      <ScrollReveal
+        variant="upSoft"
+        className="container-wuyin wuyin-reveal-tech"
+        visibleClassName="wuyin-reveal-tech-visible"
+      >
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <h2 className="font-serif text-3xl font-semibold italic tracking-tight text-white sm:text-4xl lg:text-[2.5rem]">
@@ -203,7 +185,7 @@ function AccessTiersSection() {
             </div>
           </article>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 }
@@ -234,7 +216,12 @@ const rosterCards = [
 function WarriorRosterSection() {
   return (
     <section id="timeline-warrior-roster" className="border-b border-white/5 bg-wuyin-bg py-16 sm:py-20 lg:py-24">
-      <div className="container-wuyin">
+      <ScrollReveal
+        variant="leftSoft"
+        delayMs={70}
+        className="container-wuyin wuyin-reveal-tech"
+        visibleClassName="wuyin-reveal-tech-visible"
+      >
         <div className="flex items-center justify-between gap-4">
           <h2 className="font-serif text-3xl font-semibold italic tracking-tight text-white sm:text-4xl">
             Warrior Roster
@@ -277,7 +264,7 @@ function WarriorRosterSection() {
             </article>
           ))}
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 }
@@ -285,99 +272,58 @@ function WarriorRosterSection() {
 function TimelineSplitModule({ m, surface }: { m: TimelineModule; surface: string }) {
   return (
     <section id={m.id} className={`border-b border-white/5 py-16 sm:py-20 lg:py-24 ${surface}`}>
-      <ScrollReveal
-        variant={m.imageOnLeft ? "left" : "right"}
-        className="container-wuyin"
-      >
+      <div className="container-wuyin wuyin-reveal-tech">
         <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
-          <div
-            className={[
-              "overflow-hidden rounded-2xl border border-white/10 bg-neutral-950 shadow-wuyin-glow",
-              m.imageOnLeft ? "lg:order-1" : "lg:order-2",
-            ].join(" ")}
+          <ScrollReveal
+            variant="leftSoft"
+            className={m.imageOnLeft ? "lg:order-1" : "lg:order-2"}
+            visibleClassName="wuyin-reveal-tech-visible"
           >
-            <div className="relative aspect-[3/2] w-full max-h-[min(46dvh,22rem)] sm:max-h-[min(48dvh,26rem)] lg:max-h-[min(52dvh,30rem)]">
-              <img
-                src={m.imageSrc}
-                alt={m.imageAlt}
-                width={1200}
-                height={800}
-                className="absolute inset-0 h-full w-full object-cover"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-          </div>
-
-          <div className={m.imageOnLeft ? "lg:order-2" : "lg:order-1"}>
-            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#ff8080]">{m.kicker}</p>
-            <h2 className="mt-3 font-serif text-3xl font-bold text-white sm:text-4xl">{m.title}</h2>
-            <p className="mt-4 text-sm leading-relaxed text-neutral-300 sm:text-base">{m.body}</p>
-
-            {m.statLine ? <p className="mt-6 text-sm font-medium text-neutral-200">{m.statLine}</p> : null}
-
-            {m.bullets ? (
-              <ol className="mt-8 space-y-6">
-                {m.bullets.map((b) => (
-                  <li key={b.step + b.title} className="flex gap-4">
-                    <span className="mt-0.5 inline-flex min-w-[2.75rem] font-mono text-xs font-semibold tabular-nums text-wuyin-muted">
-                      {b.step}
-                    </span>
-                    <div>
-                      <p className="text-sm font-semibold text-white sm:text-base">{b.title}</p>
-                      <p className="mt-1 text-sm leading-relaxed text-neutral-400">{b.text}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            ) : null}
-
-            {m.id === "timeline-kinetic" ? (
-              <div className="mt-8">
-                <GradientButton
-                  type="button"
-                  className="inline-flex items-center gap-2"
-                  onClick={() => scrollToSelector("#timeline-kinetic-preview")}
-                >
-                  <span aria-hidden>▶</span>
-                  观看预发布预告
-                </GradientButton>
+            <div className="overflow-hidden rounded-2xl border border-white/10 bg-neutral-950 shadow-wuyin-glow">
+              <div className="relative aspect-[5/4] w-full max-h-[min(54dvh,28rem)] sm:max-h-[min(58dvh,33rem)] lg:max-h-[min(64dvh,38rem)]">
+                <img
+                  src={m.imageSrc}
+                  alt={m.imageAlt}
+                  width={1200}
+                  height={1200}
+                  className="absolute inset-0 h-full w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
-            ) : null}
-          </div>
-        </div>
-      </ScrollReveal>
-    </section>
-  );
-}
+            </div>
+          </ScrollReveal>
 
-function KineticPreviewSection() {
-  return (
-    <section
-      id="timeline-kinetic-preview"
-      className="border-b border-white/5 bg-wuyin-surface py-14 sm:py-20"
-      aria-labelledby="timeline-kinetic-preview-heading"
-    >
-      <div className="container-wuyin max-w-4xl">
-        <h2
-          id="timeline-kinetic-preview-heading"
-          className="font-serif text-2xl font-bold text-white sm:text-3xl"
-        >
-          预发布影像
-        </h2>
-        <p className="mt-2 text-sm text-neutral-400 sm:text-base">
-          本地 1080p 素材预览，可在此核对节奏与调色；正式版本可替换为外链或流媒体。
-        </p>
-        <div className="mt-8 overflow-hidden rounded-2xl border border-white/10 bg-black shadow-wuyin-glow">
-          <video
-            className="aspect-video w-full object-cover"
-            controls
-            playsInline
-            preload="metadata"
-            poster={imgTimelineKinetic}
+          <ScrollReveal
+            variant="rightSoft"
+            delayMs={85}
+            className={m.imageOnLeft ? "lg:order-2" : "lg:order-1"}
           >
-            <source src={kineticPreviewMp4} type="video/mp4" />
-          </video>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#ff8080]">{m.kicker}</p>
+              <h2 className="mt-3 font-serif text-3xl font-bold text-white sm:text-4xl">{m.title}</h2>
+              <p className="mt-4 text-sm leading-relaxed text-neutral-300 sm:text-base">{m.body}</p>
+
+              {m.statLine ? <p className="mt-6 text-sm font-medium text-neutral-200">{m.statLine}</p> : null}
+
+              {m.bullets ? (
+                <ol className="mt-8 space-y-6">
+                  {m.bullets.map((b) => (
+                    <li key={b.step + b.title} className="flex gap-4">
+                      <span className="mt-0.5 inline-flex min-w-[2.75rem] font-mono text-xs font-semibold tabular-nums text-wuyin-muted">
+                        {b.step}
+                      </span>
+                      <div>
+                        <p className="text-sm font-semibold text-white sm:text-base">{b.title}</p>
+                        <p className="mt-1 text-sm leading-relaxed text-neutral-400">{b.text}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              ) : null}
+
+            </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>
@@ -389,8 +335,6 @@ export default function TimelinePage() {
   const navigate = useNavigate();
   const firstModule = modules[0]!;
   const secondModule = modules[1]!;
-  const thirdModule = modules[2]!;
-  const fourthModule = modules[3]!;
 
   useEffect(() => {
     const hash = location.hash;
@@ -410,7 +354,20 @@ export default function TimelinePage() {
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(255,77,77,0.16),transparent_55%),linear-gradient(180deg,#030303_0%,#080808_45%,#050505_100%)]"
           aria-hidden
         />
-        <div className="container-wuyin relative z-10 py-20 sm:py-24 lg:py-28">
+        <img
+          src={imgTimelineHero}
+          alt=""
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.24]"
+          decoding="async"
+          aria-hidden
+        />
+        <ScrollReveal
+          variant="upGlow"
+          className="container-wuyin relative z-10 py-20 sm:py-24 lg:py-28 wuyin-reveal-tech"
+          visibleClassName="wuyin-reveal-tech-visible"
+          staggerChildren
+          staggerStepMs={90}
+        >
           <p className="text-xs font-semibold uppercase tracking-[0.4em] text-wuyin-muted sm:text-sm">
             2026 Hangzhou Show
           </p>
@@ -429,16 +386,13 @@ export default function TimelinePage() {
               返回主站
             </GhostButton>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       <AccessTiersSection />
       <TimelineSplitModule m={firstModule} surface="bg-wuyin-bg" />
       <WarriorRosterSection />
       <TimelineSplitModule m={secondModule} surface="bg-wuyin-surface" />
-      <TimelineSplitModule m={thirdModule} surface="bg-wuyin-bg" />
-      <KineticPreviewSection />
-      <TimelineSplitModule m={fourthModule} surface="bg-wuyin-surface" />
     </>
   );
 }

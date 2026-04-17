@@ -1,8 +1,8 @@
 import ScrollReveal from "@/components/motion/ScrollReveal";
 import FeatureCard from "@/components/ui/FeatureCard";
-import imgCulture from "@/images/pexels-yelenaodintsova-10559023.jpg";
-import imgFinance from "@/images/pexels-gasparzaldo-6737849.jpg";
-import imgTechnology from "@/images/pexels-vinh-ch-1599393606-35464781.jpg";
+import imgCulture from "@/images/index3.png";
+import imgFinance from "@/images/index5.png";
+import imgTechnology from "@/images/index4.png";
 
 function CultureVisual() {
   return (

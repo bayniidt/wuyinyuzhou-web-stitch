@@ -13,7 +13,7 @@
     serif;
   --shadow-wuyin-glow: 0 0 60px rgb(255 77 77 / 0.12);
   --ease-wuyin: cubic-bezier(0.22, 1, 0.36, 1);
-  --wuyin-reveal-duration: 520ms;
+  --wuyin-reveal-duration: 480ms;
   --wuyin-route-duration: 300ms;
   --wuyin-drawer-duration: 280ms;
 }
@@ -81,6 +81,19 @@
   }
 }
 
+@keyframes wuyin-cinematic-enter {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.988);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
 @utility wuyin-animate-gradient-drift {
   animation: wuyin-gradient-drift 18s var(--ease-wuyin) infinite;
 }
@@ -122,6 +135,80 @@
   animation-delay: 0.52s;
 }
 
+@utility wuyin-cinematic-enter {
+  animation: wuyin-cinematic-enter 0.82s var(--ease-wuyin) both;
+}
+
+@layer utilities {
+  .wuyin-reveal-tech {
+    position: relative;
+  }
+
+  .wuyin-reveal-tech::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background: linear-gradient(130deg, rgb(34 211 238 / 0.08), transparent 40%, rgb(255 77 77 / 0.08));
+    opacity: 0;
+    transition: opacity var(--wuyin-reveal-duration) var(--ease-wuyin);
+  }
+
+  .wuyin-reveal-tech-visible::before {
+    opacity: 1;
+  }
+
+  .wuyin-reveal-tech-panel {
+    backdrop-filter: blur(2px);
+    box-shadow: 0 0 42px rgb(34 211 238 / 0.06);
+  }
+
+  .wuyin-reveal-stagger > * {
+    transition-property: opacity, transform, filter;
+    transition-duration: var(--wuyin-reveal-duration);
+    transition-timing-function: var(--ease-wuyin);
+    transition-delay: calc(var(--wuyin-stagger-step, 70ms) * var(--wuyin-stagger-index, 0));
+  }
+
+  .wuyin-reveal-stagger > :nth-child(1) {
+    --wuyin-stagger-index: 0;
+  }
+  .wuyin-reveal-stagger > :nth-child(2) {
+    --wuyin-stagger-index: 1;
+  }
+  .wuyin-reveal-stagger > :nth-child(3) {
+    --wuyin-stagger-index: 2;
+  }
+  .wuyin-reveal-stagger > :nth-child(4) {
+    --wuyin-stagger-index: 3;
+  }
+  .wuyin-reveal-stagger > :nth-child(5) {
+    --wuyin-stagger-index: 4;
+  }
+  .wuyin-reveal-stagger > :nth-child(6) {
+    --wuyin-stagger-index: 5;
+  }
+  .wuyin-reveal-stagger > :nth-child(7) {
+    --wuyin-stagger-index: 6;
+  }
+  .wuyin-reveal-stagger > :nth-child(8) {
+    --wuyin-stagger-index: 7;
+  }
+
+  .wuyin-reveal-stagger[data-visible="false"] > * {
+    opacity: 0;
+    transform: translateY(10px) scale(0.992);
+    filter: blur(2px);
+  }
+
+  .wuyin-reveal-stagger[data-visible="true"] > * {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -142,11 +229,21 @@
     .wuyin-animate-grid-reflow,
     .wuyin-animate-glow-pulse,
     .wuyin-hero-entrance,
+    .wuyin-cinematic-enter,
     .wuyin-hero-entrance-delay-1,
     .wuyin-hero-entrance-delay-2,
     .wuyin-hero-entrance-delay-3,
-    .wuyin-hero-entrance-delay-4 {
+    .wuyin-hero-entrance-delay-4,
+    .wuyin-reveal-tech::before {
       animation: none !important;
+      transition: none !important;
+    }
+
+    .wuyin-reveal-stagger > * {
+      transition: none !important;
+      transform: none !important;
+      filter: none !important;
+      opacity: 1 !important;
     }
   }
 }

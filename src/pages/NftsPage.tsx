@@ -1,8 +1,9 @@
-import imgCoverShadowGale from "@/images/pexels-akoonie-19984728.jpg";
-import imgCoverIronFist from "@/images/pexels-akwice-3094799.jpg";
-import imgCoverVoidStep from "@/images/pexels-alexquezada-9866073.jpg";
-import imgCoverDragonBreath from "@/images/pexels-dbgalvanis-4572980.jpg";
-import imgForgeStill from "@/images/pexels-cottonbro-7780214.jpg";
+import imgCoverShadowGale from "@/images/page4 (2).png";
+import imgCoverIronFist from "@/images/page4 (1).png";
+import imgCoverVoidStep from "@/images/page4 (3).png";
+import imgCoverDragonBreath from "@/images/page4 (4).png";
+import ScrollReveal from "@/components/motion/ScrollReveal";
+import imgForgeStill from "@/images/page4 (5).png";
 import forgeAmbienceMp4 from "@/videos/15236622_1920_1080_30fps.mp4";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 import { useState } from "react";
@@ -202,7 +203,13 @@ export default function NftsPage() {
   return (
     <div id="nfts" className="container-wuyin space-y-8 py-8 sm:space-y-10 sm:py-10">
       <section className="bg-[#070707] px-2 py-6 sm:px-3 sm:py-8">
-        <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+        <ScrollReveal
+          variant="upGlow"
+          className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end wuyin-reveal-tech"
+          visibleClassName="wuyin-reveal-tech-visible"
+          staggerChildren
+          staggerStepMs={90}
+        >
           <div className="space-y-5">
             <p className="inline-flex items-center gap-3 text-[10px] font-semibold tracking-[0.34em] text-[#e5b3b3]">
               <span className="inline-block h-px w-10 bg-[#ff8e8e]" />
@@ -227,11 +234,17 @@ export default function NftsPage() {
               <p className="mt-3 text-xs tracking-[0.16em] text-neutral-500">∞x 0x88...F2A1</p>
             </div>
           </aside>
-        </div>
+        </ScrollReveal>
       </section>
 
       <section id="nfts-artifacts" className="space-y-5">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-stretch sm:justify-between sm:gap-6">
+        <ScrollReveal
+          variant="upSoft"
+          delayMs={60}
+          className="wuyin-reveal-tech"
+          visibleClassName="wuyin-reveal-tech-visible"
+        >
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-stretch sm:justify-between sm:gap-6">
           <div
             className="flex flex-wrap gap-1 border-b border-white/10 pb-px sm:flex-nowrap sm:gap-0"
             role="tablist"
@@ -267,15 +280,24 @@ export default function NftsPage() {
               className="w-full rounded border border-white/20 bg-[#0c0c0c] py-2.5 pl-10 pr-3 text-sm text-neutral-200 placeholder:text-neutral-500 focus:border-white/35 focus:outline-none"
             />
           </label>
-        </div>
+          </div>
+        </ScrollReveal>
 
-        <div
-          key={artifactFilter}
-          className={[
-            "grid gap-4 sm:grid-cols-2 lg:grid-cols-4",
-            reducedMotion ? "" : "wuyin-animate-grid-reflow",
-          ].join(" ")}
+        <ScrollReveal
+          variant="upSoft"
+          delayMs={120}
+          className="wuyin-reveal-tech"
+          visibleClassName="wuyin-reveal-tech-visible"
+          staggerChildren
+          staggerStepMs={65}
         >
+          <div
+            key={artifactFilter}
+            className={[
+              "grid gap-4 sm:grid-cols-2 lg:grid-cols-4",
+              reducedMotion ? "" : "wuyin-animate-grid-reflow",
+            ].join(" ")}
+          >
           {artifacts.map((item) => (
             <article
               key={item.id}
@@ -332,13 +354,22 @@ export default function NftsPage() {
               </div>
             </article>
           ))}
-        </div>
+          </div>
+        </ScrollReveal>
       </section>
 
       <section
         id="nfts-achievements"
         className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:items-stretch"
       >
+        <ScrollReveal
+          variant="leftSoft"
+          delayMs={80}
+          className="wuyin-reveal-tech"
+          visibleClassName="wuyin-reveal-tech-visible"
+          staggerChildren
+          staggerStepMs={80}
+        >
         <article className="rounded-lg border border-white/10 bg-[#161616] p-6 sm:p-8">
           <p className="text-[10px] font-semibold tracking-[0.32em] text-[#e8a8b0]">ACHIEVEMENTS</p>
           <h3 className="mt-3 font-serif text-3xl leading-tight text-white sm:text-[2rem]">
@@ -364,7 +395,16 @@ export default function NftsPage() {
             </li>
           </ul>
         </article>
+        </ScrollReveal>
 
+        <ScrollReveal
+          variant="rightSoft"
+          delayMs={120}
+          className="wuyin-reveal-tech"
+          visibleClassName="wuyin-reveal-tech-visible"
+          staggerChildren
+          staggerStepMs={80}
+        >
         <article className="flex min-h-[320px] flex-col items-center justify-center rounded-lg border border-white/10 bg-[#0c0c0c] px-6 py-10 sm:py-14">
           <div className="relative flex h-52 w-52 items-center justify-center sm:h-60 sm:w-60">
             <div
@@ -383,11 +423,18 @@ export default function NftsPage() {
             Awarded for 365 Days of Continuous Training
           </p>
         </article>
+        </ScrollReveal>
       </section>
 
       <section id="nfts-grade" className="space-y-3">
-        <h2 className="font-serif text-3xl text-white">Grade System Protocol</h2>
-        <div className="overflow-x-auto rounded-lg border border-white/10 bg-[#111]">
+        <ScrollReveal
+          variant="upSoft"
+          delayMs={90}
+          className="wuyin-reveal-tech"
+          visibleClassName="wuyin-reveal-tech-visible"
+        >
+          <h2 className="font-serif text-3xl text-white">Grade System Protocol</h2>
+          <div className="overflow-x-auto rounded-lg border border-white/10 bg-[#111] wuyin-reveal-tech-panel">
           <table className="w-full min-w-[680px] text-left text-sm">
             <thead className="border-b border-white/10 bg-[#0c0c0c] text-[11px] tracking-[0.16em] text-neutral-400">
               <tr>
@@ -408,10 +455,19 @@ export default function NftsPage() {
               ))}
             </tbody>
           </table>
-        </div>
+          </div>
+        </ScrollReveal>
       </section>
 
       <section id="nfts-minting" className="overflow-hidden rounded-xl border border-white/10 bg-[#0a0a0a]">
+        <ScrollReveal
+          variant="upGlow"
+          delayMs={120}
+          className="wuyin-reveal-tech"
+          visibleClassName="wuyin-reveal-tech-visible"
+          staggerChildren
+          staggerStepMs={90}
+        >
         {/* Hero：工业锻造氛围占位 + 居中文案 */}
         <div className="relative min-h-[min(52vh,28rem)] sm:min-h-[32rem]">
           <div className="absolute inset-0 bg-[#060606]" aria-hidden />
@@ -484,6 +540,7 @@ export default function NftsPage() {
             </div>
           </div>
         </div>
+        </ScrollReveal>
       </section>
     </div>
   );
