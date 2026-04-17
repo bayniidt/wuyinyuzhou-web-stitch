@@ -1,21 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-wuyin-bg: #020202;
-  --color-wuyin-surface: #070707;
-  --color-wuyin-elevated: #101010;
-  --color-wuyin-muted: #a3a3a3;
-  --color-wuyin-accent: #cf3e3e;
-  --color-wuyin-accent-soft: #b85858;
-  --font-sans: ui-sans-serif, system-ui, sans-serif, "PingFang SC", "Microsoft YaHei",
-    "Noto Sans SC", sans-serif;
-  --font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", ui-serif, Georgia,
-    serif;
-  --shadow-wuyin-glow: 0 0 48px rgb(207 62 62 / 0.09);
-  --ease-wuyin: cubic-bezier(0.22, 1, 0.36, 1);
-  --wuyin-reveal-duration: 480ms;
-  --wuyin-route-duration: 300ms;
-  --wuyin-drawer-duration: 280ms;
+  --color-brand-black: #050505;
+  --color-brand-red: #e61c23;
+  --color-brand-gold: #d4af37;
+  --font-display: "Ma Shan Zheng", cursive;
+  --font-sans: "Inter", "Source Han Sans SC", "PingFang SC", system-ui, sans-serif;
+  
+  --shadow-glow-red: 0 0 24px rgba(230, 28, 35, 0.4);
+  --shadow-glow-gold: 0 0 24px rgba(212, 175, 55, 0.3);
 }
 
 @keyframes wuyin-gradient-drift {
@@ -214,7 +207,7 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-wuyin-bg text-neutral-100 antialiased;
+    @apply bg-brand-black text-white antialiased;
     font-family: var(--font-sans);
   }
 
