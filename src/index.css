@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+@theme {
+  --color-wuyin-bg: #050505;
+  --color-wuyin-surface: #0a0a0a;
+  --color-wuyin-elevated: #121212;
+  --color-wuyin-muted: #a3a3a3;
+  --color-wuyin-accent: #ff4d4d;
+  --color-wuyin-accent-soft: #ff8080;
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "PingFang SC", "Microsoft YaHei",
+    "Noto Sans SC", sans-serif;
+  --font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", ui-serif, Georgia,
+    serif;
+  --shadow-wuyin-glow: 0 0 60px rgb(255 77 77 / 0.12);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-wuyin-bg text-neutral-100 antialiased;
+    font-family: var(--font-sans);
+  }
+}
+
+@utility container-wuyin {
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+/* Anchor offset under fixed header */
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
