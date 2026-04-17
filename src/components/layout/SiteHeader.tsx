@@ -18,11 +18,11 @@ function Logo() {
   return (
     <Link
       to={{ pathname: "/", hash: "hero" }}
-      className="flex items-center gap-2 font-serif text-lg font-bold tracking-tight text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff8080] sm:text-xl"
+      className="flex items-center gap-2 font-serif text-lg font-bold tracking-tight text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-accent-soft sm:text-xl"
     >
       <span
         className={[
-          "bg-linear-to-r from-[#ff4d4d] via-[#ff8080] to-[#ff4d4d] bg-clip-text text-transparent",
+          "bg-linear-to-r from-wuyin-accent via-wuyin-accent-soft to-wuyin-accent bg-clip-text text-transparent",
           reduced ? "" : "wuyin-animate-logo-shimmer",
         ]
           .filter(Boolean)
@@ -145,9 +145,9 @@ export default function SiteHeader() {
                   end={primaryTo === "/"}
                   className={({ isActive }) =>
                     [
-                      "flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff8080]",
+                      "flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-accent-soft",
                       isActive
-                        ? "text-white [box-shadow:inset_0_-2px_0_0_#ff4d4d]"
+                        ? "text-white [box-shadow:inset_0_-2px_0_0_var(--color-wuyin-accent)]"
                         : "text-neutral-200 hover:text-white",
                     ].join(" ")
                   }
@@ -161,7 +161,7 @@ export default function SiteHeader() {
               ) : (
                 <button
                   type="button"
-                  className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-neutral-200 transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff8080]"
+                  className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-neutral-200 transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-accent-soft"
                   aria-haspopup="true"
                 >
                   {group.label}
@@ -205,14 +205,14 @@ export default function SiteHeader() {
         <div className="flex items-center gap-2 sm:gap-3">
           <button
             type="button"
-            className="hidden rounded-lg p-2 text-neutral-300 transition hover:bg-white/5 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff8080] sm:inline-flex"
+            className="hidden rounded-lg p-2 text-neutral-300 transition hover:bg-white/5 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-accent-soft sm:inline-flex"
             aria-label="语言（占位）"
           >
             <IconGlobe />
           </button>
           <button
             type="button"
-            className="hidden rounded-lg p-2 text-neutral-300 transition hover:bg-white/5 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff8080] sm:inline-flex"
+            className="hidden rounded-lg p-2 text-neutral-300 transition hover:bg-white/5 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-accent-soft sm:inline-flex"
             aria-label="用户（占位）"
           >
             <IconUser />
@@ -237,7 +237,7 @@ export default function SiteHeader() {
 
           <button
             type="button"
-            className="inline-flex rounded-lg p-2 text-neutral-200 transition hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff8080] lg:hidden"
+            className="inline-flex rounded-lg p-2 text-neutral-200 transition hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-accent-soft lg:hidden"
             aria-expanded={mobileOpen}
             aria-controls={mobilePanelId}
             aria-label={mobileOpen ? "关闭菜单" : "打开菜单"}
@@ -290,7 +290,7 @@ export default function SiteHeader() {
                         [
                           "block rounded-lg px-3 py-3 text-sm font-medium transition",
                           isActive
-                            ? "text-white [box-shadow:inset_3px_0_0_0_#ff4d4d]"
+                            ? "text-white [box-shadow:inset_3px_0_0_0_var(--color-wuyin-accent)]"
                             : "text-white hover:bg-white/5",
                         ].join(" ")
                       }

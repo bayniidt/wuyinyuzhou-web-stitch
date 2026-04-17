@@ -14,7 +14,7 @@ export default function FeatureCard({
   image,
 }: Props) {
   return (
-    <article className="group flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-wuyin-surface/80 shadow-wuyin-glow backdrop-blur-sm transition hover:border-red-500/30">
+    <article className="group flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-wuyin-surface/80 shadow-wuyin-glow backdrop-blur-sm transition hover:border-wuyin-accent/20">
       <div className="relative aspect-[4/3] overflow-hidden bg-neutral-900">{image}</div>
       <div className="flex flex-1 flex-col gap-3 p-6 sm:p-8">
         <p className="text-xs font-semibold uppercase tracking-[0.25em] text-wuyin-muted">
@@ -24,7 +24,7 @@ export default function FeatureCard({
         <p className="text-sm leading-relaxed text-wuyin-muted sm:text-base">{description}</p>
         <span
           aria-hidden
-          className="mt-2 h-0.5 w-12 rounded-full bg-linear-to-r from-[#ff4d4d] to-[#ff8080] transition group-hover:w-20"
+          className="mt-2 h-0.5 w-12 rounded-full bg-linear-to-r from-wuyin-accent/55 to-wuyin-accent-soft/45 transition group-hover:w-20 group-hover:from-wuyin-accent group-hover:to-wuyin-accent-soft"
         />
       </div>
     </article>

@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-wuyin-bg: #050505;
-  --color-wuyin-surface: #0a0a0a;
-  --color-wuyin-elevated: #121212;
+  --color-wuyin-bg: #020202;
+  --color-wuyin-surface: #070707;
+  --color-wuyin-elevated: #101010;
   --color-wuyin-muted: #a3a3a3;
-  --color-wuyin-accent: #ff4d4d;
-  --color-wuyin-accent-soft: #ff8080;
+  --color-wuyin-accent: #cf3e3e;
+  --color-wuyin-accent-soft: #b85858;
   --font-sans: ui-sans-serif, system-ui, sans-serif, "PingFang SC", "Microsoft YaHei",
     "Noto Sans SC", sans-serif;
   --font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", ui-serif, Georgia,
     serif;
-  --shadow-wuyin-glow: 0 0 60px rgb(255 77 77 / 0.12);
+  --shadow-wuyin-glow: 0 0 48px rgb(207 62 62 / 0.09);
   --ease-wuyin: cubic-bezier(0.22, 1, 0.36, 1);
   --wuyin-reveal-duration: 480ms;
   --wuyin-route-duration: 300ms;
@@ -63,10 +63,10 @@
 @keyframes wuyin-glow-pulse {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgb(255 77 77 / 0.12);
+    box-shadow: 0 0 0 0 rgb(207 62 62 / 0.1);
   }
   50% {
-    box-shadow: 0 0 14px 0 rgb(255 77 77 / 0.35);
+    box-shadow: 0 0 10px 0 rgb(207 62 62 / 0.22);
   }
 }
 
@@ -150,7 +150,7 @@
     inset: 0;
     pointer-events: none;
     border-radius: inherit;
-    background: linear-gradient(130deg, rgb(34 211 238 / 0.08), transparent 40%, rgb(255 77 77 / 0.08));
+    background: linear-gradient(130deg, rgb(34 211 238 / 0.06), transparent 42%, rgb(207 62 62 / 0.06));
     opacity: 0;
     transition: opacity var(--wuyin-reveal-duration) var(--ease-wuyin);
   }
