@@ -1,5 +1,10 @@
+import ScrollReveal from "@/components/motion/ScrollReveal";
 import GhostButton from "@/components/ui/GhostButton";
 import GradientButton from "@/components/ui/GradientButton";
+import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
+import imgLineageIron from "@/images/pexels-akwice-3094799.jpg";
+import imgLineageObsidian from "@/images/pexels-akoonie-19984728.jpg";
+import imgLineageVoid from "@/images/pexels-alexquezada-9866073.jpg";
 import narrativeMapBg from "@/images/pexels-sejio402-6477204.jpg";
 import { scrollToSelector } from "@/lib/scroll";
 import { useEffect } from "react";
@@ -10,16 +15,22 @@ const lineage = [
     name: "Master Kenshin-X",
     role: "Obsidian Path",
     blurb: "以算法为刃，在数据湍流中刻下不可篡改的步法。他的每一次出招，都是链上共识的回声。",
+    portrait: imgLineageObsidian,
+    portraitAlt: "黑曜路径：低光中刃影与霓虹的氛围画面",
   },
   {
     name: "Ren · The Mist",
     role: "Void Walker",
     blurb: "游走于显影与隐匿之间，把身份拆成雾——只留下可被验证的「印」，而非可被追踪的「名」。",
+    portrait: imgLineageVoid,
+    portraitAlt: "虚空行者：雾感纵深与冷色光晕的氛围画面",
   },
   {
     name: "Iron Monk Goro",
     role: "Ledger Keeper",
     blurb: "守口如钟，守账如铁。他把「信任」从人情里剥离，交给数学与节律。",
+    portrait: imgLineageIron,
+    portraitAlt: "账册守护者：金属质感与克制光影的氛围画面",
   },
 ];
 
@@ -31,6 +42,7 @@ const fusionTiles = [
 ];
 
 export default function NarrativePage() {
+  const reducedMotion = usePrefersReducedMotion();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -49,7 +61,10 @@ export default function NarrativePage() {
         className="relative flex min-h-[78vh] items-center justify-center overflow-hidden border-b border-white/5"
       >
         <div
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_20%,rgba(255,77,77,0.18),transparent_50%),linear-gradient(180deg,#030303_0%,#0a0a0a_55%,#050505_100%)]"
+          className={[
+            "pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_20%,rgba(255,77,77,0.18),transparent_50%),linear-gradient(180deg,#030303_0%,#0a0a0a_55%,#050505_100%)]",
+            reducedMotion ? "" : "wuyin-animate-gradient-drift",
+          ].join(" ")}
           aria-hidden
         />
         <div
@@ -91,7 +106,7 @@ export default function NarrativePage() {
         id="narrative-map"
         className="border-b border-white/5 bg-wuyin-bg py-20 sm:py-28"
       >
-        <div className="container-wuyin">
+        <ScrollReveal className="container-wuyin">
           <h2 className="font-serif text-3xl font-bold text-white sm:text-4xl">
             虚空制图
             <span className="mt-2 block text-sm font-normal tracking-wide text-wuyin-muted sm:text-base">
@@ -135,14 +150,14 @@ export default function NarrativePage() {
               </p>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       <section
         id="narrative-concepts"
         className="border-b border-white/5 bg-wuyin-surface py-20 sm:py-28"
       >
-        <div className="container-wuyin grid gap-12 lg:grid-cols-2 lg:items-center">
+        <ScrollReveal className="container-wuyin grid gap-12 lg:grid-cols-2 lg:items-center">
           <div className="space-y-8">
             <h2 className="font-serif text-3xl font-bold text-white sm:text-4xl">武道三念</h2>
             <div className="space-y-6">
@@ -173,11 +188,11 @@ export default function NarrativePage() {
             <div className="absolute inset-0 bg-[conic-gradient(at_40%_40%,#ff4d4d,#0a0303,#ff8080,#1a0505)] opacity-95" />
             <div className="absolute inset-0 mix-blend-overlay opacity-70 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.35),transparent_55%)]" />
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       <section id="narrative-lineage" className="border-b border-white/5 py-20 sm:py-28">
-        <div className="container-wuyin">
+        <ScrollReveal className="container-wuyin">
           <h2 className="font-serif text-3xl font-bold text-white sm:text-4xl">刃之谱系</h2>
           <p className="mt-3 max-w-2xl text-sm text-neutral-400 sm:text-base">
             Lineage of the Blade — 他们不是「角色卡」，而是叙事引擎的人格化切片。
@@ -188,10 +203,18 @@ export default function NarrativePage() {
                 key={c.name}
                 className="flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-wuyin-elevated/80 shadow-wuyin-glow"
               >
-                <div className="aspect-[4/5] bg-gradient-to-b from-neutral-800 to-neutral-950">
-                  <div className="flex h-full items-center justify-center font-serif text-5xl font-bold text-white/10">
-                    印
-                  </div>
+                <div className="relative aspect-[3/2] overflow-hidden bg-neutral-950">
+                  <img
+                    src={c.portrait}
+                    alt={c.portraitAlt}
+                    className="h-full w-full object-cover"
+                    decoding="async"
+                    loading="lazy"
+                  />
+                  <div
+                    className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-white/[0.03]"
+                    aria-hidden
+                  />
                 </div>
                 <div className="flex flex-1 flex-col gap-2 p-6">
                   <p className="text-xs uppercase tracking-[0.2em] text-wuyin-muted">{c.role}</p>
@@ -201,11 +224,11 @@ export default function NarrativePage() {
               </article>
             ))}
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       <section id="narrative-fusion" className="py-20 sm:py-28">
-        <div className="container-wuyin">
+        <ScrollReveal className="container-wuyin">
           <h2 className="text-center font-serif text-3xl font-bold text-white sm:text-4xl">
             熔铸不可抹除之物
           </h2>
@@ -216,14 +239,14 @@ export default function NarrativePage() {
             {fusionTiles.map((t) => (
               <div
                 key={t.title}
-                className="rounded-xl border border-white/10 bg-wuyin-surface/80 p-5 text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]"
+                className="rounded-xl border border-white/10 bg-wuyin-surface/80 p-5 text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition duration-300 ease-[var(--ease-wuyin)] hover:border-white/20 hover:bg-wuyin-elevated/60"
               >
                 <p className="text-sm font-semibold text-white">{t.title}</p>
                 <p className="mt-2 text-xs leading-relaxed text-wuyin-muted sm:text-sm">{t.text}</p>
               </div>
             ))}
           </div>
-        </div>
+        </ScrollReveal>
       </section>
     </>
   );

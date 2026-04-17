@@ -1,3 +1,4 @@
+import ScrollReveal from "@/components/motion/ScrollReveal";
 import GhostButton from "@/components/ui/GhostButton";
 import GradientButton from "@/components/ui/GradientButton";
 import { scrollToSelector } from "@/lib/scroll";
@@ -104,7 +105,7 @@ function AccessTiersSection() {
 
         <div className="mt-12 grid gap-6 lg:grid-cols-3 lg:items-stretch">
           {/* Standard */}
-          <article className="flex flex-col rounded-2xl border border-white/10 bg-[#141414] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] sm:p-8">
+          <article className="group relative flex flex-col rounded-2xl border border-white/10 border-l-[3px] border-l-transparent bg-[#141414] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition duration-300 ease-[var(--ease-wuyin)] hover:border-l-[#ff4d4d] hover:-translate-y-1 hover:shadow-[0_0_48px_rgba(255,77,77,0.12),inset_0_1px_0_rgba(255,255,255,0.04)] sm:p-8">
             <h3 className="font-serif text-2xl font-semibold italic text-white">Standard</h3>
             <p className="mt-3 text-sm leading-relaxed text-neutral-400">
               Main arena seating &amp; event digital memento.
@@ -131,7 +132,7 @@ function AccessTiersSection() {
           </article>
 
           {/* V.I.P. */}
-          <article className="relative flex flex-col rounded-2xl border border-white/10 border-l-[3px] border-l-[#ff4d4d] bg-[#141414] p-6 shadow-[0_0_48px_rgba(255,77,77,0.12),inset_0_1px_0_rgba(255,255,255,0.04)] sm:p-8 lg:-my-2 lg:py-10">
+          <article className="group relative flex flex-col rounded-2xl border border-white/10 border-l-[3px] border-l-transparent bg-[#141414] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition duration-300 ease-[var(--ease-wuyin)] hover:border-l-[#ff4d4d] hover:-translate-y-1 hover:shadow-[0_0_56px_rgba(255,77,77,0.16),inset_0_1px_0_rgba(255,255,255,0.05)] sm:p-8 lg:py-10">
             <span
               className="absolute right-5 top-5 rounded-sm bg-[#ff4d4d] px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-neutral-950 sm:right-6 sm:top-6"
               aria-label="推荐档位"
@@ -176,7 +177,7 @@ function AccessTiersSection() {
           </article>
 
           {/* Metaverse */}
-          <article className="flex flex-col rounded-2xl border border-white/10 bg-[#141414] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] sm:p-8">
+          <article className="group relative flex flex-col rounded-2xl border border-white/10 border-l-[3px] border-l-transparent bg-[#141414] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition duration-300 ease-[var(--ease-wuyin)] hover:border-l-[#ff4d4d] hover:-translate-y-1 hover:shadow-[0_0_48px_rgba(255,77,77,0.12),inset_0_1px_0_rgba(255,255,255,0.04)] sm:p-8">
             <h3 className="font-serif text-2xl font-semibold italic text-white">Metaverse</h3>
             <p className="mt-3 text-sm leading-relaxed text-neutral-400">
               Virtual 8K 360° streaming &amp; 3D avatar skin.
@@ -284,23 +285,28 @@ function WarriorRosterSection() {
 function TimelineSplitModule({ m, surface }: { m: TimelineModule; surface: string }) {
   return (
     <section id={m.id} className={`border-b border-white/5 py-16 sm:py-20 lg:py-24 ${surface}`}>
-      <div className="container-wuyin">
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+      <ScrollReveal
+        variant={m.imageOnLeft ? "left" : "right"}
+        className="container-wuyin"
+      >
+        <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
           <div
             className={[
               "overflow-hidden rounded-2xl border border-white/10 bg-neutral-950 shadow-wuyin-glow",
               m.imageOnLeft ? "lg:order-1" : "lg:order-2",
             ].join(" ")}
           >
-            <img
-              src={m.imageSrc}
-              alt={m.imageAlt}
-              width={900}
-              height={1120}
-              className="aspect-[4/5] w-full object-cover"
-              loading="lazy"
-              decoding="async"
-            />
+            <div className="relative aspect-[3/2] w-full max-h-[min(46dvh,22rem)] sm:max-h-[min(48dvh,26rem)] lg:max-h-[min(52dvh,30rem)]">
+              <img
+                src={m.imageSrc}
+                alt={m.imageAlt}
+                width={1200}
+                height={800}
+                className="absolute inset-0 h-full w-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
           </div>
 
           <div className={m.imageOnLeft ? "lg:order-2" : "lg:order-1"}>
@@ -340,7 +346,7 @@ function TimelineSplitModule({ m, surface }: { m: TimelineModule; surface: strin
             ) : null}
           </div>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 }

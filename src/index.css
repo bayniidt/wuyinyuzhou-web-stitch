@@ -12,6 +12,114 @@
   --font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", ui-serif, Georgia,
     serif;
   --shadow-wuyin-glow: 0 0 60px rgb(255 77 77 / 0.12);
+  --ease-wuyin: cubic-bezier(0.22, 1, 0.36, 1);
+  --wuyin-reveal-duration: 520ms;
+  --wuyin-route-duration: 300ms;
+  --wuyin-drawer-duration: 280ms;
+}
+
+@keyframes wuyin-gradient-drift {
+  0%,
+  100% {
+    transform: scale(1) translate(0, 0);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.04) translate(0.8%, -0.4%);
+    opacity: 0.88;
+  }
+}
+
+@keyframes wuyin-logo-shimmer {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes wuyin-route-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes wuyin-grid-reflow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes wuyin-glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgb(255 77 77 / 0.12);
+  }
+  50% {
+    box-shadow: 0 0 14px 0 rgb(255 77 77 / 0.35);
+  }
+}
+
+@keyframes wuyin-hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility wuyin-animate-gradient-drift {
+  animation: wuyin-gradient-drift 18s var(--ease-wuyin) infinite;
+}
+
+@utility wuyin-animate-logo-shimmer {
+  background-size: 200% auto;
+  animation: wuyin-logo-shimmer 10s var(--ease-wuyin) infinite;
+}
+
+@utility wuyin-animate-route-enter {
+  animation: wuyin-route-enter var(--wuyin-route-duration) var(--ease-wuyin) both;
+}
+
+@utility wuyin-animate-grid-reflow {
+  animation: wuyin-grid-reflow var(--wuyin-route-duration) var(--ease-wuyin) both;
+}
+
+@utility wuyin-animate-glow-pulse {
+  animation: wuyin-glow-pulse 2.8s var(--ease-wuyin) infinite;
+}
+
+@utility wuyin-hero-entrance {
+  animation: wuyin-hero-fade-up 0.75s var(--ease-wuyin) both;
+}
+
+@utility wuyin-hero-entrance-delay-1 {
+  animation-delay: 0.12s;
+}
+
+@utility wuyin-hero-entrance-delay-2 {
+  animation-delay: 0.24s;
+}
+
+@utility wuyin-hero-entrance-delay-3 {
+  animation-delay: 0.38s;
+}
+
+@utility wuyin-hero-entrance-delay-4 {
+  animation-delay: 0.52s;
 }
 
 @layer base {
@@ -22,10 +130,29 @@
     @apply bg-wuyin-bg text-neutral-100 antialiased;
     font-family: var(--font-sans);
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    .wuyin-animate-gradient-drift,
+    .wuyin-animate-logo-shimmer,
+    .wuyin-animate-route-enter,
+    .wuyin-animate-grid-reflow,
+    .wuyin-animate-glow-pulse,
+    .wuyin-hero-entrance,
+    .wuyin-hero-entrance-delay-1,
+    .wuyin-hero-entrance-delay-2,
+    .wuyin-hero-entrance-delay-3,
+    .wuyin-hero-entrance-delay-4 {
+      animation: none !important;
+    }
+  }
 }
 
 @utility container-wuyin {
-  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  @apply mx-auto w-full max-w-none px-4 sm:px-6 lg:px-[clamp(2rem,4vw,3.5rem)];
 }
 
 /* Anchor offset under fixed header */

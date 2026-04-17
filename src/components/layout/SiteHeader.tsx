@@ -1,10 +1,12 @@
 import { navGroups } from "@/config/navigation";
 import GradientButton from "@/components/ui/GradientButton";
 import { navigateToHref } from "@/lib/navigateToHref";
-import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
+import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
-function primaryRouteForNavGroup(id: string): "/narrative" | "/timeline" | "/nfts" | null {
+function primaryRouteForNavGroup(id: string): "/" | "/narrative" | "/timeline" | "/nfts" | null {
+  if (id === "ecosystem") return "/";
   if (id === "narrative") return "/narrative";
   if (id === "timeline") return "/timeline";
   if (id === "nfts") return "/nfts";
@@ -12,12 +14,20 @@ function primaryRouteForNavGroup(id: string): "/narrative" | "/timeline" | "/nft
 }
 
 function Logo() {
+  const reduced = usePrefersReducedMotion();
   return (
     <Link
       to={{ pathname: "/", hash: "hero" }}
       className="flex items-center gap-2 font-serif text-lg font-bold tracking-tight text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff8080] sm:text-xl"
     >
-      <span className="bg-linear-to-r from-[#ff4d4d] to-[#ff8080] bg-clip-text text-transparent">
+      <span
+        className={[
+          "bg-linear-to-r from-[#ff4d4d] via-[#ff8080] to-[#ff4d4d] bg-clip-text text-transparent",
+          reduced ? "" : "wuyin-animate-logo-shimmer",
+        ]
+          .filter(Boolean)
+          .join(" ")}
+      >
         武印
       </span>
       <span className="hidden text-neutral-200 sm:inline">视界</span>
@@ -61,6 +71,8 @@ function IconClose() {
 
 export default function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [drawerMounted, setDrawerMounted] = useState(false);
+  const [drawerEntered, setDrawerEntered] = useState(false);
   const mobilePanelId = useId();
   const closeBtnRef = useRef<HTMLButtonElement>(null);
   const navigate = useNavigate();
@@ -81,16 +93,34 @@ export default function SiteHeader() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
+  useLayoutEffect(() => {
+    if (mobileOpen) {
+      setDrawerMounted(true);
+      const id = requestAnimationFrame(() => {
+        requestAnimationFrame(() => setDrawerEntered(true));
+      });
+      return () => cancelAnimationFrame(id);
+    }
+    setDrawerEntered(false);
   }, [mobileOpen]);
 
   useEffect(() => {
-    if (mobileOpen) closeBtnRef.current?.focus();
-  }, [mobileOpen]);
+    if (!mobileOpen && !drawerEntered && drawerMounted) {
+      const t = window.setTimeout(() => setDrawerMounted(false), 300);
+      return () => clearTimeout(t);
+    }
+  }, [mobileOpen, drawerEntered, drawerMounted]);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen || drawerMounted ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen, drawerMounted]);
+
+  useEffect(() => {
+    if (mobileOpen && drawerEntered) closeBtnRef.current?.focus();
+  }, [mobileOpen, drawerEntered]);
 
   const connectWallet = () => {
     window.alert("钱包连接为占位演示，正式版本将接入链上连接器。");
@@ -112,6 +142,7 @@ export default function SiteHeader() {
               {primaryTo ? (
                 <NavLink
                   to={primaryTo}
+                  end={primaryTo === "/"}
                   className={({ isActive }) =>
                     [
                       "flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff8080]",
@@ -141,7 +172,7 @@ export default function SiteHeader() {
               )}
               <div
                 role="menu"
-                className="invisible absolute left-1/2 top-full z-50 mt-2 w-72 -translate-x-1/2 rounded-xl border border-white/10 bg-wuyin-elevated/95 p-2 opacity-0 shadow-wuyin-glow backdrop-blur-md transition duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
+                className="invisible absolute left-1/2 top-full z-50 mt-2 w-72 -translate-x-1/2 translate-y-1 rounded-xl border border-white/10 bg-wuyin-elevated/95 p-2 opacity-0 shadow-wuyin-glow backdrop-blur-md transition duration-200 ease-[var(--ease-wuyin)] group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100"
               >
                 <ul className="py-1">
                   {group.children.map((child) => (
@@ -217,17 +248,23 @@ export default function SiteHeader() {
         </div>
       </div>
 
-      {mobileOpen ? (
+      {drawerMounted ? (
         <div className="fixed inset-0 z-40 lg:hidden" role="dialog" aria-modal="true">
           <button
             type="button"
-            className="absolute inset-0 bg-black/70"
+            className={[
+              "absolute inset-0 bg-black/70 transition-opacity duration-300 ease-[var(--ease-wuyin)]",
+              drawerEntered ? "opacity-100" : "opacity-0",
+            ].join(" ")}
             aria-label="关闭菜单背景"
             onClick={() => setMobileOpen(false)}
           />
           <div
             id={mobilePanelId}
-            className="absolute right-0 top-0 flex h-full w-[min(100%,22rem)] flex-col border-l border-white/10 bg-wuyin-bg shadow-2xl"
+            className={[
+              "absolute right-0 top-0 flex h-full w-[min(100%,22rem)] flex-col border-l border-white/10 bg-wuyin-bg shadow-2xl transition-transform duration-300 ease-[var(--ease-wuyin)]",
+              drawerEntered ? "translate-x-0" : "translate-x-full",
+            ].join(" ")}
           >
             <div className="flex items-center justify-between border-b border-white/10 px-4 py-4">
               <span className="font-serif text-lg font-semibold text-white">菜单</span>
@@ -248,6 +285,7 @@ export default function SiteHeader() {
                   <div key={group.id} className="border-b border-white/5 py-1">
                     <NavLink
                       to={primaryTo}
+                      end={primaryTo === "/"}
                       className={({ isActive }) =>
                         [
                           "block rounded-lg px-3 py-3 text-sm font-medium transition",

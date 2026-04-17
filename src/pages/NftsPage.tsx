@@ -4,7 +4,8 @@ import imgCoverVoidStep from "@/images/pexels-alexquezada-9866073.jpg";
 import imgCoverDragonBreath from "@/images/pexels-dbgalvanis-4572980.jpg";
 import imgForgeStill from "@/images/pexels-cottonbro-7780214.jpg";
 import forgeAmbienceMp4 from "@/videos/15236622_1920_1080_30fps.mp4";
-import { useEffect, useState } from "react";
+import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
+import { useState } from "react";
 
 type Artifact = {
   id: string;
@@ -84,18 +85,6 @@ function IconSearch({ className }: { className?: string }) {
       <path d="M20 20l-4.2-4.2" strokeLinecap="round" />
     </svg>
   );
-}
-
-function usePrefersReducedMotion() {
-  const [reduced, setReduced] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReduced(mq.matches);
-    const onChange = () => setReduced(mq.matches);
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
-  }, []);
-  return reduced;
 }
 
 /** 成就列表左侧小图标：粉勋章 */
@@ -206,6 +195,7 @@ function MintingForgeBackdrop() {
 }
 
 export default function NftsPage() {
+  const reducedMotion = usePrefersReducedMotion();
   const [artifactFilter, setArtifactFilter] =
     useState<(typeof artifactFilters)[number]["id"]>("all");
 
@@ -279,7 +269,13 @@ export default function NftsPage() {
           </label>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div
+          key={artifactFilter}
+          className={[
+            "grid gap-4 sm:grid-cols-2 lg:grid-cols-4",
+            reducedMotion ? "" : "wuyin-animate-grid-reflow",
+          ].join(" ")}
+        >
           {artifacts.map((item) => (
             <article
               key={item.id}
@@ -299,7 +295,17 @@ export default function NftsPage() {
                   className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/75 via-transparent to-black/20"
                   aria-hidden
                 />
-                <span className="absolute right-2 top-2 border border-white/15 bg-black/55 px-2 py-0.5 text-[9px] font-semibold tracking-[0.12em] text-white backdrop-blur-sm">
+                <span
+                  className={[
+                    "absolute right-2 top-2 bg-black/55 px-2 py-0.5 text-[9px] font-semibold tracking-[0.12em] text-white backdrop-blur-sm",
+                    item.rarityBadge === "LEGENDARY"
+                      ? [
+                          "border border-[#ff4d4d]/50",
+                          reducedMotion ? "" : "wuyin-animate-glow-pulse rounded-sm",
+                        ].join(" ")
+                      : "border border-white/15",
+                  ].join(" ")}
+                >
                   {item.rarityBadge}
                 </span>
               </div>

@@ -2,19 +2,7 @@ import GhostButton from "@/components/ui/GhostButton";
 import GradientButton from "@/components/ui/GradientButton";
 import heroPoster from "@/images/pexels-3d-render-1058120333-33441875.jpg";
 import heroAmbienceMp4 from "@/videos/8950635-hd_1920_1080_30fps.mp4";
-import { useEffect, useState } from "react";
-
-function usePrefersReducedMotion() {
-  const [reduced, setReduced] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReduced(mq.matches);
-    const onChange = () => setReduced(mq.matches);
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
-  }, []);
-  return reduced;
-}
+import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 
 export default function HeroSection() {
   const reducedMotion = usePrefersReducedMotion();
@@ -25,7 +13,10 @@ export default function HeroSection() {
       className="relative flex min-h-[85vh] items-center justify-center overflow-hidden border-b border-white/5"
     >
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,77,77,0.15),_transparent_55%),linear-gradient(180deg,#050505_0%,#0a0a0a_45%,#050505_100%)]"
+        className={[
+          "pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,77,77,0.15),_transparent_55%),linear-gradient(180deg,#050505_0%,#0a0a0a_45%,#050505_100%)]",
+          reducedMotion ? "" : "wuyin-animate-gradient-drift",
+        ].join(" ")}
         aria-hidden
       />
       <img
@@ -62,16 +53,16 @@ export default function HeroSection() {
         aria-hidden
       />
       <div className="container-wuyin relative z-10 flex flex-col items-center py-28 text-center sm:py-32">
-        <p className="text-xs font-semibold uppercase tracking-[0.45em] text-wuyin-muted sm:text-sm">
+        <p className="wuyin-hero-entrance text-xs font-semibold uppercase tracking-[0.45em] text-wuyin-muted sm:text-sm">
           Ancient Soul • Future Core
         </p>
-        <h1 className="mt-6 font-serif text-5xl font-black tracking-tight text-white sm:text-6xl md:text-7xl">
+        <h1 className="wuyin-hero-entrance wuyin-hero-entrance-delay-1 mt-6 font-serif text-5xl font-black tracking-tight text-white sm:text-6xl md:text-7xl">
           武印视界
         </h1>
-        <p className="mt-4 font-serif text-lg text-neutral-300 sm:text-xl md:text-2xl">
+        <p className="wuyin-hero-entrance wuyin-hero-entrance-delay-2 mt-4 font-serif text-lg text-neutral-300 sm:text-xl md:text-2xl">
           — 东方武道元宇宙盛典
         </p>
-        <div className="mt-10 flex flex-col items-stretch gap-4 sm:mt-12 sm:flex-row sm:items-center sm:justify-center">
+        <div className="wuyin-hero-entrance wuyin-hero-entrance-delay-3 mt-10 flex flex-col items-stretch gap-4 sm:mt-12 sm:flex-row sm:items-center sm:justify-center">
           <GradientButton className="w-full min-w-[220px] sm:w-auto">
             Appointment for Competition
           </GradientButton>

@@ -1,3 +1,4 @@
+import ScrollReveal from "@/components/motion/ScrollReveal";
 import HexagonTile from "@/components/ui/HexagonTile";
 import SectionTitle from "@/components/ui/SectionTitle";
 
@@ -69,7 +70,7 @@ export default function EcosystemMatrixSection() {
       id="ecosystem-matrix"
       className="border-b border-white/5 bg-wuyin-surface/40 py-20 sm:py-28"
     >
-      <div className="container-wuyin">
+      <ScrollReveal className="container-wuyin">
         <SectionTitle
           eyebrow="The six pillars of the digital realm"
           title="Ecosystem Matrix"
@@ -80,7 +81,7 @@ export default function EcosystemMatrixSection() {
             <HexagonTile key={t.label} label={t.label} icon={t.icon} />
           ))}
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 }

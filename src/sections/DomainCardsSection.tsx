@@ -1,3 +1,4 @@
+import ScrollReveal from "@/components/motion/ScrollReveal";
 import FeatureCard from "@/components/ui/FeatureCard";
 import imgCulture from "@/images/pexels-yelenaodintsova-10559023.jpg";
 import imgFinance from "@/images/pexels-gasparzaldo-6737849.jpg";
@@ -45,7 +46,7 @@ function FinanceVisual() {
 export default function DomainCardsSection() {
   return (
     <section id="domains" className="border-b border-white/5 py-20 sm:py-28">
-      <div className="container-wuyin grid gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-10">
+      <ScrollReveal className="container-wuyin grid gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-10">
         <FeatureCard
           domainLabel="Domain 01"
           title="Culture"
@@ -64,7 +65,7 @@ export default function DomainCardsSection() {
           description="在合规与风险框架下探索价值流转：激励、治理与生态增长共享同一套可信底座。"
           image={<FinanceVisual />}
         />
-      </div>
+      </ScrollReveal>
     </section>
   );
 }

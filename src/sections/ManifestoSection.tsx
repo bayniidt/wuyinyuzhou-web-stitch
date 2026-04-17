@@ -1,3 +1,4 @@
+import ScrollReveal from "@/components/motion/ScrollReveal";
 import manifestoVisual from "@/images/pexels-eddson-lens-748406628-33284058.jpg";
 
 export default function ManifestoSection() {
@@ -6,7 +7,7 @@ export default function ManifestoSection() {
       id="manifesto"
       className="border-b border-white/5 bg-wuyin-bg py-20 sm:py-28"
     >
-      <div className="container-wuyin grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
+      <ScrollReveal className="container-wuyin grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
         <div
           className="relative aspect-square max-h-[420px] w-full overflow-hidden rounded-2xl border border-white/10 bg-neutral-950 shadow-wuyin-glow"
           aria-hidden
@@ -37,7 +38,7 @@ export default function ManifestoSection() {
             “以印为信，以武为境；虚实相生，方成视界。”
           </blockquote>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 }
