@@ -55,6 +55,16 @@ export const navGroups: NavGroup[] = [
       { label: "Minting", href: "/nfts#nfts-minting", description: "进入锻造工坊" },
     ],
   },
+  {
+    id: "partnership",
+    label: "合作",
+    children: [
+      { label: "合作入口", href: "/partnership#partnership-hero", description: "B端通道首页" },
+      { label: "子模块设计", href: "/partnership#partnership-modules", description: "合作类型与策略矩阵" },
+      { label: "Ecosystem Imperative", href: "/partnership#partnership-imperative", description: "合作价值主张" },
+      { label: "合作申请", href: "/partnership#partnership-form", description: "提交需求并自动分流" },
+    ],
+  },
 ];
 
 export type FooterLegalLink = {

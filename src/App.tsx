@@ -3,6 +3,7 @@ import SiteHeader from "@/components/layout/SiteHeader";
 import HomePage from "@/pages/HomePage";
 import NarrativePage from "@/pages/NarrativePage";
 import NftsPage from "@/pages/NftsPage";
+import PartnershipPage from "@/pages/PartnershipPage";
 import TimelinePage from "@/pages/TimelinePage";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 import { useEffect } from "react";
@@ -33,6 +34,7 @@ export default function App() {
           <Route path="narrative" element={<NarrativePage />} />
           <Route path="timeline" element={<TimelinePage />} />
           <Route path="nfts" element={<NftsPage />} />
+          <Route path="partnership" element={<PartnershipPage />} />
         </Routes>
       </main>
       <SiteFooter />

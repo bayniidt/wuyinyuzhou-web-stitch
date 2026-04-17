@@ -5,11 +5,12 @@ import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
-function primaryRouteForNavGroup(id: string): "/" | "/narrative" | "/timeline" | "/nfts" | null {
+function primaryRouteForNavGroup(id: string): "/" | "/narrative" | "/timeline" | "/nfts" | "/partnership" | null {
   if (id === "ecosystem") return "/";
   if (id === "narrative") return "/narrative";
   if (id === "timeline") return "/timeline";
   if (id === "nfts") return "/nfts";
+  if (id === "partnership") return "/partnership";
   return null;
 }
 
