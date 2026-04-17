@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Wuyin Ecosystem | Cooperation Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Manrope:wght@300;400;600;800&amp;family=Space+Grotesk:wght@300;500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container": "#1f1f20",
+                      "tertiary-fixed-dim": "#c1c4e5",
+                      "surface-container-low": "#1b1b1c",
+                      "secondary-fixed-dim": "#c6c6c6",
+                      "primary-container": "#3e0006",
+                      "error-container": "#93000a",
+                      "on-tertiary": "#2b2f48",
+                      "on-primary-fixed": "#410007",
+                      "surface": "#131314",
+                      "on-tertiary-container": "#7d819e",
+                      "outline": "#909094",
+                      "on-secondary-container": "#b5b5b5",
+                      "surface-container-lowest": "#0e0e0f",
+                      "error": "#ffb4ab",
+                      "outline-variant": "#46474a",
+                      "surface-bright": "#39393a",
+                      "surface-container-high": "#2a2a2b",
+                      "secondary": "#c6c6c6",
+                      "primary-fixed": "#ffdad8",
+                      "on-background": "#e5e2e3",
+                      "tertiary-container": "#141830",
+                      "secondary-container": "#454747",
+                      "on-primary-container": "#ef404c",
+                      "inverse-surface": "#e5e2e3",
+                      "on-secondary": "#2f3131",
+                      "surface-tint": "#ffb3b1",
+                      "inverse-primary": "#bb152c",
+                      "tertiary-fixed": "#dee0ff",
+                      "surface-dim": "#131314",
+                      "secondary-fixed": "#e2e2e2",
+                      "on-primary-fixed-variant": "#92001c",
+                      "on-error": "#690005",
+                      "on-surface": "#e5e2e3",
+                      "on-error-container": "#ffdad6",
+                      "surface-variant": "#353436",
+                      "on-primary": "#680011",
+                      "primary": "#ffb3b1",
+                      "on-surface-variant": "#c7c6ca",
+                      "on-secondary-fixed": "#1a1c1c",
+                      "on-secondary-fixed-variant": "#454747",
+                      "on-tertiary-fixed": "#161a32",
+                      "surface-container-highest": "#353436",
+                      "primary-fixed-dim": "#ffb3b1",
+                      "inverse-on-surface": "#303031",
+                      "tertiary": "#c1c4e5",
+                      "on-tertiary-fixed-variant": "#414560",
+                      "background": "#131314"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "fontFamily": {
+                      "headline": ["Noto Serif"],
+                      "body": ["Manrope"],
+                      "label": ["Space Grotesk"]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; background-color: #131314; color: #e5e2e3; }
+        .font-serif { font-family: 'Noto Serif', serif; }
+        .font-mono { font-family: 'Space Grotesk', sans-serif; }
+        .glass-panel { background: rgba(53, 52, 54, 0.6); backdrop-filter: blur(20px); }
+        .vermilion-gradient { background: linear-gradient(135deg, #FFB3B1 0%, #EF404C 100%); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-surface text-on-background antialiased selection:bg-primary-container selection:text-primary">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-[#131314]/80 backdrop-blur-xl bg-[#1B1B1C] border-none shadow-[0_32px_32px_-4px_rgba(62,0,6,0.12)] flex justify-between items-center px-8 h-20 w-full">
+<div class="font-serif text-2xl font-bold tracking-tighter text-[#FFB3B1]">Wuyin Ecosystem</div>
+<div class="hidden md:flex items-center space-x-12">
+<a class="text-[#FFB3B1] border-b-2 border-[#EF404C] pb-1 font-serif text-sm tracking-wider" href="#">Application</a>
+<a class="text-[#C7C6CA] hover:text-[#FFB3B1] transition-colors font-serif text-sm tracking-wider" href="#">Partnerships</a>
+<a class="text-[#C7C6CA] hover:text-[#FFB3B1] transition-colors font-serif text-sm tracking-wider" href="#">Ecosystem</a>
+<a class="text-[#C7C6CA] hover:text-[#FFB3B1] transition-colors font-serif text-sm tracking-wider" href="#">Insight</a>
+</div>
+<div class="flex items-center space-x-6">
+<div class="flex space-x-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-[#353436]/50 p-2 transition-all duration-300">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-[#353436]/50 p-2 transition-all duration-300">settings</span>
+</div>
+<button class="vermilion-gradient text-on-primary-fixed px-6 py-2 text-[10px] font-bold tracking-widest uppercase active:scale-95 transition-transform">Connect Wallet</button>
+</div>
+</nav>
+<!-- Side Navigation -->
+<aside class="fixed left-0 h-full w-64 z-40 bg-[#1B1B1C] bg-gradient-to-r from-[#1B1B1C] to-[#131314] shadow-none flex flex-col h-screen p-4 pt-24 hidden lg:flex">
+<div class="mb-8 px-4">
+<h2 class="font-serif text-xl text-[#FFB3B1]">Ronin Portal</h2>
+<p class="text-[10px] uppercase tracking-[0.2em] font-bold text-on-surface-variant mt-1">Partner Level: Gold</p>
+</div>
+<div class="flex-1 space-y-1">
+<nav class="space-y-1">
+<a class="flex items-center px-4 py-3 text-[#C7C6CA] hover:bg-[#353436] rounded-sm transition-all hover:border-l-4 hover:border-[#EF404C] group" href="#">
+<span class="material-symbols-outlined mr-3 text-sm">verified</span>
+<span class="font-sans uppercase tracking-[0.2em] text-[10px] font-bold">Brand</span>
+</a>
+<a class="flex items-center px-4 py-3 bg-gradient-to-r from-[#FFB3B1] to-[#EF404C] text-[#410007] font-bold rounded-sm group" href="#">
+<span class="material-symbols-outlined mr-3 text-sm" style="font-variation-settings: 'FILL' 1;">event</span>
+<span class="font-sans uppercase tracking-[0.2em] text-[10px] font-bold">Event</span>
+</a>
+<a class="flex items-center px-4 py-3 text-[#C7C6CA] hover:bg-[#353436] rounded-sm transition-all hover:border-l-4 hover:border-[#EF404C] group" href="#">
+<span class="material-symbols-outlined mr-3 text-sm">groups</span>
+<span class="font-sans uppercase tracking-[0.2em] text-[10px] font-bold">Club</span>
+</a>
+<a class="flex items-center px-4 py-3 text-[#C7C6CA] hover:bg-[#353436] rounded-sm transition-all hover:border-l-4 hover:border-[#EF404C] group" href="#">
+<span class="material-symbols-outlined mr-3 text-sm">temple_buddhist</span>
+<span class="font-sans uppercase tracking-[0.2em] text-[10px] font-bold">Cultural Tourism</span>
+</a>
+<a class="flex items-center px-4 py-3 text-[#C7C6CA] hover:bg-[#353436] rounded-sm transition-all hover:border-l-4 hover:border-[#EF404C] group" href="#">
+<span class="material-symbols-outlined mr-3 text-sm">payments</span>
+<span class="font-sans uppercase tracking-[0.2em] text-[10px] font-bold">Investment</span>
+</a>
+<a class="flex items-center px-4 py-3 text-[#C7C6CA] hover:bg-[#353436] rounded-sm transition-all hover:border-l-4 hover:border-[#EF404C] group" href="#">
+<span class="material-symbols-outlined mr-3 text-sm">podcasts</span>
+<span class="font-sans uppercase tracking-[0.2em] text-[10px] font-bold">Media</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant/20">
+<button class="w-full text-center py-4 text-[10px] tracking-widest font-bold uppercase text-[#FFB3B1] hover:bg-primary-container/30 transition-colors mb-4">Submit Proposal</button>
+<div class="space-y-1">
+<a class="flex items-center px-4 py-2 text-[#C7C6CA] text-[10px] font-bold uppercase tracking-widest hover:text-white" href="#">
+<span class="material-symbols-outlined mr-3 text-sm">help_center</span> Support
+                </a>
+<a class="flex items-center px-4 py-2 text-[#C7C6CA] text-[10px] font-bold uppercase tracking-widest hover:text-white" href="#">
+<span class="material-symbols-outlined mr-3 text-sm">logout</span> Log Out
+                </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="lg:ml-64 pt-20">
+<!-- Hero Section -->
+<section class="relative h-[819px] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-40 mix-blend-luminosity" data-alt="Cinematic dark atmosphere with subtle red neon glowing lines and floating geometric particles in a futuristic zen temple setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJocm5K0GUvhN2Tkr5YB0Up8kJYRUTGOxzdErHTTS5AOeAFpszJTlaIRJZJTFswf2vTJF0ouSqXJTL4yNqUiup1ienK50ocX7RrwWJY-uQik5Cnj48atYW-1ResJ4tymKM0AwgJg5-7ZaTFE4RPT9NGyh0ByTu8UXEiIops--gopj3LjYhxUCQbVdqm9U1FlW2A9jluHlBOjODaqVkUoqQzqFYXITaQEGLOn7LMEte1HAp8b96Xnhyct-Ibw2Y5_l0vR-gH6iPJFNA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-surface"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-surface via-transparent to-transparent"></div>
+</div>
+<div class="relative z-10 px-12 lg:px-24 max-w-5xl">
+<div class="flex items-center space-x-4 mb-6">
+<div class="h-px w-12 bg-primary"></div>
+<span class="font-mono text-primary text-xs tracking-[0.4em] uppercase">Enterprise Gate</span>
+</div>
+<h1 class="font-serif text-6xl md:text-8xl font-bold leading-tight tracking-tighter text-on-background mb-8">
+                    Forge Your <span class="text-primary italic">Alliance</span>
+</h1>
+<p class="text-on-surface-variant text-lg max-w-xl leading-relaxed mb-10 font-light">
+                    Enter the high-performance ecosystem where traditional cultural wisdom meets mecha-precision technology. Build the next generation of B2B synergies.
+                </p>
+<div class="flex items-center space-x-8">
+<button class="vermilion-gradient text-on-primary-fixed px-10 py-4 font-mono font-bold tracking-widest uppercase hover:shadow-[0_0_30px_rgba(239,64,76,0.3)] transition-all">
+                        Initialize Protocol
+                    </button>
+<button class="text-on-surface font-mono text-sm tracking-widest border-b border-primary hover:text-primary transition-colors py-1">
+                        Review Blueprints
+                    </button>
+</div>
+</div>
+<div class="absolute right-0 bottom-0 p-12 hidden xl:block">
+<div class="glass-panel p-8 border-l-2 border-primary">
+<div class="text-[10px] font-mono text-primary mb-2 tracking-widest uppercase">System Status</div>
+<div class="text-2xl font-serif">Node: Wuyin-Mainnet</div>
+<div class="flex mt-4 gap-4 opacity-50">
+<div class="h-1 w-8 bg-primary"></div>
+<div class="h-1 w-8 bg-primary"></div>
+<div class="h-1 w-8 bg-outline"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Partnership Categories Grid -->
+<section class="py-24 px-12 lg:px-24 bg-surface-container-low">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+<div>
+<h2 class="font-serif text-4xl md:text-5xl font-bold mb-4">Strategic Domains</h2>
+<p class="text-on-surface-variant max-w-md font-body">Select your sector to explore dedicated benefits and integration paths within the Ronin Portal.</p>
+</div>
+<div class="text-right font-mono text-[10px] text-outline tracking-[0.3em] uppercase">
+                    Ref: //Partnership_Matrix_01
+                </div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1: Brand -->
+<div class="bg-surface-container p-8 border-l-2 border-transparent hover:border-primary hover:bg-surface-bright transition-all duration-300 group cursor-pointer">
+<div class="flex justify-between items-start mb-12">
+<span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings: 'wght' 200;">verified</span>
+<span class="font-mono text-[10px] text-outline">01</span>
+</div>
+<h3 class="font-serif text-2xl mb-4 group-hover:text-primary transition-colors">Brand</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-8">Co-branding opportunities for luxury and lifestyle brands looking to leverage Zen-Cyber aesthetics.</p>
+<div class="flex items-center text-primary font-mono text-[10px] tracking-widest uppercase group-hover:translate-x-2 transition-transform">
+                        Learn More <span class="material-symbols-outlined ml-2 text-xs">arrow_forward</span>
+</div>
+</div>
+<!-- Card 2: Event -->
+<div class="bg-surface-container p-8 border-l-2 border-transparent hover:border-primary hover:bg-surface-bright transition-all duration-300 group cursor-pointer">
+<div class="flex justify-between items-start mb-12">
+<span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings: 'wght' 200;">event</span>
+<span class="font-mono text-[10px] text-outline">02</span>
+</div>
+<h3 class="font-serif text-2xl mb-4 group-hover:text-primary transition-colors">Event</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-8">Join our global circuit of offline experiences, from meditation summits to tech expos.</p>
+<div class="flex items-center text-primary font-mono text-[10px] tracking-widest uppercase group-hover:translate-x-2 transition-transform">
+                        Learn More <span class="material-symbols-outlined ml-2 text-xs">arrow_forward</span>
+</div>
+</div>
+<!-- Card 3: Club -->
+<div class="bg-surface-container p-8 border-l-2 border-transparent hover:border-primary hover:bg-surface-bright transition-all duration-300 group cursor-pointer">
+<div class="flex justify-between items-start mb-12">
+<span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings: 'wght' 200;">groups</span>
+<span class="font-mono text-[10px] text-outline">03</span>
+</div>
+<h3 class="font-serif text-2xl mb-4 group-hover:text-primary transition-colors">Club</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-8">Establish local chapters or exclusive member circles powered by our decentralized tech.</p>
+<div class="flex items-center text-primary font-mono text-[10px] tracking-widest uppercase group-hover:translate-x-2 transition-transform">
+                        Learn More <span class="material-symbols-outlined ml-2 text-xs">arrow_forward</span>
+</div>
+</div>
+<!-- Card 4: Cultural Tourism -->
+<div class="bg-surface-container p-8 border-l-2 border-transparent hover:border-primary hover:bg-surface-bright transition-all duration-300 group cursor-pointer">
+<div class="flex justify-between items-start mb-12">
+<span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings: 'wght' 200;">temple_buddhist</span>
+<span class="font-mono text-[10px] text-outline">04</span>
+</div>
+<h3 class="font-serif text-2xl mb-4 group-hover:text-primary transition-colors">Cultural Tourism</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-8">Integrate destination management with AR historical overlays and tech-retreats.</p>
+<div class="flex items-center text-primary font-mono text-[10px] tracking-widest uppercase group-hover:translate-x-2 transition-transform">
+                        Learn More <span class="material-symbols-outlined ml-2 text-xs">arrow_forward</span>
+</div>
+</div>
+<!-- Card 5: Investment -->
+<div class="bg-surface-container p-8 border-l-2 border-transparent hover:border-primary hover:bg-surface-bright transition-all duration-300 group cursor-pointer">
+<div class="flex justify-between items-start mb-12">
+<span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings: 'wght' 200;">payments</span>
+<span class="font-mono text-[10px] text-outline">05</span>
+</div>
+<h3 class="font-serif text-2xl mb-4 group-hover:text-primary transition-colors">Investment</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-8">Venture capital and strategic financing for the expansion of the Wuyin digital infrastructure.</p>
+<div class="flex items-center text-primary font-mono text-[10px] tracking-widest uppercase group-hover:translate-x-2 transition-transform">
+                        Learn More <span class="material-symbols-outlined ml-2 text-xs">arrow_forward</span>
+</div>
+</div>
+<!-- Card 6: Media -->
+<div class="bg-surface-container p-8 border-l-2 border-transparent hover:border-primary hover:bg-surface-bright transition-all duration-300 group cursor-pointer">
+<div class="flex justify-between items-start mb-12">
+<span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings: 'wght' 200;">podcasts</span>
+<span class="font-mono text-[10px] text-outline">06</span>
+</div>
+<h3 class="font-serif text-2xl mb-4 group-hover:text-primary transition-colors">Media</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-8">Content distribution and strategic narrative development across multi-channel platforms.</p>
+<div class="flex items-center text-primary font-mono text-[10px] tracking-widest uppercase group-hover:translate-x-2 transition-transform">
+                        Learn More <span class="material-symbols-outlined ml-2 text-xs">arrow_forward</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Ecosystem Values -->
+<section class="py-32 px-12 lg:px-24">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="relative order-2 lg:order-1">
+<img class="w-full aspect-[4/5] object-cover grayscale brightness-50" data-alt="Technical schematic overlaying a traditional stone garden with glowing red digital energy conduits flowing like water" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPD51i4MtLIsf-PdYH_k2e-egFpdanvGByFZZ8agKvbU_lLx6cAlepnlhSOBe94A9x-KiQb8wAFGW7Y-sTJIiQE1BhgrIf6ouUe0Geq2ysKZMI4kH5-l0KxC2S4m6QtnZgs-uGVfwKzYWovUsz2VhG_NBnZ9-oqUA10fGQ2jU0DBfLxh-5tFVayVCE6ceMu4Xpyxm3UmJI9iPyNa5LDBKwgBoT3M1D42ihBe-wl4lTXY7GZkeggj633m1MHRV0oWXF7eCmGdK8GTmM"/>
+<div class="absolute -bottom-8 -right-8 glass-panel p-10 border border-outline-variant/30 hidden md:block">
+<div class="font-serif text-4xl text-primary mb-2">99.9%</div>
+<div class="font-mono text-[10px] tracking-widest uppercase">Uptime Reliability</div>
+</div>
+</div>
+<div class="order-1 lg:order-2">
+<h2 class="font-serif text-5xl font-bold mb-12">The Ecosystem <br/><span class="text-primary italic">Imperative</span></h2>
+<div class="space-y-12">
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-12 h-12 bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">public</span>
+</div>
+<div>
+<h4 class="font-serif text-xl mb-2">Global Reach</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">Connect with high-net-worth audiences across three continents via our unified digital passport system.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-12 h-12 bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">history_edu</span>
+</div>
+<div>
+<h4 class="font-serif text-xl mb-2">Cultural IP</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">Leverage exclusive heritage-backed assets digitized for the modern cyberpunk era.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-12 h-12 bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">bolt</span>
+</div>
+<div>
+<h4 class="font-serif text-xl mb-2">Tech Empowerment</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">Advanced blockchain and AI integration for transparent tracking and automated settlement.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Unified Application Form -->
+<section class="py-24 px-12 lg:px-24 bg-surface-container-low border-t border-outline-variant/10">
+<div class="max-w-4xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-serif text-4xl font-bold mb-4 italic">Initialize Partnership</h2>
+<p class="text-on-surface-variant font-mono text-[10px] tracking-[0.3em] uppercase">Step 01: Profile Information</p>
+</div>
+<div class="glass-panel p-12 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 font-mono text-[8px] text-primary opacity-20 rotate-90 origin-right whitespace-nowrap">AUTHENTICATION_REQUIRED // PROTOCOL_04</div>
+<form class="space-y-10">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+<div class="relative">
+<input class="peer w-full bg-transparent border-0 border-b-2 border-outline focus:border-primary focus:ring-0 text-on-surface font-body py-4 placeholder-transparent transition-all" id="company" placeholder=" " type="text"/>
+<label class="absolute left-0 top-4 font-mono text-[10px] uppercase tracking-widest text-outline transition-all peer-focus:-top-4 peer-focus:text-primary peer-[:not(:placeholder-shown)]:-top-4" for="company">Company Name</label>
+</div>
+<div class="relative">
+<select class="peer w-full bg-transparent border-0 border-b-2 border-outline focus:border-primary focus:ring-0 text-on-surface font-body py-4 transition-all" id="category">
+<option class="bg-surface" disabled="" selected="" value="">Select Category</option>
+<option class="bg-surface" value="brand">Brand Alliance</option>
+<option class="bg-surface" value="event">Event Partnership</option>
+<option class="bg-surface" value="tourism">Cultural Tourism</option>
+<option class="bg-surface" value="investment">Strategic Investment</option>
+</select>
+<label class="absolute left-0 -top-4 font-mono text-[10px] uppercase tracking-widest text-primary" for="category">Partnership Sector</label>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+<div class="relative">
+<input class="peer w-full bg-transparent border-0 border-b-2 border-outline focus:border-primary focus:ring-0 text-on-surface font-body py-4 placeholder-transparent transition-all" id="email" placeholder=" " type="email"/>
+<label class="absolute left-0 top-4 font-mono text-[10px] uppercase tracking-widest text-outline transition-all peer-focus:-top-4 peer-focus:text-primary peer-[:not(:placeholder-shown)]:-top-4" for="email">Corporate Email</label>
+</div>
+<div class="relative">
+<input class="peer w-full bg-transparent border-0 border-b-2 border-outline focus:border-primary focus:ring-0 text-on-surface font-body py-4 placeholder-transparent transition-all" id="contact" placeholder=" " type="text"/>
+<label class="absolute left-0 top-4 font-mono text-[10px] uppercase tracking-widest text-outline transition-all peer-focus:-top-4 peer-focus:text-primary peer-[:not(:placeholder-shown)]:-top-4" for="contact">Contact Person</label>
+</div>
+</div>
+<div class="relative">
+<textarea class="peer w-full bg-transparent border-0 border-b-2 border-outline focus:border-primary focus:ring-0 text-on-surface font-body py-4 placeholder-transparent transition-all resize-none" id="proposal" placeholder=" " rows="4"></textarea>
+<label class="absolute left-0 top-4 font-mono text-[10px] uppercase tracking-widest text-outline transition-all peer-focus:-top-4 peer-focus:text-primary peer-[:not(:placeholder-shown)]:-top-4" for="proposal">Alliance Proposal / Executive Summary</label>
+</div>
+<div class="flex items-center justify-between pt-6">
+<div class="flex items-center">
+<input class="w-4 h-4 rounded-none bg-transparent border-outline text-primary focus:ring-0 focus:ring-offset-0" id="nda" type="checkbox"/>
+<label class="ml-3 font-mono text-[10px] uppercase tracking-widest text-on-surface-variant" for="nda">Agree to Data Secrecy Protocol</label>
+</div>
+<button class="vermilion-gradient text-on-primary-fixed px-12 py-4 font-mono font-bold tracking-widest uppercase hover:scale-105 transition-transform" type="submit">
+                                Submit for Review
+                            </button>
+</div>
+</form>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="py-12 px-12 lg:px-24 border-t border-outline-variant/10 flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="font-serif text-xl font-bold tracking-tighter text-[#FFB3B1]">Wuyin Ecosystem</div>
+<div class="font-mono text-[10px] text-outline tracking-[0.2em] uppercase">© 2024 Ronin Digital Architecture. All Rights Reserved.</div>
+<div class="flex gap-8">
+<a class="text-on-surface-variant hover:text-primary transition-colors text-[10px] font-mono tracking-widest uppercase" href="#">Privacy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-[10px] font-mono tracking-widest uppercase" href="#">Terminal Access</a>
+</div>
+</footer>
+</main>
+</body></html>
