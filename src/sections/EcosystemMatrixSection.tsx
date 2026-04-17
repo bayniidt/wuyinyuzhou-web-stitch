@@ -1,6 +1,8 @@
 import ScrollReveal from "@/components/motion/ScrollReveal";
 import HexagonTile from "@/components/ui/HexagonTile";
 import SectionTitle from "@/components/ui/SectionTitle";
+import { useLocale } from "@/i18n/LocaleProvider";
+import { useMemo } from "react";
 
 function IconArena() {
   return (
@@ -55,30 +57,44 @@ function IconVault() {
   );
 }
 
-const tiles = [
-  { label: "Arena", icon: <IconArena /> },
-  { label: "Artifacts", icon: <IconBox /> },
-  { label: "Spirits", icon: <IconSpark /> },
-  { label: "Academy", icon: <IconBook /> },
-  { label: "Spells", icon: <IconWand /> },
-  { label: "Treasury", icon: <IconVault /> },
-];
+const tileKeys = ["arena", "artifacts", "spirits", "academy", "spells", "treasury"] as const;
 
 export default function EcosystemMatrixSection() {
+  const { t } = useLocale();
+  const tiles = useMemo(
+    () =>
+      tileKeys.map((key) => ({
+        key,
+        label: t(`home.ecosystem.tiles.${key}`),
+        icon:
+          key === "arena" ? (
+            <IconArena />
+          ) : key === "artifacts" ? (
+            <IconBox />
+          ) : key === "spirits" ? (
+            <IconSpark />
+          ) : key === "academy" ? (
+            <IconBook />
+          ) : key === "spells" ? (
+            <IconWand />
+          ) : (
+            <IconVault />
+          ),
+      })),
+    [t],
+  );
+
   return (
-    <section
-      id="ecosystem-matrix"
-      className="border-b border-white/5 bg-wuyin-surface/40 py-20 sm:py-28"
-    >
+    <section id="ecosystem-matrix" className="border-b border-white/5 bg-wuyin-surface/40 py-20 sm:py-28">
       <ScrollReveal className="container-wuyin">
         <SectionTitle
-          eyebrow="The six pillars of the digital realm"
-          title="Ecosystem Matrix"
-          subtitle="六大模块构成武印视界的数字疆域：从竞技到场外增长，每一环都指向同一套叙事与经济闭环。"
+          eyebrow={t("home.ecosystem.eyebrow")}
+          title={t("home.ecosystem.title")}
+          subtitle={t("home.ecosystem.subtitle")}
         />
         <div className="mx-auto mt-14 grid max-w-4xl grid-cols-2 gap-x-6 gap-y-10 sm:mt-16 sm:grid-cols-3 sm:gap-x-10 md:gap-y-14">
-          {tiles.map((t) => (
-            <HexagonTile key={t.label} label={t.label} icon={t.icon} />
+          {tiles.map((tile) => (
+            <HexagonTile key={tile.key} label={tile.label} icon={tile.icon} />
           ))}
         </div>
       </ScrollReveal>

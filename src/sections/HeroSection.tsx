@@ -1,11 +1,13 @@
 import GhostButton from "@/components/ui/GhostButton";
 import GradientButton from "@/components/ui/GradientButton";
+import { useLocale } from "@/i18n/LocaleProvider";
 import heroPoster from "@/images/index1.png";
 import heroAmbienceMp4 from "@/videos/8950635-hd_1920_1080_30fps.mp4";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 
 export default function HeroSection() {
   const reducedMotion = usePrefersReducedMotion();
+  const { t } = useLocale();
 
   return (
     <section
@@ -59,19 +61,17 @@ export default function HeroSection() {
         ].join(" ")}
       >
         <p className="wuyin-hero-entrance text-xs font-semibold uppercase tracking-[0.45em] text-wuyin-muted sm:text-sm">
-          Ancient Soul • Future Core
+          {t("home.hero.kicker")}
         </p>
         <h1 className="wuyin-hero-entrance wuyin-hero-entrance-delay-1 mt-6 font-serif text-5xl font-black tracking-tight text-white sm:text-6xl md:text-7xl">
-          武印视界
+          {t("home.hero.title")}
         </h1>
         <p className="wuyin-hero-entrance wuyin-hero-entrance-delay-2 mt-4 font-serif text-lg text-neutral-300 sm:text-xl md:text-2xl">
-          — 东方武道元宇宙盛典
+          {t("home.hero.subtitle")}
         </p>
         <div className="wuyin-hero-entrance wuyin-hero-entrance-delay-3 mt-10 flex flex-col items-stretch gap-4 sm:mt-12 sm:flex-row sm:items-center sm:justify-center">
-          <GradientButton className="w-full min-w-[220px] sm:w-auto">
-            Appointment for Competition
-          </GradientButton>
-          <GhostButton className="w-full min-w-[220px] sm:w-auto">Become a Partner</GhostButton>
+          <GradientButton className="w-full min-w-[220px] sm:w-auto">{t("home.hero.ctaCompetition")}</GradientButton>
+          <GhostButton className="w-full min-w-[220px] sm:w-auto">{t("home.hero.ctaPartner")}</GhostButton>
         </div>
       </div>
     </section>

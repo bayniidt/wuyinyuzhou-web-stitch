@@ -1,6 +1,9 @@
 import GradientButton from "@/components/ui/GradientButton";
+import { useLocale } from "@/i18n/LocaleProvider";
 
 export default function FinalCtaSection() {
+  const { t } = useLocale();
+
   return (
     <section
       id="final-cta"
@@ -8,10 +11,10 @@ export default function FinalCtaSection() {
     >
       <div className="container-wuyin flex flex-col items-center text-center">
         <h2 className="max-w-3xl font-serif text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl">
-          Ready to define your path?
+          {t("home.finalCta.title")}
         </h2>
         <GradientButton className="mt-10 px-10 py-3.5 text-base sm:px-14 sm:py-4 sm:text-lg">
-          Join the Ecosystem
+          {t("home.finalCta.cta")}
         </GradientButton>
       </div>
     </section>

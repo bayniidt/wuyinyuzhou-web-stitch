@@ -1,5 +1,6 @@
 import ScrollReveal from "@/components/motion/ScrollReveal";
 import FeatureCard from "@/components/ui/FeatureCard";
+import { useLocale } from "@/i18n/LocaleProvider";
 import imgCulture from "@/images/index3.png";
 import imgFinance from "@/images/index5.png";
 import imgTechnology from "@/images/index4.png";
@@ -12,10 +13,7 @@ function CultureVisual() {
         className="absolute inset-0 bg-[radial-gradient(circle_at_40%_35%,transparent_0%,#050505_78%)] opacity-95"
         aria-hidden
       />
-      <div
-        className="absolute inset-0 bg-linear-to-t from-black/75 via-red-950/25 to-transparent"
-        aria-hidden
-      />
+      <div className="absolute inset-0 bg-linear-to-t from-black/75 via-red-950/25 to-transparent" aria-hidden />
     </div>
   );
 }
@@ -44,25 +42,27 @@ function FinanceVisual() {
 }
 
 export default function DomainCardsSection() {
+  const { t } = useLocale();
+
   return (
     <section id="domains" className="border-b border-white/5 py-20 sm:py-28">
       <ScrollReveal className="container-wuyin grid gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-10">
         <FeatureCard
-          domainLabel="Domain 01"
-          title="Culture"
-          description="承袭印章、笔墨与身体技法，将东方武道精神转译为可感知的数字仪式与社群语言。"
+          domainLabel={t("home.domains.culture.domainLabel")}
+          title={t("home.domains.culture.title")}
+          description={t("home.domains.culture.description")}
           image={<CultureVisual />}
         />
         <FeatureCard
-          domainLabel="Domain 02"
-          title="Technology"
-          description="以高性能渲染、链上凭证与开放工具链，支撑赛事、训练与数字资产的协同演化。"
+          domainLabel={t("home.domains.technology.domainLabel")}
+          title={t("home.domains.technology.title")}
+          description={t("home.domains.technology.description")}
           image={<TechnologyVisual />}
         />
         <FeatureCard
-          domainLabel="Domain 03"
-          title="Finance"
-          description="在合规与风险框架下探索价值流转：激励、治理与生态增长共享同一套可信底座。"
+          domainLabel={t("home.domains.finance.domainLabel")}
+          title={t("home.domains.finance.title")}
+          description={t("home.domains.finance.description")}
           image={<FinanceVisual />}
         />
       </ScrollReveal>

@@ -1,32 +1,33 @@
-import { footerLegalLinks, navGroups } from "@/config/navigation";
+import { buildFooterLegalLinks, buildNavGroups } from "@/config/navigation";
+import { useLocale } from "@/i18n/LocaleProvider";
 import { navigateToHref } from "@/lib/navigateToHref";
+import { useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function SiteFooter() {
+  const { t } = useLocale();
   const navigate = useNavigate();
+  const navGroups = useMemo(() => buildNavGroups(t), [t]);
+  const footerLegalLinks = useMemo(() => buildFooterLegalLinks(t), [t]);
 
   return (
     <footer id="site-footer" className="border-t border-white/10 bg-wuyin-surface py-14">
-      <div className="container-wuyin grid gap-10 sm:grid-cols-2 lg:grid-cols-6">
+      <div className="container-wuyin grid gap-10 sm:grid-cols-2 lg:grid-cols-7">
         <div className="sm:col-span-2 lg:col-span-1">
           <Link
             to={{ pathname: "/", hash: "hero" }}
             className="inline-flex items-center gap-2 font-serif text-lg font-bold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-accent-soft"
           >
             <span className="bg-linear-to-r from-wuyin-accent to-wuyin-accent-soft bg-clip-text text-transparent">
-              武印视界
+              {t("footer.brand")}
             </span>
           </Link>
-          <p className="mt-4 text-sm leading-relaxed text-wuyin-muted">
-            The digital born real.
-          </p>
+          <p className="mt-4 text-sm leading-relaxed text-wuyin-muted">{t("footer.tagline")}</p>
         </div>
 
         {navGroups.map((group) => (
           <div key={group.id}>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-wuyin-muted">
-              {group.label}
-            </p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-wuyin-muted">{group.label}</p>
             <ul className="mt-4 space-y-2">
               {group.children.map((child) => (
                 <li key={child.href + child.label}>
@@ -47,9 +48,7 @@ export default function SiteFooter() {
         ))}
 
         <div id="support">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-wuyin-muted">
-            Legal &amp; Support
-          </p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-wuyin-muted">{t("footer.legalSupport")}</p>
           <ul className="mt-4 space-y-2">
             {footerLegalLinks.map((link) => (
               <li key={link.label}>
@@ -69,9 +68,11 @@ export default function SiteFooter() {
         </div>
       </div>
 
-      <div className="container-wuyin mt-12 flex flex-col gap-4 border-t border-white/10 pt-8 text-xs text-wuyin-muted sm:flex-row sm:items-center sm:justify-between">
-        <p>© {new Date().getFullYear()} WUYINWORLD. THE DIGITAL BORN REAL.</p>
-        <p className="text-neutral-500">静态演示站 · 内容可随时替换</p>
+      <div className="container-wuyin mt-12 flex flex-nowrap items-center justify-between gap-4 overflow-x-auto border-t border-white/10 pt-8 text-xs text-wuyin-muted">
+        <p className="whitespace-nowrap">
+          © {new Date().getFullYear()} {t("footer.copyrightLine")}
+        </p>
+        <p className="whitespace-nowrap text-neutral-500">{t("footer.demoNote")}</p>
       </div>
     </footer>
   );

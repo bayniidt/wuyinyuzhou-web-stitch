@@ -1,6 +1,7 @@
 import ScrollReveal from "@/components/motion/ScrollReveal";
 import GhostButton from "@/components/ui/GhostButton";
 import GradientButton from "@/components/ui/GradientButton";
+import { useLocale } from "@/i18n/LocaleProvider";
 import { scrollToSelector } from "@/lib/scroll";
 import imgTimelineHero from "@/images/page3 (7).png";
 import imgTimelineRoad from "@/images/page3 (1).png";
@@ -9,7 +10,7 @@ import imgRosterGhost from "@/images/page3 (2).png";
 import imgRosterIron from "@/images/page3 (3).png";
 import imgRosterNeon from "@/images/page3 (4).png";
 import imgRosterVoid from "@/images/page3 (5).png";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 type TimelineModule = {
@@ -19,40 +20,10 @@ type TimelineModule = {
   body: string;
   imageSrc: string;
   imageAlt: string;
-  /** 首屏为左图右文，其后交替 */
   imageOnLeft: boolean;
   bullets?: { step: string; title: string; text: string }[];
   statLine?: string;
 };
-
-const modules: TimelineModule[] = [
-  {
-    id: "timeline-road",
-    kicker: "Road Ahead",
-    title: "从概念到现场的节律",
-    body:
-      "赛事筹备、内容发布与链上权益将逐步对齐。以下模块采用「图 / 文」一比一排布，配以本地摄影素材强化现场感与节律。",
-    imageSrc: imgTimelineRoad,
-    imageAlt: "赛事与城市现场氛围",
-    imageOnLeft: true,
-    bullets: [
-      { step: "01", title: "定标", text: "锁定城市、场馆与主视觉方向，建立可复用的组件与文案基线。" },
-      { step: "02", title: "共振", text: "开放社群共创节点，把里程碑拆成可被参与、被见证的小步。" },
-      { step: "03", title: "落印", text: "把关键动作写入链上或票务系统，形成可回溯的「时间证据」。" },
-    ],
-  },
-  {
-    id: "timeline-manifesto",
-    kicker: "Manifesto",
-    title: "叙事不是装饰，是约束",
-    body:
-      "当武道的「止」与赛博的「硬分叉」并置，时间线就不再是列表，而是一条可被行走的路径。我们用留白压住噪点，用红色提示真正的决策点。",
-    imageSrc: imgTimelineManifesto,
-    imageAlt: "叙事与空间光影",
-    imageOnLeft: false,
-    statLine: "2.4m · 站立高度（示意数据）",
-  }
-];
 
 function IconLightning({ className = "h-3.5 w-3.5 shrink-0 text-[#ff4d4d]" }: { className?: string }) {
   return (
@@ -63,35 +34,24 @@ function IconLightning({ className = "h-3.5 w-3.5 shrink-0 text-[#ff4d4d]" }: { 
 }
 
 function AccessTiersSection() {
+  const { t } = useLocale();
   return (
-    <section
-      id="timeline-access-tiers"
-      className="border-b border-white/5 bg-wuyin-bg py-16 sm:py-20 lg:py-24"
-    >
-      <ScrollReveal
-        variant="upSoft"
-        className="container-wuyin wuyin-reveal-tech"
-        visibleClassName="wuyin-reveal-tech-visible"
-      >
+    <section id="timeline-access-tiers" className="border-b border-white/5 bg-wuyin-bg py-16 sm:py-20 lg:py-24">
+      <ScrollReveal variant="upSoft" className="container-wuyin wuyin-reveal-tech" visibleClassName="wuyin-reveal-tech-visible">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <h2 className="font-serif text-3xl font-semibold italic tracking-tight text-white sm:text-4xl lg:text-[2.5rem]">
-              Access Tiers
+              {t("timeline.accessTiers.title")}
             </h2>
-            <p className="mt-2 max-w-xl text-sm text-neutral-400 sm:text-base">
-              Secure your position in the digital colosseum.
-            </p>
+            <p className="mt-2 max-w-xl text-sm text-neutral-400 sm:text-base">{t("timeline.accessTiers.subtitle")}</p>
           </div>
-          <p className="text-xs text-neutral-600 sm:text-right">ETH · 占位计价</p>
+          <p className="text-xs text-neutral-600 sm:text-right">{t("timeline.accessTiers.ethNote")}</p>
         </div>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-3 lg:items-stretch">
-          {/* Standard */}
           <article className="group relative flex flex-col rounded-2xl border border-white/10 border-l-[3px] border-l-transparent bg-[#141414] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition duration-300 ease-[var(--ease-wuyin)] hover:border-l-[#ff4d4d] hover:-translate-y-1 hover:shadow-[0_0_48px_rgba(255,77,77,0.12),inset_0_1px_0_rgba(255,255,255,0.04)] sm:p-8">
-            <h3 className="font-serif text-2xl font-semibold italic text-white">Standard</h3>
-            <p className="mt-3 text-sm leading-relaxed text-neutral-400">
-              Main arena seating &amp; event digital memento.
-            </p>
+            <h3 className="font-serif text-2xl font-semibold italic text-white">{t("timeline.accessTiers.standard.name")}</h3>
+            <p className="mt-3 text-sm leading-relaxed text-neutral-400">{t("timeline.accessTiers.standard.desc")}</p>
             <p className="mt-8 font-serif text-4xl font-bold tabular-nums text-white sm:text-5xl">
               0.08
               <span className="ml-1 align-top text-lg font-sans font-semibold text-neutral-500 sm:text-xl">ETH</span>
@@ -99,33 +59,30 @@ function AccessTiersSection() {
             <ul className="mt-8 flex flex-col gap-3 text-xs font-semibold uppercase tracking-wide text-neutral-200 sm:text-sm">
               <li className="flex items-center gap-2.5">
                 <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#ff4d4d]" aria-hidden />
-                Arena Level 2
+                {t("timeline.accessTiers.standard.feat1")}
               </li>
               <li className="flex items-center gap-2.5">
                 <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#ff4d4d]" aria-hidden />
-                POAP Badge
+                {t("timeline.accessTiers.standard.feat2")}
               </li>
             </ul>
             <div className="mt-auto pt-10">
-              <GhostButton type="button" className="w-full" onClick={() => window.alert("Standard 档位为占位。")}>
-                Select Tier
+              <GhostButton type="button" className="w-full" onClick={() => window.alert(t("timeline.accessTiers.standard.alert"))}>
+                {t("timeline.accessTiers.standard.cta")}
               </GhostButton>
             </div>
           </article>
 
-          {/* V.I.P. */}
           <article className="group relative flex flex-col rounded-2xl border border-white/10 border-l-[3px] border-l-transparent bg-[#141414] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition duration-300 ease-[var(--ease-wuyin)] hover:border-l-[#ff4d4d] hover:-translate-y-1 hover:shadow-[0_0_56px_rgba(255,77,77,0.16),inset_0_1px_0_rgba(255,255,255,0.05)] sm:p-8 lg:py-10">
             <span
               className="absolute right-5 top-5 rounded-sm bg-[#ff4d4d] px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-neutral-950 sm:right-6 sm:top-6"
-              aria-label="推荐档位"
+              aria-label={t("timeline.accessTiers.vip.badgeAria")}
             >
-              Recommended
+              {t("timeline.accessTiers.vip.badge")}
             </span>
             <div>
-              <h3 className="font-serif text-2xl font-semibold italic text-white">V.I.P.</h3>
-              <p className="mt-3 text-sm leading-relaxed text-neutral-400">
-                Front row interaction &amp; limited edition physical gear.
-              </p>
+              <h3 className="font-serif text-2xl font-semibold italic text-white">{t("timeline.accessTiers.vip.name")}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-neutral-400">{t("timeline.accessTiers.vip.desc")}</p>
               <div className="mt-8 flex flex-wrap items-baseline gap-x-1 gap-y-0">
                 <span className="bg-linear-to-r from-[#ff4d4d] to-[#ff8080] bg-clip-text font-serif text-4xl font-bold tabular-nums text-transparent sm:text-5xl">
                   0.25
@@ -135,15 +92,15 @@ function AccessTiersSection() {
               <ul className="mt-8 flex flex-col gap-3 text-xs font-semibold uppercase tracking-wide text-neutral-200 sm:text-sm">
                 <li className="flex items-center gap-2.5">
                   <IconLightning />
-                  Exclusive Access
+                  {t("timeline.accessTiers.vip.feat1")}
                 </li>
                 <li className="flex items-center gap-2.5">
                   <IconLightning />
-                  Signed Roster Print
+                  {t("timeline.accessTiers.vip.feat2")}
                 </li>
                 <li className="flex items-center gap-2.5">
                   <IconLightning />
-                  After-party Entry
+                  {t("timeline.accessTiers.vip.feat3")}
                 </li>
               </ul>
             </div>
@@ -151,19 +108,16 @@ function AccessTiersSection() {
               <button
                 type="button"
                 className="inline-flex w-full items-center justify-center rounded-[1px] bg-linear-to-r from-[#ff4d4d] to-[#ff8080] px-6 py-3 text-sm font-semibold tracking-wide text-neutral-950 shadow-wuyin-glow transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff8080] active:scale-[0.98] sm:py-3.5 sm:text-base"
-                onClick={() => window.alert("V.I.P. 档位为占位。")}
+                onClick={() => window.alert(t("timeline.accessTiers.vip.alert"))}
               >
-                Reserve Spot
+                {t("timeline.accessTiers.vip.cta")}
               </button>
             </div>
           </article>
 
-          {/* Metaverse */}
           <article className="group relative flex flex-col rounded-2xl border border-white/10 border-l-[3px] border-l-transparent bg-[#141414] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition duration-300 ease-[var(--ease-wuyin)] hover:border-l-[#ff4d4d] hover:-translate-y-1 hover:shadow-[0_0_48px_rgba(255,77,77,0.12),inset_0_1px_0_rgba(255,255,255,0.04)] sm:p-8">
-            <h3 className="font-serif text-2xl font-semibold italic text-white">Metaverse</h3>
-            <p className="mt-3 text-sm leading-relaxed text-neutral-400">
-              Virtual 8K 360° streaming &amp; 3D avatar skin.
-            </p>
+            <h3 className="font-serif text-2xl font-semibold italic text-white">{t("timeline.accessTiers.metaverse.name")}</h3>
+            <p className="mt-3 text-sm leading-relaxed text-neutral-400">{t("timeline.accessTiers.metaverse.desc")}</p>
             <p className="mt-8 font-serif text-4xl font-bold tabular-nums text-white sm:text-5xl">
               0.05
               <span className="ml-1 align-top text-lg font-sans font-semibold text-neutral-500 sm:text-xl">ETH</span>
@@ -171,16 +125,16 @@ function AccessTiersSection() {
             <ul className="mt-8 flex flex-col gap-3 text-xs font-semibold uppercase tracking-wide text-neutral-200 sm:text-sm">
               <li className="flex items-center gap-2.5">
                 <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-300/90" aria-hidden />
-                Unlimited Replay
+                {t("timeline.accessTiers.metaverse.feat1")}
               </li>
               <li className="flex items-center gap-2.5">
                 <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-300/90" aria-hidden />
-                Exclusive Avatar Scan
+                {t("timeline.accessTiers.metaverse.feat2")}
               </li>
             </ul>
             <div className="mt-auto pt-10">
-              <GhostButton type="button" className="w-full" onClick={() => window.alert("Metaverse 档位为占位。")}>
-                Digital Access
+              <GhostButton type="button" className="w-full" onClick={() => window.alert(t("timeline.accessTiers.metaverse.alert"))}>
+                {t("timeline.accessTiers.metaverse.cta")}
               </GhostButton>
             </div>
           </article>
@@ -190,48 +144,31 @@ function AccessTiersSection() {
   );
 }
 
-const rosterCards = [
-  {
-    name: "Ghost Orchid",
-    role: "Phantom Ops",
-    imageSrc: imgRosterGhost,
-  },
-  {
-    name: "Iron Will",
-    role: "Armored Core",
-    imageSrc: imgRosterIron,
-  },
-  {
-    name: "Neon Fade",
-    role: "Pulse Mind",
-    imageSrc: imgRosterNeon,
-  },
-  {
-    name: "Void Breaker",
-    role: "Rogue Grip",
-    imageSrc: imgRosterVoid,
-  },
-];
-
 function WarriorRosterSection() {
+  const { t } = useLocale();
+  const rosterCards = useMemo(
+    () => [
+      { name: t("timeline.roster.ghost.name"), role: t("timeline.roster.ghost.role"), imageSrc: imgRosterGhost },
+      { name: t("timeline.roster.iron.name"), role: t("timeline.roster.iron.role"), imageSrc: imgRosterIron },
+      { name: t("timeline.roster.neon.name"), role: t("timeline.roster.neon.role"), imageSrc: imgRosterNeon },
+      { name: t("timeline.roster.void.name"), role: t("timeline.roster.void.role"), imageSrc: imgRosterVoid },
+    ],
+    [t],
+  );
+
   return (
     <section id="timeline-warrior-roster" className="border-b border-white/5 bg-wuyin-bg py-16 sm:py-20 lg:py-24">
-      <ScrollReveal
-        variant="leftSoft"
-        delayMs={70}
-        className="container-wuyin wuyin-reveal-tech"
-        visibleClassName="wuyin-reveal-tech-visible"
-      >
+      <ScrollReveal variant="leftSoft" delayMs={70} className="container-wuyin wuyin-reveal-tech" visibleClassName="wuyin-reveal-tech-visible">
         <div className="flex items-center justify-between gap-4">
           <h2 className="font-serif text-3xl font-semibold italic tracking-tight text-white sm:text-4xl">
-            Warrior Roster
+            {t("timeline.roster.title")}
             <span className="ml-1 text-[#ff8080]">.</span>
           </h2>
           <button
             type="button"
-            aria-label="筛选（占位）"
+            aria-label={t("timeline.roster.filterAria")}
             className="inline-flex h-11 w-11 items-center justify-center rounded-sm border border-white/20 text-neutral-300 transition hover:border-white/40 hover:text-white"
-            onClick={() => window.alert("筛选功能为占位。")}
+            onClick={() => window.alert(t("timeline.roster.filterAlert"))}
           >
             <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
               <path d="M4 7h16M7 12h10M10 17h4" />
@@ -241,10 +178,7 @@ function WarriorRosterSection() {
 
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {rosterCards.map((card) => (
-            <article
-              key={card.name}
-              className="group relative overflow-hidden border border-white/10 bg-neutral-950 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]"
-            >
+            <article key={card.name} className="group relative overflow-hidden border border-white/10 bg-neutral-950 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
               <img
                 src={card.imageSrc}
                 alt={card.name}
@@ -257,9 +191,7 @@ function WarriorRosterSection() {
               <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/90 via-black/35 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
                 <p className="text-[11px] uppercase tracking-[0.2em] text-[#ff8080]">{card.role}</p>
-                <h3 className="mt-2 font-serif text-3xl font-bold uppercase leading-[0.9] text-white">
-                  {card.name}
-                </h3>
+                <h3 className="mt-2 font-serif text-3xl font-bold uppercase leading-[0.9] text-white">{card.name}</h3>
               </div>
             </article>
           ))}
@@ -274,11 +206,7 @@ function TimelineSplitModule({ m, surface }: { m: TimelineModule; surface: strin
     <section id={m.id} className={`border-b border-white/5 py-16 sm:py-20 lg:py-24 ${surface}`}>
       <div className="container-wuyin wuyin-reveal-tech">
         <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
-          <ScrollReveal
-            variant="leftSoft"
-            className={m.imageOnLeft ? "lg:order-1" : "lg:order-2"}
-            visibleClassName="wuyin-reveal-tech-visible"
-          >
+          <ScrollReveal variant="leftSoft" className={m.imageOnLeft ? "lg:order-1" : "lg:order-2"} visibleClassName="wuyin-reveal-tech-visible">
             <div className="overflow-hidden rounded-2xl border border-white/10 bg-neutral-950 shadow-wuyin-glow">
               <div className="relative aspect-[5/4] w-full max-h-[min(54dvh,28rem)] sm:max-h-[min(58dvh,33rem)] lg:max-h-[min(64dvh,38rem)]">
                 <img
@@ -294,11 +222,7 @@ function TimelineSplitModule({ m, surface }: { m: TimelineModule; surface: strin
             </div>
           </ScrollReveal>
 
-          <ScrollReveal
-            variant="rightSoft"
-            delayMs={85}
-            className={m.imageOnLeft ? "lg:order-2" : "lg:order-1"}
-          >
+          <ScrollReveal variant="rightSoft" delayMs={85} className={m.imageOnLeft ? "lg:order-2" : "lg:order-1"}>
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#ff8080]">{m.kicker}</p>
               <h2 className="mt-3 font-serif text-3xl font-bold text-white sm:text-4xl">{m.title}</h2>
@@ -321,7 +245,6 @@ function TimelineSplitModule({ m, surface }: { m: TimelineModule; surface: strin
                   ))}
                 </ol>
               ) : null}
-
             </div>
           </ScrollReveal>
         </div>
@@ -333,23 +256,53 @@ function TimelineSplitModule({ m, surface }: { m: TimelineModule; surface: strin
 export default function TimelinePage() {
   const location = useLocation();
   const navigate = useNavigate();
+  const { t } = useLocale();
+
+  const modules = useMemo((): TimelineModule[] => {
+    const roadStat = t("timeline.modules.road.statLine");
+    return [
+      {
+        id: "timeline-road",
+        kicker: t("timeline.modules.road.kicker"),
+        title: t("timeline.modules.road.title"),
+        body: t("timeline.modules.road.body"),
+        imageSrc: imgTimelineRoad,
+        imageAlt: t("timeline.modules.road.imageAlt"),
+        imageOnLeft: true,
+        bullets: [
+          { step: "01", title: t("timeline.modules.road.bullets.b1.title"), text: t("timeline.modules.road.bullets.b1.text") },
+          { step: "02", title: t("timeline.modules.road.bullets.b2.title"), text: t("timeline.modules.road.bullets.b2.text") },
+          { step: "03", title: t("timeline.modules.road.bullets.b3.title"), text: t("timeline.modules.road.bullets.b3.text") },
+        ],
+        statLine: roadStat || undefined,
+      },
+      {
+        id: "timeline-manifesto",
+        kicker: t("timeline.modules.manifesto.kicker"),
+        title: t("timeline.modules.manifesto.title"),
+        body: t("timeline.modules.manifesto.body"),
+        imageSrc: imgTimelineManifesto,
+        imageAlt: t("timeline.modules.manifesto.imageAlt"),
+        imageOnLeft: false,
+        statLine: t("timeline.modules.manifesto.statLine"),
+      },
+    ];
+  }, [t]);
+
   const firstModule = modules[0]!;
   const secondModule = modules[1]!;
 
   useEffect(() => {
     const hash = location.hash;
     if (hash) {
-      const t = window.setTimeout(() => scrollToSelector(hash), 0);
-      return () => window.clearTimeout(t);
+      const timer = window.setTimeout(() => scrollToSelector(hash), 0);
+      return () => window.clearTimeout(timer);
     }
   }, [location.pathname, location.hash]);
 
   return (
     <>
-      <section
-        id="timeline-hero"
-        className="relative overflow-hidden border-b border-white/5"
-      >
+      <section id="timeline-hero" className="relative overflow-hidden border-b border-white/5">
         <div
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(255,77,77,0.16),transparent_55%),linear-gradient(180deg,#030303_0%,#080808_45%,#050505_100%)]"
           aria-hidden
@@ -368,22 +321,18 @@ export default function TimelinePage() {
           staggerChildren
           staggerStepMs={90}
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.4em] text-wuyin-muted sm:text-sm">
-            2026 Hangzhou Show
-          </p>
+          <p className="text-xs font-semibold uppercase tracking-[0.4em] text-wuyin-muted sm:text-sm">{t("timeline.heroKicker")}</p>
           <h1 className="mt-5 max-w-4xl font-serif text-4xl font-black tracking-tight text-white sm:text-5xl md:text-6xl">
-            <span className="text-white">时间线</span>
-            <span className="bg-linear-to-r from-[#ff4d4d] to-[#ff8080] bg-clip-text text-transparent"> · Timeline</span>
+            <span className="text-white">{t("timeline.heroTitle")}</span>
+            <span className="bg-linear-to-r from-[#ff4d4d] to-[#ff8080] bg-clip-text text-transparent">{t("timeline.heroTitleAccent")}</span>
           </h1>
-          <p className="mt-5 max-w-2xl text-sm leading-relaxed text-neutral-300 sm:text-base">
-            本页采用「左图右文 / 左文右图」交替的一比一排布，配图与预发布影像均来自项目内本地素材。
-          </p>
+          <p className="mt-5 max-w-2xl text-sm leading-relaxed text-neutral-300 sm:text-base">{t("timeline.heroLead")}</p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
             <GradientButton type="button" onClick={() => scrollToSelector("#timeline-road")}>
-              查看路线
+              {t("timeline.viewRoadmap")}
             </GradientButton>
             <GhostButton type="button" onClick={() => navigate("/")}>
-              返回主站
+              {t("timeline.backHome")}
             </GhostButton>
           </div>
         </ScrollReveal>
