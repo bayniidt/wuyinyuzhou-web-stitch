@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Navbar from "./components/common/Navbar";
+import Footer from "./components/layout/Footer";
 import Home from "./pages/Home";
 import Universe from "./pages/Universe";
 import Sight from "./pages/Sight";
@@ -16,9 +17,9 @@ export default function App() {
   }, [location.pathname, location.hash]);
 
   return (
-    <div className="min-h-screen bg-brand-black text-white selection:bg-brand-red selection:text-white transition-colors duration-500">
+    <div className="min-h-screen bg-brand-black text-white selection:bg-brand-red selection:text-white transition-colors duration-500 flex flex-col">
       <Navbar />
-      <main key={location.pathname}>
+      <main key={location.pathname} className="flex-grow">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/universe" element={<Universe />} />
@@ -27,6 +28,7 @@ export default function App() {
           <Route path="/partners" element={<Partners />} />
         </Routes>
       </main>
+      <Footer />
     </div>
   );
 }
