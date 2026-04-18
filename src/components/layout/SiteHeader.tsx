@@ -4,6 +4,7 @@ import { useLocale } from "@/i18n/LocaleProvider";
 import { navigateToHref } from "@/lib/navigateToHref";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 import { useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 function Logo() {
@@ -230,20 +231,12 @@ export default function SiteHeader() {
           </button>
           <GradientButton
             type="button"
-            className="hidden px-4 py-2 text-xs sm:inline-flex sm:px-5 sm:text-sm"
+            className="px-3 py-2 text-xs sm:px-5 sm:py-2 sm:text-sm"
             aria-label={t("header.connectWalletAria")}
             onClick={connectWallet}
           >
-            {t("header.wallet")}
-          </GradientButton>
-
-          <GradientButton
-            type="button"
-            className="inline-flex px-3 py-2 text-xs sm:hidden"
-            aria-label={t("header.connectWalletAria")}
-            onClick={connectWallet}
-          >
-            {t("header.walletShort")}
+            <span className="sm:hidden">{t("header.walletShort")}</span>
+            <span className="hidden sm:inline">{t("header.wallet")}</span>
           </GradientButton>
 
           <button
@@ -259,119 +252,114 @@ export default function SiteHeader() {
         </div>
       </div>
 
-      {drawerMounted ? (
-        <div className="fixed inset-0 z-40 lg:hidden" role="dialog" aria-modal="true">
-          <button
-            type="button"
-            className={[
-              "absolute inset-0 bg-black/70 transition-opacity duration-300 ease-[var(--ease-wuyin)]",
-              drawerEntered ? "opacity-100" : "opacity-0",
-            ].join(" ")}
-            aria-label={t("header.menuCloseBackdrop")}
-            onClick={() => setMobileOpen(false)}
-          />
-          <div
-            id={mobilePanelId}
-            className={[
-              "absolute right-0 top-0 flex h-full w-[min(100%,22rem)] flex-col border-l border-white/10 bg-wuyin-bg shadow-2xl transition-transform duration-300 ease-[var(--ease-wuyin)]",
-              drawerEntered ? "translate-x-0" : "translate-x-full",
-            ].join(" ")}
-          >
-            <div className="flex items-center justify-between border-b border-white/10 px-4 py-4">
-              <span className="font-serif text-lg font-semibold text-white">{t("header.menu")}</span>
+      {drawerMounted
+        ? createPortal(
+            <div className="fixed inset-0 z-[100] lg:hidden" role="dialog" aria-modal="true">
               <button
-                ref={closeBtnRef}
                 type="button"
-                className="rounded-lg p-2 text-neutral-300 hover:bg-white/5"
-                aria-label={t("header.menuClose")}
+                className={[
+                  "absolute inset-0 bg-black/70 transition-opacity duration-300 ease-[var(--ease-wuyin)]",
+                  drawerEntered ? "opacity-100" : "opacity-0",
+                ].join(" ")}
+                aria-label={t("header.menuCloseBackdrop")}
                 onClick={() => setMobileOpen(false)}
+              />
+              <div
+                id={mobilePanelId}
+                className={[
+                  "absolute right-0 top-0 flex h-full w-[min(100%,22rem)] flex-col border-l border-white/10 bg-wuyin-bg shadow-2xl transition-transform duration-300 ease-[var(--ease-wuyin)]",
+                  drawerEntered ? "translate-x-0" : "translate-x-full",
+                ].join(" ")}
               >
-                <IconClose />
-              </button>
-            </div>
-            <nav className="flex-1 overflow-y-auto px-3 py-4" aria-label={t("header.ariaMobileNav")}>
-              {navGroups.map((group) => {
-                const meta = getNavPrimaryMeta(group.id);
-                const primaryTo = meta?.to;
-                return primaryTo ? (
-                  <div key={group.id} className="border-b border-white/5 py-1">
-                    <NavLink
-                      to={primaryTo}
-                      end={meta?.end ?? false}
-                      className={({ isActive }) =>
-                        [
-                          "block rounded-lg px-3 py-3 text-sm font-medium transition",
-                          isActive
-                            ? "text-white [box-shadow:inset_3px_0_0_0_var(--color-wuyin-accent)]"
-                            : "text-white hover:bg-white/5",
-                        ].join(" ")
-                      }
-                      onClick={() => setMobileOpen(false)}
-                    >
-                      {group.label}
-                    </NavLink>
-                    <ul className="pb-2 pl-1">
-                      {group.children.map((child) => (
-                        <li key={child.href + child.label}>
-                          <a
-                            href={child.href}
-                            className="block rounded-lg px-3 py-2 text-sm text-neutral-300 hover:bg-white/5 hover:text-white"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              onNavigate(child.href);
-                            }}
-                          >
-                            {child.label}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ) : (
-                  <details key={group.id} className="group border-b border-white/5 py-1">
-                    <summary className="cursor-pointer list-none py-3 font-medium text-white marker:hidden [&::-webkit-details-marker]:hidden">
-                      <span className="flex items-center justify-between">
-                        {group.label}
-                        <span className="text-wuyin-muted">▾</span>
-                      </span>
-                    </summary>
-                    <ul className="pb-2 pl-1">
-                      {group.children.map((child) => (
-                        <li key={child.href + child.label}>
-                          <a
-                            href={child.href}
-                            className="block rounded-lg px-3 py-2 text-sm text-neutral-300 hover:bg-white/5 hover:text-white"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              onNavigate(child.href);
-                            }}
-                          >
-                            {child.label}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </details>
-                );
-              })}
-            </nav>
-            <div className="space-y-3 border-t border-white/10 p-4">
-              <LanguageSwitcher className="flex w-full justify-center" />
-              <GradientButton
-                type="button"
-                className="w-full"
-                aria-label={t("header.connectWalletAria")}
-                onClick={() => {
-                  setMobileOpen(false);
-                  connectWallet();
-                }}
-              >
-                {t("header.wallet")}
-              </GradientButton>
-            </div>
-          </div>
-        </div>
-      ) : null}
+                <div className="flex shrink-0 items-center justify-between border-b border-white/10 px-4 py-4">
+                  <span className="font-serif text-lg font-semibold text-white">{t("header.menu")}</span>
+                  <button
+                    ref={closeBtnRef}
+                    type="button"
+                    className="rounded-lg p-2 text-neutral-300 hover:bg-white/5"
+                    aria-label={t("header.menuClose")}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    <IconClose />
+                  </button>
+                </div>
+                <nav
+                  className="min-h-0 flex-1 overflow-y-auto px-3 py-4"
+                  aria-label={t("header.ariaMobileNav")}
+                >
+                  {navGroups.map((group) => {
+                    const meta = getNavPrimaryMeta(group.id);
+                    const primaryTo = meta?.to;
+                    return primaryTo ? (
+                      <div key={group.id} className="border-b border-white/5 py-1">
+                        <NavLink
+                          to={primaryTo}
+                          end={meta?.end ?? false}
+                          className={({ isActive }) =>
+                            [
+                              "block rounded-lg px-3 py-3 text-sm font-medium transition",
+                              isActive
+                                ? "text-white [box-shadow:inset_3px_0_0_0_var(--color-wuyin-accent)]"
+                                : "text-white hover:bg-white/5",
+                            ].join(" ")
+                          }
+                          onClick={() => setMobileOpen(false)}
+                        >
+                          {group.label}
+                        </NavLink>
+                        <ul className="pb-2 pl-1">
+                          {group.children.map((child) => (
+                            <li key={child.href + child.label}>
+                              <a
+                                href={child.href}
+                                className="block rounded-lg px-3 py-2 text-sm text-neutral-300 hover:bg-white/5 hover:text-white"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  onNavigate(child.href);
+                                }}
+                              >
+                                {child.label}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ) : (
+                      <details key={group.id} className="group border-b border-white/5 py-1">
+                        <summary className="cursor-pointer list-none py-3 font-medium text-white marker:hidden [&::-webkit-details-marker]:hidden">
+                          <span className="flex items-center justify-between">
+                            {group.label}
+                            <span className="text-wuyin-muted">▾</span>
+                          </span>
+                        </summary>
+                        <ul className="pb-2 pl-1">
+                          {group.children.map((child) => (
+                            <li key={child.href + child.label}>
+                              <a
+                                href={child.href}
+                                className="block rounded-lg px-3 py-2 text-sm text-neutral-300 hover:bg-white/5 hover:text-white"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  onNavigate(child.href);
+                                }}
+                              >
+                                {child.label}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </details>
+                    );
+                  })}
+                </nav>
+                <div className="shrink-0 border-t border-white/10 p-4">
+                  <LanguageSwitcher className="flex w-full justify-center" />
+                </div>
+              </div>
+            </div>,
+            document.body,
+          )
+        : null}
     </header>
   );
 }
