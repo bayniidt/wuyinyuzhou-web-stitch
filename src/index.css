@@ -1,17 +1,26 @@
 @import "tailwindcss";
 
 @theme {
-  --color-wuyin-bg: #020202;
-  --color-wuyin-surface: #070707;
-  --color-wuyin-elevated: #101010;
+  /* Warm charcoal — reads with bronze-gold, less “sticker on pure black” */
+  --color-wuyin-bg: #060504;
+  --color-wuyin-surface: #0c0a08;
+  --color-wuyin-elevated: #141210;
   --color-wuyin-muted: #a3a3a3;
-  --color-wuyin-accent: #cf3e3e;
-  --color-wuyin-accent-soft: #b85858;
+  /* Bright golden yellow — less bronze / ochre */
+  --wuyin-gold-rgb: 228 184 74;
+  --color-wuyin-gold: #e4b84a;
+  --color-wuyin-gold-soft: #b89022;
+  --color-wuyin-gold-bright: #f5d563;
+  --color-wuyin-accent: #e4b84a;
+  --color-wuyin-accent-soft: #b89022;
+  /* Auxiliary: seal red */
+  --color-wuyin-seal: #c93030;
+  --color-wuyin-seal-soft: #a04545;
   --font-sans: ui-sans-serif, system-ui, sans-serif, "PingFang SC", "Microsoft YaHei",
     "Noto Sans SC", sans-serif;
   --font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", ui-serif, Georgia,
     serif;
-  --shadow-wuyin-glow: 0 0 48px rgb(207 62 62 / 0.09);
+  --shadow-wuyin-glow: 0 0 48px rgb(var(--wuyin-gold-rgb) / 0.22);
   --ease-wuyin: cubic-bezier(0.22, 1, 0.36, 1);
   --wuyin-reveal-duration: 480ms;
   --wuyin-route-duration: 300ms;
@@ -63,10 +72,10 @@
 @keyframes wuyin-glow-pulse {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgb(207 62 62 / 0.1);
+    box-shadow: 0 0 0 0 rgb(201 48 48 / 0.12);
   }
   50% {
-    box-shadow: 0 0 10px 0 rgb(207 62 62 / 0.22);
+    box-shadow: 0 0 12px 0 rgb(201 48 48 / 0.35);
   }
 }
 
@@ -91,6 +100,43 @@
     opacity: 1;
     transform: translateY(0) scale(1);
     filter: blur(0);
+  }
+}
+
+@keyframes wuyin-hero-kernel-shimmer {
+  0%,
+  100% {
+    opacity: 0.84;
+    filter: brightness(1.01) saturate(1.01);
+  }
+  50% {
+    opacity: 0.9;
+    filter: brightness(1.06) saturate(1.03);
+  }
+}
+
+@keyframes wuyin-golden-block-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(var(--wuyin-block-rot, 0deg));
+  }
+  32% {
+    transform: translate3d(2.2%, -2.4%, 0) scale(1.06)
+      rotate(calc(var(--wuyin-block-rot, 0deg) + 1.4deg));
+  }
+  64% {
+    transform: translate3d(-1.8%, 1.6%, 0) scale(0.97)
+      rotate(calc(var(--wuyin-block-rot, 0deg) - 1deg));
+  }
+}
+
+@keyframes wuyin-golden-block-glint {
+  0%,
+  100% {
+    opacity: 0.28;
+  }
+  50% {
+    opacity: 0.58;
   }
 }
 
@@ -139,6 +185,24 @@
   animation: wuyin-cinematic-enter 0.82s var(--ease-wuyin) both;
 }
 
+@utility wuyin-animate-hero-kernel {
+  animation: wuyin-hero-kernel-shimmer 7s var(--ease-wuyin) infinite both;
+}
+
+@utility wuyin-animate-golden-block-float {
+  animation: wuyin-golden-block-float 22s var(--ease-wuyin) infinite both;
+}
+
+@utility wuyin-animate-golden-block-glint {
+  animation: wuyin-golden-block-glint 14s var(--ease-wuyin) infinite both;
+}
+
+/* 漂移 + 呼吸亮度，同元素双动画 */
+@utility wuyin-animate-golden-tech-block {
+  animation: wuyin-golden-block-float 22s var(--ease-wuyin) infinite both,
+    wuyin-golden-block-glint 14s var(--ease-wuyin) infinite both;
+}
+
 @layer utilities {
   .wuyin-reveal-tech {
     position: relative;
@@ -150,7 +214,12 @@
     inset: 0;
     pointer-events: none;
     border-radius: inherit;
-    background: linear-gradient(130deg, rgb(34 211 238 / 0.06), transparent 42%, rgb(207 62 62 / 0.06));
+    background: linear-gradient(
+      130deg,
+      rgb(var(--wuyin-gold-rgb) / 0.14),
+      transparent 42%,
+      rgb(201 48 48 / 0.05)
+    );
     opacity: 0;
     transition: opacity var(--wuyin-reveal-duration) var(--ease-wuyin);
   }
@@ -161,7 +230,7 @@
 
   .wuyin-reveal-tech-panel {
     backdrop-filter: blur(2px);
-    box-shadow: 0 0 42px rgb(34 211 238 / 0.06);
+    box-shadow: 0 0 42px rgb(var(--wuyin-gold-rgb) / 0.14);
   }
 
   .wuyin-reveal-stagger > * {
@@ -228,6 +297,18 @@
     .wuyin-animate-route-enter,
     .wuyin-animate-grid-reflow,
     .wuyin-animate-glow-pulse,
+    .wuyin-animate-golden-block-float,
+    .wuyin-animate-golden-block-glint,
+    .wuyin-animate-golden-tech-block {
+      animation: none !important;
+    }
+
+    .wuyin-animate-hero-kernel {
+      animation: none !important;
+      filter: none !important;
+      opacity: 0.9 !important;
+    }
+
     .wuyin-hero-entrance,
     .wuyin-cinematic-enter,
     .wuyin-hero-entrance-delay-1,

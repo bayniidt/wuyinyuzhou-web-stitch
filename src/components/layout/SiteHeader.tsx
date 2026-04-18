@@ -12,11 +12,11 @@ function Logo() {
   return (
     <Link
       to={{ pathname: "/", hash: "hero" }}
-      className="flex items-center gap-2 font-serif text-lg font-bold tracking-tight text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-accent-soft sm:text-xl"
+      className="flex items-center gap-2 font-serif text-lg font-bold tracking-tight text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright sm:text-xl"
     >
       <span
         className={[
-          "bg-linear-to-r from-wuyin-accent via-wuyin-accent-soft to-wuyin-accent bg-clip-text text-transparent",
+          "bg-linear-to-r from-wuyin-accent via-wuyin-seal to-wuyin-accent-soft bg-clip-text text-transparent",
           reduced ? "" : "wuyin-animate-logo-shimmer",
         ]
           .filter(Boolean)
@@ -44,7 +44,7 @@ function LanguageSwitcher({ className = "" }: { className?: string }) {
         type="button"
         aria-pressed={locale === "zh"}
         className={[
-          "rounded-md px-2.5 py-1.5 text-xs font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-accent-soft",
+          "rounded-md px-2.5 py-1.5 text-xs font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright",
           locale === "zh" ? "bg-white/15 text-white" : "text-neutral-400 hover:text-white",
         ].join(" ")}
         onClick={() => setLocale("zh")}
@@ -55,7 +55,7 @@ function LanguageSwitcher({ className = "" }: { className?: string }) {
         type="button"
         aria-pressed={locale === "en"}
         className={[
-          "rounded-md px-2.5 py-1.5 text-xs font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-accent-soft",
+          "rounded-md px-2.5 py-1.5 text-xs font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright",
           locale === "en" ? "bg-white/15 text-white" : "text-neutral-400 hover:text-white",
         ].join(" ")}
         onClick={() => setLocale("en")}
@@ -168,7 +168,7 @@ export default function SiteHeader() {
                     end={meta?.end ?? false}
                     className={({ isActive }) =>
                       [
-                        "flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-accent-soft",
+                        "flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright",
                         isActive
                           ? "text-white [box-shadow:inset_0_-2px_0_0_var(--color-wuyin-accent)]"
                           : "text-neutral-200 hover:text-white",
@@ -182,7 +182,7 @@ export default function SiteHeader() {
                 ) : (
                   <button
                     type="button"
-                    className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-neutral-200 transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-accent-soft"
+                    className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-neutral-200 transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright"
                     aria-haspopup="true"
                   >
                     {group.label}
@@ -223,7 +223,7 @@ export default function SiteHeader() {
           <LanguageSwitcher className="hidden sm:inline-flex" />
           <button
             type="button"
-            className="hidden rounded-lg p-2 text-neutral-300 transition hover:bg-white/5 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-accent-soft sm:inline-flex"
+            className="hidden rounded-lg p-2 text-neutral-300 transition hover:bg-white/5 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright sm:inline-flex"
             aria-label={t("header.ariaUser")}
           >
             <IconUser />
@@ -248,7 +248,7 @@ export default function SiteHeader() {
 
           <button
             type="button"
-            className="inline-flex rounded-lg p-2 text-neutral-200 transition hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-accent-soft lg:hidden"
+            className="inline-flex rounded-lg p-2 text-neutral-200 transition hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright lg:hidden"
             aria-expanded={mobileOpen}
             aria-controls={mobilePanelId}
             aria-label={mobileOpen ? t("header.menuClose") : t("header.menuOpen")}

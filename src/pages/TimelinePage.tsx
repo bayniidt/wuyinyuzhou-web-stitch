@@ -1,3 +1,4 @@
+import SectionGoldenBlocks from "@/components/decor/SectionGoldenBlocks";
 import ScrollReveal from "@/components/motion/ScrollReveal";
 import GhostButton from "@/components/ui/GhostButton";
 import GradientButton from "@/components/ui/GradientButton";
@@ -25,7 +26,7 @@ type TimelineModule = {
   statLine?: string;
 };
 
-function IconLightning({ className = "h-3.5 w-3.5 shrink-0 text-[#ff4d4d]" }: { className?: string }) {
+function IconLightning({ className = "h-3.5 w-3.5 shrink-0 text-wuyin-gold-bright" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
       <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z" />
@@ -36,8 +37,9 @@ function IconLightning({ className = "h-3.5 w-3.5 shrink-0 text-[#ff4d4d]" }: { 
 function AccessTiersSection() {
   const { t } = useLocale();
   return (
-    <section id="timeline-access-tiers" className="border-b border-white/5 bg-wuyin-bg py-16 sm:py-20 lg:py-24">
-      <ScrollReveal variant="upSoft" className="container-wuyin wuyin-reveal-tech" visibleClassName="wuyin-reveal-tech-visible">
+    <section id="timeline-access-tiers" className="relative overflow-hidden border-b border-white/5 bg-wuyin-bg py-16 sm:py-20 lg:py-24">
+      <SectionGoldenBlocks variant={0} />
+      <ScrollReveal variant="upSoft" className="relative z-10 container-wuyin wuyin-reveal-tech" visibleClassName="wuyin-reveal-tech-visible">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <h2 className="font-serif text-3xl font-semibold italic tracking-tight text-white sm:text-4xl lg:text-[2.5rem]">
@@ -49,7 +51,7 @@ function AccessTiersSection() {
         </div>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-3 lg:items-stretch">
-          <article className="group relative flex flex-col rounded-2xl border border-white/10 border-l-[3px] border-l-transparent bg-[#141414] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition duration-300 ease-[var(--ease-wuyin)] hover:border-l-[#ff4d4d] hover:-translate-y-1 hover:shadow-[0_0_48px_rgba(255,77,77,0.12),inset_0_1px_0_rgba(255,255,255,0.04)] sm:p-8">
+          <article className="group relative flex flex-col rounded-2xl border border-white/10 border-l-[3px] border-l-transparent bg-[#141414] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition duration-300 ease-[var(--ease-wuyin)] hover:border-l-wuyin-accent hover:-translate-y-1 hover:shadow-[0_0_48px_rgba(228,184,74,0.18),inset_0_1px_0_rgba(255,255,255,0.04)] sm:p-8">
             <h3 className="font-serif text-2xl font-semibold italic text-white">{t("timeline.accessTiers.standard.name")}</h3>
             <p className="mt-3 text-sm leading-relaxed text-neutral-400">{t("timeline.accessTiers.standard.desc")}</p>
             <p className="mt-8 font-serif text-4xl font-bold tabular-nums text-white sm:text-5xl">
@@ -58,11 +60,11 @@ function AccessTiersSection() {
             </p>
             <ul className="mt-8 flex flex-col gap-3 text-xs font-semibold uppercase tracking-wide text-neutral-200 sm:text-sm">
               <li className="flex items-center gap-2.5">
-                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#ff4d4d]" aria-hidden />
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-wuyin-accent" aria-hidden />
                 {t("timeline.accessTiers.standard.feat1")}
               </li>
               <li className="flex items-center gap-2.5">
-                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#ff4d4d]" aria-hidden />
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-wuyin-accent" aria-hidden />
                 {t("timeline.accessTiers.standard.feat2")}
               </li>
             </ul>
@@ -73,9 +75,9 @@ function AccessTiersSection() {
             </div>
           </article>
 
-          <article className="group relative flex flex-col rounded-2xl border border-white/10 border-l-[3px] border-l-transparent bg-[#141414] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition duration-300 ease-[var(--ease-wuyin)] hover:border-l-[#ff4d4d] hover:-translate-y-1 hover:shadow-[0_0_56px_rgba(255,77,77,0.16),inset_0_1px_0_rgba(255,255,255,0.05)] sm:p-8 lg:py-10">
+          <article className="group relative flex flex-col rounded-2xl border border-white/10 border-l-[3px] border-l-transparent bg-[#141414] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition duration-300 ease-[var(--ease-wuyin)] hover:border-l-wuyin-accent hover:-translate-y-1 hover:shadow-[0_0_56px_rgba(228,184,74,0.22),inset_0_1px_0_rgba(255,255,255,0.05)] sm:p-8 lg:py-10">
             <span
-              className="absolute right-5 top-5 rounded-sm bg-[#ff4d4d] px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-neutral-950 sm:right-6 sm:top-6"
+              className="absolute right-5 top-5 rounded-sm bg-wuyin-seal px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-neutral-950 sm:right-6 sm:top-6"
               aria-label={t("timeline.accessTiers.vip.badgeAria")}
             >
               {t("timeline.accessTiers.vip.badge")}
@@ -84,10 +86,10 @@ function AccessTiersSection() {
               <h3 className="font-serif text-2xl font-semibold italic text-white">{t("timeline.accessTiers.vip.name")}</h3>
               <p className="mt-3 text-sm leading-relaxed text-neutral-400">{t("timeline.accessTiers.vip.desc")}</p>
               <div className="mt-8 flex flex-wrap items-baseline gap-x-1 gap-y-0">
-                <span className="bg-linear-to-r from-[#ff4d4d] to-[#ff8080] bg-clip-text font-serif text-4xl font-bold tabular-nums text-transparent sm:text-5xl">
+                <span className="bg-linear-to-r from-wuyin-accent to-wuyin-gold-bright bg-clip-text font-serif text-4xl font-bold tabular-nums text-transparent sm:text-5xl">
                   0.25
                 </span>
-                <span className="font-sans text-lg font-semibold text-[#ff8080] sm:text-xl">ETH</span>
+                <span className="font-sans text-lg font-semibold text-wuyin-gold-bright sm:text-xl">ETH</span>
               </div>
               <ul className="mt-8 flex flex-col gap-3 text-xs font-semibold uppercase tracking-wide text-neutral-200 sm:text-sm">
                 <li className="flex items-center gap-2.5">
@@ -107,7 +109,7 @@ function AccessTiersSection() {
             <div className="mt-auto pt-10">
               <button
                 type="button"
-                className="inline-flex w-full items-center justify-center rounded-[1px] bg-linear-to-r from-[#ff4d4d] to-[#ff8080] px-6 py-3 text-sm font-semibold tracking-wide text-neutral-950 shadow-wuyin-glow transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff8080] active:scale-[0.98] sm:py-3.5 sm:text-base"
+                className="inline-flex w-full items-center justify-center rounded-[1px] bg-linear-to-r from-wuyin-accent to-wuyin-accent-soft px-6 py-3 text-sm font-semibold tracking-wide text-neutral-950 shadow-wuyin-glow transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright active:scale-[0.98] sm:py-3.5 sm:text-base"
                 onClick={() => window.alert(t("timeline.accessTiers.vip.alert"))}
               >
                 {t("timeline.accessTiers.vip.cta")}
@@ -115,7 +117,7 @@ function AccessTiersSection() {
             </div>
           </article>
 
-          <article className="group relative flex flex-col rounded-2xl border border-white/10 border-l-[3px] border-l-transparent bg-[#141414] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition duration-300 ease-[var(--ease-wuyin)] hover:border-l-[#ff4d4d] hover:-translate-y-1 hover:shadow-[0_0_48px_rgba(255,77,77,0.12),inset_0_1px_0_rgba(255,255,255,0.04)] sm:p-8">
+          <article className="group relative flex flex-col rounded-2xl border border-white/10 border-l-[3px] border-l-transparent bg-[#141414] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition duration-300 ease-[var(--ease-wuyin)] hover:border-l-wuyin-accent hover:-translate-y-1 hover:shadow-[0_0_48px_rgba(228,184,74,0.18),inset_0_1px_0_rgba(255,255,255,0.04)] sm:p-8">
             <h3 className="font-serif text-2xl font-semibold italic text-white">{t("timeline.accessTiers.metaverse.name")}</h3>
             <p className="mt-3 text-sm leading-relaxed text-neutral-400">{t("timeline.accessTiers.metaverse.desc")}</p>
             <p className="mt-8 font-serif text-4xl font-bold tabular-nums text-white sm:text-5xl">
@@ -124,11 +126,11 @@ function AccessTiersSection() {
             </p>
             <ul className="mt-8 flex flex-col gap-3 text-xs font-semibold uppercase tracking-wide text-neutral-200 sm:text-sm">
               <li className="flex items-center gap-2.5">
-                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-300/90" aria-hidden />
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-wuyin-gold-bright/90" aria-hidden />
                 {t("timeline.accessTiers.metaverse.feat1")}
               </li>
               <li className="flex items-center gap-2.5">
-                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-300/90" aria-hidden />
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-wuyin-gold-bright/90" aria-hidden />
                 {t("timeline.accessTiers.metaverse.feat2")}
               </li>
             </ul>
@@ -157,12 +159,13 @@ function WarriorRosterSection() {
   );
 
   return (
-    <section id="timeline-warrior-roster" className="border-b border-white/5 bg-wuyin-bg py-16 sm:py-20 lg:py-24">
-      <ScrollReveal variant="leftSoft" delayMs={70} className="container-wuyin wuyin-reveal-tech" visibleClassName="wuyin-reveal-tech-visible">
+    <section id="timeline-warrior-roster" className="relative overflow-hidden border-b border-white/5 bg-wuyin-bg py-16 sm:py-20 lg:py-24">
+      <SectionGoldenBlocks variant={1} />
+      <ScrollReveal variant="leftSoft" delayMs={70} className="relative z-10 container-wuyin wuyin-reveal-tech" visibleClassName="wuyin-reveal-tech-visible">
         <div className="flex items-center justify-between gap-4">
           <h2 className="font-serif text-3xl font-semibold italic tracking-tight text-white sm:text-4xl">
             {t("timeline.roster.title")}
-            <span className="ml-1 text-[#ff8080]">.</span>
+            <span className="ml-1 text-wuyin-seal">.</span>
           </h2>
           <button
             type="button"
@@ -190,7 +193,7 @@ function WarriorRosterSection() {
               />
               <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/90 via-black/35 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
-                <p className="text-[11px] uppercase tracking-[0.2em] text-[#ff8080]">{card.role}</p>
+                <p className="text-[11px] uppercase tracking-[0.2em] text-wuyin-gold-bright">{card.role}</p>
                 <h3 className="mt-2 font-serif text-3xl font-bold uppercase leading-[0.9] text-white">{card.name}</h3>
               </div>
             </article>
@@ -201,10 +204,11 @@ function WarriorRosterSection() {
   );
 }
 
-function TimelineSplitModule({ m, surface }: { m: TimelineModule; surface: string }) {
+function TimelineSplitModule({ m, surface, blockVariant = 0 }: { m: TimelineModule; surface: string; blockVariant?: number }) {
   return (
-    <section id={m.id} className={`border-b border-white/5 py-16 sm:py-20 lg:py-24 ${surface}`}>
-      <div className="container-wuyin wuyin-reveal-tech">
+    <section id={m.id} className={`relative overflow-hidden border-b border-white/5 py-16 sm:py-20 lg:py-24 ${surface}`}>
+      <SectionGoldenBlocks variant={blockVariant} />
+      <div className="relative z-10 container-wuyin wuyin-reveal-tech">
         <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
           <ScrollReveal variant="leftSoft" className={m.imageOnLeft ? "lg:order-1" : "lg:order-2"} visibleClassName="wuyin-reveal-tech-visible">
             <div className="overflow-hidden rounded-2xl border border-white/10 bg-neutral-950 shadow-wuyin-glow">
@@ -224,7 +228,7 @@ function TimelineSplitModule({ m, surface }: { m: TimelineModule; surface: strin
 
           <ScrollReveal variant="rightSoft" delayMs={85} className={m.imageOnLeft ? "lg:order-2" : "lg:order-1"}>
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#ff8080]">{m.kicker}</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-wuyin-gold-bright">{m.kicker}</p>
               <h2 className="mt-3 font-serif text-3xl font-bold text-white sm:text-4xl">{m.title}</h2>
               <p className="mt-4 text-sm leading-relaxed text-neutral-300 sm:text-base">{m.body}</p>
 
@@ -304,9 +308,10 @@ export default function TimelinePage() {
     <>
       <section id="timeline-hero" className="relative overflow-hidden border-b border-white/5">
         <div
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(255,77,77,0.16),transparent_55%),linear-gradient(180deg,#030303_0%,#080808_45%,#050505_100%)]"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(228,184,74,0.18),transparent_55%),linear-gradient(180deg,#080706_0%,#0f0d0b_45%,#080706_100%)]"
           aria-hidden
         />
+        <SectionGoldenBlocks density="sparse" intensity="subtle" variant={2} />
         <img
           src={imgTimelineHero}
           alt=""
@@ -324,7 +329,7 @@ export default function TimelinePage() {
           <p className="text-xs font-semibold uppercase tracking-[0.4em] text-wuyin-muted sm:text-sm">{t("timeline.heroKicker")}</p>
           <h1 className="mt-5 max-w-4xl font-serif text-4xl font-black tracking-tight text-white sm:text-5xl md:text-6xl">
             <span className="text-white">{t("timeline.heroTitle")}</span>
-            <span className="bg-linear-to-r from-[#ff4d4d] to-[#ff8080] bg-clip-text text-transparent">{t("timeline.heroTitleAccent")}</span>
+            <span className="bg-linear-to-r from-wuyin-accent via-wuyin-seal to-wuyin-gold-bright bg-clip-text text-transparent">{t("timeline.heroTitleAccent")}</span>
           </h1>
           <p className="mt-5 max-w-2xl text-sm leading-relaxed text-neutral-300 sm:text-base">{t("timeline.heroLead")}</p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
@@ -339,9 +344,9 @@ export default function TimelinePage() {
       </section>
 
       <AccessTiersSection />
-      <TimelineSplitModule m={firstModule} surface="bg-wuyin-bg" />
+      <TimelineSplitModule m={firstModule} surface="bg-wuyin-bg" blockVariant={2} />
       <WarriorRosterSection />
-      <TimelineSplitModule m={secondModule} surface="bg-wuyin-surface" />
+      <TimelineSplitModule m={secondModule} surface="bg-wuyin-surface" blockVariant={0} />
     </>
   );
 }

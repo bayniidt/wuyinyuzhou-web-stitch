@@ -1,3 +1,4 @@
+import SectionGoldenBlocks from "@/components/decor/SectionGoldenBlocks";
 import GradientButton from "@/components/ui/GradientButton";
 import { useLocale } from "@/i18n/LocaleProvider";
 
@@ -7,9 +8,10 @@ export default function FinalCtaSection() {
   return (
     <section
       id="final-cta"
-      className="border-b border-white/5 bg-[radial-gradient(ellipse_at_center,_rgba(255,77,77,0.12),_transparent_60%)] py-24 sm:py-32"
+      className="relative overflow-hidden border-b border-white/5 bg-[radial-gradient(ellipse_at_center,_rgba(228,184,74,0.16),_transparent_60%)] py-24 sm:py-32"
     >
-      <div className="container-wuyin flex flex-col items-center text-center">
+      <SectionGoldenBlocks variant={0} intensity="medium" />
+      <div className="relative z-10 container-wuyin flex flex-col items-center text-center">
         <h2 className="max-w-3xl font-serif text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl">
           {t("home.finalCta.title")}
         </h2>

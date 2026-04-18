@@ -1,3 +1,4 @@
+import SectionGoldenBlocks from "@/components/decor/SectionGoldenBlocks";
 import GhostButton from "@/components/ui/GhostButton";
 import GradientButton from "@/components/ui/GradientButton";
 import { useLocale } from "@/i18n/LocaleProvider";
@@ -16,11 +17,12 @@ export default function HeroSection() {
     >
       <div
         className={[
-          "pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,77,77,0.15),_transparent_55%),linear-gradient(180deg,#050505_0%,#0a0a0a_45%,#050505_100%)]",
+          "pointer-events-none absolute inset-0 bg-[linear-gradient(126deg,#080706_0%,rgba(8,7,6,0.97)_22%,rgba(228,184,74,0.05)_52%,rgba(255,244,200,0.08)_72%,rgba(245,213,99,0.06)_88%,rgba(8,7,6,0.85)_100%),linear-gradient(180deg,#080706_0%,#12100e_48%,#080706_100%)]",
           reducedMotion ? "" : "wuyin-animate-gradient-drift",
         ].join(" ")}
         aria-hidden
       />
+      <SectionGoldenBlocks density="sparse" intensity="subtle" variant={0} />
       <img
         src={heroPoster}
         alt=""
@@ -43,11 +45,14 @@ export default function HeroSection() {
         </video>
       ) : null}
       <div
-        className="pointer-events-none absolute inset-0 bg-[url('/images/hero-kernel.svg')] bg-cover bg-center opacity-90 mix-blend-screen"
+        className={[
+          "pointer-events-none absolute inset-0 bg-[url('/images/hero-kernel.svg')] bg-cover bg-center mix-blend-screen",
+          reducedMotion ? "opacity-90" : "wuyin-animate-hero-kernel",
+        ].join(" ")}
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-0 opacity-40 mix-blend-overlay"
+        className="pointer-events-none absolute inset-0 opacity-[0.22] mix-blend-overlay"
         style={{
           backgroundImage:
             "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E\")",

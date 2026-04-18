@@ -1,3 +1,4 @@
+import SectionGoldenBlocks from "@/components/decor/SectionGoldenBlocks";
 import ScrollReveal from "@/components/motion/ScrollReveal";
 import GhostButton from "@/components/ui/GhostButton";
 import GradientButton from "@/components/ui/GradientButton";
@@ -72,11 +73,12 @@ export default function NarrativePage() {
       >
         <div
           className={[
-            "pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_20%,rgba(255,77,77,0.18),transparent_50%),linear-gradient(180deg,#030303_0%,#0a0a0a_55%,#050505_100%)]",
+            "pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_20%,rgba(228,184,74,0.2),transparent_50%),linear-gradient(180deg,#080706_0%,#12100e_55%,#080706_100%)]",
             reducedMotion ? "" : "wuyin-animate-gradient-drift",
           ].join(" ")}
           aria-hidden
         />
+        <SectionGoldenBlocks density="sparse" intensity="subtle" variant={1} />
         <img
           src={narrativeBanner}
           alt=""
@@ -88,7 +90,7 @@ export default function NarrativePage() {
           className="pointer-events-none absolute inset-0 opacity-30 mix-blend-screen"
           style={{
             backgroundImage:
-              "linear-gradient(115deg,transparent 40%,rgba(34,211,238,0.08) 50%,transparent 60%)",
+              "linear-gradient(115deg,transparent 40%,rgba(228,184,74,0.12) 50%,transparent 60%)",
           }}
           aria-hidden
         />
@@ -117,68 +119,105 @@ export default function NarrativePage() {
         </ScrollReveal>
       </section>
 
-      <section id="narrative-map" className="border-b border-white/5 bg-wuyin-bg py-20 sm:py-28">
-        <div className="container-wuyin">
+      <section id="narrative-map" className="relative overflow-hidden border-b border-white/5 bg-wuyin-bg py-20 sm:py-28">
+        <SectionGoldenBlocks variant={0} />
+        <div className="relative z-10 container-wuyin">
           <h2 className="font-serif text-3xl font-bold text-white sm:text-4xl">
             {t("narrative.mapTitle")}
             <span className="mt-2 block text-sm font-normal tracking-wide text-wuyin-muted sm:text-base">
               {t("narrative.mapSubtitle")}
             </span>
           </h2>
-          <div className="mt-12 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-            <ScrollReveal variant="leftSoft" className="wuyin-reveal-tech" visibleClassName="wuyin-reveal-tech-visible">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-cyan-500/20 bg-neutral-950 shadow-[0_0_80px_rgba(34,211,238,0.08)]">
+          <div className="mt-12 flex flex-col gap-8 lg:flex-row lg:items-stretch lg:gap-10">
+            <ScrollReveal
+              variant="leftSoft"
+              className="wuyin-reveal-tech w-full shrink-0 lg:w-[62%] lg:max-w-[62%]"
+              visibleClassName="wuyin-reveal-tech-visible"
+            >
+              <div className="relative aspect-video w-full max-h-[min(52vw,400px)] overflow-hidden rounded-2xl border border-wuyin-gold/20 bg-[#0a0908] shadow-[0_0_60px_rgba(228,184,74,0.12)] lg:max-h-none">
                 <img
                   src={narrativeMapBg}
                   alt=""
-                  className="absolute inset-0 h-full w-full object-cover opacity-[0.22]"
+                  className="absolute inset-0 h-full w-full object-cover object-center opacity-[0.58]"
                   decoding="async"
                   aria-hidden
                 />
                 <div
-                  className="absolute inset-0 opacity-90"
+                  className="absolute inset-0 opacity-[0.65]"
                   style={{
-                    backgroundImage: `linear-gradient(rgba(34,211,238,0.15) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(34,211,238,0.15) 1px, transparent 1px)`,
-                    backgroundSize: "28px 28px",
+                    backgroundImage: `linear-gradient(rgba(228,184,74,0.12) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(228,184,74,0.12) 1px, transparent 1px)`,
+                    backgroundSize: "24px 24px",
+                    maskImage: "radial-gradient(ellipse 72% 68% at 50% 50%, black 0%, transparent 74%)",
+                    WebkitMaskImage: "radial-gradient(ellipse 72% 68% at 50% 50%, black 0%, transparent 74%)",
                   }}
                   aria-hidden
                 />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_40%_45%,transparent_0%,#000_70%)]" aria-hidden />
-                <div className="absolute left-[18%] top-[58%] flex items-center gap-2 rounded-full border border-cyan-400/40 bg-black/60 px-3 py-1.5 text-xs text-cyan-100 backdrop-blur">
-                  <span className="h-2 w-2 rounded-full bg-cyan-400 shadow-[0_0_12px_#22d3ee]" />
-                  {t("narrative.mapPinObsidian")}
-                </div>
-                <div className="absolute right-[22%] top-[32%] flex items-center gap-2 rounded-full border border-[#ff8080]/40 bg-black/60 px-3 py-1.5 text-xs text-[#ffc9c9] backdrop-blur">
-                  <span className="h-2 w-2 rounded-full bg-[#ff4d4d] shadow-[0_0_12px_#ff4d4d]" />
-                  {t("narrative.mapPinLeyline")}
+                <div
+                  className="absolute inset-0 bg-[radial-gradient(ellipse_58%_52%_at_50%_48%,transparent_0%,rgba(0,0,0,0.48)_88%)]"
+                  aria-hidden
+                />
+                <div
+                  className="pointer-events-none absolute inset-x-[12%] bottom-0 h-12 bg-[radial-gradient(ellipse_at_center,rgba(228,184,74,0.16),transparent_72%)] blur-lg"
+                  aria-hidden
+                />
+                <div className="pointer-events-none absolute inset-0 z-10">
+                  <div className="absolute left-[calc(8%+250px)] top-[20%] flex max-w-[min(100%,14rem)] items-center gap-2 rounded-lg border border-white/10 bg-black/65 px-3 py-2 text-left text-xs font-medium text-white shadow-md backdrop-blur-md sm:text-sm">
+                    <span className="h-2 w-2 shrink-0 rounded-full bg-wuyin-gold shadow-[0_0_10px_rgba(228,184,74,0.9)]" />
+                    <span className="leading-snug">{t("narrative.mapPinObsidian")}</span>
+                  </div>
+                  <div className="absolute bottom-[14%] right-[calc(10%+150px)] flex max-w-[min(100%,14rem)] items-center gap-2 rounded-lg border border-white/10 bg-black/65 px-3 py-2 text-left text-xs font-medium text-white shadow-md backdrop-blur-md sm:text-sm">
+                    <span className="h-2 w-2 shrink-0 rounded-full bg-wuyin-seal shadow-[0_0_10px_rgba(201,48,48,0.75)]" />
+                    <span className="leading-snug">{t("narrative.mapPinLeyline")}</span>
+                  </div>
                 </div>
               </div>
             </ScrollReveal>
-            <ScrollReveal variant="rightSoft" delayMs={90} className="space-y-5 text-sm leading-relaxed text-neutral-300 sm:text-base">
-              <p>{t("narrative.mapP1")}</p>
-              <p className="text-wuyin-muted">{t("narrative.mapP2")}</p>
+            <ScrollReveal
+              variant="rightSoft"
+              delayMs={90}
+              className="flex min-h-0 flex-1 flex-col gap-4 lg:min-h-0"
+            >
+              <article className="flex min-h-0 flex-1 flex-col rounded-xl border border-white/10 bg-wuyin-elevated/80 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] sm:p-6">
+                <h3 className="shrink-0 font-serif text-lg font-semibold text-wuyin-gold-bright sm:text-xl">{t("narrative.mapPinObsidian")}</h3>
+                <p className="mt-3 min-h-0 flex-1 overflow-y-auto text-[15px] leading-[1.75] text-neutral-300 sm:text-sm">
+                  {t("narrative.mapP1")}
+                </p>
+                <div className="mt-4 h-1 w-full shrink-0 overflow-hidden rounded-full bg-white/[0.06]" aria-hidden>
+                  <div className="h-full w-[68%] rounded-full bg-linear-to-r from-wuyin-accent/80 via-wuyin-gold-bright/90 to-wuyin-accent-soft/80" />
+                </div>
+              </article>
+              <article className="flex min-h-0 flex-1 flex-col rounded-xl border border-white/10 bg-wuyin-elevated/80 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] sm:p-6">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-wuyin-gold/30 bg-wuyin-gold/10">
+                  <svg viewBox="0 0 24 24" className="h-5 w-5 text-wuyin-gold-bright" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden>
+                    <path d="M4 14h3l2-4 3 8 3-10 2 6h3" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+                <h3 className="mt-4 shrink-0 font-serif text-lg font-semibold text-white sm:text-xl">{t("narrative.mapPinLeyline")}</h3>
+                <p className="mt-3 min-h-0 flex-1 overflow-y-auto text-[15px] leading-[1.75] text-neutral-300 sm:text-sm">{t("narrative.mapP2")}</p>
+              </article>
             </ScrollReveal>
           </div>
         </div>
       </section>
 
-      <section id="narrative-concepts" className="border-b border-white/5 bg-wuyin-surface py-20 sm:py-28">
-        <div className="container-wuyin grid gap-12 lg:grid-cols-2 lg:items-center">
+      <section id="narrative-concepts" className="relative overflow-hidden border-b border-white/5 bg-wuyin-surface py-20 sm:py-28">
+        <SectionGoldenBlocks variant={2} />
+        <div className="relative z-10 container-wuyin grid gap-12 lg:grid-cols-2 lg:items-center">
           <ScrollReveal variant="leftSoft">
             <div className="space-y-8">
               <h2 className="font-serif text-3xl font-bold text-white sm:text-4xl">{t("narrative.conceptsTitle")}</h2>
               <div className="space-y-6">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff8080]">{t("narrative.zhiLabel")}</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-wuyin-gold-bright">{t("narrative.zhiLabel")}</p>
                   <p className="mt-2 text-sm text-neutral-300 sm:text-base">{t("narrative.zhiBody")}</p>
                 </div>
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff8080]">{t("narrative.geLabel")}</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-wuyin-gold-bright">{t("narrative.geLabel")}</p>
                   <p className="mt-2 text-sm text-neutral-300 sm:text-base">{t("narrative.geBody")}</p>
                 </div>
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff8080]">{t("narrative.yinLabel")}</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-wuyin-gold-bright">{t("narrative.yinLabel")}</p>
                   <p className="mt-2 text-sm text-neutral-300 sm:text-base">{t("narrative.yinBody")}</p>
                 </div>
               </div>
@@ -193,11 +232,12 @@ export default function NarrativePage() {
         </div>
       </section>
 
-      <section id="narrative-lineage" className="border-b border-white/5 py-20 sm:py-28">
+      <section id="narrative-lineage" className="relative overflow-hidden border-b border-white/5 py-20 sm:py-28">
+        <SectionGoldenBlocks variant={1} />
         <ScrollReveal
           variant="leftSoft"
           delayMs={100}
-          className="container-wuyin wuyin-reveal-tech"
+          className="relative z-10 container-wuyin wuyin-reveal-tech"
           visibleClassName="wuyin-reveal-tech-visible"
         >
           <h2 className="font-serif text-3xl font-bold text-white sm:text-4xl">{t("narrative.lineageTitle")}</h2>
@@ -232,11 +272,12 @@ export default function NarrativePage() {
         </ScrollReveal>
       </section>
 
-      <section id="narrative-fusion" className="py-20 sm:py-28">
+      <section id="narrative-fusion" className="relative overflow-hidden py-20 sm:py-28">
+        <SectionGoldenBlocks variant={0} />
         <ScrollReveal
           variant="upGlow"
           delayMs={120}
-          className="container-wuyin wuyin-reveal-tech"
+          className="relative z-10 container-wuyin wuyin-reveal-tech"
           visibleClassName="wuyin-reveal-tech-visible"
         >
           <h2 className="text-center font-serif text-3xl font-bold text-white sm:text-4xl">{t("narrative.fusionTitle")}</h2>

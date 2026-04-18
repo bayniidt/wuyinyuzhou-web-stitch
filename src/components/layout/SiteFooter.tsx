@@ -16,9 +16,9 @@ export default function SiteFooter() {
         <div className="sm:col-span-2 lg:col-span-1">
           <Link
             to={{ pathname: "/", hash: "hero" }}
-            className="inline-flex items-center gap-2 font-serif text-lg font-bold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-accent-soft"
+            className="inline-flex items-center gap-2 font-serif text-lg font-bold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright"
           >
-            <span className="bg-linear-to-r from-wuyin-accent to-wuyin-accent-soft bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-wuyin-accent via-wuyin-seal to-wuyin-accent-soft bg-clip-text text-transparent">
               {t("footer.brand")}
             </span>
           </Link>
@@ -33,7 +33,7 @@ export default function SiteFooter() {
                 <li key={child.href + child.label}>
                   <a
                     href={child.href}
-                    className="text-sm text-neutral-300 transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-accent-soft"
+                    className="text-sm text-neutral-300 transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright"
                     onClick={(e) => {
                       e.preventDefault();
                       navigateToHref(child.href, navigate);
@@ -54,7 +54,7 @@ export default function SiteFooter() {
               <li key={link.label}>
                 <a
                   href={link.href}
-                  className="text-sm text-neutral-300 transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-accent-soft"
+                  className="text-sm text-neutral-300 transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright"
                   onClick={(e) => {
                     e.preventDefault();
                     navigateToHref(link.href, navigate);

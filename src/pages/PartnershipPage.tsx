@@ -1,3 +1,4 @@
+import SectionGoldenBlocks from "@/components/decor/SectionGoldenBlocks";
 import { scrollToSelector } from "@/lib/scroll";
 import { useLocale } from "@/i18n/LocaleProvider";
 import imgImperativePath from "@/images/page5 (1).png";
@@ -13,7 +14,7 @@ type DomainItem = {
   icon: ReactNode;
 };
 
-const domainIconClass = "h-7 w-7 shrink-0 text-[#ff8d8d] sm:h-8 sm:w-8";
+const domainIconClass = "h-7 w-7 shrink-0 text-wuyin-gold-bright sm:h-8 sm:w-8";
 
 function IconDomainBrand() {
   return (
@@ -149,25 +150,26 @@ export default function PartnershipPage() {
     <div id="partnership" className="bg-[#09090b]">
       <section id="partnership-hero" className="border-b border-white/5">
         <div className="relative min-h-[420px] overflow-hidden bg-[#0d0d10] sm:min-h-[500px] lg:min-h-[560px]">
+          <SectionGoldenBlocks density="sparse" intensity="subtle" variant={0} />
           <img src={imgPartnershipBanner} alt={t("partnership.heroAlt")} className="absolute inset-0 h-full w-full object-cover" />
           <div className="absolute inset-0 bg-black/45" />
           <div className="absolute inset-0 bg-linear-to-r from-[#060607]/95 via-[#060607]/60 to-black/35" />
 
           <div className="container-wuyin relative z-10 flex h-full min-h-[420px] flex-col justify-between px-6 py-8 sm:min-h-[500px] sm:px-8 sm:py-10 lg:min-h-[560px] lg:px-10 lg:py-12">
             <div className="max-w-[46rem] space-y-5">
-              <p className="inline-flex items-center gap-3 text-[10px] font-semibold tracking-[0.34em] text-[#efb2b2]">
-                <span className="inline-block h-px w-10 bg-[#ff8b8b]" />
+              <p className="inline-flex items-center gap-3 text-[10px] font-semibold tracking-[0.34em] text-wuyin-gold-bright">
+                <span className="inline-block h-px w-10 bg-wuyin-accent" />
                 {t("partnership.kicker")}
               </p>
               <h1 className="font-serif text-5xl leading-[0.92] text-white sm:text-6xl lg:text-[5.2rem]">
                 {t("partnership.titleLine1")}
-                <span className="block italic text-[#ffb4c4]">{t("partnership.titleLine2")}</span>
+                <span className="block italic text-wuyin-gold-bright">{t("partnership.titleLine2")}</span>
               </h1>
               <p className="max-w-2xl text-base leading-8 text-neutral-300 sm:text-[1.65rem] sm:leading-[3rem]">{t("partnership.lead")}</p>
               <div className="pt-2">
                 <button
                   type="button"
-                  className="inline-flex rounded-[1px] bg-linear-to-r from-[#ff7f9d] to-[#ff535c] px-6 py-3 text-xs font-semibold tracking-[0.24em] text-neutral-950 transition hover:brightness-110"
+                  className="inline-flex rounded-[1px] bg-linear-to-r from-wuyin-accent to-wuyin-accent-soft px-6 py-3 text-xs font-semibold tracking-[0.24em] text-neutral-950 transition hover:brightness-110"
                 >
                   {t("partnership.ctaPrimary")}
                 </button>
@@ -185,8 +187,8 @@ export default function PartnershipPage() {
                 <p className="text-[10px] font-semibold tracking-[0.22em] text-neutral-400">{t("partnership.systemStatus")}</p>
                 <p className="mt-2 font-serif text-3xl leading-tight text-white">{t("partnership.nodeLine")}</p>
                 <div className="mt-4 flex items-center gap-3">
-                  <span className="h-[2px] w-6 bg-[#ff8a8a]" />
-                  <span className="h-[2px] w-5 bg-[#ff8a8a]/80" />
+                  <span className="h-[2px] w-6 bg-wuyin-accent" />
+                  <span className="h-[2px] w-5 bg-wuyin-gold-bright/80" />
                   <span className="h-[2px] w-4 bg-white/45" />
                 </div>
               </aside>
@@ -195,8 +197,9 @@ export default function PartnershipPage() {
         </div>
       </section>
 
-      <section id="partnership-modules" className="border-b border-white/5 bg-[#0b0d11]">
-        <div className="container-wuyin mx-auto w-[1400px] max-w-full px-5 py-14 sm:px-8 sm:py-16 lg:px-14 lg:py-20">
+      <section id="partnership-modules" className="relative overflow-hidden border-b border-white/5 bg-[#0b0d11]">
+        <SectionGoldenBlocks variant={1} />
+        <div className="relative z-10 container-wuyin mx-auto w-[1400px] max-w-full px-5 py-14 sm:px-8 sm:py-16 lg:px-14 lg:py-20">
           <div className="mb-8 flex items-end justify-between gap-4 sm:mb-11">
             <div>
               <h2 className="font-serif text-4xl text-white sm:text-5xl">{t("partnership.modulesTitle")}</h2>
@@ -209,7 +212,7 @@ export default function PartnershipPage() {
             {domains.map((item) => (
               <article
                 key={item.title}
-                className="group min-h-[280px] border border-white/10 bg-linear-to-br from-[#141821] via-[#14161d] to-[#12141a] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] transition duration-300 ease-[var(--ease-wuyin)] hover:-translate-y-0.5 hover:border-[#ff8b8b]/40"
+                className="group min-h-[280px] border border-white/10 bg-linear-to-br from-[#141821] via-[#14161d] to-[#12141a] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] transition duration-300 ease-[var(--ease-wuyin)] hover:-translate-y-0.5 hover:border-wuyin-gold-bright/35"
               >
                 <div className="mb-9 flex items-start justify-between">
                   {item.icon}
@@ -217,7 +220,7 @@ export default function PartnershipPage() {
                 </div>
                 <h3 className="font-serif text-[2rem] leading-none text-white">{item.title}</h3>
                 <p className="mt-4 text-[0.95rem] leading-8 text-neutral-300/90">{item.body}</p>
-                <p className="mt-8 inline-flex items-center gap-2 text-[10px] font-semibold tracking-[0.2em] text-[#ffb0b0]">
+                <p className="mt-8 inline-flex items-center gap-2 text-[10px] font-semibold tracking-[0.2em] text-wuyin-gold-bright">
                   {t("partnership.learnMore")}
                   <span aria-hidden>➜</span>
                 </p>
@@ -227,8 +230,9 @@ export default function PartnershipPage() {
         </div>
       </section>
 
-      <section id="partnership-imperative" className="border-b border-white/5 bg-black">
-        <div className="container-wuyin mx-auto w-[1400px] max-w-full px-5 py-14 sm:px-8 sm:py-16 lg:px-14 lg:py-20">
+      <section id="partnership-imperative" className="relative overflow-hidden border-b border-white/5 bg-black">
+        <SectionGoldenBlocks variant={2} />
+        <div className="relative z-10 container-wuyin mx-auto w-[1400px] max-w-full px-5 py-14 sm:px-8 sm:py-16 lg:px-14 lg:py-20">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,0.44fr)_minmax(0,1fr)] lg:items-stretch lg:gap-14">
             <div className="relative min-h-[320px] overflow-hidden sm:min-h-[400px] lg:min-h-[520px]">
               <img src={imgImperativePath} alt={t("partnership.imperativeAlt")} className="h-full w-full object-cover grayscale contrast-[1.08]" />
@@ -241,14 +245,14 @@ export default function PartnershipPage() {
             <div className="flex flex-col justify-center py-2 lg:py-6">
               <h2 className="font-serif text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-[3.25rem]">
                 {t("partnership.imperativeTitle1")}
-                <span className="mt-1 block font-serif text-4xl font-bold italic text-[#f0a8a8] sm:text-5xl lg:text-[3.25rem]">
+                <span className="mt-1 block font-serif text-4xl font-bold italic text-wuyin-gold-bright sm:text-5xl lg:text-[3.25rem]">
                   {t("partnership.imperativeTitle2")}
                 </span>
               </h2>
               <ul className="mt-10 space-y-8">
                 {imperativeItems.map((item) => (
                   <li key={item.title} className="flex gap-4">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center bg-[#6b1c1c]">{item.icon}</div>
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-wuyin-accent/35 bg-[#2a2418]">{item.icon}</div>
                     <div className="min-w-0">
                       <h3 className="font-serif text-lg font-semibold text-white sm:text-xl">{item.title}</h3>
                       <p className="mt-2 text-sm leading-7 text-neutral-400 sm:text-[0.95rem]">{item.body}</p>
@@ -261,8 +265,9 @@ export default function PartnershipPage() {
         </div>
       </section>
 
-      <section id="partnership-form">
-        <div className="container-wuyin py-14 sm:py-16 lg:py-20">
+      <section id="partnership-form" className="relative overflow-hidden">
+        <SectionGoldenBlocks variant={0} intensity="subtle" />
+        <div className="relative z-10 container-wuyin py-14 sm:py-16 lg:py-20">
           <div className="mx-auto max-w-3xl border border-white/10 bg-[#121218] p-6 sm:p-8 lg:p-10">
             <div className="mb-8 text-center">
               <p className="text-[11px] tracking-[0.24em] text-neutral-500">{t("partnership.form.kicker")}</p>
@@ -333,14 +338,14 @@ export default function PartnershipPage() {
               </label>
 
               <label className="inline-flex items-center gap-2 text-xs text-neutral-400">
-                <input type="checkbox" className="h-3.5 w-3.5 border border-white/30 bg-transparent accent-[#ff7a7a]" />
+                <input type="checkbox" className="h-3.5 w-3.5 border border-white/30 bg-transparent accent-wuyin-accent" />
                 {t("partnership.form.consent")}
               </label>
 
               <div className="pt-2 text-center">
                 <button
                   type="submit"
-                  className="inline-flex rounded-[1px] bg-linear-to-r from-[#ff5959] to-[#ff9494] px-8 py-2.5 text-xs font-semibold tracking-[0.18em] text-neutral-950 transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff9494]"
+                  className="inline-flex rounded-[1px] bg-linear-to-r from-wuyin-accent to-wuyin-accent-soft px-8 py-2.5 text-xs font-semibold tracking-[0.18em] text-neutral-950 transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright"
                 >
                   {t("partnership.form.submit")}
                 </button>

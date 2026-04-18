@@ -1,3 +1,4 @@
+import SectionGoldenBlocks from "@/components/decor/SectionGoldenBlocks";
 import ScrollReveal from "@/components/motion/ScrollReveal";
 import HexagonTile from "@/components/ui/HexagonTile";
 import SectionTitle from "@/components/ui/SectionTitle";
@@ -85,8 +86,9 @@ export default function EcosystemMatrixSection() {
   );
 
   return (
-    <section id="ecosystem-matrix" className="border-b border-white/5 bg-wuyin-surface/40 py-20 sm:py-28">
-      <ScrollReveal className="container-wuyin">
+    <section id="ecosystem-matrix" className="relative overflow-hidden border-b border-white/5 bg-wuyin-surface/40 py-20 sm:py-28">
+      <SectionGoldenBlocks variant={2} />
+      <ScrollReveal className="relative z-10 container-wuyin">
         <SectionTitle
           eyebrow={t("home.ecosystem.eyebrow")}
           title={t("home.ecosystem.title")}

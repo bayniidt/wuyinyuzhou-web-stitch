@@ -1,3 +1,4 @@
+import SectionGoldenBlocks from "@/components/decor/SectionGoldenBlocks";
 import ScrollReveal from "@/components/motion/ScrollReveal";
 import FeatureCard from "@/components/ui/FeatureCard";
 import { useLocale } from "@/i18n/LocaleProvider";
@@ -13,7 +14,7 @@ function CultureVisual() {
         className="absolute inset-0 bg-[radial-gradient(circle_at_40%_35%,transparent_0%,#050505_78%)] opacity-95"
         aria-hidden
       />
-      <div className="absolute inset-0 bg-linear-to-t from-black/75 via-red-950/25 to-transparent" aria-hidden />
+      <div className="absolute inset-0 bg-linear-to-t from-black/75 via-neutral-900/18 to-transparent" aria-hidden />
     </div>
   );
 }
@@ -22,7 +23,7 @@ function TechnologyVisual() {
   return (
     <div className="relative h-full w-full">
       <img src={imgTechnology} alt="" className="h-full w-full object-cover" decoding="async" />
-      <div className="absolute inset-0 bg-linear-to-br from-cyan-950/50 via-black/40 to-red-950/35" aria-hidden />
+      <div className="absolute inset-0 bg-linear-to-br from-neutral-950/40 via-black/40 to-wuyin-gold/10" aria-hidden />
       <div className="absolute inset-0 bg-black/25" aria-hidden />
     </div>
   );
@@ -36,7 +37,7 @@ function FinanceVisual() {
         className="absolute inset-0 bg-[radial-gradient(circle_at_50%_100%,rgba(184,134,11,0.35),transparent_55%)]"
         aria-hidden
       />
-      <div className="absolute inset-0 bg-linear-to-t from-black/80 via-amber-950/20 to-transparent" aria-hidden />
+      <div className="absolute inset-0 bg-linear-to-t from-black/80 via-neutral-900/16 to-transparent" aria-hidden />
     </div>
   );
 }
@@ -45,8 +46,9 @@ export default function DomainCardsSection() {
   const { t } = useLocale();
 
   return (
-    <section id="domains" className="border-b border-white/5 py-20 sm:py-28">
-      <ScrollReveal className="container-wuyin grid gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-10">
+    <section id="domains" className="relative overflow-hidden border-b border-white/5 py-20 sm:py-28">
+      <SectionGoldenBlocks variant={1} />
+      <ScrollReveal className="relative z-10 container-wuyin grid gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-10">
         <FeatureCard
           domainLabel={t("home.domains.culture.domainLabel")}
           title={t("home.domains.culture.title")}
