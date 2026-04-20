@@ -8,6 +8,7 @@ const en = {
     viewPassport: "View Wuyin Passport",
     playAudioGuide: "Play philosophy audio guide",
     readMore: "Learn More",
+    backToTop: "Back to Top",
     partners: ["PARTNER A", "PARTNER B", "PARTNER C", "PARTNER D", "PARTNER E", "PARTNER F"],
   },
   header: {

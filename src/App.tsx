@@ -1,15 +1,16 @@
-import SiteFooter from "@/components/layout/SiteFooter";
-import SiteHeader from "@/components/layout/SiteHeader";
-import HomePage from "@/pages/HomePage";
-import NarrativePage from "@/pages/NarrativePage";
-import PavilionPage from "@/pages/PavilionPage";
-import NewsDetailPage from "@/pages/NewsDetailPage";
-import NewsPage from "@/pages/NewsPage";
-import PartnershipPage from "@/pages/PartnershipPage";
-import TimelinePage from "@/pages/TimelinePage";
-import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
-import { useEffect } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import SiteFooter from "@/components/layout/SiteFooter"
+import SiteHeader from "@/components/layout/SiteHeader"
+import BackToTop from "@/components/ui/BackToTop"
+import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion"
+import HomePage from "@/pages/HomePage"
+import NarrativePage from "@/pages/NarrativePage"
+import NewsDetailPage from "@/pages/NewsDetailPage"
+import NewsPage from "@/pages/NewsPage"
+import PartnershipPage from "@/pages/PartnershipPage"
+import PavilionPage from "@/pages/PavilionPage"
+import TimelinePage from "@/pages/TimelinePage"
+import { useEffect } from "react"
+import { Route, Routes, useLocation } from "react-router-dom"
 
 export default function App() {
   const location = useLocation();
@@ -42,6 +43,7 @@ export default function App() {
         </Routes>
       </main>
       <SiteFooter />
+      <BackToTop />
     </div>
   );
 }

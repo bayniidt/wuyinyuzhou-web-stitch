@@ -8,6 +8,7 @@ const zh = {
     viewPassport: "查看武印护照",
     playAudioGuide: "播放哲学音频导览",
     readMore: "了解详情",
+    backToTop: "回到顶部",
     partners: ["合作伙伴 A", "合作伙伴 B", "合作伙伴 C", "合作伙伴 D", "合作伙伴 E", "合作伙伴 F"],
   },
   header: {
