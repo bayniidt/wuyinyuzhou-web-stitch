@@ -197,7 +197,7 @@ export default function PartnershipPage() {
         </div>
       </section>
 
-      <section id="partnership-modules" className="relative overflow-hidden border-b border-white/5 bg-[#0b0d11]">
+      <section id="partnership-brand" className="relative overflow-hidden border-b border-white/5 bg-[#0b0d11]">
         <SectionGoldenBlocks variant={1} />
         <div className="relative z-10 container-wuyin mx-auto w-[1400px] max-w-full px-5 py-14 sm:px-8 sm:py-16 lg:px-14 lg:py-20">
           <div className="mb-8 flex items-end justify-between gap-4 sm:mb-11">
@@ -230,7 +230,7 @@ export default function PartnershipPage() {
         </div>
       </section>
 
-      <section id="partnership-imperative" className="relative overflow-hidden border-b border-white/5 bg-black">
+      <section id="partnership-event" className="relative overflow-hidden border-b border-white/5 bg-black">
         <SectionGoldenBlocks variant={2} />
         <div className="relative z-10 container-wuyin mx-auto w-[1400px] max-w-full px-5 py-14 sm:px-8 sm:py-16 lg:px-14 lg:py-20">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,0.44fr)_minmax(0,1fr)] lg:items-stretch lg:gap-14">

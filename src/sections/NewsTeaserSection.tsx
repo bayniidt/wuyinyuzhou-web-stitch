@@ -9,7 +9,7 @@ export default function NewsTeaserSection() {
   const items = getLatestNews(8);
 
   return (
-    <section id="home-news-teaser" className="relative overflow-hidden border-b border-white/5 py-20 sm:py-24 lg:py-28">
+    <section id="home-news" className="relative overflow-hidden border-b border-white/5 py-20 sm:py-24 lg:py-28">
       <SectionGoldenBlocks variant={1} intensity="subtle" />
       <div className="relative z-10 container-wuyin">
         <div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">

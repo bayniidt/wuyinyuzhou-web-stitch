@@ -7,7 +7,7 @@ export default function FinalCtaSection() {
 
   return (
     <section
-      id="final-cta"
+      id="home-questions"
       className="relative overflow-hidden border-b border-white/5 bg-[radial-gradient(ellipse_at_center,_rgba(228,184,74,0.16),_transparent_60%)] py-24 sm:py-32"
     >
       <SectionGoldenBlocks variant={0} intensity="medium" />

@@ -64,7 +64,7 @@ export default function HeroSection() {
 
   return (
     <section
-      id="hero"
+      id="home-hero"
       className="relative flex min-h-[calc(100dvh-4rem)] items-center justify-center overflow-hidden border-b border-white/5 lg:min-h-[calc(100dvh-4.25rem)]"
     >
       <div

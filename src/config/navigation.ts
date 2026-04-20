@@ -19,10 +19,12 @@ export const navGroupOrder = [
     primaryRoute: "/" as const,
     end: true as boolean,
     items: [
-      { key: "matrix", href: "#ecosystem-matrix" },
-      { key: "domains", href: "#domains" },
-      { key: "news", href: "#home-news-teaser" },
-      { key: "join", href: "#final-cta" },
+      { key: "hero", href: "/#home-hero" },
+      { key: "manifesto", href: "/#home-manifesto" },
+      { key: "values", href: "/#home-values" },
+      { key: "matrix", href: "/#home-matrix" },
+      { key: "news", href: "/#home-news" },
+      { key: "questions", href: "/#home-questions" },
     ],
   },
   {
@@ -30,11 +32,11 @@ export const navGroupOrder = [
     primaryRoute: "/narrative" as const,
     end: false as boolean,
     items: [
-      { key: "scrollHero", href: "/narrative#narrative-hero" },
-      { key: "voidMap", href: "/narrative#narrative-map" },
-      { key: "threeConcepts", href: "/narrative#narrative-concepts" },
+      { key: "map", href: "/narrative#narrative-map" },
+      { key: "philosophy", href: "/narrative#narrative-philosophy" },
       { key: "lineage", href: "/narrative#narrative-lineage" },
-      { key: "covenant", href: "/narrative#narrative-covenant" },
+      { key: "heritage", href: "/narrative#narrative-heritage" },
+      { key: "inheritance", href: "/narrative#narrative-inheritance" },
     ],
   },
   {
@@ -42,17 +44,26 @@ export const navGroupOrder = [
     primaryRoute: "/timeline" as const,
     end: false as boolean,
     items: [
-      { key: "roadAhead", href: "/timeline#timeline-road" },
-      { key: "manifesto", href: "/timeline#timeline-manifesto" },
+      { key: "overview", href: "/timeline#timeline-overview" },
+      { key: "theater", href: "/timeline#timeline-theater" },
+      { key: "roster", href: "/timeline#timeline-roster" },
+      { key: "mecha", href: "/timeline#timeline-mecha" },
+      { key: "fashion", href: "/timeline#timeline-fashion" },
+      { key: "history", href: "/timeline#timeline-history" },
     ],
   },
   {
-    id: "nfts",
-    primaryRoute: "/nfts" as const,
+    id: "pavilion",
+    primaryRoute: "/pavilion" as const,
     end: false as boolean,
     items: [
-      { key: "artifacts", href: "/nfts#nfts-artifacts" },
-      { key: "minting", href: "/nfts#nfts-minting" },
+      { key: "synergy", href: "/pavilion#pavilion-synergy" },
+      { key: "ip", href: "/pavilion#pavilion-ip" },
+      { key: "alliance", href: "/pavilion#pavilion-alliance" },
+      { key: "digital", href: "/pavilion#pavilion-digital" },
+      { key: "standard", href: "/pavilion#pavilion-standard" },
+      { key: "media", href: "/pavilion#pavilion-media" },
+      { key: "tourism", href: "/pavilion#pavilion-tourism" },
     ],
   },
   {
@@ -60,9 +71,12 @@ export const navGroupOrder = [
     primaryRoute: "/partnership" as const,
     end: false as boolean,
     items: [
-      { key: "entry", href: "/partnership#partnership-hero" },
-      { key: "modules", href: "/partnership#partnership-modules" },
-      { key: "imperative", href: "/partnership#partnership-imperative" },
+      { key: "brand", href: "/partnership#partnership-brand" },
+      { key: "event", href: "/partnership#partnership-event" },
+      { key: "club", href: "/partnership#partnership-club" },
+      { key: "gov", href: "/partnership#partnership-gov" },
+      { key: "invest", href: "/partnership#partnership-invest" },
+      { key: "media", href: "/partnership#partnership-media" },
       { key: "form", href: "/partnership#partnership-form" },
     ],
   },
@@ -101,7 +115,7 @@ export function buildFooterLegalLinks(t: TranslateFn): FooterLegalLink[] {
 
 export function getNavPrimaryMeta(
   id: string,
-): { to: "/" | "/narrative" | "/timeline" | "/nfts" | "/partnership"; end: boolean } | null {
+): { to: "/" | "/narrative" | "/timeline" | "/pavilion" | "/partnership"; end: boolean } | null {
   const g = navGroupOrder.find((x) => x.id === id);
   if (!g) return null;
   return { to: g.primaryRoute, end: g.end };

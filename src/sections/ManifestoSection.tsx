@@ -7,7 +7,7 @@ export default function ManifestoSection() {
   const { t } = useLocale();
 
   return (
-    <section id="manifesto" className="relative overflow-hidden border-b border-white/5 bg-wuyin-bg py-20 sm:py-28">
+    <section id="home-manifesto" className="relative overflow-hidden border-b border-white/5 bg-wuyin-bg py-20 sm:py-28">
       <SectionGoldenBlocks variant={0} />
       <ScrollReveal className="relative z-10 container-wuyin grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
         <div

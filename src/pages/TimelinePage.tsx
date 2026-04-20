@@ -3,14 +3,14 @@ import ScrollReveal from "@/components/motion/ScrollReveal";
 import GhostButton from "@/components/ui/GhostButton";
 import GradientButton from "@/components/ui/GradientButton";
 import { useLocale } from "@/i18n/LocaleProvider";
-import { scrollToSelector } from "@/lib/scroll";
-import imgTimelineHero from "@/images/page3 (7).png";
 import imgTimelineRoad from "@/images/page3 (1).png";
-import imgTimelineManifesto from "@/images/page3 (6).png";
 import imgRosterGhost from "@/images/page3 (2).png";
 import imgRosterIron from "@/images/page3 (3).png";
 import imgRosterNeon from "@/images/page3 (4).png";
 import imgRosterVoid from "@/images/page3 (5).png";
+import imgTimelineManifesto from "@/images/page3 (6).png";
+import imgTimelineHero from "@/images/page3 (7).png";
+import { scrollToSelector } from "@/lib/scroll";
 import { useEffect, useMemo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -159,7 +159,7 @@ function WarriorRosterSection() {
   );
 
   return (
-    <section id="timeline-warrior-roster" className="relative overflow-hidden border-b border-white/5 bg-wuyin-bg py-16 sm:py-20 lg:py-24">
+    <section id="timeline-roster" className="relative overflow-hidden border-b border-white/5 bg-wuyin-bg py-16 sm:py-20 lg:py-24">
       <SectionGoldenBlocks variant={1} />
       <ScrollReveal variant="leftSoft" delayMs={70} className="relative z-10 container-wuyin wuyin-reveal-tech" visibleClassName="wuyin-reveal-tech-visible">
         <div className="flex items-center justify-between gap-4">
@@ -266,7 +266,7 @@ export default function TimelinePage() {
     const roadStat = t("timeline.modules.road.statLine");
     return [
       {
-        id: "timeline-road",
+        id: "timeline-overview",
         kicker: t("timeline.modules.road.kicker"),
         title: t("timeline.modules.road.title"),
         body: t("timeline.modules.road.body"),
@@ -282,7 +282,7 @@ export default function TimelinePage() {
         statLine: roadStat || undefined,
       },
       {
-        id: "timeline-manifesto",
+        id: "timeline-theater",
         kicker: t("timeline.modules.manifesto.kicker"),
         title: t("timeline.modules.manifesto.title"),
         body: t("timeline.modules.manifesto.body"),
@@ -334,7 +334,7 @@ export default function TimelinePage() {
           </h1>
           <p className="mt-5 max-w-2xl text-sm leading-relaxed text-neutral-300 sm:text-base">{t("timeline.heroLead")}</p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
-            <GradientButton type="button" onClick={() => scrollToSelector("#timeline-road")}>
+            <GradientButton type="button" onClick={() => scrollToSelector("#timeline-overview")}>
               {t("timeline.viewRoadmap")}
             </GradientButton>
             <GhostButton type="button" onClick={() => navigate("/")}>

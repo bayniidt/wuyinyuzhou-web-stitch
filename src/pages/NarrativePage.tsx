@@ -3,15 +3,15 @@ import ScrollReveal from "@/components/motion/ScrollReveal";
 import GhostButton from "@/components/ui/GhostButton";
 import GradientButton from "@/components/ui/GradientButton";
 import { useLocale } from "@/i18n/LocaleProvider";
-import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 import imgConceptTrinity from "@/images/page2(2).png";
-import imgLineageIron from "@/images/page2(5).png";
 import imgLineageObsidian from "@/images/page2(3).png";
 import imgLineageVoid from "@/images/page2(4).png";
+import imgLineageIron from "@/images/page2(5).png";
 import narrativeBanner from "@/images/page2(6).png";
 import narrativeMapBg from "@/images/page2(7).png";
-import fireMp4 from "@/videos/fire.mp4";
 import { scrollToSelector } from "@/lib/scroll";
+import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
+import fireMp4 from "@/videos/fire.mp4";
 import { useEffect, useMemo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -224,7 +224,7 @@ export default function NarrativePage() {
         </div>
       </section>
 
-      <section id="narrative-concepts" className="relative overflow-hidden border-b border-white/5 bg-wuyin-surface py-20 sm:py-28">
+      <section id="narrative-philosophy" className="relative overflow-hidden border-b border-white/5 bg-wuyin-surface py-20 sm:py-28">
         <SectionGoldenBlocks variant={2} />
         <div className="relative z-10 container-wuyin space-y-12 sm:space-y-16">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
@@ -301,7 +301,7 @@ export default function NarrativePage() {
         </div>
       </section>
 
-      <section id="narrative-covenant" className="relative overflow-hidden border-b border-white/5 bg-wuyin-surface py-20 sm:py-28">
+      <section id="narrative-heritage" className="relative overflow-hidden border-b border-white/5 bg-wuyin-surface py-20 sm:py-28">
         <SectionGoldenBlocks variant={2} />
         <ScrollReveal
           variant="upSoft"
@@ -325,7 +325,7 @@ export default function NarrativePage() {
         </ScrollReveal>
       </section>
 
-      <section id="narrative-fusion" className="relative overflow-hidden py-20 sm:py-28">
+      <section id="narrative-inheritance" className="relative overflow-hidden py-20 sm:py-28">
         <SectionGoldenBlocks variant={0} />
         <ScrollReveal
           variant="upGlow"

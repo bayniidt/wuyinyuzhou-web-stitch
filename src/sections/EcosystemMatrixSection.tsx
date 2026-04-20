@@ -59,7 +59,7 @@ export default function EcosystemMatrixSection() {
   );
 
   return (
-    <section id="ecosystem-matrix" className="border-b border-white/5 bg-wuyin-surface/40">
+    <section id="home-matrix" className="border-b border-white/5 bg-wuyin-surface/40">
       <ScrollReveal className="container-wuyin pt-20 sm:pt-28">
         <SectionTitle
           eyebrow={t("home.ecosystem.eyebrow")}

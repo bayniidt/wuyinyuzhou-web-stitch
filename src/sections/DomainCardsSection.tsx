@@ -46,7 +46,7 @@ export default function DomainCardsSection() {
   const { t } = useLocale();
 
   return (
-    <section id="domains" className="relative overflow-hidden border-b border-white/5 py-20 sm:py-28">
+    <section id="home-values" className="relative overflow-hidden border-b border-white/5 py-20 sm:py-28">
       <SectionGoldenBlocks variant={1} />
       <ScrollReveal className="relative z-10 container-wuyin grid gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-10">
         <FeatureCard

@@ -2,7 +2,7 @@ import SiteFooter from "@/components/layout/SiteFooter";
 import SiteHeader from "@/components/layout/SiteHeader";
 import HomePage from "@/pages/HomePage";
 import NarrativePage from "@/pages/NarrativePage";
-import NftsPage from "@/pages/NftsPage";
+import PavilionPage from "@/pages/PavilionPage";
 import NewsDetailPage from "@/pages/NewsDetailPage";
 import NewsPage from "@/pages/NewsPage";
 import PartnershipPage from "@/pages/PartnershipPage";
@@ -35,7 +35,7 @@ export default function App() {
           <Route index element={<HomePage />} />
           <Route path="narrative" element={<NarrativePage />} />
           <Route path="timeline" element={<TimelinePage />} />
-          <Route path="nfts" element={<NftsPage />} />
+          <Route path="pavilion" element={<PavilionPage />} />
           <Route path="partnership" element={<PartnershipPage />} />
           <Route path="news/:slug" element={<NewsDetailPage />} />
           <Route path="news" element={<NewsPage />} />
