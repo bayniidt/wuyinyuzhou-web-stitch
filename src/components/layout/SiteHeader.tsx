@@ -7,12 +7,13 @@ import { useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useSta
 import { createPortal } from "react-dom";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
-function Logo() {
+function Logo({ onClick }: { onClick?: () => void }) {
   const { t } = useLocale();
   return (
     <Link
       to={{ pathname: "/", hash: "hero" }}
       className="flex shrink-0 items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright"
+      onClick={onClick}
     >
       <img
         src={logoMark}
@@ -91,27 +92,53 @@ export default function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [drawerMounted, setDrawerMounted] = useState(false);
   const [drawerEntered, setDrawerEntered] = useState(false);
+  const [openGroupId, setOpenGroupId] = useState<string | null>(null);
+  const closeTimerRef = useRef<number | null>(null);
+
   const mobilePanelId = useId();
   const closeBtnRef = useRef<HTMLButtonElement>(null);
   const navigate = useNavigate();
 
   const navGroups = useMemo(() => buildNavGroups(t), [t]);
 
+  const closeAll = useCallback(() => {
+    setMobileOpen(false);
+    setOpenGroupId(null);
+    if (closeTimerRef.current) {
+      window.clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+  }, []);
+
   const onNavigate = useCallback(
     (href: string) => {
-      setMobileOpen(false);
+      closeAll();
       navigateToHref(href, navigate);
     },
-    [navigate],
+    [navigate, closeAll],
   );
+
+  const handleMouseEnter = (id: string) => {
+    if (closeTimerRef.current) {
+      window.clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+    setOpenGroupId(id);
+  };
+
+  const handleMouseLeave = () => {
+    closeTimerRef.current = window.setTimeout(() => {
+      setOpenGroupId(null);
+    }, 160); // Hover bridge: allow mouse to cross gap
+  };
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setMobileOpen(false);
+      if (e.key === "Escape") closeAll();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  }, [closeAll]);
 
   useLayoutEffect(() => {
     if (mobileOpen) {
@@ -149,14 +176,20 @@ export default function SiteHeader() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-wuyin-bg/85 backdrop-blur-md">
       <div className="container-wuyin flex h-16 items-center justify-between gap-4 lg:h-[4.25rem]">
-        <Logo />
+        <Logo onClick={closeAll} />
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label={t("header.ariaMainNav")}>
           {navGroups.map((group) => {
             const meta = getNavPrimaryMeta(group.id);
             const primaryTo = meta?.to;
+            const isOpen = openGroupId === group.id;
             return (
-              <div key={group.id} className="group relative">
+              <div
+                key={group.id}
+                className="relative"
+                onMouseEnter={() => handleMouseEnter(group.id)}
+                onMouseLeave={handleMouseLeave}
+              >
                 {primaryTo ? (
                   <NavLink
                     to={primaryTo}
@@ -170,9 +203,17 @@ export default function SiteHeader() {
                       ].join(" ")
                     }
                     aria-haspopup="true"
+                    onClick={closeAll}
                   >
                     {group.label}
-                    <span className="text-[10px] text-wuyin-muted transition group-hover:translate-y-px">▾</span>
+                    <span
+                      className={[
+                        "text-[10px] text-wuyin-muted transition",
+                        isOpen ? "translate-y-px rotate-180" : "",
+                      ].join(" ")}
+                    >
+                      ▾
+                    </span>
                   </NavLink>
                 ) : (
                   <button
@@ -181,12 +222,24 @@ export default function SiteHeader() {
                     aria-haspopup="true"
                   >
                     {group.label}
-                    <span className="text-[10px] text-wuyin-muted transition group-hover:translate-y-px">▾</span>
+                    <span
+                      className={[
+                        "text-[10px] text-wuyin-muted transition",
+                        isOpen ? "translate-y-px rotate-180" : "",
+                      ].join(" ")}
+                    >
+                      ▾
+                    </span>
                   </button>
                 )}
                 <div
                   role="menu"
-                  className="invisible absolute left-1/2 top-full z-50 mt-2 w-72 -translate-x-1/2 translate-y-1 rounded-xl border border-white/10 bg-wuyin-elevated/95 p-2 opacity-0 shadow-wuyin-glow backdrop-blur-md transition duration-200 ease-[var(--ease-wuyin)] group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100"
+                  className={[
+                    "absolute left-1/2 top-full z-50 mt-1 w-72 -translate-x-1/2 rounded-xl border border-white/10 bg-wuyin-elevated/95 p-2 shadow-wuyin-glow backdrop-blur-md transition-all duration-200 ease-[var(--ease-wuyin)]",
+                    isOpen
+                      ? "visible translate-y-0 opacity-100"
+                      : "invisible translate-y-1 opacity-0",
+                  ].join(" ")}
                 >
                   <ul className="py-1">
                     {group.children.map((child) => (
