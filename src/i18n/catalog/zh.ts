@@ -1,4 +1,4 @@
-/** 简体中文文案树 — 与 en.ts 结构保持一致 */
+
 const zh = {
   meta: {
     title: "武印视界 Wuyin World",
@@ -12,164 +12,25 @@ const zh = {
     partners: ["合作伙伴 A", "合作伙伴 B", "合作伙伴 C", "合作伙伴 D", "合作伙伴 E", "合作伙伴 F"],
   },
   nav: {
-    groups: {
-      ecosystem: {
-        label: "首页",
-        items: {
-          hero: { label: "主入口", description: "欢迎来带武印视界！" },
-          manifesto: { label: "武印宣言", description: "品牌核心主张" },
-          values: { label: "三大价值入口", description: "文化、科技与金融" },
-          matrix: { label: "六大生态矩阵", description: "武印阁、武印盟、功夫印等" },
-          news: { label: "最新动态", description: "赛事预告与媒体报道" },
-          questions: { label: "武印之问", description: "见自己、见众生、见天地" },
-        },
-      },
-      narrative: {
-        label: "武印宇宙",
-        items: {
-          map: { label: "宇宙地图", description: "3D交互世界地图" },
-          philosophy: { label: "哲学根基", description: "止、戈、印哲学阐释" },
-          lineage: { label: "人物谱系", description: "历代宗师与虚拟守护灵" },
-          heritage: { label: "非遗融合", description: "龙泉剑、丝绸与武印表达" },
-          inheritance: { label: "薪火相传", description: "少年武者与现代格斗" },
-        },
-      },
-      timeline: {
-        label: "武印视界",
-        items: {
-          overview: { label: "赛事总览", description: "购票与2026杭州首秀" },
-          theater: { label: "仪式感剧场", description: "天罡三十六阶与盟誓环节" },
-          roster: { label: "武者阵容", description: "参赛选手档案与战绩" },
-          mecha: { label: "机甲拳王", description: "机器人参赛与人机对抗" },
-          fashion: { label: "非遗走秀", description: "国潮战袍与设计师访谈" },
-          history: { label: "往期回顾", description: "过往赛事高光时刻" },
-        },
-      },
-      pavilion: {
-        label: "武印阁",
-        items: {
-          synergy: { label: "六位一体导图", description: "六大公司联动交互图示" },
-          ip: { label: "武印阁IP运营", description: "品牌中枢与全球资产管理" },
-          alliance: { label: "武印盟赛事管理", description: "职业赛事矩阵与联盟规则" },
-          digital: { label: "功夫印数字科技", description: "NFT、RWA与元宇宙引擎" },
-          standard: { label: "武印标准认证", description: "武者、裁判与俱乐部认证" },
-          media: { label: "武印传媒", description: "内容生态与全媒体矩阵" },
-          tourism: { label: "印承天下文旅", description: "线下旗舰与文旅综合体" },
-        },
-      },
-      partnership: {
-        label: "合作入口",
-        items: {
-          brand: { label: "品牌合作", description: "赞助商与联名品牌" },
-          event: { label: "赛事合作", description: "赛事承办与赋能方案" },
-          club: { label: "俱乐部加盟", description: "城市分盟政策与加盟流程" },
-          gov: { label: "政府/文旅", description: "城市名片打造与文旅联动" },
-          invest: { label: "投资机构", description: "商业计划书与融资对接" },
-          media: { label: "媒体合作", description: "KOL与内容共创" },
-          form: { label: "合作申请表", description: "全类型表单提交" },
-        },
-      },
-    },
-  },
-  header: {
-    logoShort: "武印",
-    logoWide: "视界",
-    logoAlt: "武印视界 The Wuverse",
-    ariaMainNav: "主导航",
-    ariaLangGroup: "界面语言",
-    ariaLangZh: "切换到中文",
-    ariaLangEn: "切换到英文",
-    langShortZh: "中",
-    langShortEn: "EN",
-    ariaUser: "用户（占位）",
-    wallet: "连接钱包",
-    walletShort: "钱包",
-    connectWalletAria: "连接钱包（占位）",
-    menu: "菜单",
-    menuOpen: "打开菜单",
-    menuClose: "关闭菜单",
-    menuCloseBackdrop: "关闭菜单背景",
-    ariaMobileNav: "移动端主导航",
-    walletAlert: "钱包连接为占位演示，正式版本将接入链上连接器。",
-  },
-  footer: {
-    brand: "武印视界",
-    tagline: "数字新生，真实不虚。",
-    legalSupport: "法律与支持",
-    copyrightLine: "WUYINWORLD. THE DIGITAL BORN REAL.",
-    demoNote: "静态演示站 · 内容可随时替换",
-    legal: {
-      terms: "服务条款",
-      privacy: "隐私政策",
-      whitepaper: "白皮书",
-      support: "支持",
-    },
+    home: "首页",
+    narrative: "武印宇宙",
+    timeline: "武印视界",
+    pavilion: "武印阁",
+    partnership: "合作入口",
+    news: "最新动态",
+    passport: "武印护照",
   },
   home: {
     hero: {
-      kicker: "止戈之源 · 少年之道",
-      title: "武圣山《止戈之巅》",
-      subtitle: "全球少年武道铸印大典",
-      ctaCompetition: "赛事预约",
-      ctaPartner: "成为合作伙伴",
-      videoSegment1: "第一段",
-      videoSegment2: "第二段",
-      videoSwitcherLabel: "切换首屏背景视频",
-    },
-    manifesto: {
-      title: "核心主张",
-      p1:
-        "武印阁・武圣山《止戈之巅》全球少年武道铸印大典，是全球首个以武德思辨为核心的青少年武道顶级 IP。跳出传统武术比功夫、比招式、比胜负的同质化赛道，以武圣文脉与止戈哲学为根基，打造少年问道、铸炼风骨的文化盛典。",
-      p2:
-        "核心定位：不比武力，比武道；不比胜负，比格局；不选高手，选知止少年。项目本质不是比武大会，是少年问道盛典；不练好勇斗狠，铸知止风骨。价值观：敢出手是能力，不轻易出手是格局。",
-      quote: "比武更比武德，铸印更铸风骨；来武圣山，铸一枚属于自己的武印。天下武道，问武圣。",
-    },
-    domains: {
-      culture: {
-        domainLabel: "价值 01",
-        title: "IP 唯一性",
-        description:
-          "中国唯一武圣山原生 IP，空白稀缺、文化独一份。赛前推出《寻源武圣山》微纪录片，由文化学者、武术名家、探险博主实地探访，溯源武道正源。",
-      },
-      technology: {
-        domainLabel: "价值 02",
-        title: "赛制颠覆性",
-        description:
-          "全球首创武德可竞技，三大赛道全面考核：武道演武（拳法、器械、意境、劲力、气韵礼仪）；防身应激（模拟霸凌、冲突、遇险，考核反应、判断、克制、边界感）；止戈思辨（现场抽题即兴作答，考核价值观、逻辑、仁爱、格局、表达）。",
-      },
-      finance: {
-        domainLabel: "价值 03",
-        title: "仪式沉浸感",
-        description:
-          "铸印三章：领坯，赛前获专属武印坯，象征初心未琢、璞玉待成；盟约，武圣山巅宣读《止戈盟约》，无人机光影呈现止字名场面；刻印，武术名家、道长现场篆刻，一人一印，独一无二。",
-      },
+      eyebrow: "Ancient Soul, Future Core",
+      title: "止戈为武",
+      subtitle: "东方武道元宇宙盛典",
+      cta: "立即进入",
     },
     ecosystem: {
-      eyebrow: "赛道与影响力引擎",
+      eyebrow: "生态体系",
       title: "六大生态矩阵",
-      subtitle:
-        "六条矩阵串联总决赛三大赛道与三大影响力引擎，自演武至朝圣铸印，构成止戈之巅的完整闭环。",
-    },
-    nftsTeaser: {
-      title: "NFT 与神器",
-      body: "数字印信与道场合约将承载身份、荣誉与参与记录。首版站点为静态展示，链上功能上线后将在此区域衔接钱包与铸造流程。",
-      cta: "预约首发通知",
-    },
-    timelineTeaser: {
-      kicker: "时间线",
-      title: "赛事节奏一览",
-      body: "预热与《寻源武圣山》纪录片、全球报名与分赛区初选、总决赛三日文化周，以及闭幕日铸印大典——完整节奏详见时间线页。",
-    },
-    newsTeaser: {
-      kicker: "最新动态",
-      title: "公告与进展",
-      viewAll: "查看全部",
-      carouselRegionLabel: "最新动态轮播",
-      carouselInstructions: "走马灯连续循环横向滚动；鼠标悬停时暂停。",
-    },
-    finalCta: {
-      title: "2026，让世界看见中国少年：不止有力量，更有格局；不止有拳脚，更有天下。",
-      cta: "了解止戈之巅",
+      subtitle: "从实体武馆到元宇宙叙事，构建完整的武道闭环",
     },
   },
   narrative: {
@@ -231,50 +92,21 @@ const zh = {
       ctaVideo: "观看纪录片",
       ctaInterview: "访谈录",
     },
+    map: {
+      title: "宇宙地图",
+      subtitle: "滚动探索 3D 秘境",
+      hotspots: {
+        shanhe: { label: "山河印", description: "凝聚大地灵气，守护武圣文脉之基。" },
+        fengyun: { label: "风云决", description: "九天风云变幻，见证历代宗师登顶。" },
+        tiangang: { label: "天罡印", description: "星辰之力加持，少年问道必经之阶。" },
+      },
+    },
   },
   timeline: {
-    heroKicker: "2026 · 止戈之巅",
-    heroTitle: "赛事时间线",
-    heroTitleAccent: " · 铸印之路",
-    heroLead:
-      "传播目标：全网曝光 10 亿+，海外媒体 300 家以上。以下阶段对应预热、报名、总决赛文化周与闭幕铸印大典。",
-    viewRoadmap: "查看阶段详情",
-    backHome: "返回主站",
-    modules: {
-      road: {
-        kicker: "赛事节奏",
-        title: "从预热到山巅授印",
-        body:
-          "赛前三个月启动预热与纪录片，两个月完成全球报名与分赛区初选；总决赛三日为文化周，闭幕一日为铸印大典。以下为四阶段要点。",
-        imageAlt: "武圣山与活动现场氛围",
-        statLine: "传播目标：10 亿+ 曝光 · 300+ 海外媒体（目标值，以实际执行为准）",
-        bullets: {
-          b1: {
-            title: "赛前 3 个月 · 预热期",
-            text: "《寻源武圣山》纪录片上线，全球《止戈少年》征集计划启动，叙事与声量同步起势。",
-          },
-          b2: {
-            title: "赛前 2 个月 · 报名期",
-            text: "全球报名、短视频征集与城市分赛区初选并行，筛选赴武圣山总决赛的少年代表。",
-          },
-          b3: {
-            title: "总决赛 3 天 · 文化周",
-            text: "武道演武、防身应激、止戈思辨、高峰论坛与文化研学连缀为沉浸式文化周。",
-          },
-          b4: {
-            title: "闭幕 1 天 · 铸印大典",
-            text: "名家刻印、无人机光影与山巅授印，完成一人一印的仪式闭环。",
-          },
-        },
-      },
-      manifesto: {
-        kicker: "现场体验",
-        title: "文化周、论坛与朝圣闭环",
-        body:
-          "三大影响力引擎协同：全球《止戈少年》征集与百城千校云盟约；少年问道・破壁对话论坛（国学名家 × 格斗冠军、心理专家 × 武道名师等组合，全程直播）；武圣山朝圣与文旅研学——核心产品为武圣山三日铸印营（武圣宫遗址寻脉、横河分界徒步、武道体验、防身实训、篆刻手工课、山巅授印盛典）。",
-        imageAlt: "论坛与研学现场氛围",
-        statLine: "品牌主张：止戈之源，少年之道；天下武道，问武圣。",
-      },
+    hero: {
+      kicker: "大视觉盛典",
+      title: "武印视界",
+      lead: "通过全息影像与 3D 舞台，将传统武道呈现为极具未来感的数字奇观。",
     },
     accessTiers: {
       title: "参与档位",
@@ -319,6 +151,10 @@ const zh = {
       locationLabel: "地点",
       locationValue: "杭州 · 小莲花",
     },
+    highlights: {
+      season: "2025 赛季",
+      title: "杭州预选赛高光",
+    },
     roster: {
       title: "对话矩阵",
       filterAria: "筛选（占位）",
@@ -358,14 +194,18 @@ const zh = {
       verifying: "核验中...",
       certTitle: "武印认证证书",
       certHolder: "持有者",
+      certHolderName: "叶云",
       certType: "认证类型",
+      certTypeName: "壹级武道家",
       closePreview: "关闭预览",
+      qrPlaceholder: "二维码区域",
     },
     media: {
       title: "武印传媒与 IP 运营",
       lead: "沉浸式内容生态，涵盖纪录片、播客及影视合作，同时提供全球资产授权管理。",
       downloadWhitepaper: "下载品牌白皮书",
       visitMediaLibrary: "访问媒体库",
+      caseLabel: "案例展示",
     },
   },
   partnership: {
@@ -427,6 +267,18 @@ const zh = {
       announcement: "公告",
       event: "活动",
       media: "媒体",
+    },
+  },
+  footer: {
+    brand: "武印视界",
+    tagline: "数字新生，真实不虚。",
+    legalSupport: "法律与支持",
+    copyrightLine: "WUYINWORLD. THE DIGITAL BORN REAL.",
+    demoNote: "静态演示站 · 内容可随时替换",
+    legal: {
+      privacy: "隐私政策",
+      terms: "服务条款",
+      cookie: "Cookie 政策",
     },
   },
 };

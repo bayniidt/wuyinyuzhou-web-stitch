@@ -51,7 +51,7 @@ export default function PartnershipPage() {
               <h2 className="font-serif text-4xl text-white sm:text-5xl">{t("partnership.domains.title")}</h2>
               <p className="mt-4 max-w-2xl text-lg text-neutral-400">{t("partnership.domains.lead")}</p>
             </div>
-            <span className="hidden text-[10px] tracking-[0.3em] text-neutral-500 sm:inline">MATRIX</span>
+            <span className="hidden text-[10px] tracking-[0.3em] text-neutral-500 sm:inline uppercase">{t("nav.partnership")}</span>
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

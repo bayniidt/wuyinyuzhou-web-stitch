@@ -1,5 +1,3 @@
-import type { MessageTree } from "./zh"
-
 const en = {
   meta: {
     title: "Wuyin World",
@@ -13,168 +11,25 @@ const en = {
     partners: ["PARTNER A", "PARTNER B", "PARTNER C", "PARTNER D", "PARTNER E", "PARTNER F"],
   },
   nav: {
-    groups: {
-      ecosystem: {
-        label: "Home",
-        items: {
-          hero: { label: "Main Entry", description: "Welcome to Wuyin World!" },
-          manifesto: { label: "Wuyin Manifesto", description: "Core brand values" },
-          values: { label: "Value Pillars", description: "Culture, Tech, Finance" },
-          matrix: { label: "Ecosystem Matrix", description: "Wuyin Pavilion, Alliance, etc." },
-          news: { label: "Latest Updates", description: "Announcements and reports" },
-          questions: { label: "Wuyin Inquiry", description: "Self, World, Universe" },
-        },
-      },
-      narrative: {
-        label: "Wuyin Universe",
-        items: {
-          map: { label: "Universe Map", description: "3D interactive world map" },
-          philosophy: { label: "Philosophy", description: "Stop, Spear, Seal concepts" },
-          lineage: { label: "Lineage", description: "Masters and virtual guardians" },
-          heritage: { label: "Heritage Fusion", description: "Traditional crafts & Wuyin" },
-          inheritance: { label: "Inheritance", description: "Youth martial arts & modern combat" },
-        },
-      },
-      timeline: {
-        label: "Wuyin Sight",
-        items: {
-          overview: { label: "Event Overview", description: "Tickets & Hangzhou 2026" },
-          theater: { label: "Ritual Theater", description: "The 36 Steps & Covenants" },
-          roster: { label: "Roster", description: "Athlete profiles & records" },
-          mecha: { label: "Mecha Boxing", description: "Robotics & Man-Machine combat" },
-          fashion: { label: "Heritage Fashion", description: "Guochao combat wear" },
-          history: { label: "History", description: "Past event highlights" },
-        },
-      },
-      pavilion: {
-        label: "Wuyin Pavilion",
-        items: {
-          synergy: { label: "Synergy Map", description: "Interactive ecosystem diagram" },
-          ip: { label: "IP Operations", description: "Global asset management" },
-          alliance: { label: "Alliance Management", description: "League rules and calendar" },
-          digital: { label: "Digital Tech", description: "NFT, RWA and Metaverse" },
-          standard: { label: "Standardization", description: "Certification system" },
-          media: { label: "Media Ecosystem", description: "Content and distribution" },
-          tourism: { label: "Tourism & Travel", description: "Offline flagships" },
-        },
-      },
-      partnership: {
-        label: "Partnership",
-        items: {
-          brand: { label: "Brand", description: "Sponsors and co-branding" },
-          event: { label: "Event", description: "Hosting and empowerment" },
-          club: { label: "Club", description: "League policies and joining" },
-          gov: { label: "Gov/Tourism", description: "City branding and integration" },
-          invest: { label: "Investment", description: "Business plans and funding" },
-          media: { label: "Media", description: "KOLs and content co-creation" },
-          form: { label: "Application Form", description: "Full routing application" },
-        },
-      },
-    },
-  },
-  header: {
-    logoShort: "Wuyin",
-    logoWide: "World",
-    logoAlt: "Wuyin World · The Wuverse",
-    ariaMainNav: "Main navigation",
-    ariaLangGroup: "Interface language",
-    ariaLangZh: "Switch to Chinese",
-    ariaLangEn: "Switch to English",
-    langShortZh: "中",
-    langShortEn: "EN",
-    ariaUser: "User (placeholder)",
-    wallet: "Connect Wallet",
-    walletShort: "Wallet",
-    connectWalletAria: "Connect wallet (placeholder)",
-    menu: "Menu",
-    menuOpen: "Open menu",
-    menuClose: "Close menu",
-    menuCloseBackdrop: "Close menu backdrop",
-    ariaMobileNav: "Mobile navigation",
-    walletAlert: "Wallet connect is a demo placeholder. Production will use an on-chain connector.",
-  },
-  footer: {
-    brand: "Wuyin World",
-    tagline: "The digital born real.",
-    legalSupport: "Legal & Support",
-    copyrightLine: "WUYINWORLD. THE DIGITAL BORN REAL.",
-    demoNote: "Static demo · Content can be replaced anytime",
-    legal: {
-      terms: "Terms of Service",
-      privacy: "Privacy Protocol",
-      whitepaper: "Whitepaper",
-      support: "Support",
-    },
+    home: "Home",
+    narrative: "Universe",
+    timeline: "Sight",
+    pavilion: "Pavilion",
+    partnership: "Partnership",
+    news: "News",
+    passport: "Passport",
   },
   home: {
     hero: {
-      kicker: "Source of Zhi Ge · Path of Youth",
-      title: "Wusheng Mountain: Summit of Zhi Ge",
-      subtitle: "Global Youth Martial Seal Grand Ceremony",
-      ctaCompetition: "Book the competition",
-      ctaPartner: "Become a partner",
-      videoSegment1: "Segment one",
-      videoSegment2: "Segment two",
-      videoSwitcherLabel: "Switch hero background video",
-    },
-    manifesto: {
-      title: "Core Positioning",
-      p1:
-        "Wuyin Pavilion · Wusheng Mountain — Summit of Zhi Ge (止戈之巅) Global Youth Martial Seal Grand Ceremony is the world’s first top-tier youth martial IP centered on martial virtue and reflective dialogue. It steps off the crowded track of tricks, moves, and win/loss, and grounds itself in the Wusheng cultural lineage and the philosophy of Zhi Ge (stopping conflict) to build a cultural ceremony where young people seek the Way and forge character.",
-      p2:
-        "We compare not brute force but martial Way; not victory alone but breadth of mind; we select not only “masters” but youth who know when to stop. The project is not a mere tournament—it is a ceremony of youth seeking the Way. We do not train belligerence; we cast the backbone of those who know restraint. Values: to act when needed is ability; to refrain lightly is breadth of character.",
-      quote:
-        "More than combat, martial virtue; more than the seal, character. Come to Wusheng Mountain and cast a seal of your own. All martial Ways inquire at Wusheng.",
-    },
-    domains: {
-      culture: {
-        domainLabel: "Value 01",
-        title: "IP Uniqueness",
-        description:
-          "China’s only native Wusheng Mountain IP—rare, open, culturally singular. Before the finals, the micro-documentary Tracing Wusheng Mountain sends scholars, masters, and explorers into the field to trace the authentic source of the martial Way.",
-      },
-      technology: {
-        domainLabel: "Value 02",
-        title: "Format Innovation",
-        description:
-          "The world’s first competitive frame for martial virtue across three tracks: martial demonstration (forms, weapons, artistic intent, power, breath, etiquette); self-defense under stress (bullying, conflict, danger—testing reaction, judgment, restraint, boundaries); Zhi Ge reflection (on-site prompts and impromptu answers on values, logic, compassion, breadth, and expression).",
-      },
-      finance: {
-        domainLabel: "Value 03",
-        title: "Ritual Immersion",
-        description:
-          "Three chapters of the seal: receive the blank—each youth gets a personal seal blank before the event, symbolizing uncarved intent; the covenant—at the summit, the Zhi Ge Covenant is read aloud with drones lighting the character 止; the carving—masters and abbots carve on site: one person, one seal, utterly unique.",
-      },
+      eyebrow: "Ancient Soul, Future Core",
+      title: "Zhi Ge as Martial",
+      subtitle: "Oriental Martial Arts Metaverse Ceremony",
+      cta: "Enter Now",
     },
     ecosystem: {
-      eyebrow: "Tracks and impact engines",
-      title: "Sixfold Ecosystem Matrix",
-      subtitle:
-        "Six bands connect the three final tracks and three impact engines—from demonstration to pilgrimage and sealing—closing the loop of Summit of Zhi Ge.",
-    },
-    nftsTeaser: {
-      title: "NFTs & Artifacts",
-      body:
-        "Digital seals and dojo contracts will carry identity, honor, and participation records. This v1 site is static; on-chain features will bridge wallets and minting here when live.",
-      cta: "Notify me at launch",
-    },
-    timelineTeaser: {
-      kicker: "Timeline",
-      title: "Event rhythm at a glance",
-      body:
-        "Warm-up with Tracing Wusheng Mountain, global entry and city qualifiers, a three-day finals culture week, and the closing sealing ceremony—see the Timeline page for the full arc.",
-    },
-    newsTeaser: {
-      kicker: "News",
-      title: "Announcements & progress",
-      viewAll: "View all",
-      carouselRegionLabel: "Latest news carousel",
-      carouselInstructions: "Continuous looping horizontal marquee; hover to pause.",
-    },
-    finalCta: {
-      title:
-        "In 2026, let the world see Chinese youth: strength with character; skill with a sense of the greater good.",
-      cta: "Discover Summit of Zhi Ge",
+      eyebrow: "Ecosystem",
+      title: "Six Ecosystem Matrix",
+      subtitle: "From physical dojos to metaverse narratives, building a complete martial loop.",
     },
   },
   narrative: {
@@ -236,50 +91,21 @@ const en = {
       ctaVideo: "Watch Documentary",
       ctaInterview: "Interviews",
     },
+    map: {
+      title: "Universe Map",
+      subtitle: "Scroll to explore 3D realms",
+      hotspots: {
+        shanhe: { label: "Shanhe Seal", description: "Condensing earthly aura, guarding the Wusheng lineage." },
+        fengyun: { label: "Fengyun Duel", description: "Shifting clouds in the high heavens, witnessing masters' ascent." },
+        tiangang: { label: "Tiangang Seal", description: "Empowered by stellar forces, the path for youth seeking the Way." },
+      },
+    },
   },
   timeline: {
-    heroKicker: "2026 · Summit of Zhi Ge",
-    heroTitle: "Event timeline",
-    heroTitleAccent: " · Path to the seal",
-    heroLead:
-      "Outreach goals: 1B+ impressions, 300+ overseas outlets. Phases cover warm-up, entry, finals culture week, and the closing sealing ceremony.",
-    viewRoadmap: "View phases",
-    backHome: "Back to home",
-    modules: {
-      road: {
-        kicker: "Event rhythm",
-        title: "From warm-up to summit sealing",
-        body:
-          "Three months before: warm-up and documentary. Two months before: global entry and city qualifiers. Three days of finals as culture week. One closing day for the grand sealing ceremony. Key beats below.",
-        imageAlt: "Wusheng Mountain and event atmosphere",
-        statLine: "Goals: 1B+ impressions · 300+ overseas media (targets; subject to execution).",
-        bullets: {
-          b1: {
-            title: "T-3 months · Warm-up",
-            text: "Tracing Wusheng Mountain launches; the global Zhi Ge Youth call opens—narrative and reach rise together.",
-          },
-          b2: {
-            title: "T-2 months · Entry",
-            text: "Global registration, short-video submissions, and city qualifiers run in parallel to select finalists at Wusheng Mountain.",
-          },
-          b3: {
-            title: "3-day finals · Culture week",
-            text: "Demonstration, defense under stress, Zhi Ge reflection, summit forum, and cultural study tours in one immersive week.",
-          },
-          b4: {
-            title: "1 closing day · Sealing ceremony",
-            text: "Master carving, drone light, and summit investiture—one seal per person, ritual closed.",
-          },
-        },
-      },
-      manifesto: {
-        kicker: "On-site experience",
-        title: "Culture week, forum, pilgrimage loop",
-        body:
-          "Three engines: the global Zhi Ge Youth program with cloud covenant across schools; the Youth Inquiry forum (e.g. classicist × combat champion, psychologist × martial mentor, scholar × youth creator, livestreamed); Wusheng pilgrimage and cultural tourism—the flagship is a three-day seal camp (heritage walk, Heng River trek, martial experience, defense drills, seal carving workshop, summit investiture).",
-        imageAlt: "Forum and study-tour atmosphere",
-        statLine: "Brand line: Source of Zhi Ge, path of youth; all martial Ways inquire at Wusheng.",
-      },
+    hero: {
+      kicker: "Visual Spectacle",
+      title: "Wuyin Sight",
+      lead: "Presenting traditional martial arts as a futuristic digital wonder through holographic imagery and 3D staging.",
     },
     accessTiers: {
       title: "Participation Tiers",
@@ -324,17 +150,21 @@ const en = {
       locationLabel: "Location",
       locationValue: "Hangzhou · Little Lotus",
     },
+    highlights: {
+      season: "2025 Season",
+      title: "Hangzhou Prelims Highlights",
+    },
     roster: {
-      title: "Dialogue matrix (sample)",
-      filterAria: "Filter (placeholder)",
-      filterAlert: "Filtering is a placeholder.",
-      ghost: { name: "Classicist", role: "× Combat champion" },
-      iron: { name: "Psychologist", role: "× Martial mentor" },
-      neon: { name: "Scholar", role: "× Youth creator" },
-      void: { name: "Zhi Ge youth", role: "Live questioner" },
+      title: "Dialogue Matrix",
+      filterAria: "Filter (Placeholder)",
+      filterAlert: "Filter functionality is a placeholder.",
+      ghost: { name: "Sinology Master", role: "× Combat Champ" },
+      iron: { name: "Psychologist", role: "× Martial Mentor" },
+      neon: { name: "Cultural Scholar", role: "× Youth Blogger" },
+      void: { name: "Zhi Ge Youth", role: "On-site Inquirer" },
     },
   },
-   pavilion: {
+  pavilion: {
     hero: {
       kicker: "Ecosystem",
       title: "Wuyin Pavilion",
@@ -363,14 +193,18 @@ const en = {
       verifying: "Verifying...",
       certTitle: "Wuyin Official Certificate",
       certHolder: "Holder",
+      certHolderName: "Ye Yun",
       certType: "Certification Type",
+      certTypeName: "Grade I Martial Artist",
       closePreview: "Close Preview",
+      qrPlaceholder: "QR CODE",
     },
     media: {
       title: "Wuyin Media & IP Ops",
       lead: "Immersive content ecosystem including documentaries, podcasts, and film collaborations, plus global asset licensing.",
       downloadWhitepaper: "Download Whitepaper",
       visitMediaLibrary: "Visit Media Library",
+      caseLabel: "IP CASE",
     },
   },
   partnership: {
@@ -419,23 +253,33 @@ const en = {
     },
   },
   news: {
-    heroKicker: "Site & events",
-    heroTitle: "Latest updates",
-    heroLead:
-      "Event milestones, press, and product notes will be collected here. The items below are demo placeholders—swap them for real releases anytime.",
+    heroKicker: "Official & Events",
+    heroTitle: "Latest Updates",
+    heroLead: "Event milestones, media reports, and product updates aggregated here. Content below is for demo purposes.",
     featuredTitle: "Featured",
-    listTitle: "All updates",
-    readMore: "Learn more",
-    backHome: "Back to home",
-    backToList: "Back to news",
-    relatedLink: "Related link",
+    listTitle: "All Updates",
+    readMore: "Learn More",
+    backHome: "Back to Home",
+    backToList: "Back to List",
+    relatedLink: "Related Link",
     tags: {
-      announcement: "Announcement",
+      announcement: "Notice",
       event: "Event",
       media: "Media",
     },
   },
-} satisfies MessageTree;
+  footer: {
+    brand: "Wuyin Sight",
+    tagline: "The digital born real.",
+    legalSupport: "Legal & Support",
+    copyrightLine: "WUYINWORLD. THE DIGITAL BORN REAL.",
+    demoNote: "Static Demo · Content can be replaced",
+    legal: {
+      privacy: "Privacy Policy",
+      terms: "Terms of Service",
+      cookie: "Cookie Policy",
+    },
+  },
+};
 
 export default en;
-

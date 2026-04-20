@@ -62,16 +62,16 @@ function CertificateVerification() {
               <div className="mt-10 grid grid-cols-2 gap-8 text-left">
                 <div>
                   <p className="text-[10px] text-neutral-500 uppercase tracking-widest">{t("pavilion.standard.certHolder")}</p>
-                  <p className="mt-1 font-serif text-xl text-white">叶云 (Ye Yun)</p>
+                  <p className="mt-1 font-serif text-xl text-white">{t("pavilion.standard.certHolderName")}</p>
                 </div>
                 <div>
                   <p className="text-[10px] text-neutral-500 uppercase tracking-widest">{t("pavilion.standard.certType")}</p>
-                  <p className="mt-1 font-serif text-xl text-white">壹级武道家</p>
+                  <p className="mt-1 font-serif text-xl text-white">{t("pavilion.standard.certTypeName")}</p>
                 </div>
               </div>
               <div className="mt-12 flex items-center justify-between border-t border-white/5 pt-8">
                 <div className="h-16 w-16 bg-white p-1">
-                   <div className="h-full w-full bg-black flex items-center justify-center text-[6px] text-white">QR CODE</div>
+                   <div className="h-full w-full bg-black flex items-center justify-center text-[6px] text-white">{t("pavilion.standard.qrPlaceholder")}</div>
                 </div>
                 <button 
                   onClick={() => setShowShowCert(false)}
@@ -183,7 +183,7 @@ export default function PavilionPage() {
                {[imgCase1, imgCase2, imgCase3, imgCase4].map((img, i) => (
                  <div key={i} className="aspect-square rounded-lg border border-white/5 bg-neutral-900 flex items-center justify-center group cursor-pointer hover:border-wuyin-gold-bright/30 transition-colors relative overflow-hidden">
                    <img src={img} alt="" className="absolute inset-0 h-full w-full object-cover opacity-40 transition-all duration-500 group-hover:scale-110 group-hover:opacity-60" />
-                   <p className="relative z-10 text-[10px] font-bold text-white group-hover:text-wuyin-gold-bright transition-colors">IP CASE 0{i+1}</p>
+                   <p className="relative z-10 text-[10px] font-bold text-white group-hover:text-wuyin-gold-bright transition-colors">{t("pavilion.media.caseLabel")} 0{i+1}</p>
                  </div>
                ))}
              </ScrollReveal>

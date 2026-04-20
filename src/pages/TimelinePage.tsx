@@ -212,8 +212,8 @@ export default function TimelinePage() {
                   </svg>
                 </div>
                 <div className="absolute bottom-4 left-4 z-20">
-                  <p className="text-[10px] font-bold text-wuyin-gold-bright">2025 赛季</p>
-                  <p className="text-xs text-white font-medium">杭州预选赛高光</p>
+                  <p className="text-[10px] font-bold text-wuyin-gold-bright">{t("timeline.highlights.season")}</p>
+                  <p className="text-xs text-white font-medium">{t("timeline.highlights.title")}</p>
                 </div>
               </ScrollReveal>
             ))}
