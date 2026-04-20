@@ -69,7 +69,7 @@ export default function HeroSection() {
     >
       <div
         className={[
-          "pointer-events-none absolute inset-0 bg-[linear-gradient(126deg,#080706_0%,rgba(8,7,6,0.97)_22%,rgba(228,184,74,0.05)_52%,rgba(255,244,200,0.08)_72%,rgba(245,213,99,0.06)_88%,rgba(8,7,6,0.85)_100%),linear-gradient(180deg,#080706_0%,#12100e_48%,#080706_100%)]",
+          "pointer-events-none absolute inset-0 bg-[linear-gradient(126deg,#080706_0%,rgba(8,7,6,0.97)_22%,rgba(222,181,135,0.05)_52%,rgba(246,226,193,0.08)_72%,rgba(222,181,135,0.06)_88%,rgba(8,7,6,0.85)_100%),linear-gradient(180deg,#080706_0%,#12100e_48%,#080706_100%)]",
           reducedMotion ? "" : "wuyin-animate-gradient-drift",
         ].join(" ")}
         aria-hidden

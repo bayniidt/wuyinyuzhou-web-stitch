@@ -20,13 +20,14 @@
   --color-wuyin-surface: #0d1011;
   --color-wuyin-elevated: #151a1b;
   --color-wuyin-muted: #a3a3a3;
-  /* Bright golden yellow — less bronze / ochre */
-  --wuyin-gold-rgb: 228 184 74;
-  --color-wuyin-gold: #e4b84a;
-  --color-wuyin-gold-soft: #b89022;
-  --color-wuyin-gold-bright: #f5d563;
-  --color-wuyin-accent: #e4b84a;
-  --color-wuyin-accent-soft: #b89022;
+  /* New Gold Theme: #DEB587 #F6E2C1 */
+  --wuyin-gold-rgb: 222 181 135;
+  --color-wuyin-gold: #deb587;
+  --color-wuyin-gold-soft: #c49a6d;
+  --color-wuyin-gold-bright: #f6e2c1;
+  --color-wuyin-accent: #deb587;
+  --color-wuyin-accent-soft: #c49a6d;
+  --wuyin-gold-gradient: linear-gradient(to right, #deb587, #f6e2c1);
   /* Auxiliary: seal red */
   --color-wuyin-seal: #c93030;
   --color-wuyin-seal-soft: #a04545;
