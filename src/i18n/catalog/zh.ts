@@ -193,11 +193,11 @@ const zh = {
     },
   },
   timeline: {
-    hero: {
-      kicker: "大视觉盛典",
-      title: "武印视界",
-      lead: "通过全息影像与 3D 舞台，将传统武道呈现为极具未来感的数字奇观。",
-    },
+    heroKicker: "大视觉盛典",
+    heroTitle: "武印视界",
+    heroLead: "通过全息影像与 3D 舞台，将传统武道呈现为极具未来感的数字奇观。",
+    viewRoadmap: "查看路线图",
+    backHome: "返回首页",
     modules: {
       manifesto: {
         kicker: "数字剧场",

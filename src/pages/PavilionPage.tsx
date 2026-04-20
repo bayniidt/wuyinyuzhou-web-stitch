@@ -3,6 +3,8 @@ import ScrollReveal from "@/components/motion/ScrollReveal"
 import LiveBoard from "@/components/pavilion/LiveBoard"
 import SynergyMap from "@/components/pavilion/SynergyMap"
 import { useLocale } from "@/i18n/LocaleProvider"
+import imgNftBrowser from "@/images/page4 (1).png"
+import imgRwaCurve from "@/images/page4 (2).png"
 import imgCase1 from "@/images/武印阁/unnamed (1).png"
 import imgCase2 from "@/images/武印阁/unnamed (2).png"
 import imgCase3 from "@/images/武印阁/unnamed (3).png"
@@ -143,11 +145,15 @@ export default function PavilionPage() {
           </div>
           <LiveBoard />
           <div className="mt-16 grid gap-6 sm:grid-cols-2">
-             <div className="aspect-video rounded-xl border border-white/10 bg-neutral-950 flex items-center justify-center">
-               <p className="text-neutral-600 font-serif">{t("pavilion.digital.browserPreview")}</p>
+             <div className="aspect-video rounded-xl border border-white/10 bg-neutral-950 flex flex-col items-center justify-center overflow-hidden relative group">
+               <img src={imgNftBrowser} alt="" className="absolute inset-0 h-full w-full object-cover opacity-50 transition-opacity duration-500 group-hover:opacity-80" />
+               <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
+               <p className="relative z-10 text-white font-serif text-lg">{t("pavilion.digital.browserPreview")}</p>
              </div>
-             <div className="aspect-video rounded-xl border border-white/10 bg-neutral-950 flex items-center justify-center">
-               <p className="text-neutral-600 font-serif">{t("pavilion.digital.valuationCurve")}</p>
+             <div className="aspect-video rounded-xl border border-white/10 bg-neutral-950 flex flex-col items-center justify-center overflow-hidden relative group">
+               <img src={imgRwaCurve} alt="" className="absolute inset-0 h-full w-full object-cover opacity-50 transition-opacity duration-500 group-hover:opacity-80" />
+               <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
+               <p className="relative z-10 text-white font-serif text-lg">{t("pavilion.digital.valuationCurve")}</p>
              </div>
           </div>
         </div>

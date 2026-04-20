@@ -193,11 +193,11 @@ const en = {
     },
   },
   timeline: {
-    hero: {
-      kicker: "Visual Spectacle",
-      title: "Wuyin Sight",
-      lead: "Presenting traditional martial arts as a futuristic digital wonder through holographic imagery and 3D staging.",
-    },
+    heroKicker: "Visual Spectacle",
+    heroTitle: "Wuyin Sight",
+    heroLead: "Presenting traditional martial arts as a futuristic digital wonder through holographic imagery and 3D staging.",
+    viewRoadmap: "View Roadmap",
+    backHome: "Back to Home",
     modules: {
       manifesto: {
         kicker: "Digital Theater",
