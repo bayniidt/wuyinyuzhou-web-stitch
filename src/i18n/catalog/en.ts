@@ -198,6 +198,13 @@ const en = {
       title: "Wuyin Sight",
       lead: "Presenting traditional martial arts as a futuristic digital wonder through holographic imagery and 3D staging.",
     },
+    modules: {
+      manifesto: {
+        kicker: "Digital Theater",
+        title: "Holography & Zhi Ge Narrative",
+        body: "Visualizing the kinetic energy of traditional forms via top-tier holography, crowning the spirit of Zhi Ge at the edge of virtuality.",
+      },
+    },
     accessTiers: {
       title: "Participation Tiers",
       subtitle: "Official ticketing and study tour pricing subject to official announcement.",
