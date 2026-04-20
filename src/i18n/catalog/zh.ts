@@ -253,7 +253,11 @@ const zh = {
       title: "杭州预选赛高光",
     },
     roster: {
-      title: "对话矩阵",
+      title: "武者阵容",
+      lead: "汇聚全球顶尖武道家，见证非凡战绩",
+      record: "战绩",
+      viewProfile: "查看档案",
+      hasNftTitle: "持有 NFT 数字勋章",
       filterAria: "筛选（占位）",
       filterAlert: "筛选功能为占位。",
       ghost: { name: "国学名家", role: "× 格斗冠军" },

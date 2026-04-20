@@ -1,3 +1,7 @@
+import { useLocale } from "@/i18n/LocaleProvider";
+import imgFighter1 from "@/images/武印视界/unnamed (1).png";
+import imgFighter2 from "@/images/武印视界/unnamed (2).png";
+import imgFighter3 from "@/images/武印视界/unnamed (3).png";
 import { motion } from "framer-motion";
 
 interface Fighter {
@@ -9,13 +13,15 @@ interface Fighter {
   hasNft: boolean;
 }
 
-const FIGHTERS: Fighter[] = [
-  { id: "01", name: "叶云", style: "咏春 · 意", record: "18-0", image: "/images/fighter-1.jpg", hasNft: true },
-  { id: "02", name: "雷萨", style: "泰拳 · 刚", record: "15-2", image: "/images/fighter-2.jpg", hasNft: true },
-  { id: "03", name: "林森", style: "散打 · 疾", record: "20-1", image: "/images/fighter-3.jpg", hasNft: false },
-];
-
 export default function FighterRoster() {
+  const { t } = useLocale();
+
+  const FIGHTERS: Fighter[] = [
+    { id: "01", name: "叶云", style: "咏春 · 意", record: "18-0", image: imgFighter1, hasNft: true },
+    { id: "02", name: "雷萨", style: "泰拳 · 刚", record: "15-2", image: imgFighter2, hasNft: true },
+    { id: "03", name: "林森", style: "散打 · 疾", record: "20-1", image: imgFighter3, hasNft: false },
+  ];
+
   return (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {FIGHTERS.map((fighter, i) => (
@@ -27,12 +33,13 @@ export default function FighterRoster() {
           transition={{ delay: i * 0.1 }}
           className="group relative overflow-hidden rounded-2xl border border-white/10 bg-wuyin-elevated/60"
         >
-          <div className="aspect-[4/5] overflow-hidden bg-neutral-900">
-            <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent z-10" />
-            {/* 选手照片占位 */}
-            <div className="h-full w-full bg-linear-to-br from-neutral-800 to-neutral-950 flex items-center justify-center">
-               <span className="text-4xl font-serif text-white/10">{fighter.name}</span>
-            </div>
+          <div className="aspect-[4/5] overflow-hidden bg-neutral-900 relative">
+            <img 
+              src={fighter.image} 
+              alt={fighter.name} 
+              className="absolute inset-0 h-full w-full object-cover opacity-60 grayscale transition-all duration-500 group-hover:scale-110 group-hover:opacity-100 group-hover:grayscale-0" 
+            />
+            <div className="absolute inset-0 bg-linear-to-t from-black via-black/20 to-transparent z-10" />
             
             {/* NFT 勋章悬浮发光动效 */}
             {fighter.hasNft && (
@@ -44,7 +51,7 @@ export default function FighterRoster() {
                   }}
                   transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
                   className="flex h-10 w-10 items-center justify-center rounded-full border border-wuyin-gold-bright/50 bg-black/60 text-wuyin-gold-bright backdrop-blur-sm"
-                  title="持有 NFT 数字勋章"
+                  title={t("timeline.roster.hasNftTitle")}
                 >
                   <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
@@ -61,12 +68,12 @@ export default function FighterRoster() {
                 <h3 className="mt-1 font-serif text-2xl font-bold text-white">{fighter.name}</h3>
               </div>
               <div className="text-right">
-                <p className="text-[9px] text-neutral-500 uppercase tracking-widest">战绩</p>
+                <p className="text-[9px] text-neutral-500 uppercase tracking-widest">{t("timeline.roster.record")}</p>
                 <p className="font-serif text-lg text-white">{fighter.record}</p>
               </div>
             </div>
             <button className="mt-6 w-full rounded-lg border border-white/10 bg-white/5 py-2.5 text-xs font-semibold text-white transition hover:bg-white/10">
-              查看档案
+              {t("timeline.roster.viewProfile")}
             </button>
           </div>
         </motion.div>

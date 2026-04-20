@@ -187,8 +187,8 @@ export default function TimelinePage() {
         <SectionGoldenBlocks variant={1} />
         <div className="container-wuyin relative z-10">
           <div className="mb-16 text-center">
-            <h2 className="font-serif text-4xl font-bold text-white sm:text-5xl">武者阵容</h2>
-            <p className="mt-4 text-wuyin-muted">汇聚全球顶尖武道家，见证非凡战绩</p>
+            <h2 className="font-serif text-4xl font-bold text-white sm:text-5xl">{t("timeline.roster.title")}</h2>
+            <p className="mt-4 text-wuyin-muted">{t("timeline.roster.lead")}</p>
           </div>
           <FighterRoster />
         </div>

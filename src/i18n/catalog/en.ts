@@ -253,7 +253,11 @@ const en = {
       title: "Hangzhou Prelims Highlights",
     },
     roster: {
-      title: "Dialogue Matrix",
+      title: "Fighter Roster",
+      lead: "Bringing together world-class martial artists to witness extraordinary records.",
+      record: "Record",
+      viewProfile: "View Profile",
+      hasNftTitle: "Holds NFT Badge",
       filterAria: "Filter (Placeholder)",
       filterAlert: "Filter functionality is a placeholder.",
       ghost: { name: "Sinology Master", role: "× Combat Champ" },
