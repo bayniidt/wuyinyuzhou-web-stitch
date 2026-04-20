@@ -1,501 +1,185 @@
-import SectionGoldenBlocks from "@/components/decor/SectionGoldenBlocks";
-import imgCoverShadowGale from "@/images/page4 (2).png";
-import imgCoverIronFist from "@/images/page4 (1).png";
-import imgCoverVoidStep from "@/images/page4 (3).png";
-import imgCoverDragonBreath from "@/images/page4 (4).png";
-import ScrollReveal from "@/components/motion/ScrollReveal";
-import imgForgeStill from "@/images/page4 (5).png";
-import forgeAmbienceMp4 from "@/videos/15236622_1920_1080_30fps.mp4";
-import { useLocale } from "@/i18n/LocaleProvider";
-import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
-import { useMemo, useState } from "react";
+import SectionGoldenBlocks from "@/components/decor/SectionGoldenBlocks"
+import ScrollReveal from "@/components/motion/ScrollReveal"
+import LiveBoard from "@/components/pavilion/LiveBoard"
+import SynergyMap from "@/components/pavilion/SynergyMap"
+import { AnimatePresence, motion } from "framer-motion"
+import { useState } from "react"
 
-type RarityEnum = "LEGENDARY" | "RARE" | "COMMON";
-type FilterId = "all" | "legendary" | "rare" | "common";
+function CertificateVerification() {
+  const [isVerifying, setIsVerifying] = useState(false);
+  const [showCert, setShowShowCert] = useState(false);
 
-type Artifact = {
-  id: string;
-  title: string;
-  rarityEnum: RarityEnum;
-  rarityLabel: string;
-  status: string;
-  statusAccent: boolean;
-  coverSrc: string;
-  coverAlt: string;
-};
-
-const filterIds: FilterId[] = ["all", "legendary", "rare", "common"];
-
-const artifactDefs = [
-  {
-    id: "#402",
-    rarityEnum: "LEGENDARY" as const,
-    statusKey: "mastery" as const,
-    artifactKey: "shadow" as const,
-    statusAccent: true,
-    coverSrc: imgCoverShadowGale,
-  },
-  {
-    id: "#192",
-    rarityEnum: "RARE" as const,
-    statusKey: "stored" as const,
-    artifactKey: "iron" as const,
-    statusAccent: false,
-    coverSrc: imgCoverIronFist,
-  },
-  {
-    id: "#831",
-    rarityEnum: "COMMON" as const,
-    statusKey: "available" as const,
-    artifactKey: "void" as const,
-    statusAccent: false,
-    coverSrc: imgCoverVoidStep,
-  },
-  {
-    id: "#03",
-    rarityEnum: "LEGENDARY" as const,
-    statusKey: "locked" as const,
-    artifactKey: "dragon" as const,
-    statusAccent: true,
-    coverSrc: imgCoverDragonBreath,
-  },
-];
-
-function IconSearch({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
-      <circle cx="11" cy="11" r="7" />
-      <path d="M20 20l-4.2-4.2" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function IconMedalGold({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden>
-      <circle cx="12" cy="9" r="5" fill="#e4b84a" />
-      <path d="M8 14l4 8 4-8M10 14h4" stroke="#b89022" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function IconDiamondOutline({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden>
-      <path d="M12 5l7 7-7 7-7-7z" stroke="currentColor" strokeWidth="1.2" />
-    </svg>
-  );
-}
-
-function IconShieldFeatured({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 48 56" className={className} aria-hidden>
-      <path
-        d="M24 4L6 12v14c0 12 8 20 18 24 10-4 18-12 18-24V12L24 4z"
-        fill="#e4b84a"
-        stroke="#f5d563"
-        strokeWidth="0.5"
-      />
-    </svg>
-  );
-}
-
-function IconShieldCheck({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden>
-      <path
-        d="M12 3L5 6v6c0 4.5 3 8.5 7 10 4-1.5 7-5.5 7-10V6l-7-3z"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinejoin="round"
-      />
-      <path d="M9 12l2 2 4-5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function IconExternalLink({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden>
-      <path
-        d="M14 4h6v6M10 14L20 4M8 6H5v14h14v-3"
-        stroke="#f5d563"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function MintingForgeBackdrop() {
-  const reducedMotion = usePrefersReducedMotion();
+  const handleVerify = () => {
+    setIsVerifying(true);
+    setTimeout(() => {
+      setIsVerifying(false);
+      setShowShowCert(true);
+    }, 2000);
+  };
 
   return (
-    <>
-      <img
-        src={imgForgeStill}
-        alt=""
-        className={[
-          "absolute inset-0 h-full w-full object-cover",
-          reducedMotion ? "opacity-35" : "opacity-[0.22]",
-        ].join(" ")}
-        decoding="async"
-        aria-hidden
-      />
-      {!reducedMotion ? (
-        <video
-          className="absolute inset-0 h-full w-full object-cover opacity-[0.32]"
-          autoPlay
-          muted
-          playsInline
-          loop
-          preload="metadata"
-          poster={imgForgeStill}
-          aria-hidden
-        >
-          <source src={forgeAmbienceMp4} type="video/mp4" />
-        </video>
-      ) : null}
-    </>
-  );
-}
+    <div className="rounded-2xl border border-white/10 bg-[#0a0a0a] p-8 sm:p-12">
+      <div className="max-w-md mx-auto text-center">
+        <h3 className="font-serif text-2xl font-bold text-white">证书验真系统</h3>
+        <p className="mt-2 text-sm text-neutral-500">输入武者/裁判/俱乐部认证编号</p>
+        <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+          <input 
+            type="text" 
+            placeholder="WY-2026-XXXX"
+            className="flex-1 rounded-lg border border-white/20 bg-black/40 px-5 py-3 text-white placeholder:text-neutral-700 focus:border-wuyin-gold-bright/40 focus:outline-none"
+          />
+          <button 
+            onClick={handleVerify}
+            disabled={isVerifying}
+            className="rounded-lg bg-wuyin-gold-bright px-8 py-3 text-sm font-bold text-black transition hover:brightness-110 disabled:opacity-50"
+          >
+            {isVerifying ? '核验中...' : '立即验真'}
+          </button>
+        </div>
+      </div>
 
-function rarityMatchesFilter(r: RarityEnum, f: FilterId): boolean {
-  if (f === "all") return true;
-  if (f === "legendary") return r === "LEGENDARY";
-  if (f === "rare") return r === "RARE";
-  if (f === "common") return r === "COMMON";
-  return true;
+      <AnimatePresence>
+        {showCert && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            className="mt-16 mx-auto max-w-2xl overflow-hidden rounded-xl border border-wuyin-gold-bright/30 bg-[#111] p-8 shadow-wuyin-glow"
+          >
+            <div className="relative border-2 border-wuyin-gold-bright/20 p-10">
+              <div className="absolute top-4 right-4 h-20 w-20 opacity-20">
+                <svg viewBox="0 0 100 100" className="fill-wuyin-gold-bright">
+                  <path d="M50 0L61.8 38.2H100L70.9 61.8L82.7 100L50 76.4L17.3 100L29.1 61.8L0 38.2H38.2L50 0Z" />
+                </svg>
+              </div>
+              <p className="font-serif text-[10px] tracking-[0.4em] text-wuyin-gold-bright uppercase">Official Certification</p>
+              <h4 className="mt-6 font-serif text-4xl font-bold text-white">武印认证证书</h4>
+              <div className="mt-10 grid grid-cols-2 gap-8 text-left">
+                <div>
+                  <p className="text-[10px] text-neutral-500 uppercase tracking-widest">持有者</p>
+                  <p className="mt-1 font-serif text-xl text-white">叶云 (Ye Yun)</p>
+                </div>
+                <div>
+                  <p className="text-[10px] text-neutral-500 uppercase tracking-widest">认证类型</p>
+                  <p className="mt-1 font-serif text-xl text-white">壹级武道家</p>
+                </div>
+              </div>
+              <div className="mt-12 flex items-center justify-between border-t border-white/5 pt-8">
+                <div className="h-16 w-16 bg-white p-1">
+                   <div className="h-full w-full bg-black flex items-center justify-center text-[6px] text-white">QR CODE</div>
+                </div>
+                <button 
+                  onClick={() => setShowShowCert(false)}
+                  className="text-xs text-neutral-500 hover:text-white"
+                >
+                  关闭预览
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
 }
 
 export default function PavilionPage() {
-  const reducedMotion = usePrefersReducedMotion();
-  const { t } = useLocale();
-  const [artifactFilter, setArtifactFilter] = useState<FilterId>("all");
-
-  const artifacts = useMemo(
-    (): Artifact[] =>
-      artifactDefs.map((d) => ({
-        id: d.id,
-        title: t(`pavilion.artifacts.${d.artifactKey}.title`),
-        rarityEnum: d.rarityEnum,
-        rarityLabel: t(`pavilion.rarity.${d.rarityEnum}`),
-        status: t(`pavilion.status.${d.statusKey}`),
-        statusAccent: d.statusAccent,
-        coverSrc: d.coverSrc,
-        coverAlt: t(`pavilion.artifacts.${d.artifactKey}.alt`),
-      })),
-    [t],
-  );
-
-  const grades = useMemo(
-    () =>
-      [
-        { id: "g1", tier: t("pavilion.grades.g1.tier"), nft: t("pavilion.grades.g1.nft"), strength: t("pavilion.grades.g1.strength"), price: t("pavilion.grades.g1.price"), variant: "default" as const },
-        { id: "g2", tier: t("pavilion.grades.g2.tier"), nft: t("pavilion.grades.g2.nft"), strength: t("pavilion.grades.g2.strength"), price: t("pavilion.grades.g2.price"), variant: "default" as const },
-        { id: "g3", tier: t("pavilion.grades.g3.tier"), nft: t("pavilion.grades.g3.nft"), strength: t("pavilion.grades.g3.strength"), price: t("pavilion.grades.g3.price"), variant: "accentTier" as const },
-        { id: "g4", tier: t("pavilion.grades.g4.tier"), nft: t("pavilion.grades.g4.nft"), strength: t("pavilion.grades.g4.strength"), price: t("pavilion.grades.g4.price"), variant: "legendary" as const },
-      ] as const,
-    [t],
-  );
-
-  const visibleArtifacts = useMemo(
-    () => artifacts.filter((item) => rarityMatchesFilter(item.rarityEnum, artifactFilter)),
-    [artifacts, artifactFilter],
-  );
-
   return (
-    <div id="pavilion" className="container-wuyin space-y-8 py-8 sm:space-y-10 sm:py-10">
-      <section className="relative overflow-hidden bg-[#070707] px-2 py-6 sm:px-3 sm:py-8">
-        <SectionGoldenBlocks variant={0} />
-        <ScrollReveal
-          variant="upGlow"
-          className="relative z-10 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end wuyin-reveal-tech"
-          visibleClassName="wuyin-reveal-tech-visible"
-          staggerChildren
-          staggerStepMs={90}
-        >
-          <div className="space-y-5">
-            <p className="inline-flex items-center gap-3 text-[10px] font-semibold tracking-[0.34em] text-wuyin-gold-bright">
-              <span className="inline-block h-px w-10 bg-wuyin-accent" />
-              {t("pavilion.portfolioKicker")}
-            </p>
-            <h1 className="font-serif text-5xl leading-[0.95] text-white sm:text-6xl md:text-7xl">
-              {t("pavilion.titleBefore")} <span className="font-semibold italic text-wuyin-gold-bright">{t("pavilion.titleAccent")}</span>
-            </h1>
-            <p className="max-w-2xl text-xl leading-10 text-neutral-200 sm:text-[1.7rem] sm:leading-[3.2rem]">{t("pavilion.lead")}</p>
-          </div>
-
-          <aside className="w-full max-w-[260px] border border-white/10 bg-[#202020] p-5 shadow-[0_18px_32px_rgba(0,0,0,0.45)]">
-            <div className="border-l-2 border-wuyin-seal pl-4">
-              <p className="text-[10px] font-semibold tracking-[0.2em] text-neutral-300">{t("pavilion.tvlLabel")}</p>
-              <p className="mt-1 font-serif text-5xl leading-none text-white">12.84 ETH</p>
-              <p className="mt-3 text-xs tracking-[0.16em] text-neutral-500">{t("pavilion.tvlSub")}</p>
-            </div>
-          </aside>
-        </ScrollReveal>
-      </section>
-
-      <section id="pavilion-artifacts" className="relative overflow-hidden space-y-5">
-        <SectionGoldenBlocks variant={1} />
-        <ScrollReveal variant="upSoft" delayMs={60} className="relative z-10 wuyin-reveal-tech" visibleClassName="wuyin-reveal-tech-visible">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-stretch sm:justify-between sm:gap-6">
-            <div
-              className="flex flex-wrap gap-1 border-b border-white/10 pb-px sm:flex-nowrap sm:gap-0"
-              role="tablist"
-              aria-label={t("pavilion.filtersAria")}
-            >
-              {filterIds.map((fid) => {
-                const active = artifactFilter === fid;
-                const labelKey = fid === "all" ? "all" : fid;
-                return (
-                  <button
-                    key={fid}
-                    type="button"
-                    role="tab"
-                    aria-selected={active}
-                    onClick={() => setArtifactFilter(fid)}
-                    className={[
-                      "rounded-t px-3 py-2.5 text-[11px] font-semibold tracking-[0.14em] transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright sm:px-4",
-                      active
-                        ? "relative text-white after:absolute after:inset-x-2 after:bottom-0 after:h-0.5 after:bg-wuyin-seal sm:after:inset-x-3"
-                        : "bg-[#1a1a1a] text-neutral-500 hover:text-neutral-300",
-                    ].join(" ")}
-                  >
-                    {t(`pavilion.filters.${labelKey}`)}
-                  </button>
-                );
-              })}
-            </div>
-            <label className="relative shrink-0 sm:w-[min(100%,280px)]">
-              <span className="sr-only">{t("pavilion.searchAria")}</span>
-              <IconSearch className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-500" />
-              <input
-                type="search"
-                placeholder={t("pavilion.searchPlaceholder")}
-                className="w-full rounded border border-white/20 bg-[#0c0c0c] py-2.5 pl-10 pr-3 text-sm text-neutral-200 placeholder:text-neutral-500 focus:border-white/35 focus:outline-none"
-              />
-            </label>
-          </div>
-        </ScrollReveal>
-
-        <ScrollReveal
-          variant="upSoft"
-          delayMs={120}
-          className="wuyin-reveal-tech"
-          visibleClassName="wuyin-reveal-tech-visible"
-          staggerChildren
-          staggerStepMs={65}
-        >
-          <div
-            key={artifactFilter}
-            className={["grid gap-4 sm:grid-cols-2 lg:grid-cols-4", reducedMotion ? "" : "wuyin-animate-grid-reflow"].join(" ")}
-          >
-            {visibleArtifacts.map((item) => (
-              <article key={item.id} className="group overflow-hidden rounded-lg border border-white/10 bg-[#141414] shadow-sm">
-                <div className="relative aspect-square overflow-hidden bg-[#0a0a0a]">
-                  <img
-                    src={item.coverSrc}
-                    alt={item.coverAlt}
-                    width={800}
-                    height={800}
-                    className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/75 via-transparent to-black/20" aria-hidden />
-                  <span
-                    className={[
-                      "absolute right-2 top-2 bg-black/55 px-2 py-0.5 text-[9px] font-semibold tracking-[0.12em] text-white backdrop-blur-sm",
-                      item.rarityEnum === "LEGENDARY"
-                        ? ["border border-wuyin-seal/50", reducedMotion ? "" : "wuyin-animate-glow-pulse rounded-sm"].join(" ")
-                        : "border border-white/15",
-                    ].join(" ")}
-                  >
-                    {item.rarityLabel}
-                  </span>
-                </div>
-                <div className="border-t border-white/5 bg-[#1a1a1a] px-3 pb-3 pt-3">
-                  <h2 className="font-serif text-base font-bold text-white">
-                    {item.title} {item.id}
-                  </h2>
-                  <p className="mt-2 flex items-center gap-2 text-[10px] font-medium tracking-[0.18em] text-neutral-500">
-                    <span
-                      className={[
-                        "inline-block size-1.5 shrink-0 rounded-full",
-                        item.statusAccent ? "bg-wuyin-seal" : "bg-neutral-400",
-                      ].join(" ")}
-                      aria-hidden
-                    />
-                    {item.status}
-                  </p>
-                  <button
-                    type="button"
-                    className="mt-4 w-full rounded border border-white/25 bg-transparent py-2.5 text-[11px] font-semibold tracking-[0.16em] text-white transition hover:border-white/40 hover:bg-white/[0.03]"
-                  >
-                    {t("pavilion.viewDetails")}
-                  </button>
-                </div>
-              </article>
-            ))}
-          </div>
-        </ScrollReveal>
-      </section>
-
-      <section id="pavilion-achievements" className="relative">
-        <SectionGoldenBlocks variant={2} />
-        <div className="relative z-10 grid gap-4 lg:grid-cols-[minmax(0,0.38fr)_minmax(0,0.62fr)] lg:items-stretch lg:gap-5">
-        <ScrollReveal variant="leftSoft" delayMs={80} className="wuyin-reveal-tech" visibleClassName="wuyin-reveal-tech-visible" staggerChildren staggerStepMs={80}>
-          <article className="flex h-full flex-col rounded-lg border border-white/[0.08] bg-[#1a1a1a] p-6 sm:p-8">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-wuyin-gold-bright">{t("pavilion.achievementsKicker")}</p>
-            <h3 className="mt-3 font-serif text-3xl leading-[1.15] text-white sm:text-[2rem]">{t("pavilion.achievementsTitle")}</h3>
-            <p className="mt-4 max-w-md text-sm font-sans leading-[1.7] text-white/90">{t("pavilion.achievementsBody")}</p>
-            <ul className="mt-8 flex flex-col gap-2.5">
-              <li className="flex items-center gap-3 rounded-lg bg-[#252525] px-4 py-3.5">
-                <IconMedalGold className="h-8 w-8 shrink-0" />
-                <span className="min-w-0 flex-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white">{t("pavilion.achPioneer")}</span>
-                <span className="shrink-0 text-[10px] font-medium uppercase tracking-[0.16em] text-neutral-500">
-                  {t("pavilion.rank")} 1
-                </span>
-              </li>
-              <li className="flex items-center gap-3 rounded-lg bg-[#252525] px-4 py-3.5">
-                <IconDiamondOutline className="h-7 w-7 shrink-0 text-[#e8e8e8]" />
-                <span className="min-w-0 flex-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white">{t("pavilion.achMaster")}</span>
-                <span className="shrink-0 text-[10px] font-medium uppercase tracking-[0.16em] text-neutral-500">
-                  {t("pavilion.rank")} 12
-                </span>
-              </li>
-            </ul>
-          </article>
-        </ScrollReveal>
-
-        <ScrollReveal variant="rightSoft" delayMs={120} className="wuyin-reveal-tech" visibleClassName="wuyin-reveal-tech-visible" staggerChildren staggerStepMs={80}>
-          <article
-            className="relative flex min-h-[340px] flex-col items-center justify-center overflow-hidden rounded-lg border border-white/[0.08] px-6 py-12 sm:min-h-[380px] sm:py-16"
-            style={{
-              background:
-                "radial-gradient(ellipse 75% 55% at 50% 42%, rgba(228, 184, 74, 0.2) 0%, rgba(228, 184, 74, 0.08) 38%, transparent 62%), #161616",
-            }}
-          >
-            <div className="relative flex h-56 w-56 items-center justify-center sm:h-64 sm:w-64">
-              <div
-                className="absolute inset-0 m-auto h-[12.5rem] w-[12.5rem] border border-wuyin-gold-bright/75 sm:h-[14rem] sm:w-[14rem]"
-                style={{ transform: "rotate(45deg)" }}
-                aria-hidden
-              />
-              <div className="relative flex h-[7.25rem] w-[7.25rem] items-center justify-center border border-wuyin-accent bg-[#161616] sm:h-32 sm:w-32">
-                <IconShieldFeatured className="h-[4.25rem] w-[3.75rem] sm:h-[4.5rem] sm:w-16" />
-              </div>
-            </div>
-            <p className="mt-10 text-center text-[10px] font-semibold uppercase tracking-[0.35em] text-wuyin-gold-bright">{t("pavilion.featuredKicker")}</p>
-            <p className="mt-3 max-w-lg px-2 text-center font-serif text-lg italic leading-snug text-white sm:text-xl">{t("pavilion.featuredLine")}</p>
-          </article>
-        </ScrollReveal>
+    <div className="bg-black">
+      {/* 沉浸式首屏 */}
+      <section className="relative flex min-h-[50vh] items-center justify-center overflow-hidden border-b border-white/5 bg-[#080706]">
+        <SectionGoldenBlocks density="sparse" intensity="subtle" variant={1} />
+        <div className="container-wuyin relative z-10 py-20 text-center">
+          <ScrollReveal variant="upGlow" className="wuyin-reveal-tech" visibleClassName="wuyin-reveal-tech-visible">
+            <p className="text-xs font-bold uppercase tracking-[0.5em] text-wuyin-gold-bright">生态体系</p>
+            <h1 className="mt-6 font-serif text-5xl font-black text-white sm:text-7xl">武印阁</h1>
+            <p className="mx-auto mt-6 max-w-2xl text-lg text-neutral-400">展示六大实体公司及生态闭环，建立信任感</p>
+          </ScrollReveal>
         </div>
       </section>
 
-      <section id="pavilion-grade" className="relative overflow-hidden space-y-5">
+      {/* 六位一体导图 */}
+      <section id="pavilion-synergy" className="relative overflow-hidden border-b border-white/5 bg-wuyin-surface py-20 sm:py-32">
         <SectionGoldenBlocks variant={0} />
-        <ScrollReveal variant="upSoft" delayMs={90} className="relative z-10 wuyin-reveal-tech" visibleClassName="wuyin-reveal-tech-visible">
-          <h2 className="font-serif text-3xl text-white md:text-[2rem] pb-[40px]" aria-label={t("pavilion.gradeTitle")}>
-            <span className="border-b-2 border-wuyin-accent pb-0.5">{t("pavilion.gradeTitleAccent")}</span>
-            <span>{t("pavilion.gradeTitleRest")}</span>
-          </h2>
-          <div className="overflow-x-auto rounded-lg border border-white/10 bg-[#0a0a0a] wuyin-reveal-tech-panel">
-            <table className="w-full min-w-[640px] border-collapse text-left text-sm">
-              <thead>
-                <tr className="border-b border-white/10 bg-[#060606]">
-                  <th className="px-5 py-4 text-[10px] font-semibold tracking-[0.2em] text-wuyin-gold-bright">{t("pavilion.thLevel")}</th>
-                  <th className="px-5 py-4 text-[10px] font-semibold tracking-[0.2em] text-wuyin-gold-bright">{t("pavilion.thPower")}</th>
-                  <th className="px-5 py-4 text-[10px] font-semibold tracking-[0.2em] text-wuyin-gold-bright">{t("pavilion.thBoost")}</th>
-                  <th className="px-5 py-4 text-[10px] font-semibold tracking-[0.2em] text-wuyin-gold-bright">{t("pavilion.thPrivilege")}</th>
-                </tr>
-              </thead>
-              <tbody className="font-sans text-white">
-                {grades.map((row) => (
-                  <tr
-                    key={row.id}
-                    className={[
-                      "border-b border-white/10 last:border-b-0",
-                      row.variant === "legendary" ? "bg-[#1c1810]" : "",
-                    ].join(" ")}
-                  >
-                    <td
-                      className={[
-                        "px-5 py-4 font-serif text-base",
-                        row.variant === "accentTier" || row.variant === "legendary" ? "text-wuyin-gold-bright" : "text-white",
-                      ].join(" ")}
-                    >
-                      {row.tier}
-                    </td>
-                    <td className="px-5 py-4">{row.nft}</td>
-                    <td className="px-5 py-4">{row.strength}</td>
-                    <td className="px-5 py-4">{row.price}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        <div className="container-wuyin relative z-10">
+          <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
+            <ScrollReveal variant="leftSoft" className="space-y-8">
+              <h2 className="font-serif text-4xl font-bold text-white sm:text-5xl">六位一体生态导图</h2>
+              <p className="text-lg leading-relaxed text-neutral-300">
+                武印阁作为品牌中枢，联动武印盟、功夫印、武印标准、武印传媒及印承天下文旅，形成完整的武道产业生态闭环。
+              </p>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="rounded-lg border border-white/5 bg-black/40 p-5">
+                   <p className="text-xs font-bold text-wuyin-gold-bright">100%</p>
+                   <p className="text-[10px] text-neutral-500 uppercase mt-1">业务联动</p>
+                </div>
+                <div className="rounded-lg border border-white/5 bg-black/40 p-5">
+                   <p className="text-xs font-bold text-wuyin-gold-bright">24/7</p>
+                   <p className="text-[10px] text-neutral-500 uppercase mt-1">链上守护</p>
+                </div>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal variant="rightSoft">
+              <SynergyMap />
+            </ScrollReveal>
           </div>
-        </ScrollReveal>
+        </div>
       </section>
 
-      <section id="pavilion-minting" className="overflow-hidden rounded-xl border border-white/10 bg-[#0a0a0a]">
-        <ScrollReveal variant="upGlow" delayMs={120} className="wuyin-reveal-tech" visibleClassName="wuyin-reveal-tech-visible" staggerChildren staggerStepMs={90}>
-          <div className="relative min-h-[min(52vh,28rem)] sm:min-h-[32rem]">
-            <div className="absolute inset-0 bg-[#060606]" aria-hidden />
-            <div className="absolute inset-0 bg-linear-to-t from-neutral-950/38 via-neutral-950/40 to-neutral-900/90" aria-hidden />
-            <div className="absolute bottom-0 left-1/2 h-48 w-[120%] -translate-x-1/2 bg-linear-to-t from-wuyin-gold-bright/16 to-transparent blur-3xl" aria-hidden />
-            <MintingForgeBackdrop />
-
-            <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center px-6 py-14 text-center sm:py-20">
-              <p className="text-[10px] font-semibold tracking-[0.38em] text-white">{t("pavilion.minting.kicker")}</p>
-              <h2 className="mt-4 font-serif text-4xl text-white sm:text-5xl md:text-[3.25rem] md:leading-tight">{t("pavilion.minting.title")}</h2>
-              <button
-                type="button"
-                className="mt-8 rounded-sm bg-linear-to-r from-wuyin-gold-bright via-wuyin-accent to-wuyin-accent-soft px-10 py-3.5 text-[11px] font-bold uppercase tracking-[0.22em] text-neutral-950 shadow-[0_8px_24px_rgba(0,0,0,0.35)] transition hover:brightness-105"
-              >
-                {t("pavilion.minting.cta")}
-              </button>
-              <div className="mt-10 flex items-stretch justify-center gap-0">
-                <div className="px-6 text-center sm:px-10">
-                  <span className="block font-serif text-3xl font-semibold text-white sm:text-4xl">4,209</span>
-                  <span className="mt-1.5 block text-[10px] font-medium tracking-[0.22em] text-white">{t("pavilion.minting.forged")}</span>
-                </div>
-                <div className="w-px shrink-0 bg-white/35" aria-hidden />
-                <div className="px-6 text-center sm:px-10">
-                  <span className="block font-serif text-3xl font-semibold text-white sm:text-4xl">12h 45m</span>
-                  <span className="mt-1.5 block text-[10px] font-medium tracking-[0.22em] text-white">{t("pavilion.minting.nextBatch")}</span>
-                </div>
-              </div>
-            </div>
+      {/* 数字科技看板 */}
+      <section id="pavilion-digital" className="relative overflow-hidden border-b border-white/5 py-24 sm:py-32">
+        <SectionGoldenBlocks variant={2} />
+        <div className="container-wuyin relative z-10">
+          <div className="mb-16 text-center">
+            <h2 className="font-serif text-4xl font-bold text-white sm:text-5xl">功夫印数字科技</h2>
+            <p className="mt-4 text-wuyin-muted">链上实时数据看板，见证数字武道引擎动力</p>
           </div>
-
-          <div className="border-t border-white/10 bg-[#151515]">
-            <div className="flex flex-col gap-6 border-l-4 border-wuyin-seal py-6 pl-5 pr-5 sm:flex-row sm:items-center sm:gap-6 sm:py-8 sm:pl-6 sm:pr-8">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center bg-black ring-1 ring-white/15">
-                <IconShieldCheck className="h-6 w-6 text-white" />
-              </div>
-              <div className="min-w-0 flex-1">
-                <p className="font-serif text-lg font-semibold text-white sm:text-xl">{t("pavilion.minting.proofTitle")}</p>
-                <p className="mt-2 text-sm leading-relaxed text-white/90">{t("pavilion.minting.proofBody")}</p>
-              </div>
-              <div className="flex shrink-0 flex-col gap-2 border border-white/10 bg-black/70 px-4 py-3 sm:min-w-[220px]">
-                <p className="text-[9px] font-semibold tracking-[0.2em] text-white">{t("pavilion.minting.contractLabel")}</p>
-                <div className="flex items-center justify-between gap-3">
-                  <span className="font-mono text-sm text-white">0x7fC7...d581</span>
-                  <a
-                    href="#pavilion-minting"
-                    className="shrink-0 rounded p-1 text-wuyin-gold-bright transition hover:bg-white/10"
-                    aria-label={t("pavilion.minting.explorerAria")}
-                  >
-                    <IconExternalLink className="h-5 w-5" />
-                  </a>
-                </div>
-              </div>
-            </div>
+          <LiveBoard />
+          <div className="mt-16 grid gap-6 sm:grid-cols-2">
+             <div className="aspect-video rounded-xl border border-white/10 bg-neutral-950 flex items-center justify-center">
+               <p className="text-neutral-600 font-serif">NFT 资产浏览器预览</p>
+             </div>
+             <div className="aspect-video rounded-xl border border-white/10 bg-neutral-950 flex items-center justify-center">
+               <p className="text-neutral-600 font-serif">RWA 估值曲线图</p>
+             </div>
           </div>
-        </ScrollReveal>
+        </div>
+      </section>
+
+      {/* 标准认证验真 */}
+      <section id="pavilion-standard" className="relative overflow-hidden border-b border-white/5 bg-wuyin-surface py-24 sm:py-32">
+        <SectionGoldenBlocks variant={1} />
+        <div className="container-wuyin relative z-10">
+          <div className="mb-16 text-center">
+            <h2 className="font-serif text-4xl font-bold text-white sm:text-5xl">武印标准认证</h2>
+            <p className="mt-4 text-wuyin-muted">严谨的武道家、裁判及俱乐部认证体系</p>
+          </div>
+          <CertificateVerification />
+        </div>
+      </section>
+
+      {/* 资源中心与传媒 */}
+      <section id="pavilion-media" className="relative overflow-hidden py-24 sm:py-32">
+        <div className="container-wuyin relative z-10">
+          <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
+             <ScrollReveal variant="leftSoft" className="space-y-8">
+               <h2 className="font-serif text-4xl font-bold text-white sm:text-5xl">武印传媒与 IP 运营</h2>
+               <p className="text-lg leading-relaxed text-neutral-300">
+                 沉浸式内容生态，涵盖纪录片、播客及影视合作，同时提供全球资产授权管理。
+               </p>
+               <div className="flex gap-4">
+                 <button className="rounded-lg border border-white/10 bg-white/5 px-6 py-3 text-xs font-bold text-white hover:bg-white/10">下载品牌白皮书</button>
+                 <button className="rounded-lg border border-white/10 bg-white/5 px-6 py-3 text-xs font-bold text-white hover:bg-white/10">访问媒体库</button>
+               </div>
+             </ScrollReveal>
+             <ScrollReveal variant="rightSoft" className="grid grid-cols-2 gap-4">
+               {[1, 2, 3, 4].map(i => (
+                 <div key={i} className="aspect-square rounded-lg border border-white/5 bg-neutral-900 flex items-center justify-center group cursor-pointer hover:border-wuyin-gold-bright/30 transition-colors">
+                   <p className="text-[10px] font-bold text-neutral-700 group-hover:text-wuyin-gold-bright">IP CASE 0{i}</p>
+                 </div>
+               ))}
+             </ScrollReveal>
+          </div>
+        </div>
       </section>
     </div>
   );

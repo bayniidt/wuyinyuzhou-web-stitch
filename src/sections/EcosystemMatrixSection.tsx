@@ -6,7 +6,7 @@ import imgMatrixBg from "@/images/index6.png";
 import imgMatrixBgAlt from "@/images/index7.png";
 import { useLocale } from "@/i18n/LocaleProvider";
 import { useMemo, useRef, useState } from "react";
-import ArrowRight from '@/images/arrow-right.png'
+import ArrowRight from "@/images/arrow-right.png";
 
 const ROW_ARROW = "------->";
 
@@ -59,7 +59,7 @@ export default function EcosystemMatrixSection() {
   );
 
   return (
-    <section id="home-matrix" className="border-b border-white/5 bg-wuyin-surface/40">
+    <section id="ecosystem-matrix" className="border-b border-white/5 bg-wuyin-surface/40">
       <ScrollReveal className="container-wuyin pt-20 sm:pt-28">
         <SectionTitle
           eyebrow={t("home.ecosystem.eyebrow")}
@@ -103,7 +103,11 @@ export default function EcosystemMatrixSection() {
                   className="shrink-0 font-mono text-xs tracking-wider text-white/90 transition-colors duration-200 group-hover:text-wuyin-accent sm:text-sm"
                   aria-hidden
                 >
-                  <img src={ArrowRight} alt="" className="h-10" />
+                  <img
+                    src={ArrowRight}
+                    alt=""
+                    className="h-10"
+                  />
                 </p>
               </div>
             ))}

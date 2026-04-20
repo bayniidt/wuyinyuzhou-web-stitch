@@ -1,7 +1,7 @@
 import { catalogs } from "@/i18n/catalog";
 import { LOCALE_STORAGE_KEY, type Locale, type TranslateFn } from "@/i18n/types";
 import { lookupString } from "@/i18n/translate";
-import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import * as React from "react";
 
 function readStoredLocale(): Locale | null {
   try {
@@ -24,12 +24,12 @@ type LocaleContextValue = {
   t: TranslateFn;
 };
 
-const LocaleContext = createContext<LocaleContextValue | null>(null);
+const LocaleContext = React.createContext<LocaleContextValue | null>(null);
 
-export function LocaleProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>(() => readStoredLocale() ?? detectBrowserLocale());
+export function LocaleProvider({ children }: { children: React.ReactNode }) {
+  const [locale, setLocaleState] = React.useState<Locale>(() => readStoredLocale() ?? detectBrowserLocale());
 
-  const setLocale = useCallback((next: Locale) => {
+  const setLocale = React.useCallback((next: Locale) => {
     setLocaleState(next);
     try {
       localStorage.setItem(LOCALE_STORAGE_KEY, next);
@@ -38,7 +38,7 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  const value = useMemo(() => {
+  const value = React.useMemo(() => {
     const tree = catalogs[locale];
     const t: TranslateFn = (path: string) => {
       const s = lookupString(tree, path);
@@ -50,7 +50,7 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
     return { locale, setLocale, t };
   }, [locale, setLocale]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     document.documentElement.lang = locale === "zh" ? "zh-CN" : "en";
     const { t } = value;
     document.title = t("meta.title");
@@ -62,7 +62,7 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
 }
 
 export function useLocale(): LocaleContextValue {
-  const ctx = useContext(LocaleContext);
+  const ctx = React.useContext(LocaleContext);
   if (!ctx) throw new Error("useLocale must be used within LocaleProvider");
   return ctx;
 }

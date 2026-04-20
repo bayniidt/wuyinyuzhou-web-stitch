@@ -1,318 +1,41 @@
 import SectionGoldenBlocks from "@/components/decor/SectionGoldenBlocks";
 import ScrollReveal from "@/components/motion/ScrollReveal";
+import FighterRoster from "@/components/sight/FighterRoster";
+import VenueViewer from "@/components/sight/VenueViewer";
 import GhostButton from "@/components/ui/GhostButton";
 import GradientButton from "@/components/ui/GradientButton";
 import { useLocale } from "@/i18n/LocaleProvider";
-import imgTimelineRoad from "@/images/page3 (1).png";
-import imgRosterGhost from "@/images/page3 (2).png";
-import imgRosterIron from "@/images/page3 (3).png";
-import imgRosterNeon from "@/images/page3 (4).png";
-import imgRosterVoid from "@/images/page3 (5).png";
-import imgTimelineManifesto from "@/images/page3 (6).png";
 import imgTimelineHero from "@/images/page3 (7).png";
 import { scrollToSelector } from "@/lib/scroll";
-import { useEffect, useMemo } from "react";
+import { motion } from "framer-motion";
+import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-type TimelineModule = {
-  id: string;
-  kicker: string;
-  title: string;
-  body: string;
-  imageSrc: string;
-  imageAlt: string;
-  imageOnLeft: boolean;
-  bullets?: { step: string; title: string; text: string }[];
-  statLine?: string;
-};
-
-function IconLightning({ className = "h-3.5 w-3.5 shrink-0 text-wuyin-gold-bright" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
-      <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z" />
-    </svg>
-  );
-}
-
-function AccessTiersSection() {
-  const { t } = useLocale();
-  return (
-    <section id="timeline-access-tiers" className="relative overflow-hidden border-b border-white/5 bg-wuyin-bg py-16 sm:py-20 lg:py-24">
-      <SectionGoldenBlocks variant={0} />
-      <ScrollReveal variant="upSoft" className="relative z-10 container-wuyin wuyin-reveal-tech" visibleClassName="wuyin-reveal-tech-visible">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <h2 className="font-serif text-3xl font-semibold italic tracking-tight text-white sm:text-4xl lg:text-[2.5rem]">
-              {t("timeline.accessTiers.title")}
-            </h2>
-            <p className="mt-2 max-w-xl text-sm text-neutral-400 sm:text-base">{t("timeline.accessTiers.subtitle")}</p>
-          </div>
-          <p className="text-xs text-neutral-600 sm:text-right">{t("timeline.accessTiers.ethNote")}</p>
-        </div>
-
-        <div className="mt-12 grid gap-6 lg:grid-cols-3 lg:items-stretch">
-          <article className="group relative flex flex-col rounded-2xl border border-white/10 border-l-[3px] border-l-transparent bg-[#141414] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition duration-300 ease-[var(--ease-wuyin)] hover:border-l-wuyin-accent hover:-translate-y-1 hover:shadow-[0_0_48px_rgba(228,184,74,0.18),inset_0_1px_0_rgba(255,255,255,0.04)] sm:p-8">
-            <h3 className="font-serif text-2xl font-semibold italic text-white">{t("timeline.accessTiers.standard.name")}</h3>
-            <p className="mt-3 text-sm leading-relaxed text-neutral-400">{t("timeline.accessTiers.standard.desc")}</p>
-            <p className="mt-8 font-serif text-4xl font-bold tabular-nums text-white sm:text-5xl">
-              0.08
-              <span className="ml-1 align-top text-lg font-sans font-semibold text-neutral-500 sm:text-xl">ETH</span>
-            </p>
-            <ul className="mt-8 flex flex-col gap-3 text-xs font-semibold uppercase tracking-wide text-neutral-200 sm:text-sm">
-              <li className="flex items-center gap-2.5">
-                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-wuyin-accent" aria-hidden />
-                {t("timeline.accessTiers.standard.feat1")}
-              </li>
-              <li className="flex items-center gap-2.5">
-                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-wuyin-accent" aria-hidden />
-                {t("timeline.accessTiers.standard.feat2")}
-              </li>
-            </ul>
-            <div className="mt-auto pt-10">
-              <GhostButton type="button" className="w-full" onClick={() => window.alert(t("timeline.accessTiers.standard.alert"))}>
-                {t("timeline.accessTiers.standard.cta")}
-              </GhostButton>
-            </div>
-          </article>
-
-          <article className="group relative flex flex-col rounded-2xl border border-white/10 border-l-[3px] border-l-transparent bg-[#141414] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition duration-300 ease-[var(--ease-wuyin)] hover:border-l-wuyin-accent hover:-translate-y-1 hover:shadow-[0_0_56px_rgba(228,184,74,0.22),inset_0_1px_0_rgba(255,255,255,0.05)] sm:p-8 lg:py-10">
-            <span
-              className="absolute right-5 top-5 rounded-sm bg-wuyin-seal px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-neutral-950 sm:right-6 sm:top-6"
-              aria-label={t("timeline.accessTiers.vip.badgeAria")}
-            >
-              {t("timeline.accessTiers.vip.badge")}
-            </span>
-            <div>
-              <h3 className="font-serif text-2xl font-semibold italic text-white">{t("timeline.accessTiers.vip.name")}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-neutral-400">{t("timeline.accessTiers.vip.desc")}</p>
-              <div className="mt-8 flex flex-wrap items-baseline gap-x-1 gap-y-0">
-                <span className="bg-linear-to-r from-wuyin-accent to-wuyin-gold-bright bg-clip-text font-serif text-4xl font-bold tabular-nums text-transparent sm:text-5xl">
-                  0.25
-                </span>
-                <span className="font-sans text-lg font-semibold text-wuyin-gold-bright sm:text-xl">ETH</span>
-              </div>
-              <ul className="mt-8 flex flex-col gap-3 text-xs font-semibold uppercase tracking-wide text-neutral-200 sm:text-sm">
-                <li className="flex items-center gap-2.5">
-                  <IconLightning />
-                  {t("timeline.accessTiers.vip.feat1")}
-                </li>
-                <li className="flex items-center gap-2.5">
-                  <IconLightning />
-                  {t("timeline.accessTiers.vip.feat2")}
-                </li>
-                <li className="flex items-center gap-2.5">
-                  <IconLightning />
-                  {t("timeline.accessTiers.vip.feat3")}
-                </li>
-              </ul>
-            </div>
-            <div className="mt-auto pt-10">
-              <button
-                type="button"
-                className="inline-flex w-full items-center justify-center rounded-[1px] bg-linear-to-r from-wuyin-accent to-wuyin-accent-soft px-6 py-3 text-sm font-semibold tracking-wide text-neutral-950 shadow-wuyin-glow transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright active:scale-[0.98] sm:py-3.5 sm:text-base"
-                onClick={() => window.alert(t("timeline.accessTiers.vip.alert"))}
-              >
-                {t("timeline.accessTiers.vip.cta")}
-              </button>
-            </div>
-          </article>
-
-          <article className="group relative flex flex-col rounded-2xl border border-white/10 border-l-[3px] border-l-transparent bg-[#141414] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition duration-300 ease-[var(--ease-wuyin)] hover:border-l-wuyin-accent hover:-translate-y-1 hover:shadow-[0_0_48px_rgba(228,184,74,0.18),inset_0_1px_0_rgba(255,255,255,0.04)] sm:p-8">
-            <h3 className="font-serif text-2xl font-semibold italic text-white">{t("timeline.accessTiers.metaverse.name")}</h3>
-            <p className="mt-3 text-sm leading-relaxed text-neutral-400">{t("timeline.accessTiers.metaverse.desc")}</p>
-            <p className="mt-8 font-serif text-4xl font-bold tabular-nums text-white sm:text-5xl">
-              0.05
-              <span className="ml-1 align-top text-lg font-sans font-semibold text-neutral-500 sm:text-xl">ETH</span>
-            </p>
-            <ul className="mt-8 flex flex-col gap-3 text-xs font-semibold uppercase tracking-wide text-neutral-200 sm:text-sm">
-              <li className="flex items-center gap-2.5">
-                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-wuyin-gold-bright/90" aria-hidden />
-                {t("timeline.accessTiers.metaverse.feat1")}
-              </li>
-              <li className="flex items-center gap-2.5">
-                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-wuyin-gold-bright/90" aria-hidden />
-                {t("timeline.accessTiers.metaverse.feat2")}
-              </li>
-            </ul>
-            <div className="mt-auto pt-10">
-              <GhostButton type="button" className="w-full" onClick={() => window.alert(t("timeline.accessTiers.metaverse.alert"))}>
-                {t("timeline.accessTiers.metaverse.cta")}
-              </GhostButton>
-            </div>
-          </article>
-        </div>
-      </ScrollReveal>
-    </section>
-  );
-}
-
-function WarriorRosterSection() {
-  const { t } = useLocale();
-  const rosterCards = useMemo(
-    () => [
-      { name: t("timeline.roster.ghost.name"), role: t("timeline.roster.ghost.role"), imageSrc: imgRosterGhost },
-      { name: t("timeline.roster.iron.name"), role: t("timeline.roster.iron.role"), imageSrc: imgRosterIron },
-      { name: t("timeline.roster.neon.name"), role: t("timeline.roster.neon.role"), imageSrc: imgRosterNeon },
-      { name: t("timeline.roster.void.name"), role: t("timeline.roster.void.role"), imageSrc: imgRosterVoid },
-    ],
-    [t],
-  );
-
-  return (
-    <section id="timeline-roster" className="relative overflow-hidden border-b border-white/5 bg-wuyin-bg py-16 sm:py-20 lg:py-24">
-      <SectionGoldenBlocks variant={1} />
-      <ScrollReveal variant="leftSoft" delayMs={70} className="relative z-10 container-wuyin wuyin-reveal-tech" visibleClassName="wuyin-reveal-tech-visible">
-        <div className="flex items-center justify-between gap-4">
-          <h2 className="font-serif text-3xl font-semibold italic tracking-tight text-white sm:text-4xl">
-            {t("timeline.roster.title")}
-            <span className="ml-1 text-wuyin-seal">.</span>
-          </h2>
-          <button
-            type="button"
-            aria-label={t("timeline.roster.filterAria")}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-sm border border-white/20 text-neutral-300 transition hover:border-white/40 hover:text-white"
-            onClick={() => window.alert(t("timeline.roster.filterAlert"))}
-          >
-            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
-              <path d="M4 7h16M7 12h10M10 17h4" />
-            </svg>
-          </button>
-        </div>
-
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {rosterCards.map((card) => (
-            <article key={card.name} className="group relative overflow-hidden border border-white/10 bg-neutral-950 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
-              <img
-                src={card.imageSrc}
-                alt={card.name}
-                width={760}
-                height={1080}
-                className="aspect-[3/4] w-full object-cover grayscale transition duration-300 group-hover:scale-[1.02]"
-                loading="lazy"
-                decoding="async"
-              />
-              <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/90 via-black/35 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
-                <p className="text-[11px] uppercase tracking-[0.2em] text-wuyin-gold-bright">{card.role}</p>
-                <h3 className="mt-2 font-serif text-3xl font-bold uppercase leading-[0.9] text-white">{card.name}</h3>
-              </div>
-            </article>
-          ))}
-        </div>
-      </ScrollReveal>
-    </section>
-  );
-}
-
-function TimelineSplitModule({ m, surface, blockVariant = 0 }: { m: TimelineModule; surface: string; blockVariant?: number }) {
-  return (
-    <section id={m.id} className={`relative overflow-hidden border-b border-white/5 py-16 sm:py-20 lg:py-24 ${surface}`}>
-      <SectionGoldenBlocks variant={blockVariant} />
-      <div className="relative z-10 container-wuyin wuyin-reveal-tech">
-        <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
-          <ScrollReveal variant="leftSoft" className={m.imageOnLeft ? "lg:order-1" : "lg:order-2"} visibleClassName="wuyin-reveal-tech-visible">
-            <div className="overflow-hidden rounded-2xl border border-white/10 bg-neutral-950 shadow-wuyin-glow">
-              <div className="relative aspect-[5/4] w-full max-h-[min(54dvh,28rem)] sm:max-h-[min(58dvh,33rem)] lg:max-h-[min(64dvh,38rem)]">
-                <img
-                  src={m.imageSrc}
-                  alt={m.imageAlt}
-                  width={1200}
-                  height={1200}
-                  className="absolute inset-0 h-full w-full object-cover"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal variant="rightSoft" delayMs={85} className={m.imageOnLeft ? "lg:order-2" : "lg:order-1"}>
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-wuyin-gold-bright">{m.kicker}</p>
-              <h2 className="mt-3 font-serif text-3xl font-bold text-white sm:text-4xl">{m.title}</h2>
-              <p className="mt-4 text-sm leading-relaxed text-neutral-300 sm:text-base">{m.body}</p>
-
-              {m.statLine ? <p className="mt-6 text-sm font-medium text-neutral-200">{m.statLine}</p> : null}
-
-              {m.bullets ? (
-                <ol className="mt-8 space-y-6">
-                  {m.bullets.map((b) => (
-                    <li key={b.step + b.title} className="flex gap-4">
-                      <span className="mt-0.5 inline-flex min-w-[2.75rem] font-mono text-xs font-semibold tabular-nums text-wuyin-muted">
-                        {b.step}
-                      </span>
-                      <div>
-                        <p className="text-sm font-semibold text-white sm:text-base">{b.title}</p>
-                        <p className="mt-1 text-sm leading-relaxed text-neutral-400">{b.text}</p>
-                      </div>
-                    </li>
-                  ))}
-                </ol>
-              ) : null}
-            </div>
-          </ScrollReveal>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export default function TimelinePage() {
-  const location = useLocation();
-  const navigate = useNavigate();
   const { t } = useLocale();
-
-  const modules = useMemo((): TimelineModule[] => {
-    const roadStat = t("timeline.modules.road.statLine");
-    return [
-      {
-        id: "timeline-overview",
-        kicker: t("timeline.modules.road.kicker"),
-        title: t("timeline.modules.road.title"),
-        body: t("timeline.modules.road.body"),
-        imageSrc: imgTimelineRoad,
-        imageAlt: t("timeline.modules.road.imageAlt"),
-        imageOnLeft: true,
-        bullets: [
-          { step: "01", title: t("timeline.modules.road.bullets.b1.title"), text: t("timeline.modules.road.bullets.b1.text") },
-          { step: "02", title: t("timeline.modules.road.bullets.b2.title"), text: t("timeline.modules.road.bullets.b2.text") },
-          { step: "03", title: t("timeline.modules.road.bullets.b3.title"), text: t("timeline.modules.road.bullets.b3.text") },
-          { step: "04", title: t("timeline.modules.road.bullets.b4.title"), text: t("timeline.modules.road.bullets.b4.text") },
-        ],
-        statLine: roadStat || undefined,
-      },
-      {
-        id: "timeline-theater",
-        kicker: t("timeline.modules.manifesto.kicker"),
-        title: t("timeline.modules.manifesto.title"),
-        body: t("timeline.modules.manifesto.body"),
-        imageSrc: imgTimelineManifesto,
-        imageAlt: t("timeline.modules.manifesto.imageAlt"),
-        imageOnLeft: false,
-        statLine: t("timeline.modules.manifesto.statLine"),
-      },
-    ];
-  }, [t]);
-
-  const firstModule = modules[0]!;
-  const secondModule = modules[1]!;
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    const hash = location.hash;
-    if (hash) {
-      const timer = window.setTimeout(() => scrollToSelector(hash), 0);
-      return () => window.clearTimeout(timer);
+    if (location.hash) {
+      const id = location.hash.replace("#", "");
+      setTimeout(() => scrollToSelector(`#${id}`), 100);
+    } else {
+      window.scrollTo(0, 0);
     }
-  }, [location.pathname, location.hash]);
+  }, [location.hash]);
+
+
 
   return (
-    <>
-      <section id="timeline-hero" className="relative overflow-hidden border-b border-white/5">
+    <div className="bg-black">
+      {/* 沉浸式首屏 */}
+      <section className="relative flex min-h-[60vh] items-center justify-center overflow-hidden border-b border-white/5 bg-[#080706]">
         <div
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(228,184,74,0.18),transparent_55%),linear-gradient(180deg,#080706_0%,#0f0d0b_45%,#080706_100%)]"
           aria-hidden
         />
-        <SectionGoldenBlocks density="sparse" intensity="subtle" variant={2} />
+        <SectionGoldenBlocks density="sparse" intensity="subtle" variant={1} />
         <img
           src={imgTimelineHero}
           alt=""
@@ -320,34 +43,148 @@ export default function TimelinePage() {
           decoding="async"
           aria-hidden
         />
-        <ScrollReveal
-          variant="upGlow"
-          className="container-wuyin relative z-10 py-20 sm:py-24 lg:py-28 wuyin-reveal-tech"
-          visibleClassName="wuyin-reveal-tech-visible"
-          staggerChildren
-          staggerStepMs={90}
-        >
-          <p className="text-xs font-semibold uppercase tracking-[0.4em] text-wuyin-muted sm:text-sm">{t("timeline.heroKicker")}</p>
-          <h1 className="mt-5 max-w-4xl font-serif text-4xl font-black tracking-tight text-white sm:text-5xl md:text-6xl">
-            <span className="text-white">{t("timeline.heroTitle")}</span>
-            <span className="bg-linear-to-r from-wuyin-accent via-wuyin-seal to-wuyin-gold-bright bg-clip-text text-transparent">{t("timeline.heroTitleAccent")}</span>
-          </h1>
-          <p className="mt-5 max-w-2xl text-sm leading-relaxed text-neutral-300 sm:text-base">{t("timeline.heroLead")}</p>
-          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
-            <GradientButton type="button" onClick={() => scrollToSelector("#timeline-overview")}>
-              {t("timeline.viewRoadmap")}
-            </GradientButton>
-            <GhostButton type="button" onClick={() => navigate("/")}>
-              {t("timeline.backHome")}
-            </GhostButton>
-          </div>
-        </ScrollReveal>
+        <div className="container-wuyin relative z-10 py-20 text-center">
+          <ScrollReveal variant="upGlow" className="wuyin-reveal-tech" visibleClassName="wuyin-reveal-tech-visible" staggerChildren staggerStepMs={100}>
+            <p className="text-xs font-bold uppercase tracking-[0.5em] text-wuyin-gold-bright">{t("timeline.heroKicker")}</p>
+            <h1 className="mt-6 font-serif text-5xl font-black text-white sm:text-7xl">{t("timeline.heroTitle")}</h1>
+            <p className="mx-auto mt-6 max-w-2xl text-lg text-neutral-400">{t("timeline.heroLead")}</p>
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-center">
+              <GradientButton type="button" onClick={() => scrollToSelector("#timeline-overview")}>
+                {t("timeline.viewRoadmap")}
+              </GradientButton>
+              <GhostButton type="button" onClick={() => navigate("/")}>
+                {t("timeline.backHome")}
+              </GhostButton>
+            </div>
+          </ScrollReveal>
+        </div>
       </section>
 
-      <AccessTiersSection />
-      <TimelineSplitModule m={firstModule} surface="bg-wuyin-bg" blockVariant={2} />
-      <WarriorRosterSection />
-      <TimelineSplitModule m={secondModule} surface="bg-wuyin-surface" blockVariant={0} />
-    </>
+      {/* 购票入口与场馆预览 */}
+      <section id="timeline-overview" className="relative overflow-hidden border-b border-white/5 bg-wuyin-surface py-20 sm:py-32">
+        <SectionGoldenBlocks variant={0} />
+        <div className="container-wuyin relative z-10">
+          <div className="mb-16 grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
+            <ScrollReveal variant="leftSoft">
+              <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-wuyin-gold-bright">2026 杭州首秀</p>
+              <h2 className="mt-4 font-serif text-4xl font-bold text-white sm:text-5xl">场馆视角预览</h2>
+            </ScrollReveal>
+            <ScrollReveal variant="rightSoft" className="flex gap-4">
+               <div className="rounded-lg border border-white/10 bg-black/40 px-6 py-4 text-center">
+                 <p className="text-[10px] text-neutral-500 uppercase tracking-widest">时间</p>
+                 <p className="mt-1 font-serif text-white">2026.05.20</p>
+               </div>
+               <div className="rounded-lg border border-white/10 bg-black/40 px-6 py-4 text-center">
+                 <p className="text-[10px] text-neutral-500 uppercase tracking-widest">地点</p>
+                 <p className="mt-1 font-serif text-white">杭州 · 小莲花</p>
+               </div>
+            </ScrollReveal>
+          </div>
+          
+          <VenueViewer />
+          
+          <div className="mt-20 grid gap-6 sm:grid-cols-3">
+            {[
+              { type: "普通票", price: "¥ 280 起", desc: "标准观赛席位，感受热烈氛围" },
+              { type: "VIP 票", price: "¥ 1,280", desc: "尊享内场前排，含专属周边礼包", featured: true },
+              { type: "元宇宙席位", price: "¥ 99", desc: "全球同步直播，360° 沉浸视角" },
+            ].map((tier) => (
+              <motion.div
+                key={tier.type}
+                whileHover={{ y: -5 }}
+                className={`flex flex-col rounded-2xl border p-8 ${
+                  tier.featured 
+                    ? 'border-wuyin-gold-bright/40 bg-wuyin-gold-bright/5 shadow-wuyin-glow' 
+                    : 'border-white/10 bg-black/40'
+                }`}
+              >
+                <h3 className="font-serif text-xl font-bold text-white">{tier.type}</h3>
+                <p className="mt-2 text-sm text-neutral-400 leading-relaxed">{tier.desc}</p>
+                <div className="mt-8">
+                  <p className="font-serif text-3xl font-bold text-wuyin-gold-bright">{tier.price}</p>
+                </div>
+                <button className={`mt-8 w-full rounded-lg py-3 text-xs font-bold tracking-widest uppercase transition-all ${
+                  tier.featured 
+                    ? 'bg-wuyin-gold-bright text-black hover:brightness-110' 
+                    : 'border border-white/20 text-white hover:bg-white/5'
+                }`}>
+                  立即订票
+                </button>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 仪式感剧场 */}
+      <section id="timeline-theater" className="relative overflow-hidden border-b border-white/5 py-24 sm:py-32">
+        <SectionGoldenBlocks variant={2} />
+        <div className="container-wuyin relative z-10">
+          <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
+            <ScrollReveal variant="leftSoft" className="space-y-8">
+              <p className="text-xs font-bold uppercase tracking-[0.4em] text-wuyin-gold-bright">{t("timeline.modules.manifesto.kicker")}</p>
+              <h2 className="font-serif text-4xl font-bold text-white sm:text-5xl">{t("timeline.modules.manifesto.title")}</h2>
+              <p className="text-lg leading-relaxed text-neutral-300">{t("timeline.modules.manifesto.body")}</p>
+              <div className="space-y-4">
+                {['天罡三十六阶', '盟誓环节', '封印加冕'].map((item, i) => (
+                  <div key={item} className="flex items-center gap-4">
+                    <span className="font-serif text-wuyin-gold-bright">0{i+1}</span>
+                    <span className="text-white font-medium">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </ScrollReveal>
+            <ScrollReveal variant="rightSoft" className="relative aspect-video overflow-hidden rounded-2xl border border-white/10 bg-neutral-900 shadow-2xl">
+               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(228,184,74,0.1),transparent_70%)]" />
+               <div className="absolute inset-0 flex items-center justify-center">
+                 <button className="group flex h-20 w-20 items-center justify-center rounded-full border border-wuyin-gold-bright/30 bg-black/40 backdrop-blur-sm transition-all hover:scale-110 hover:border-wuyin-gold-bright/60">
+                   <svg viewBox="0 0 24 24" className="h-8 w-8 ml-1 text-wuyin-gold-bright" fill="currentColor">
+                     <path d="M8 5v14l11-7z" />
+                   </svg>
+                 </button>
+               </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* 武者阵容 */}
+      <section id="timeline-roster" className="relative overflow-hidden border-b border-white/5 bg-wuyin-surface py-24 sm:py-32">
+        <SectionGoldenBlocks variant={1} />
+        <div className="container-wuyin relative z-10">
+          <div className="mb-16 text-center">
+            <h2 className="font-serif text-4xl font-bold text-white sm:text-5xl">武者阵容</h2>
+            <p className="mt-4 text-wuyin-muted">汇聚全球顶尖武道家，见证非凡战绩</p>
+          </div>
+          <FighterRoster />
+        </div>
+      </section>
+
+      {/* 往期回顾 */}
+      <section id="timeline-history" className="relative overflow-hidden py-24 sm:py-32">
+        <div className="container-wuyin relative z-10">
+          <div className="mb-16 flex items-end justify-between">
+            <h2 className="font-serif text-4xl font-bold text-white sm:text-5xl">往期回顾</h2>
+            <button className="text-xs font-bold uppercase tracking-[0.2em] text-wuyin-gold-bright hover:underline">查看全部集锦</button>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[1, 2, 3, 4].map((i) => (
+              <ScrollReveal key={i} delayMs={i * 80} className="group relative aspect-video overflow-hidden rounded-xl border border-white/10 bg-neutral-900">
+                <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent opacity-60 z-10" />
+                <div className="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <svg viewBox="0 0 24 24" className="h-10 w-10 text-white" fill="currentColor">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+                <div className="absolute bottom-4 left-4 z-20">
+                  <p className="text-[10px] font-bold text-wuyin-gold-bright">2025 赛季</p>
+                  <p className="text-xs text-white font-medium">杭州预选赛高光</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

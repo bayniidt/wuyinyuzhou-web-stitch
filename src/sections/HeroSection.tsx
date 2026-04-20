@@ -1,10 +1,12 @@
 import SectionGoldenBlocks from "@/components/decor/SectionGoldenBlocks";
+import Countdown from "@/components/home/Countdown";
 import GhostButton from "@/components/ui/GhostButton";
 import GradientButton from "@/components/ui/GradientButton";
 import { useLocale } from "@/i18n/LocaleProvider";
+import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 import heroVideo1 from "@/videos/index1.mp4";
 import heroVideo2 from "@/videos/index2.mp4";
-import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
+import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 const HERO_VIDEO_SOURCES = [heroVideo1, heroVideo2] as const;
@@ -62,6 +64,29 @@ export default function HeroSection() {
   const { t } = useLocale();
   const [heroClip, setHeroClip] = useState<0 | 1>(0);
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.21, 0.45, 0.32, 0.9] as any,
+      },
+    },
+  };
+
   return (
     <section
       id="home-hero"
@@ -92,27 +117,34 @@ export default function HeroSection() {
         }}
         aria-hidden
       />
-      <div
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
         className={[
           "container-wuyin relative z-10 flex flex-col items-center py-28 text-center sm:py-32",
           reducedMotion ? "" : "pb-16 sm:pb-20",
-          reducedMotion ? "" : "wuyin-cinematic-enter",
         ].join(" ")}
       >
-        <p className="wuyin-hero-entrance text-xs font-semibold uppercase tracking-[0.45em] text-wuyin-muted sm:text-sm">
+        <motion.p variants={itemVariants} className="text-xs font-semibold uppercase tracking-[0.45em] text-wuyin-muted sm:text-sm">
           {t("home.hero.kicker")}
-        </p>
-        <h1 className="wuyin-hero-entrance wuyin-hero-entrance-delay-1 mt-6 font-serif text-5xl font-black tracking-tight text-white sm:text-6xl md:text-7xl">
+        </motion.p>
+        <motion.h1 variants={itemVariants} className="mt-6 font-serif text-5xl font-black tracking-tight text-white sm:text-6xl md:text-7xl">
           {t("home.hero.title")}
-        </h1>
-        <p className="wuyin-hero-entrance wuyin-hero-entrance-delay-2 mt-4 font-serif text-lg text-neutral-300 sm:text-xl md:text-2xl">
+        </motion.h1>
+        <motion.p variants={itemVariants} className="mt-4 font-serif text-lg text-neutral-300 sm:text-xl md:text-2xl">
           {t("home.hero.subtitle")}
-        </p>
-        <div className="wuyin-hero-entrance wuyin-hero-entrance-delay-3 mt-10 flex flex-col items-stretch gap-4 sm:mt-12 sm:flex-row sm:items-center sm:justify-center">
+        </motion.p>
+
+        <motion.div variants={itemVariants} className="mt-10">
+          <Countdown targetDate="2026-05-20T00:00:00" />
+        </motion.div>
+
+        <motion.div variants={itemVariants} className="mt-10 flex flex-col items-stretch gap-4 sm:mt-12 sm:flex-row sm:items-center sm:justify-center">
           <GradientButton className="w-full min-w-[220px] sm:w-auto">{t("home.hero.ctaCompetition")}</GradientButton>
           <GhostButton className="w-full min-w-[220px] sm:w-auto">{t("home.hero.ctaPartner")}</GhostButton>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
       {!reducedMotion ? (
         <div
           className="pointer-events-auto absolute inset-x-0 bottom-0 z-20 flex justify-center px-4 pb-6 sm:pb-8"

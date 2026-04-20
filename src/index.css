@@ -178,6 +178,19 @@
   }
 }
 
+@keyframes wuyin-infinite-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility animate-infinite-scroll {
+  animation: wuyin-infinite-scroll 25s linear infinite;
+}
+
 @utility wuyin-animate-gradient-drift {
   animation: wuyin-gradient-drift 18s var(--ease-wuyin) infinite;
 }

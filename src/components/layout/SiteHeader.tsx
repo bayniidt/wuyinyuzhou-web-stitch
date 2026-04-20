@@ -93,6 +93,9 @@ export default function SiteHeader() {
   const [drawerMounted, setDrawerMounted] = useState(false);
   const [drawerEntered, setDrawerEntered] = useState(false);
   const [openGroupId, setOpenGroupId] = useState<string | null>(null);
+  const [isVisible, setIsVisible] = useState(true);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const lastScrollY = useRef(0);
   const closeTimerRef = useRef<number | null>(null);
 
   const mobilePanelId = useId();
@@ -109,6 +112,29 @@ export default function SiteHeader() {
       closeTimerRef.current = null;
     }
   }, []);
+
+  const handleScroll = useCallback(() => {
+    const currentScrollY = window.scrollY;
+    
+    // 背景磨砂切换
+    setIsScrolled(currentScrollY > 20);
+
+    // 动态显隐逻辑
+    if (currentScrollY < 10) {
+      setIsVisible(true);
+    } else if (currentScrollY > lastScrollY.current && currentScrollY > 80) {
+      setIsVisible(false);
+    } else {
+      setIsVisible(true);
+    }
+    
+    lastScrollY.current = currentScrollY;
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
 
   const onNavigate = useCallback(
     (href: string) => {
@@ -174,7 +200,15 @@ export default function SiteHeader() {
   };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-wuyin-bg/85 backdrop-blur-md">
+    <header 
+      className={[
+        "fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-[var(--ease-wuyin)] border-b",
+        isVisible ? "translate-y-0" : "-translate-y-full",
+        isScrolled 
+          ? "border-white/10 bg-black/60 backdrop-blur-xl py-0" 
+          : "border-transparent bg-transparent py-2"
+      ].join(" ")}
+    >
       <div className="container-wuyin flex h-16 items-center justify-between gap-4 lg:h-[4.25rem]">
         <Logo onClick={closeAll} />
 
@@ -199,7 +233,7 @@ export default function SiteHeader() {
                         "flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright",
                         isActive
                           ? "text-white [box-shadow:inset_0_-2px_0_0_var(--color-wuyin-accent)]"
-                          : "text-neutral-200 hover:text-white",
+                          : "text-neutral-300 hover:text-white hover:bg-white/5",
                       ].join(" ")
                     }
                     aria-haspopup="true"
@@ -218,7 +252,7 @@ export default function SiteHeader() {
                 ) : (
                   <button
                     type="button"
-                    className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-neutral-200 transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright"
+                    className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-neutral-300 transition hover:text-white hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright"
                     aria-haspopup="true"
                   >
                     {group.label}
@@ -235,7 +269,7 @@ export default function SiteHeader() {
                 <div
                   role="menu"
                   className={[
-                    "absolute left-1/2 top-full z-50 mt-1 w-72 -translate-x-1/2 rounded-xl border border-white/10 bg-wuyin-elevated/95 p-2 shadow-wuyin-glow backdrop-blur-md transition-all duration-200 ease-[var(--ease-wuyin)]",
+                    "absolute left-1/2 top-full z-50 mt-1 w-72 -translate-x-1/2 rounded-xl border border-white/10 bg-wuyin-elevated/95 p-2 shadow-wuyin-glow backdrop-blur-xl transition-all duration-200 ease-[var(--ease-wuyin)]",
                     isOpen
                       ? "visible translate-y-0 opacity-100"
                       : "invisible translate-y-1 opacity-0",
