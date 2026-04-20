@@ -21,6 +21,7 @@ export const navGroupOrder = [
     items: [
       { key: "matrix", href: "#ecosystem-matrix" },
       { key: "domains", href: "#domains" },
+      { key: "news", href: "#home-news-teaser" },
       { key: "join", href: "#final-cta" },
     ],
   },

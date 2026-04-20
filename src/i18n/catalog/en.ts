@@ -12,6 +12,7 @@ const en = {
         items: {
           matrix: { label: "Ecosystem Matrix", description: "Three tracks and three impact engines" },
           domains: { label: "Core Value", description: "IP · Format · Ritual" },
+          news: { label: "Latest News", description: "Official updates and event highlights" },
           join: { label: "Join Ecosystem", description: "Book the event and partner entry" },
         },
       },

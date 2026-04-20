@@ -6,7 +6,7 @@ import { useId, useState } from "react";
 import { Link } from "react-router-dom";
 
 /** 走一圈（半幅宽度）的时长，数值越小越快 */
-const MARQUEE_DURATION_S = 28;
+const MARQUEE_DURATION_S = 50;
 
 type HomeNewsCarouselProps = {
   items: NewsItem[];

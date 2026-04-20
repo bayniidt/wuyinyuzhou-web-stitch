@@ -11,6 +11,7 @@ const zh = {
         items: {
           matrix: { label: "生态矩阵", description: "三大赛道与三大影响力引擎" },
           domains: { label: "核心价值", description: "IP · 赛制 · 仪式" },
+          news: { label: "最新动态", description: "官方资讯与赛事节点速览" },
           join: { label: "加入生态", description: "预约赛事与合作伙伴入口" },
         },
       },
@@ -42,7 +43,7 @@ const zh = {
         label: "武印盟",
         items: {
           entry: { label: "合作入口", description: "B 端通道首页" },
-          modules: { label: "子模块设计", description: "合作类型与策略矩阵" },
+          modules: { label: "战略领域", description: "合作类型与策略矩阵" },
           imperative: { label: "生态要义", description: "合作价值主张" },
           form: { label: "合作申请", description: "提交需求并自动分流" },
         },
