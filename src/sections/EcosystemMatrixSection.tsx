@@ -1,14 +1,12 @@
-import ScrollReveal from "@/components/motion/ScrollReveal";
-import SectionTitle from "@/components/ui/SectionTitle";
-import logoGongfu from "@/images/index8.png";
-import logoMeng from "@/images/index9.png";
-import imgMatrixBg from "@/images/index6.png";
-import imgMatrixBgAlt from "@/images/index7.png";
-import { useLocale } from "@/i18n/LocaleProvider";
-import { useMemo, useRef, useState } from "react";
-import ArrowRight from "@/images/arrow-right.png";
-
-const ROW_ARROW = "------->";
+import ScrollReveal from "@/components/motion/ScrollReveal"
+import SectionTitle from "@/components/ui/SectionTitle"
+import { useLocale } from "@/i18n/LocaleProvider"
+import ArrowRight from "@/images/arrow-right.png"
+import imgMatrixBg from "@/images/index6.png"
+import imgMatrixBgAlt from "@/images/index7.png"
+import logoGongfu from "@/images/index8.png"
+import logoMeng from "@/images/index9.png"
+import { useMemo, useRef, useState } from "react"
 
 const tileKeys = ["arena", "artifacts", "spirits", "academy", "spells", "treasury"] as const;
 

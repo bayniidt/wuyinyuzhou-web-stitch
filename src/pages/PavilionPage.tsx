@@ -2,10 +2,12 @@ import SectionGoldenBlocks from "@/components/decor/SectionGoldenBlocks"
 import ScrollReveal from "@/components/motion/ScrollReveal"
 import LiveBoard from "@/components/pavilion/LiveBoard"
 import SynergyMap from "@/components/pavilion/SynergyMap"
+import { useLocale } from "@/i18n/LocaleProvider"
 import { AnimatePresence, motion } from "framer-motion"
 import { useState } from "react"
 
 function CertificateVerification() {
+  const { t } = useLocale();
   const [isVerifying, setIsVerifying] = useState(false);
   const [showCert, setShowShowCert] = useState(false);
 
@@ -20,8 +22,8 @@ function CertificateVerification() {
   return (
     <div className="rounded-2xl border border-white/10 bg-[#0a0a0a] p-8 sm:p-12">
       <div className="max-w-md mx-auto text-center">
-        <h3 className="font-serif text-2xl font-bold text-white">证书验真系统</h3>
-        <p className="mt-2 text-sm text-neutral-500">输入武者/裁判/俱乐部认证编号</p>
+        <h3 className="font-serif text-2xl font-bold text-white">{t("pavilion.standard.certSystem")}</h3>
+        <p className="mt-2 text-sm text-neutral-500">{t("pavilion.standard.certInputHint")}</p>
         <div className="mt-8 flex flex-col gap-4 sm:flex-row">
           <input 
             type="text" 
@@ -33,7 +35,7 @@ function CertificateVerification() {
             disabled={isVerifying}
             className="rounded-lg bg-wuyin-gold-bright px-8 py-3 text-sm font-bold text-black transition hover:brightness-110 disabled:opacity-50"
           >
-            {isVerifying ? '核验中...' : '立即验真'}
+            {isVerifying ? t("pavilion.standard.verifying") : t("pavilion.standard.verifyCta")}
           </button>
         </div>
       </div>
@@ -52,14 +54,14 @@ function CertificateVerification() {
                 </svg>
               </div>
               <p className="font-serif text-[10px] tracking-[0.4em] text-wuyin-gold-bright uppercase">Official Certification</p>
-              <h4 className="mt-6 font-serif text-4xl font-bold text-white">武印认证证书</h4>
+              <h4 className="mt-6 font-serif text-4xl font-bold text-white">{t("pavilion.standard.certTitle")}</h4>
               <div className="mt-10 grid grid-cols-2 gap-8 text-left">
                 <div>
-                  <p className="text-[10px] text-neutral-500 uppercase tracking-widest">持有者</p>
+                  <p className="text-[10px] text-neutral-500 uppercase tracking-widest">{t("pavilion.standard.certHolder")}</p>
                   <p className="mt-1 font-serif text-xl text-white">叶云 (Ye Yun)</p>
                 </div>
                 <div>
-                  <p className="text-[10px] text-neutral-500 uppercase tracking-widest">认证类型</p>
+                  <p className="text-[10px] text-neutral-500 uppercase tracking-widest">{t("pavilion.standard.certType")}</p>
                   <p className="mt-1 font-serif text-xl text-white">壹级武道家</p>
                 </div>
               </div>
@@ -71,7 +73,7 @@ function CertificateVerification() {
                   onClick={() => setShowShowCert(false)}
                   className="text-xs text-neutral-500 hover:text-white"
                 >
-                  关闭预览
+                  {t("pavilion.standard.closePreview")}
                 </button>
               </div>
             </div>
@@ -83,6 +85,8 @@ function CertificateVerification() {
 }
 
 export default function PavilionPage() {
+  const { t } = useLocale();
+
   return (
     <div className="bg-black">
       {/* 沉浸式首屏 */}
@@ -90,9 +94,9 @@ export default function PavilionPage() {
         <SectionGoldenBlocks density="sparse" intensity="subtle" variant={1} />
         <div className="container-wuyin relative z-10 py-20 text-center">
           <ScrollReveal variant="upGlow" className="wuyin-reveal-tech" visibleClassName="wuyin-reveal-tech-visible">
-            <p className="text-xs font-bold uppercase tracking-[0.5em] text-wuyin-gold-bright">生态体系</p>
-            <h1 className="mt-6 font-serif text-5xl font-black text-white sm:text-7xl">武印阁</h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-neutral-400">展示六大实体公司及生态闭环，建立信任感</p>
+            <p className="text-xs font-bold uppercase tracking-[0.5em] text-wuyin-gold-bright">{t("pavilion.hero.kicker")}</p>
+            <h1 className="mt-6 font-serif text-5xl font-black text-white sm:text-7xl">{t("pavilion.hero.title")}</h1>
+            <p className="mx-auto mt-6 max-w-2xl text-lg text-neutral-400">{t("pavilion.hero.lead")}</p>
           </ScrollReveal>
         </div>
       </section>
@@ -103,18 +107,18 @@ export default function PavilionPage() {
         <div className="container-wuyin relative z-10">
           <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
             <ScrollReveal variant="leftSoft" className="space-y-8">
-              <h2 className="font-serif text-4xl font-bold text-white sm:text-5xl">六位一体生态导图</h2>
+              <h2 className="font-serif text-4xl font-bold text-white sm:text-5xl">{t("pavilion.synergy.title")}</h2>
               <p className="text-lg leading-relaxed text-neutral-300">
-                武印阁作为品牌中枢，联动武印盟、功夫印、武印标准、武印传媒及印承天下文旅，形成完整的武道产业生态闭环。
+                {t("pavilion.synergy.body")}
               </p>
               <div className="grid grid-cols-2 gap-4">
                 <div className="rounded-lg border border-white/5 bg-black/40 p-5">
                    <p className="text-xs font-bold text-wuyin-gold-bright">100%</p>
-                   <p className="text-[10px] text-neutral-500 uppercase mt-1">业务联动</p>
+                   <p className="text-[10px] text-neutral-500 uppercase mt-1">{t("pavilion.synergy.stats.linkage")}</p>
                 </div>
                 <div className="rounded-lg border border-white/5 bg-black/40 p-5">
                    <p className="text-xs font-bold text-wuyin-gold-bright">24/7</p>
-                   <p className="text-[10px] text-neutral-500 uppercase mt-1">链上守护</p>
+                   <p className="text-[10px] text-neutral-500 uppercase mt-1">{t("pavilion.synergy.stats.protection")}</p>
                 </div>
               </div>
             </ScrollReveal>
@@ -130,16 +134,16 @@ export default function PavilionPage() {
         <SectionGoldenBlocks variant={2} />
         <div className="container-wuyin relative z-10">
           <div className="mb-16 text-center">
-            <h2 className="font-serif text-4xl font-bold text-white sm:text-5xl">功夫印数字科技</h2>
-            <p className="mt-4 text-wuyin-muted">链上实时数据看板，见证数字武道引擎动力</p>
+            <h2 className="font-serif text-4xl font-bold text-white sm:text-5xl">{t("pavilion.digital.title")}</h2>
+            <p className="mt-4 text-wuyin-muted">{t("pavilion.digital.lead")}</p>
           </div>
           <LiveBoard />
           <div className="mt-16 grid gap-6 sm:grid-cols-2">
              <div className="aspect-video rounded-xl border border-white/10 bg-neutral-950 flex items-center justify-center">
-               <p className="text-neutral-600 font-serif">NFT 资产浏览器预览</p>
+               <p className="text-neutral-600 font-serif">{t("pavilion.digital.browserPreview")}</p>
              </div>
              <div className="aspect-video rounded-xl border border-white/10 bg-neutral-950 flex items-center justify-center">
-               <p className="text-neutral-600 font-serif">RWA 估值曲线图</p>
+               <p className="text-neutral-600 font-serif">{t("pavilion.digital.valuationCurve")}</p>
              </div>
           </div>
         </div>
@@ -150,8 +154,8 @@ export default function PavilionPage() {
         <SectionGoldenBlocks variant={1} />
         <div className="container-wuyin relative z-10">
           <div className="mb-16 text-center">
-            <h2 className="font-serif text-4xl font-bold text-white sm:text-5xl">武印标准认证</h2>
-            <p className="mt-4 text-wuyin-muted">严谨的武道家、裁判及俱乐部认证体系</p>
+            <h2 className="font-serif text-4xl font-bold text-white sm:text-5xl">{t("pavilion.standard.title")}</h2>
+            <p className="mt-4 text-wuyin-muted">{t("pavilion.standard.lead")}</p>
           </div>
           <CertificateVerification />
         </div>
@@ -162,13 +166,13 @@ export default function PavilionPage() {
         <div className="container-wuyin relative z-10">
           <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
              <ScrollReveal variant="leftSoft" className="space-y-8">
-               <h2 className="font-serif text-4xl font-bold text-white sm:text-5xl">武印传媒与 IP 运营</h2>
+               <h2 className="font-serif text-4xl font-bold text-white sm:text-5xl">{t("pavilion.media.title")}</h2>
                <p className="text-lg leading-relaxed text-neutral-300">
-                 沉浸式内容生态，涵盖纪录片、播客及影视合作，同时提供全球资产授权管理。
+                 {t("pavilion.media.lead")}
                </p>
                <div className="flex gap-4">
-                 <button className="rounded-lg border border-white/10 bg-white/5 px-6 py-3 text-xs font-bold text-white hover:bg-white/10">下载品牌白皮书</button>
-                 <button className="rounded-lg border border-white/10 bg-white/5 px-6 py-3 text-xs font-bold text-white hover:bg-white/10">访问媒体库</button>
+                 <button className="rounded-lg border border-white/10 bg-white/5 px-6 py-3 text-xs font-bold text-white hover:bg-white/10">{t("pavilion.media.downloadWhitepaper")}</button>
+                 <button className="rounded-lg border border-white/10 bg-white/5 px-6 py-3 text-xs font-bold text-white hover:bg-white/10">{t("pavilion.media.visitMediaLibrary")}</button>
                </div>
              </ScrollReveal>
              <ScrollReveal variant="rightSoft" className="grid grid-cols-2 gap-4">

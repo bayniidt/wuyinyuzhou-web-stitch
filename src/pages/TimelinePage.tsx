@@ -66,17 +66,17 @@ export default function TimelinePage() {
         <div className="container-wuyin relative z-10">
           <div className="mb-16 grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
             <ScrollReveal variant="leftSoft">
-              <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-wuyin-gold-bright">2026 杭州首秀</p>
-              <h2 className="mt-4 font-serif text-4xl font-bold text-white sm:text-5xl">场馆视角预览</h2>
+              <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-wuyin-gold-bright">{t("timeline.venue.kicker")}</p>
+              <h2 className="mt-4 font-serif text-4xl font-bold text-white sm:text-5xl">{t("timeline.venue.title")}</h2>
             </ScrollReveal>
             <ScrollReveal variant="rightSoft" className="flex gap-4">
                <div className="rounded-lg border border-white/10 bg-black/40 px-6 py-4 text-center">
-                 <p className="text-[10px] text-neutral-500 uppercase tracking-widest">时间</p>
-                 <p className="mt-1 font-serif text-white">2026.05.20</p>
+                 <p className="text-[10px] text-neutral-500 uppercase tracking-widest">{t("timeline.venue.timeLabel")}</p>
+                 <p className="mt-1 font-serif text-white">{t("timeline.venue.timeValue")}</p>
                </div>
                <div className="rounded-lg border border-white/10 bg-black/40 px-6 py-4 text-center">
-                 <p className="text-[10px] text-neutral-500 uppercase tracking-widest">地点</p>
-                 <p className="mt-1 font-serif text-white">杭州 · 小莲花</p>
+                 <p className="text-[10px] text-neutral-500 uppercase tracking-widest">{t("timeline.venue.locationLabel")}</p>
+                 <p className="mt-1 font-serif text-white">{t("timeline.venue.locationValue")}</p>
                </div>
             </ScrollReveal>
           </div>
@@ -85,9 +85,22 @@ export default function TimelinePage() {
           
           <div className="mt-20 grid gap-6 sm:grid-cols-3">
             {[
-              { type: "普通票", price: "¥ 280 起", desc: "标准观赛席位，感受热烈氛围" },
-              { type: "VIP 票", price: "¥ 1,280", desc: "尊享内场前排，含专属周边礼包", featured: true },
-              { type: "元宇宙席位", price: "¥ 99", desc: "全球同步直播，360° 沉浸视角" },
+              { 
+                type: t("timeline.accessTiers.standard.name"), 
+                price: t("timeline.accessTiers.standard.price"), 
+                desc: t("timeline.accessTiers.standard.desc") 
+              },
+              { 
+                type: t("timeline.accessTiers.vip.name"), 
+                price: t("timeline.accessTiers.vip.price"), 
+                desc: t("timeline.accessTiers.vip.desc"), 
+                featured: true 
+              },
+              { 
+                type: t("timeline.accessTiers.metaverse.name"), 
+                price: t("timeline.accessTiers.metaverse.price"), 
+                desc: t("timeline.accessTiers.metaverse.desc") 
+              },
             ].map((tier) => (
               <motion.div
                 key={tier.type}

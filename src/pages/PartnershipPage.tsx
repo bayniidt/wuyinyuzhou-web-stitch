@@ -1,17 +1,20 @@
 import SectionGoldenBlocks from "@/components/decor/SectionGoldenBlocks";
 import ScrollReveal from "@/components/motion/ScrollReveal";
 import PartnerLogos from "@/components/partners/PartnerLogos";
+import { useLocale } from "@/i18n/LocaleProvider";
 import { useMemo } from "react";
 
 export default function PartnershipPage() {
+  const { t } = useLocale();
+
   const domains = useMemo(() => [
-    { id: 'brand', title: "品牌合作", code: "BRAND", body: "赞助商权益包、定制数字勋章方案与联名品牌合作。" },
-    { id: 'event', title: "赛事合作", code: "EVENT", body: "武印标准输出、赛事承办赋能方案与积分体系接入。" },
-    { id: 'club', title: "俱乐部加盟", code: "CLUB", body: "城市分盟政策、加盟流程指导与职业选手输送通道。" },
-    { id: 'gov', title: "政府/文旅", code: "GOV", body: "城市名片打造、文旅联动方案与线下综合体开发。" },
-    { id: 'invest', title: "投资机构", code: "INVEST", body: "商业计划书下载、融资对接入口与产业资本联动。" },
-    { id: 'media', title: "媒体合作", code: "MEDIA", body: "媒体矩阵共建、内容共创计划与 KOL 深度对接。" },
-  ], []);
+    { id: 'brand', title: t("partnership.domains.items.brand.title"), code: "BRAND", body: t("partnership.domains.items.brand.body") },
+    { id: 'event', title: t("partnership.domains.items.event.title"), code: "EVENT", body: t("partnership.domains.items.event.body") },
+    { id: 'club', title: t("partnership.domains.items.club.title"), code: "CLUB", body: t("partnership.domains.items.club.body") },
+    { id: 'gov', title: t("partnership.domains.items.gov.title"), code: "GOV", body: t("partnership.domains.items.gov.body") },
+    { id: 'invest', title: t("partnership.domains.items.invest.title"), code: "INVEST", body: t("partnership.domains.items.invest.body") },
+    { id: 'media', title: t("partnership.domains.items.media.title"), code: "MEDIA", body: t("partnership.domains.items.media.body") },
+  ], [t]);
 
   return (
     <div className="bg-black">
@@ -20,9 +23,9 @@ export default function PartnershipPage() {
         <SectionGoldenBlocks density="sparse" intensity="subtle" variant={1} />
         <div className="container-wuyin relative z-10 py-20 text-center">
           <ScrollReveal variant="upGlow" className="wuyin-reveal-tech" visibleClassName="wuyin-reveal-tech-visible">
-            <p className="text-xs font-bold uppercase tracking-[0.5em] text-wuyin-gold-bright">B端通道</p>
-            <h1 className="mt-6 font-serif text-5xl font-black text-white sm:text-7xl">合作入口</h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-neutral-400">商业合作的统一入口，分层触达全球伙伴</p>
+            <p className="text-xs font-bold uppercase tracking-[0.5em] text-wuyin-gold-bright">{t("partnership.hero.kicker")}</p>
+            <h1 className="mt-6 font-serif text-5xl font-black text-white sm:text-7xl">{t("partnership.hero.title")}</h1>
+            <p className="mx-auto mt-6 max-w-2xl text-lg text-neutral-400">{t("partnership.hero.lead")}</p>
           </ScrollReveal>
         </div>
       </section>
@@ -38,8 +41,8 @@ export default function PartnershipPage() {
         <div className="relative z-10 container-wuyin mx-auto">
           <div className="mb-16 flex items-end justify-between gap-4">
             <div>
-              <h2 className="font-serif text-4xl text-white sm:text-5xl">战略领域</h2>
-              <p className="mt-4 max-w-2xl text-lg text-neutral-400">多元化的合作模式，赋能武道产业新生态</p>
+              <h2 className="font-serif text-4xl text-white sm:text-5xl">{t("partnership.domains.title")}</h2>
+              <p className="mt-4 max-w-2xl text-lg text-neutral-400">{t("partnership.domains.lead")}</p>
             </div>
             <span className="hidden text-[10px] tracking-[0.3em] text-neutral-500 sm:inline">MATRIX</span>
           </div>
@@ -62,7 +65,7 @@ export default function PartnershipPage() {
                 <h3 className="font-serif text-2xl leading-none text-white">{item.title}</h3>
                 <p className="mt-4 text-sm leading-7 text-neutral-400">{item.body}</p>
                 <p className="mt-10 inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] text-wuyin-gold-bright uppercase cursor-pointer hover:underline">
-                  了解详情
+                  {t("news.readMore")}
                   <span aria-hidden>➜</span>
                 </p>
               </ScrollReveal>
@@ -75,15 +78,15 @@ export default function PartnershipPage() {
       <section className="relative overflow-hidden border-b border-white/5 bg-black py-24 sm:py-32">
         <div className="container-wuyin relative z-10">
           <div className="mb-16 text-center">
-             <h2 className="font-serif text-4xl font-bold text-white sm:text-5xl">合作流程</h2>
-             <p className="mt-4 text-wuyin-muted">清晰透明的对接环节，高效促成价值共赢</p>
+             <h2 className="font-serif text-4xl font-bold text-white sm:text-5xl">{t("partnership.flow.title")}</h2>
+             <p className="mt-4 text-wuyin-muted">{t("partnership.flow.lead")}</p>
           </div>
           <div className="grid gap-4 sm:grid-cols-4">
              {[
-               { step: "01", label: "在线申请", desc: "提交基础合作需求" },
-               { step: "02", label: "方案评审", desc: "专属团队一对一对接" },
-               { step: "03", label: "合同签署", desc: "确立战略合作伙伴关系" },
-               { step: "04", label: "项目执行", desc: "全方位生态资源导入" },
+               { step: "01", label: t("partnership.flow.steps.s1.label"), desc: t("partnership.flow.steps.s1.desc") },
+               { step: "02", label: t("partnership.flow.steps.s2.label"), desc: t("partnership.flow.steps.s2.desc") },
+               { step: "03", label: t("partnership.flow.steps.s3.label"), desc: t("partnership.flow.steps.s3.desc") },
+               { step: "04", label: t("partnership.flow.steps.s4.label"), desc: t("partnership.flow.steps.s4.desc") },
              ].map((item, i) => (
                <div key={item.step} className="relative p-6 rounded-xl border border-white/5 bg-[#0a0a0a]">
                  <span className="font-serif text-4xl font-black text-wuyin-gold-bright/20">{item.step}</span>
@@ -103,36 +106,36 @@ export default function PartnershipPage() {
         <SectionGoldenBlocks variant={0} />
         <div className="container-wuyin relative z-10 max-w-3xl mx-auto">
           <ScrollReveal className="rounded-3xl border border-white/10 bg-wuyin-elevated/40 p-8 sm:p-12 backdrop-blur-xl">
-             <h2 className="font-serif text-3xl font-bold text-white text-center">合作申请</h2>
-             <p className="mt-4 text-sm text-neutral-500 text-center">请填写以下信息，我们将在 2 个工作日内与您联系</p>
+             <h2 className="font-serif text-3xl font-bold text-white text-center">{t("partnership.form.title")}</h2>
+             <p className="mt-4 text-sm text-neutral-500 text-center">{t("partnership.form.lead")}</p>
              
              <form className="mt-12 space-y-6">
                 <div className="grid gap-6 sm:grid-cols-2">
                    <div className="space-y-2">
-                      <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">公司名称</label>
+                      <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">{t("partnership.form.company")}</label>
                       <input type="text" className="w-full rounded-lg border border-white/10 bg-black/40 px-5 py-3 text-white focus:border-wuyin-gold-bright/40 focus:outline-none" />
                    </div>
                    <div className="space-y-2">
-                      <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">联系人</label>
+                      <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">{t("partnership.form.contact")}</label>
                       <input type="text" className="w-full rounded-lg border border-white/10 bg-black/40 px-5 py-3 text-white focus:border-wuyin-gold-bright/40 focus:outline-none" />
                    </div>
                 </div>
                 <div className="space-y-2">
-                   <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">合作意向</label>
+                   <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">{t("partnership.form.intent")}</label>
                    <select className="w-full rounded-lg border border-white/10 bg-black/40 px-5 py-3 text-white focus:border-wuyin-gold-bright/40 focus:outline-none appearance-none">
-                      <option>品牌赞助</option>
-                      <option>赛事承办</option>
-                      <option>投资咨询</option>
-                      <option>媒体合作</option>
-                      <option>其他</option>
+                      <option>{t("partnership.form.options.brand")}</option>
+                      <option>{t("partnership.form.options.event")}</option>
+                      <option>{t("partnership.form.options.invest")}</option>
+                      <option>{t("partnership.form.options.media")}</option>
+                      <option>{t("partnership.form.options.other")}</option>
                    </select>
                 </div>
                 <div className="space-y-2">
-                   <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">需求详述</label>
+                   <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">{t("partnership.form.desc")}</label>
                    <textarea rows={4} className="w-full rounded-lg border border-white/10 bg-black/40 px-5 py-3 text-white focus:border-wuyin-gold-bright/40 focus:outline-none resize-none"></textarea>
                 </div>
                 <button type="submit" className="w-full rounded-xl bg-linear-to-r from-wuyin-gold-bright to-wuyin-accent py-4 text-xs font-black uppercase tracking-[0.2em] text-black shadow-wuyin-glow transition hover:brightness-110">
-                   提交申请
+                   {t("partnership.form.submit")}
                 </button>
              </form>
           </ScrollReveal>

@@ -113,7 +113,7 @@ export default function NarrativePage() {
           >
             <div className="h-12 w-px bg-linear-to-b from-wuyin-gold-bright to-transparent mx-auto" />
             <p className="mt-4 text-[10px] uppercase tracking-[0.3em] text-neutral-500 animate-pulse">
-              向下滚动探索
+              {t("common.scrollExplore")}
             </p>
           </motion.div>
         </div>
@@ -124,7 +124,7 @@ export default function NarrativePage() {
           animate={{ opacity: 1, x: 0 }}
           className="fixed bottom-10 right-10 z-50 flex h-14 w-14 items-center justify-center rounded-full border border-wuyin-gold-bright/30 bg-black/60 text-wuyin-gold-bright shadow-wuyin-glow backdrop-blur-md hover:scale-110 transition-transform"
           onClick={() => navigate("/passport")}
-          title="查看武印护照"
+          title={t("common.viewPassport")}
         >
           <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.5">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
@@ -148,7 +148,7 @@ export default function NarrativePage() {
               <button 
                 onClick={() => setIsAudioPlaying(!isAudioPlaying)}
                 className={`flex h-10 w-10 items-center justify-center rounded-full border ${isAudioPlaying ? 'bg-wuyin-gold-bright border-transparent text-black' : 'border-white/10 text-wuyin-gold-bright hover:border-wuyin-gold-bright/40'} transition-all`}
-                title="播放哲学音频导览"
+                title={t("common.playAudioGuide")}
               >
                 {isAudioPlaying ? (
                   <div className="flex gap-0.5 items-end h-3">
