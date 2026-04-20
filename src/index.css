@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Source Han Sans CN';
+  src: url('./font/SourceHanSansCN-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Source Han Sans CN';
+  src: url('./font/SourceHanSansCN-Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
 @theme {
   /* Slate rock grey (岩青灰) — cooler base for cinnabar seal accents */
   --color-wuyin-bg: #070908;
@@ -16,9 +30,9 @@
   /* Auxiliary: seal red */
   --color-wuyin-seal: #c93030;
   --color-wuyin-seal-soft: #a04545;
-  --font-sans: ui-sans-serif, system-ui, sans-serif, "PingFang SC", "Microsoft YaHei",
+  --font-sans: "Source Han Sans CN", ui-sans-serif, system-ui, sans-serif, "PingFang SC", "Microsoft YaHei",
     "Noto Sans SC", sans-serif;
-  --font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", ui-serif, Georgia,
+  --font-serif: "Source Han Sans CN", "Noto Serif SC", "Source Han Serif SC", "Songti SC", ui-serif, Georgia,
     serif;
   --shadow-wuyin-glow: 0 0 48px rgb(var(--wuyin-gold-rgb) / 0.22);
   --ease-wuyin: cubic-bezier(0.22, 1, 0.36, 1);
