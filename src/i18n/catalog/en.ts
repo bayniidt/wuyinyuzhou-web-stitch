@@ -122,6 +122,15 @@ const en = {
       title: "Six Ecosystem Matrix",
       subtitle: "From physical dojos to metaverse narratives, building a complete martial loop.",
     },
+    newsTeaser: {
+      kicker: "Latest Updates",
+      title: "Official & Event News",
+      viewAll: "View All",
+    },
+    finalCta: {
+      title: "Start Your Martial Metaverse Journey",
+      cta: "Book a Consultation",
+    },
   },
   narrative: {
     hero: {
@@ -375,11 +384,13 @@ const en = {
     tagline: "The digital born real.",
     legalSupport: "Legal & Support",
     copyrightLine: "WUYINWORLD. THE DIGITAL BORN REAL.",
-    demoNote: "Static Demo · Content can be replaced",
+    demoNote: "",
     legal: {
       privacy: "Privacy Policy",
       terms: "Terms of Service",
       cookie: "Cookie Policy",
+      whitepaper: "Whitepaper",
+      support: "Support",
     },
   },
 };

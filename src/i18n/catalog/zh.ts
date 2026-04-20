@@ -122,6 +122,15 @@ const zh = {
       title: "六大生态矩阵",
       subtitle: "从实体武馆到元宇宙叙事，构建完整的武道闭环",
     },
+    newsTeaser: {
+      kicker: "最新动态",
+      title: "官网与赛事资讯",
+      viewAll: "查看全部",
+    },
+    finalCta: {
+      title: "开启你的武道元宇宙之旅",
+      cta: "立即预约咨询",
+    },
   },
   narrative: {
     hero: {
@@ -375,11 +384,13 @@ const zh = {
     tagline: "数字新生，真实不虚。",
     legalSupport: "法律与支持",
     copyrightLine: "WUYINWORLD. THE DIGITAL BORN REAL.",
-    demoNote: "静态演示站 · 内容可随时替换",
+    demoNote: "",
     legal: {
       privacy: "隐私政策",
       terms: "服务条款",
       cookie: "Cookie 政策",
+      whitepaper: "品牌白皮书",
+      support: "联系支持",
     },
   },
 };
