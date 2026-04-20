@@ -85,7 +85,7 @@ const zh = {
   },
   home: {
     hero: {
-      kicker: "Ancient Soul, Future Core",
+      kicker: "古老的灵魂，未来的核心",
       title: "止戈为武",
       subtitle: "东方武道元宇宙盛典",
       ctaCompetition: "立即参与赛事",
