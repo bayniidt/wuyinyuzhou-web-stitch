@@ -10,6 +10,7 @@ const en = {
     viewPassport: "View Wuyin Passport",
     playAudioGuide: "Play philosophy audio guide",
     readMore: "Learn More",
+    partners: ["PARTNER A", "PARTNER B", "PARTNER C", "PARTNER D", "PARTNER E", "PARTNER F"],
   },
   nav: {
     groups: {
@@ -177,8 +178,10 @@ const en = {
     },
   },
   narrative: {
-    heroKicker: "Wuyin Pavilion · Wusheng Mountain",
-    heroTitle: "Summit of Zhi Ge — Narrative Space",
+    hero: {
+      kicker: "Wuyin Pavilion · Wusheng Mountain",
+      title: "Summit of Zhi Ge — Narrative Space",
+    },
     heroLead:
       "A global youth martial seal grand ceremony—the first top-tier youth martial IP centered on martial virtue and reflective dialogue. Grounded in Wusheng lineage and Zhi Ge philosophy: youth seek the Way and forge character.",
     openScroll: "Go deeper",

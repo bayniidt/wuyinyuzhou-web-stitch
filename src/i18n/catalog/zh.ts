@@ -9,6 +9,7 @@ const zh = {
     viewPassport: "查看武印护照",
     playAudioGuide: "播放哲学音频导览",
     readMore: "了解详情",
+    partners: ["合作伙伴 A", "合作伙伴 B", "合作伙伴 C", "合作伙伴 D", "合作伙伴 E", "合作伙伴 F"],
   },
   nav: {
     groups: {
@@ -93,7 +94,7 @@ const zh = {
   },
   footer: {
     brand: "武印视界",
-    tagline: "The digital born real.",
+    tagline: "数字新生，真实不虚。",
     legalSupport: "法律与支持",
     copyrightLine: "WUYINWORLD. THE DIGITAL BORN REAL.",
     demoNote: "静态演示站 · 内容可随时替换",
@@ -172,8 +173,10 @@ const zh = {
     },
   },
   narrative: {
-    heroKicker: "武印阁 · 武圣山",
-    heroTitle: "《止戈之巅》叙事场",
+    hero: {
+      kicker: "武印阁 · 武圣山",
+      title: "《止戈之巅》叙事场",
+    },
     heroLead:
       "全球少年武道铸印大典——全球首个以武德思辨为核心的青少年武道顶级 IP。以武圣文脉与止戈哲学为根基，少年问道、铸炼风骨。",
     openScroll: "深入叙事",

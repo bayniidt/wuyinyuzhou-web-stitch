@@ -1,9 +1,10 @@
-
-const LOGOS = [
-  "PARTNER A", "PARTNER B", "PARTNER C", "PARTNER D", "PARTNER E", "PARTNER F"
-];
+import { useLocale } from "@/i18n/LocaleProvider";
 
 export default function PartnerLogos() {
+  const { t } = useLocale();
+  const partners = t("common.partners") as unknown as string[];
+  const LOGOS = Array.isArray(partners) ? partners : [];
+
   return (
     <div className="relative flex overflow-hidden border-y border-white/5 bg-black/20 py-10">
       <div className="flex w-max animate-infinite-scroll">
