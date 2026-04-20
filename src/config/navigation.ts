@@ -33,6 +33,7 @@ export const navGroupOrder = [
       { key: "voidMap", href: "/narrative#narrative-map" },
       { key: "threeConcepts", href: "/narrative#narrative-concepts" },
       { key: "lineage", href: "/narrative#narrative-lineage" },
+      { key: "covenant", href: "/narrative#narrative-covenant" },
     ],
   },
   {
@@ -97,7 +98,9 @@ export function buildFooterLegalLinks(t: TranslateFn): FooterLegalLink[] {
   }));
 }
 
-export function getNavPrimaryMeta(id: string): { to: "/" | "/narrative" | "/timeline" | "/nfts" | "/partnership"; end: boolean } | null {
+export function getNavPrimaryMeta(
+  id: string,
+): { to: "/" | "/narrative" | "/timeline" | "/nfts" | "/partnership"; end: boolean } | null {
   const g = navGroupOrder.find((x) => x.id === id);
   if (!g) return null;
   return { to: g.primaryRoute, end: g.end };

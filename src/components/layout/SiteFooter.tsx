@@ -1,5 +1,6 @@
 import { buildFooterLegalLinks, buildNavGroups } from "@/config/navigation";
 import { useLocale } from "@/i18n/LocaleProvider";
+import logoMark from "@/images/LOGO/武印视界/武印世界-白底LOGO.png";
 import { navigateToHref } from "@/lib/navigateToHref";
 import { useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -16,11 +17,14 @@ export default function SiteFooter() {
         <div className="sm:col-span-2 lg:col-span-1">
           <Link
             to={{ pathname: "/", hash: "hero" }}
-            className="inline-flex items-center gap-2 font-serif text-lg font-bold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright"
+            className="inline-flex items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright"
           >
-            <span className="bg-linear-to-r from-wuyin-accent via-wuyin-seal to-wuyin-accent-soft bg-clip-text text-transparent">
-              {t("footer.brand")}
-            </span>
+            <img
+              src={logoMark}
+              alt={t("header.logoAlt")}
+              className="h-7 w-auto max-w-[11rem] object-contain object-left sm:h-8"
+              decoding="async"
+            />
           </Link>
           <p className="mt-4 text-sm leading-relaxed text-wuyin-muted">{t("footer.tagline")}</p>
         </div>

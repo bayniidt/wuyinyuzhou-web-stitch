@@ -2,30 +2,24 @@ import { buildNavGroups, getNavPrimaryMeta } from "@/config/navigation";
 import GradientButton from "@/components/ui/GradientButton";
 import { useLocale } from "@/i18n/LocaleProvider";
 import { navigateToHref } from "@/lib/navigateToHref";
-import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
+import logoMark from "@/images/LOGO/武印视界/武印世界-白底LOGO.png";
 import { useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 function Logo() {
-  const reduced = usePrefersReducedMotion();
   const { t } = useLocale();
   return (
     <Link
       to={{ pathname: "/", hash: "hero" }}
-      className="flex items-center gap-2 font-serif text-lg font-bold tracking-tight text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright sm:text-xl"
+      className="flex shrink-0 items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright"
     >
-      <span
-        className={[
-          "bg-linear-to-r from-wuyin-accent via-wuyin-seal to-wuyin-accent-soft bg-clip-text text-transparent",
-          reduced ? "" : "wuyin-animate-logo-shimmer",
-        ]
-          .filter(Boolean)
-          .join(" ")}
-      >
-        {t("header.logoShort")}
-      </span>
-      <span className="hidden text-neutral-200 sm:inline">{t("header.logoWide")}</span>
+      <img
+        src={logoMark}
+        alt={t("header.logoAlt")}
+        className="h-8 w-auto max-w-[min(100%,13rem)] object-contain object-left sm:h-9 lg:h-[2.625rem]"
+        decoding="async"
+      />
     </Link>
   );
 }

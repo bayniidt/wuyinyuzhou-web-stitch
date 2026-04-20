@@ -3,6 +3,8 @@ import SiteHeader from "@/components/layout/SiteHeader";
 import HomePage from "@/pages/HomePage";
 import NarrativePage from "@/pages/NarrativePage";
 import NftsPage from "@/pages/NftsPage";
+import NewsDetailPage from "@/pages/NewsDetailPage";
+import NewsPage from "@/pages/NewsPage";
 import PartnershipPage from "@/pages/PartnershipPage";
 import TimelinePage from "@/pages/TimelinePage";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
@@ -35,6 +37,8 @@ export default function App() {
           <Route path="timeline" element={<TimelinePage />} />
           <Route path="nfts" element={<NftsPage />} />
           <Route path="partnership" element={<PartnershipPage />} />
+          <Route path="news/:slug" element={<NewsDetailPage />} />
+          <Route path="news" element={<NewsPage />} />
         </Routes>
       </main>
       <SiteFooter />

@@ -1,6 +1,7 @@
 import DomainCardsSection from "@/sections/DomainCardsSection";
 import EcosystemMatrixSection from "@/sections/EcosystemMatrixSection";
 import FinalCtaSection from "@/sections/FinalCtaSection";
+import NewsTeaserSection from "@/sections/NewsTeaserSection";
 import HeroSection from "@/sections/HeroSection";
 import ManifestoSection from "@/sections/ManifestoSection";
 import ScrollReveal from "@/components/motion/ScrollReveal";
@@ -27,6 +28,9 @@ export default function HomePage() {
       <ManifestoSection />
       <DomainCardsSection />
       <EcosystemMatrixSection />
+      <ScrollReveal variant="upSoft" visibleClassName="wuyin-reveal-tech-visible" className="wuyin-reveal-tech">
+        <NewsTeaserSection />
+      </ScrollReveal>
       <ScrollReveal
         variant="upSoft"
         delayMs={120}

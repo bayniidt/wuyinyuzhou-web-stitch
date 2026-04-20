@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  /* Warm charcoal — reads with bronze-gold, less “sticker on pure black” */
-  --color-wuyin-bg: #060504;
-  --color-wuyin-surface: #0c0a08;
-  --color-wuyin-elevated: #141210;
+  /* Slate rock grey (岩青灰) — cooler base for cinnabar seal accents */
+  --color-wuyin-bg: #070908;
+  --color-wuyin-surface: #0d1011;
+  --color-wuyin-elevated: #151a1b;
   --color-wuyin-muted: #a3a3a3;
   /* Bright golden yellow — less bronze / ochre */
   --wuyin-gold-rgb: 228 184 74;
@@ -137,6 +137,29 @@
   }
   50% {
     opacity: 0.58;
+  }
+}
+
+/* 首页最新动态：双列内容无缝循环，translate -50% 对齐首尾 */
+@keyframes wuyin-news-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.wuyin-news-marquee-track {
+  width: max-content;
+  animation: wuyin-news-marquee var(--wuyin-news-marquee-duration, 32s) linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wuyin-news-marquee-track {
+    animation: none;
+    transform: none;
   }
 }
 

@@ -277,6 +277,7 @@ export default function TimelinePage() {
           { step: "01", title: t("timeline.modules.road.bullets.b1.title"), text: t("timeline.modules.road.bullets.b1.text") },
           { step: "02", title: t("timeline.modules.road.bullets.b2.title"), text: t("timeline.modules.road.bullets.b2.text") },
           { step: "03", title: t("timeline.modules.road.bullets.b3.title"), text: t("timeline.modules.road.bullets.b3.text") },
+          { step: "04", title: t("timeline.modules.road.bullets.b4.title"), text: t("timeline.modules.road.bullets.b4.text") },
         ],
         statLine: roadStat || undefined,
       },

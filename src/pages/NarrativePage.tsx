@@ -10,9 +10,32 @@ import imgLineageObsidian from "@/images/page2(3).png";
 import imgLineageVoid from "@/images/page2(4).png";
 import narrativeBanner from "@/images/page2(6).png";
 import narrativeMapBg from "@/images/page2(7).png";
+import fireMp4 from "@/videos/fire.mp4";
 import { scrollToSelector } from "@/lib/scroll";
 import { useEffect, useMemo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+
+function NarrativeSectionFireVideo({ reducedMotion }: { reducedMotion: boolean }) {
+  return (
+    <ScrollReveal variant="upSoft" delayMs={60}>
+      <div className="relative mx-auto aspect-video w-full max-w-4xl overflow-hidden rounded-2xl border border-white/10 bg-neutral-950 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+        {!reducedMotion ? (
+          <video
+            className="absolute inset-0 h-full w-full object-cover"
+            controls
+            autoPlay
+            muted
+            playsInline
+            loop
+            preload="metadata"
+          >
+            <source src={fireMp4} type="video/mp4" />
+          </video>
+        ) : null}
+      </div>
+    </ScrollReveal>
+  );
+}
 
 export default function NarrativePage() {
   const reducedMotion = usePrefersReducedMotion();
@@ -203,32 +226,35 @@ export default function NarrativePage() {
 
       <section id="narrative-concepts" className="relative overflow-hidden border-b border-white/5 bg-wuyin-surface py-20 sm:py-28">
         <SectionGoldenBlocks variant={2} />
-        <div className="relative z-10 container-wuyin grid gap-12 lg:grid-cols-2 lg:items-center">
-          <ScrollReveal variant="leftSoft">
-            <div className="space-y-8">
-              <h2 className="font-serif text-3xl font-bold text-white sm:text-4xl">{t("narrative.conceptsTitle")}</h2>
-              <div className="space-y-6">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-wuyin-gold-bright">{t("narrative.zhiLabel")}</p>
-                  <p className="mt-2 text-sm text-neutral-300 sm:text-base">{t("narrative.zhiBody")}</p>
-                </div>
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-wuyin-gold-bright">{t("narrative.geLabel")}</p>
-                  <p className="mt-2 text-sm text-neutral-300 sm:text-base">{t("narrative.geBody")}</p>
-                </div>
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-wuyin-gold-bright">{t("narrative.yinLabel")}</p>
-                  <p className="mt-2 text-sm text-neutral-300 sm:text-base">{t("narrative.yinBody")}</p>
+        <div className="relative z-10 container-wuyin space-y-12 sm:space-y-16">
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+            <ScrollReveal variant="leftSoft">
+              <div className="space-y-8">
+                <h2 className="font-serif text-3xl font-bold text-white sm:text-4xl">{t("narrative.conceptsTitle")}</h2>
+                <div className="space-y-6">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.3em] text-wuyin-gold-bright">{t("narrative.zhiLabel")}</p>
+                    <p className="mt-2 text-sm text-neutral-300 sm:text-base">{t("narrative.zhiBody")}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.3em] text-wuyin-gold-bright">{t("narrative.geLabel")}</p>
+                    <p className="mt-2 text-sm text-neutral-300 sm:text-base">{t("narrative.geBody")}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.3em] text-wuyin-gold-bright">{t("narrative.yinLabel")}</p>
+                    <p className="mt-2 text-sm text-neutral-300 sm:text-base">{t("narrative.yinBody")}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal variant="rightSoft" delayMs={90} className="wuyin-reveal-tech" visibleClassName="wuyin-reveal-tech-visible">
-            <div className="relative aspect-square max-h-[420px] w-full overflow-hidden rounded-2xl border border-white/10 bg-neutral-950" aria-hidden>
-              <img src={imgConceptTrinity} alt="" className="absolute inset-0 h-full w-full object-cover" decoding="async" />
-              <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/15 to-transparent" />
-            </div>
-          </ScrollReveal>
+            </ScrollReveal>
+            <ScrollReveal variant="rightSoft" delayMs={90} className="wuyin-reveal-tech" visibleClassName="wuyin-reveal-tech-visible">
+              <div className="relative aspect-square max-h-[420px] w-full overflow-hidden rounded-2xl border border-white/10 bg-neutral-950" aria-hidden>
+                <img src={imgConceptTrinity} alt="" className="absolute inset-0 h-full w-full object-cover" decoding="async" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/15 to-transparent" />
+              </div>
+            </ScrollReveal>
+          </div>
+          <NarrativeSectionFireVideo reducedMotion={reducedMotion} />
         </div>
       </section>
 
@@ -270,6 +296,33 @@ export default function NarrativePage() {
             ))}
           </div>
         </ScrollReveal>
+        <div className="relative z-10 container-wuyin mt-12 sm:mt-16">
+          <NarrativeSectionFireVideo reducedMotion={reducedMotion} />
+        </div>
+      </section>
+
+      <section id="narrative-covenant" className="relative overflow-hidden border-b border-white/5 bg-wuyin-surface py-20 sm:py-28">
+        <SectionGoldenBlocks variant={2} />
+        <ScrollReveal
+          variant="upSoft"
+          delayMs={80}
+          className="relative z-10 container-wuyin mx-auto max-w-3xl wuyin-reveal-tech"
+          visibleClassName="wuyin-reveal-tech-visible"
+        >
+          <h2 className="text-center font-serif text-3xl font-bold text-white sm:text-4xl">{t("narrative.covenant.title")}</h2>
+          <div className="mt-10 rounded-2xl border border-wuyin-seal/25 bg-wuyin-elevated/80 p-8 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] sm:p-10">
+            <p className="text-center font-serif text-lg text-neutral-200 sm:text-xl">{t("narrative.covenant.preamble")}</p>
+            <p className="mt-8 text-center text-sm font-semibold tracking-wide text-wuyin-gold-bright sm:text-base">
+              {t("narrative.covenant.oathHead")}
+            </p>
+            <ul className="mt-6 space-y-4 text-center font-serif text-base leading-relaxed text-neutral-300 sm:text-lg">
+              <li>{t("narrative.covenant.line1")}</li>
+              <li>{t("narrative.covenant.line2")}</li>
+              <li>{t("narrative.covenant.line3")}</li>
+              <li>{t("narrative.covenant.line4")}</li>
+            </ul>
+          </div>
+        </ScrollReveal>
       </section>
 
       <section id="narrative-fusion" className="relative overflow-hidden py-20 sm:py-28">
@@ -292,6 +345,9 @@ export default function NarrativePage() {
                 <p className="mt-2 text-xs leading-relaxed text-wuyin-muted sm:text-sm">{row.text}</p>
               </div>
             ))}
+          </div>
+          <div className="mt-12 sm:mt-16">
+            <NarrativeSectionFireVideo reducedMotion={reducedMotion} />
           </div>
         </ScrollReveal>
       </section>
