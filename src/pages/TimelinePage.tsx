@@ -5,8 +5,14 @@ import VenueViewer from "@/components/sight/VenueViewer";
 import GhostButton from "@/components/ui/GhostButton";
 import GradientButton from "@/components/ui/GradientButton";
 import { useLocale } from "@/i18n/LocaleProvider";
+import imgHistory1 from "@/images/page3 (1).png";
+import imgHistory2 from "@/images/page3 (2).png";
+import imgHistory3 from "@/images/page3 (3).png";
+import imgHistory4 from "@/images/page3 (4).png";
 import imgTimelineHero from "@/images/page3 (7).png";
 import { scrollToSelector } from "@/lib/scroll";
+import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
+import videoTheater from "@/videos/14852606_1920_1080_30fps.mp4";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -15,6 +21,7 @@ export default function TimelinePage() {
   const { t } = useLocale();
   const navigate = useNavigate();
   const location = useLocation();
+  const reducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
     if (location.hash) {
@@ -148,7 +155,21 @@ export default function TimelinePage() {
               </div>
             </ScrollReveal>
             <ScrollReveal variant="rightSoft" className="relative aspect-video overflow-hidden rounded-2xl border border-white/10 bg-neutral-900 shadow-2xl">
-               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(228,184,74,0.1),transparent_70%)]" />
+               {!reducedMotion ? (
+                 <video
+                   className="h-full w-full object-cover opacity-60"
+                   autoPlay
+                   muted
+                   loop
+                   playsInline
+                   preload="auto"
+                 >
+                   <source src={videoTheater} type="video/mp4" />
+                 </video>
+               ) : (
+                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(228,184,74,0.1),transparent_70%)]" />
+               )}
+               <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
                <div className="absolute inset-0 flex items-center justify-center">
                  <button className="group flex h-20 w-20 items-center justify-center rounded-full border border-wuyin-gold-bright/30 bg-black/40 backdrop-blur-sm transition-all hover:scale-110 hover:border-wuyin-gold-bright/60">
                    <svg viewBox="0 0 24 24" className="h-8 w-8 ml-1 text-wuyin-gold-bright" fill="currentColor">
@@ -181,8 +202,9 @@ export default function TimelinePage() {
             <button className="text-xs font-bold uppercase tracking-[0.2em] text-wuyin-gold-bright hover:underline">查看全部集锦</button>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {[1, 2, 3, 4].map((i) => (
+            {[imgHistory1, imgHistory2, imgHistory3, imgHistory4].map((img, i) => (
               <ScrollReveal key={i} delayMs={i * 80} className="group relative aspect-video overflow-hidden rounded-xl border border-white/10 bg-neutral-900">
+                <img src={img} alt="" className="absolute inset-0 h-full w-full object-cover opacity-60 transition-transform duration-500 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent opacity-60 z-10" />
                 <div className="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity">
                   <svg viewBox="0 0 24 24" className="h-10 w-10 text-white" fill="currentColor">

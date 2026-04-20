@@ -2,6 +2,7 @@ import SectionGoldenBlocks from "@/components/decor/SectionGoldenBlocks";
 import ScrollReveal from "@/components/motion/ScrollReveal";
 import PartnerLogos from "@/components/partners/PartnerLogos";
 import { useLocale } from "@/i18n/LocaleProvider";
+import imgPartnerHero from "@/images/模块 4/unnamed.png";
 import { useMemo } from "react";
 
 export default function PartnershipPage() {
@@ -21,6 +22,12 @@ export default function PartnershipPage() {
       {/* 沉浸式首屏 */}
       <section className="relative flex min-h-[50vh] items-center justify-center overflow-hidden border-b border-white/5 bg-[#080706]">
         <SectionGoldenBlocks density="sparse" intensity="subtle" variant={1} />
+        <img
+          src={imgPartnerHero}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover opacity-20"
+        />
+        <div className="absolute inset-0 bg-linear-to-b from-black/60 via-transparent to-black" />
         <div className="container-wuyin relative z-10 py-20 text-center">
           <ScrollReveal variant="upGlow" className="wuyin-reveal-tech" visibleClassName="wuyin-reveal-tech-visible">
             <p className="text-xs font-bold uppercase tracking-[0.5em] text-wuyin-gold-bright">{t("partnership.hero.kicker")}</p>

@@ -12,12 +12,14 @@ import imgLineageIron from "@/images/page2(5).png";
 import narrativeBanner from "@/images/page2(6).png";
 import { scrollToSelector } from "@/lib/scroll";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
+import videoInheritance from "@/videos/7311798-uhd_2160_3744_30fps.mp4";
+import videoPhilosophy from "@/videos/8950635-hd_1920_1080_30fps.mp4";
 import fireMp4 from "@/videos/fire.mp4";
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-function NarrativeSectionFireVideo({ reducedMotion }: { reducedMotion: boolean }) {
+function NarrativeSectionFireVideo({ reducedMotion, videoSrc = fireMp4 }: { reducedMotion: boolean, videoSrc?: string }) {
   return (
     <ScrollReveal variant="upSoft" delayMs={60}>
       <div className="relative mx-auto aspect-video w-full max-w-4xl overflow-hidden rounded-2xl border border-white/10 bg-neutral-950 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
@@ -30,7 +32,7 @@ function NarrativeSectionFireVideo({ reducedMotion }: { reducedMotion: boolean }
             playsInline
             preload="auto"
           >
-            <source src={fireMp4} type="video/mp4" />
+            <source src={videoSrc} type="video/mp4" />
           </video>
         ) : null}
         <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-black/20" />
@@ -178,7 +180,7 @@ export default function NarrativePage() {
               ))}
             </div>
           </ScrollReveal>
-          <NarrativeSectionFireVideo reducedMotion={reducedMotion} />
+          <NarrativeSectionFireVideo reducedMotion={reducedMotion} videoSrc={videoPhilosophy} />
         </div>
       </section>
 
@@ -237,7 +239,20 @@ export default function NarrativePage() {
               </div>
             </ScrollReveal>
             <ScrollReveal variant="rightSoft" className="relative aspect-video overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-neutral-900">
-               {/* 视频占位 */}
+               {!reducedMotion ? (
+                 <video
+                   className="h-full w-full object-cover opacity-60 mix-blend-screen"
+                   autoPlay
+                   muted
+                   loop
+                   playsInline
+                   preload="auto"
+                 >
+                   <source src={videoInheritance} type="video/mp4" />
+                 </video>
+               ) : null}
+               <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-black/20" />
+               {/* 视频交互提示 */}
                <div className="absolute inset-0 flex items-center justify-center">
                  <button className="h-20 w-20 rounded-full bg-wuyin-gold-bright/20 border border-wuyin-gold-bright/40 text-wuyin-gold-bright flex items-center justify-center hover:scale-110 transition-transform">
                    <svg viewBox="0 0 24 24" className="h-8 w-8 ml-1" fill="currentColor">

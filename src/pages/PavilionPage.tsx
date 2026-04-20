@@ -3,6 +3,10 @@ import ScrollReveal from "@/components/motion/ScrollReveal"
 import LiveBoard from "@/components/pavilion/LiveBoard"
 import SynergyMap from "@/components/pavilion/SynergyMap"
 import { useLocale } from "@/i18n/LocaleProvider"
+import imgCase1 from "@/images/武印阁/unnamed (1).png"
+import imgCase2 from "@/images/武印阁/unnamed (2).png"
+import imgCase3 from "@/images/武印阁/unnamed (3).png"
+import imgCase4 from "@/images/武印阁/unnamed.png"
 import { AnimatePresence, motion } from "framer-motion"
 import { useState } from "react"
 
@@ -176,9 +180,10 @@ export default function PavilionPage() {
                </div>
              </ScrollReveal>
              <ScrollReveal variant="rightSoft" className="grid grid-cols-2 gap-4">
-               {[1, 2, 3, 4].map(i => (
-                 <div key={i} className="aspect-square rounded-lg border border-white/5 bg-neutral-900 flex items-center justify-center group cursor-pointer hover:border-wuyin-gold-bright/30 transition-colors">
-                   <p className="text-[10px] font-bold text-neutral-700 group-hover:text-wuyin-gold-bright">IP CASE 0{i}</p>
+               {[imgCase1, imgCase2, imgCase3, imgCase4].map((img, i) => (
+                 <div key={i} className="aspect-square rounded-lg border border-white/5 bg-neutral-900 flex items-center justify-center group cursor-pointer hover:border-wuyin-gold-bright/30 transition-colors relative overflow-hidden">
+                   <img src={img} alt="" className="absolute inset-0 h-full w-full object-cover opacity-40 transition-all duration-500 group-hover:scale-110 group-hover:opacity-60" />
+                   <p className="relative z-10 text-[10px] font-bold text-white group-hover:text-wuyin-gold-bright transition-colors">IP CASE 0{i+1}</p>
                  </div>
                ))}
              </ScrollReveal>
