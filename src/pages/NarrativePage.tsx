@@ -12,14 +12,13 @@ import imgLineageIron from "@/images/page2(5).png";
 import narrativeBanner from "@/images/page2(6).png";
 import { scrollToSelector } from "@/lib/scroll";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
-import videoInheritance from "@/videos/7311798-uhd_2160_3744_30fps.mp4";
-import videoPhilosophy from "@/videos/8950635-hd_1920_1080_30fps.mp4";
-import fireMp4 from "@/videos/fire.mp4";
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-function NarrativeSectionFireVideo({ reducedMotion, videoSrc = fireMp4 }: { reducedMotion: boolean, videoSrc?: string }) {
+const CDN_BANNER_VIDEO = "https://cdn.51aes.com/video/51Aes/Banner-AES6-logo.mp4";
+
+function NarrativeSectionFireVideo({ reducedMotion, videoSrc = CDN_BANNER_VIDEO }: { reducedMotion: boolean, videoSrc?: string }) {
   return (
     <ScrollReveal variant="upSoft" delayMs={60}>
       <div className="relative mx-auto aspect-video w-full max-w-4xl overflow-hidden rounded-2xl border border-white/10 bg-neutral-950 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
@@ -180,7 +179,7 @@ export default function NarrativePage() {
               ))}
             </div>
           </ScrollReveal>
-          <NarrativeSectionFireVideo reducedMotion={reducedMotion} videoSrc={videoPhilosophy} />
+          <NarrativeSectionFireVideo reducedMotion={reducedMotion} videoSrc={CDN_BANNER_VIDEO} />
         </div>
       </section>
 
@@ -248,7 +247,7 @@ export default function NarrativePage() {
                    playsInline
                    preload="auto"
                  >
-                   <source src={videoInheritance} type="video/mp4" />
+                   <source src={CDN_BANNER_VIDEO} type="video/mp4" />
                  </video>
                ) : null}
                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-black/20" />

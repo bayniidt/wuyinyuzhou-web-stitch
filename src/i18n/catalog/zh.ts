@@ -1,4 +1,3 @@
-
 const zh = {
   meta: {
     title: "武印视界 Wuyin World",
@@ -11,21 +10,112 @@ const zh = {
     readMore: "了解详情",
     partners: ["合作伙伴 A", "合作伙伴 B", "合作伙伴 C", "合作伙伴 D", "合作伙伴 E", "合作伙伴 F"],
   },
+  header: {
+    logoAlt: "武印视界 Logo",
+    ariaLangGroup: "语言切换",
+    langShortZh: "中",
+    langShortEn: "EN",
+    ariaUser: "个人中心",
+    connectWalletAria: "连接钱包",
+    walletShort: "钱包",
+    wallet: "连接钱包",
+    menuOpen: "打开菜单",
+    menuClose: "关闭菜单",
+    menuCloseBackdrop: "点击关闭菜单",
+  },
   nav: {
-    home: "首页",
-    narrative: "武印宇宙",
-    timeline: "武印视界",
-    pavilion: "武印阁",
-    partnership: "合作入口",
-    news: "最新动态",
-    passport: "武印护照",
+    groups: {
+      ecosystem: {
+        label: "生态体系",
+        items: {
+          hero: { label: "止戈为武", description: "东方武道元宇宙盛典" },
+          manifesto: { label: "武印宣言", description: "传递武道核心精神" },
+          values: { label: "战略价值", description: "文化、技术与金融的融合" },
+          matrix: { label: "生态矩阵", description: "六大业务板块深度联动" },
+          news: { label: "最新动态", description: "实时掌握项目进展" },
+          questions: { label: "常见问题", description: "为您答疑解惑" },
+        },
+      },
+      narrative: {
+        label: "武印宇宙",
+        items: {
+          map: { label: "宇宙地图", description: "探索 3D 互动秘境" },
+          philosophy: { label: "哲学根基", description: "武圣山文脉与止戈哲学" },
+          lineage: { label: "武圣三变", description: "三千年武脉传承" },
+          heritage: { label: "寻源非遗", description: "溯源武道与文化融合" },
+          inheritance: { label: "薪火相传", description: "让武德成为向上的力量" },
+        },
+      },
+      timeline: {
+        label: "武印视界",
+        items: {
+          overview: { label: "场馆预览", description: "2026 杭州首秀剧场" },
+          theater: { label: "数字剧场", description: "全息影像与视觉盛典" },
+          roster: { label: "对话矩阵", description: "跨界名师深度访谈" },
+          mecha: { label: "机甲武道", description: "传统与未来的视觉碰撞" },
+          fashion: { label: "东方美学", description: "武道时尚与非遗穿搭" },
+          history: { label: "往期回顾", description: "历届赛季高光瞬间" },
+        },
+      },
+      pavilion: {
+        label: "武印阁",
+        items: {
+          synergy: { label: "生态导图", description: "六位一体产业闭环" },
+          ip: { label: "品牌 IP", description: "全球资产授权管理" },
+          alliance: { label: "武印盟", description: "俱乐部加盟与选手通道" },
+          digital: { label: "功夫印", description: "链上数据与 RWA 估值" },
+          standard: { label: "武印标准", description: "证书验真与权威认证" },
+          media: { label: "武印传媒", description: "沉浸式内容生态运营" },
+          tourism: { label: "印承天下", description: "文旅联动与线下开发" },
+        },
+      },
+      partnership: {
+        label: "合作入口",
+        items: {
+          brand: { label: "品牌合作", description: "联名与赞助商权益" },
+          event: { label: "赛事合作", description: "承办赋能与标准输出" },
+          club: { label: "俱乐部加盟", description: "城市分盟政策支持" },
+          gov: { label: "政企文旅", description: "城市名片与综合体开发" },
+          invest: { label: "投资机构", description: "BP 下载与融资对接" },
+          media: { label: "媒体矩阵", description: "内容共创与 KOL 对接" },
+          form: { label: "申请入口", description: "在线提交合作意向" },
+        },
+      },
+    },
   },
   home: {
     hero: {
-      eyebrow: "Ancient Soul, Future Core",
+      kicker: "Ancient Soul, Future Core",
       title: "止戈为武",
       subtitle: "东方武道元宇宙盛典",
-      cta: "立即进入",
+      ctaCompetition: "立即参与赛事",
+      ctaPartner: "成为合作伙伴",
+      videoSwitcherLabel: "切换背景视频",
+      videoSegment1: "场景 1：数字武道",
+      videoSegment2: "场景 2：止戈哲学",
+    },
+    manifesto: {
+      title: "武印宣言",
+      p1: "在数字浪潮席卷全球的今日，我们选择回归原点。武印宇宙不仅是一场视觉盛典，更是一次关于“武德”的当代思辨。",
+      p2: "我们通过区块链、3D 序列帧与全息技术，将绵延三千年的武脉数字化。让古老的“止戈”智慧，在赛博空间焕发新生。",
+      quote: "持戈为护，不为欺凌；止戈为念，不争强弱。",
+    },
+    domains: {
+      culture: {
+        domainLabel: "文化溯源",
+        title: "武圣文脉与非遗融合",
+        description: "深入武圣山，挖掘三千年武脉底蕴，将龙泉铸剑、杭州丝绸等非遗符号与数字叙事深度结合。",
+      },
+      technology: {
+        domainLabel: "数字引擎",
+        title: "全息影像与 RWA 协议",
+        description: "利用 Web3 技术实现武道资产的链上确权，通过 3D 全息舞台呈现超越现实的视觉奇观。",
+      },
+      finance: {
+        domainLabel: "产业价值",
+        title: "全球 IP 授权与金融赋能",
+        description: "构建完整的产业闭环，通过 IP 授权、商业加盟与 RWA 估值，释放武道产业的无限金融潜力。",
+      },
     },
     ecosystem: {
       eyebrow: "生态体系",
@@ -256,7 +346,7 @@ const zh = {
   news: {
     heroKicker: "官网与赛事",
     heroTitle: "最新动态",
-    heroLead: "赛事节点、媒体报道与产品更新将在此汇总。以下为演示占位内容，可随时替换为真实稿件。",
+    heroLead: "赛事节点、媒体报道与项目更新将在此汇总。以下为演示占位内容。",
     featuredTitle: "精选",
     listTitle: "全部动态",
     readMore: "了解更多",
