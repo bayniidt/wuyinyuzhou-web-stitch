@@ -10,11 +10,11 @@ import logoGongfu from "@/images/LOGO/武印阁logo/武印阁白底-透明.png"
 // import logoMeng from "@/images/index9.png"
 import logoMeng from "@/images/LOGO/武印盟logo/武印盟-白底logo.png"
 // import logoGongfu1 from "@/images/印承天下.png"
-import logoGongfu1 from "@/images/index8.png"
+import logoGongfu1 from "@/images/LOGO/武印阁logo/武印阁白底-透明.png"
 // import logoMeng2 from "@/images/武印传媒.png"
-import logoMeng2 from "@/images/武印标准.png"
-import logoMeng3 from "@/images/武印传媒.png"
 import logoMeng7 from "@/images/印承天下.png"
+import logoMeng3 from "@/images/武印传媒.png"
+import logoMeng2 from "@/images/武印标准.png"
 import { useMemo, useRef, useState } from "react"
 
 const tileKeys = ["arena", "artifacts", "spirits", "academy", "spells", "treasury"] as const;
@@ -98,11 +98,11 @@ export default function EcosystemMatrixSection() {
                 onPointerLeave={() => handleRowPointerLeave(row.key)}
                 className="group flex cursor-pointer items-center justify-between gap-3 border-b border-white/10 bg-black/40 px-10 py-5 transition-[background-color,box-shadow] duration-200 ease-out last:border-b-0 hover:bg-white/[0.14] hover:shadow-[inset_0_0_0_1px_rgba(228,184,74,0.35),inset_0_0_24px_rgba(228,184,74,0.06)] sm:gap-6 sm:px-5"
               >
-                <div className="flex min-w-0 flex-1 items-center ">
+                <div className="flex min-w-0 flex-1 items-center">
                   <img
                     src={row.logoSrc}
                     alt={row.logoAlt}
-                    className="min-w-[230px] h-[50px] object-cover transition-[filter] duration-200 group-hover:brightness-110 sm:h-[4.5rem] md:h-20"
+                    className="h-10 w-48 object-contain object-left transition-[filter] duration-200 group-hover:brightness-110 sm:h-16 sm:w-64 md:h-20 md:w-72"
                     style={{ filter: "brightness(0) invert()" }}
                   />
                 </div>
