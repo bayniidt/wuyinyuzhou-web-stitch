@@ -6,15 +6,15 @@ import imgMatrixBg from "@/images/index6.png"
 import imgMatrixBgAlt from "@/images/index7.png"
 
 // import logoGongfu from "@/images/index8.png"
-import logoGongfu from "@/images/LOGO/武印阁logo/武印阁白底-透明.png"
+import logoGongfu from "@/images/logo1000X400透明底/武印阁.png"
 // import logoMeng from "@/images/index9.png"
-import logoMeng from "@/images/LOGO/武印盟logo/武印盟-白底logo.png"
+import logoMeng from "@/images/logo1000X400透明底/武印盟.png"
 // import logoGongfu1 from "@/images/印承天下.png"
-import logoGongfu1 from "@/images/LOGO/武印阁logo/武印阁白底-透明.png"
+import logoGongfu1 from "@/images/logo1000X400透明底/功夫印.png"
 // import logoMeng2 from "@/images/武印传媒.png"
-import logoMeng7 from "@/images/印承天下.png"
-import logoMeng3 from "@/images/武印传媒.png"
-import logoMeng2 from "@/images/武印标准.png"
+import logoMeng7 from "@/images/logo1000X400透明底/印承天下.png"
+import logoMeng3 from "@/images/logo1000X400透明底/武印传媒.png"
+import logoMeng2 from "@/images/logo1000X400透明底/武印标准.png"
 import { useMemo, useRef, useState } from "react"
 
 const tileKeys = ["arena", "artifacts", "spirits", "academy", "spells", "treasury"] as const;
@@ -102,7 +102,7 @@ export default function EcosystemMatrixSection() {
                   <img
                     src={row.logoSrc}
                     alt={row.logoAlt}
-                    className="h-10 w-48 object-contain object-left transition-[filter] duration-200 group-hover:brightness-110 sm:h-16 sm:w-64 md:h-20 md:w-72"
+                    className="h-20 w-70 object-contain object-left transition-[filter] duration-200 group-hover:brightness-110 sm:h-16 sm:w-80 md:h-20 md:w-72"
                     style={{ filter: "brightness(0) invert()" }}
                   />
                 </div>
