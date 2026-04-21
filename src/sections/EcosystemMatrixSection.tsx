@@ -102,7 +102,7 @@ export default function EcosystemMatrixSection() {
                   <img
                     src={row.logoSrc}
                     alt={row.logoAlt}
-                    className="h-20 w-70 object-contain object-left transition-[filter] duration-200 group-hover:brightness-110 sm:h-16 sm:w-80 md:h-20 md:w-72"
+                    className="h-32 w-[500px] object-contain object-left transition-[filter] duration-200 group-hover:brightness-110 sm:h-48 sm:w-[600px] md:h-30 md:w-[300px]"
                     style={{ filter: "brightness(0) invert()" }}
                   />
                 </div>
