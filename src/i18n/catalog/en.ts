@@ -143,9 +143,9 @@ const en = {
     openScroll: "Go deeper",
     backHome: "Back to home",
     philosophy: {
-      title: "Wusheng Mountain Lineage",
-      p1: "Wusheng Mountain is China’s first named Wusheng Mountain, with triple scarcity. In 825, under Emperor Jingzong of Tang, Wusheng Palace was decreed, enshrining Jiang Ziya. The three transformations of the martial saint—Jiang Ziya, Guan Yu, Yue Fei—form one three-thousand-year thread.",
-      p2: "Positioning: Wudang speaks yin-yang and Taiji; Wusheng Mountain speaks Zhi Ge as the heart of martial practice. Brand visuals center on the mountain silhouette, carved martial seal, and cinnabar characters for Zhi Ge. Palette: slate grey and cinnabar red.",
+      title: "Zhi·Gou·Yin",
+      p1: "Stop, not retreat, is knowing when to stop before achieving stability - warriors use stillness to gain the upper hand, and with courtesy, they command power. In the midst of chaos, they maintain the inner balance. The sword, not for conquest, but for transforming into harmony - in a confrontation, it is not about destruction, but about understanding the opponent and seeing oneself in the collision. The seal, it is the trace left by the law of nature - every punch, every decision, leaves an unalterable mark in the universe of martial arts.",
+      p2: '"Wu" represents form, "Yin" represents spirit, "Shi" represents contemplation, and "Jie" represents framework.',
       concepts: {
         zhi: { char: "Zhi", label: "Blank" },
         ge: { char: "Ge", label: "Covenant" },
@@ -153,8 +153,8 @@ const en = {
       },
     },
     lineage: {
-      title: "Three Transformations",
-      lead: "One thread across three millennia—the succession of enshrinement and story that anchors Wusheng Mountain’s cultural wholeness.",
+      title: "Personnel lineage",
+      lead: "Inheriting the same tradition, all the scriptures converge to a common origin.",
     },
     characters: {
       c1: {

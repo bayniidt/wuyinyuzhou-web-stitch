@@ -59,7 +59,7 @@ export default function ManifestoSection() {
             whileInView={{ opacity: 1, filter: 'blur(0px)' }}
             viewport={{ once: true }}
             transition={{ duration: 1.5, delay: 0.5 }}
-            className="relative mt-10 border-l border-white/15 pl-6 font-serif text-lg italic text-neutral-200 sm:text-xl"
+            className="relative mt-10 border-l border-white/15 pl-6 font-serif text-lg  text-neutral-200 sm:text-xl"
           >
             <span className="relative z-10">“{t("home.manifesto.quote")}”</span>
             <div className="absolute -left-2 -top-4 -z-0 h-16 w-16 opacity-20 blur-xl bg-wuyin-accent rounded-full" />
