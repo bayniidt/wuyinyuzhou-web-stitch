@@ -27,6 +27,21 @@ export default function SequenceMap() {
     offset: ["start end", "end start"],
   });
 
+  const hotspotDetail = activeHotspot ? (
+    <>
+      <button
+        className="absolute right-3 top-3 text-neutral-500 transition-colors hover:text-white"
+        aria-label="Close hotspot details"
+        onClick={() => setActiveHotspot(null)}
+      >
+        ✕
+      </button>
+      <h3 className="font-serif text-lg font-bold text-wuyin-gold-bright">{activeHotspot.label}</h3>
+      <p className="mt-2 text-xs leading-relaxed text-neutral-300">{activeHotspot.description}</p>
+      <div className="mt-4 h-px w-full bg-linear-to-r from-wuyin-accent/50 to-transparent" />
+    </>
+  ) : null;
+
   return (
     <div ref={containerRef} className="relative h-[150vh] w-full bg-black">
       <div className="sticky top-0 h-screen w-full overflow-hidden">
@@ -70,26 +85,27 @@ export default function SequenceMap() {
         
         {/* 热点详情弹窗 */}
         {activeHotspot && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="absolute z-20 w-64 rounded-xl border border-white/10 bg-wuyin-elevated/95 p-5 shadow-wuyin-glow backdrop-blur-md"
-            style={{ 
-              left: `${activeHotspot.x}%`, 
-              top: `${activeHotspot.y}%`,
-              transform: 'translate(-50%, -120%)'
-            }}
-          >
-            <button 
-              className="absolute right-3 top-3 text-neutral-500 hover:text-white"
-              onClick={() => setActiveHotspot(null)}
+          <>
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="absolute inset-x-4 bottom-6 z-20 rounded-xl border border-white/10 bg-wuyin-elevated/95 p-5 shadow-wuyin-glow backdrop-blur-md sm:hidden"
             >
-              ✕
-            </button>
-            <h3 className="font-serif text-lg font-bold text-wuyin-gold-bright">{activeHotspot.label}</h3>
-            <p className="mt-2 text-xs leading-relaxed text-neutral-300">{activeHotspot.description}</p>
-            <div className="mt-4 h-px w-full bg-linear-to-r from-wuyin-accent/50 to-transparent" />
-          </motion.div>
+              {hotspotDetail}
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="absolute z-20 hidden w-64 rounded-xl border border-white/10 bg-wuyin-elevated/95 p-5 shadow-wuyin-glow backdrop-blur-md sm:block"
+              style={{
+                left: `${activeHotspot.x}%`,
+                top: `${activeHotspot.y}%`,
+                transform: "translate(-50%, -120%)",
+              }}
+            >
+              {hotspotDetail}
+            </motion.div>
+          </>
         )}
         
         {/* 中心文案引导 */}
