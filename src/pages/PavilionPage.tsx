@@ -11,6 +11,7 @@ import imgCase3 from "@/images/武印阁/unnamed (3).png"
 import imgCase4 from "@/images/武印阁/unnamed.png"
 import { AnimatePresence, motion } from "framer-motion"
 import { useState } from "react"
+import imgPartnerHero from "@/images/wyg.jpg";
 
 function CertificateVerification() {
   const { t } = useLocale();
@@ -98,6 +99,11 @@ export default function PavilionPage() {
       {/* 沉浸式首屏 */}
       <section className="relative flex min-h-[50vh] items-center justify-center overflow-hidden border-b border-white/5 bg-[#080706]">
         <SectionGoldenBlocks density="sparse" intensity="subtle" variant={1} />
+            <img
+          src={imgPartnerHero}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover opacity-50"
+        />
         <div className="container-wuyin relative z-10 py-20 text-center">
           <ScrollReveal variant="upGlow" className="wuyin-reveal-tech" visibleClassName="wuyin-reveal-tech-visible">
             <p className="text-xs font-bold uppercase tracking-[0.5em] text-wuyin-gold-bright">{t("pavilion.hero.kicker")}</p>
