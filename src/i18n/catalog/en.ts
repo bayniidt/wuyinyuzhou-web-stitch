@@ -254,7 +254,7 @@ const en = {
       kicker: "2026 Hangzhou Debut",
       title: "Venue Perspective Preview",
       timeLabel: "Time",
-      timeValue: "2026.05.20",
+      timeValue: "2026.12.12",
       locationLabel: "Location",
       locationValue: "Hangzhou · Little Lotus",
     },

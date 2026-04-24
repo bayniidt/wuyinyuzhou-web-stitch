@@ -254,7 +254,7 @@ const zh = {
       kicker: "2026 杭州首秀",
       title: "场馆视角预览",
       timeLabel: "时间",
-      timeValue: "2026.05.20",
+      timeValue: "2026.12.12",
       locationLabel: "地点",
       locationValue: "杭州 · 小莲花",
     },
