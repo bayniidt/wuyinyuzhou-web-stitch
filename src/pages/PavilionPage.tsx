@@ -102,7 +102,7 @@ export default function PavilionPage() {
             <img
           src={imgPartnerHero}
           alt=""
-          className="absolute inset-0 h-full w-full object-cover opacity-50"
+          className="absolute inset-0 h-full w-full object-cover opacity-20"
         />
         <div className="container-wuyin relative z-10 py-20 text-center">
           <ScrollReveal variant="upGlow" className="wuyin-reveal-tech" visibleClassName="wuyin-reveal-tech-visible">
