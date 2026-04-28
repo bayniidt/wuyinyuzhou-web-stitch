@@ -15,6 +15,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 // Fallbacks
 import narrativeBannerFallback from "@/images/index1.png";
 import narrativeCoverFallback from "@/images/index2.png";
+import char1Fallback from "@/images/page3 (1).png";
+import char2Fallback from "@/images/page3 (2).png";
+import char3Fallback from "@/images/page3 (3).png";
+import char4Fallback from "@/images/page3 (4).png";
+import char5Fallback from "@/images/page3 (5).png";
+import char6Fallback from "@/images/page3 (6).png";
 
 const CDN_BANNER_VIDEO = "https://cdn.51aes.com/video/51Aes/Banner-AES6-logo.mp4";
 
@@ -47,6 +53,8 @@ export default function NarrativePage() {
   const location = useLocation();
   const reducedMotion = usePrefersReducedMotion();
 
+  const isBrokenPath = (url: string | undefined) => !url || url.includes('/fhzb/');
+
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
 
   useEffect(() => {
@@ -63,29 +71,43 @@ export default function NarrativePage() {
       name: t("narrative.characters.c1.name"),
       role: t("narrative.characters.c1.role"),
       blurb: t("narrative.characters.c1.blurb"),
-      portrait: resources['gal_hq_role1_image'] || '',
+      portrait: isBrokenPath(resources['gal_hq_role1_image']) ? char1Fallback : resources['gal_hq_role1_image'],
       portraitAlt: t("narrative.characters.c1.alt")
     },
     {
       name: t("narrative.characters.c2.name"),
       role: t("narrative.characters.c2.role"),
       blurb: t("narrative.characters.c2.blurb"),
-      portrait: resources['gal_hq_role2_image'] || '',
+      portrait: isBrokenPath(resources['gal_hq_role2_image']) ? char2Fallback : resources['gal_hq_role2_image'],
       portraitAlt: t("narrative.characters.c2.alt")
     },
     {
       name: t("narrative.characters.c3.name"),
       role: t("narrative.characters.c3.role"),
       blurb: t("narrative.characters.c3.blurb"),
-      portrait: resources['gal_hq_role3_image'] || '',
+      portrait: isBrokenPath(resources['gal_hq_role3_image']) ? char3Fallback : resources['gal_hq_role3_image'],
       portraitAlt: t("narrative.characters.c3.alt")
     },
     {
       name: t("narrative.characters.c4.name"),
       role: t("narrative.characters.c4.role"),
       blurb: t("narrative.characters.c4.blurb"),
-      portrait: resources['gal_hq_role4_image'] || '',
+      portrait: isBrokenPath(resources['gal_hq_role4_image']) ? char4Fallback : resources['gal_hq_role4_image'],
       portraitAlt: t("narrative.characters.c4.alt")
+    },
+    {
+      name: t("narrative.characters.c5.name"),
+      role: t("narrative.characters.c5.role"),
+      blurb: t("narrative.characters.c5.blurb"),
+      portrait: isBrokenPath(resources['gal_hq_role5_image']) ? char5Fallback : resources['gal_hq_role5_image'],
+      portraitAlt: t("narrative.characters.c5.alt")
+    },
+    {
+      name: t("narrative.characters.c6.name"),
+      role: t("narrative.characters.c6.role"),
+      blurb: t("narrative.characters.c6.blurb"),
+      portrait: isBrokenPath(resources['gal_hq_role6_image']) ? char6Fallback : resources['gal_hq_role6_image'],
+      portraitAlt: t("narrative.characters.c6.alt")
     }
   ], [t, resources]);
 
@@ -94,8 +116,6 @@ export default function NarrativePage() {
       <div className="w-8 h-8 border-4 border-wuyin-gold-bright border-t-transparent rounded-full animate-spin"></div>
     </div>
   );
-
-  const isBrokenPath = (url: string | undefined) => !url || url.includes('/fhzb/');
 
   const narrativeBanner = isBrokenPath(resources['phi_hero_bg']) ? narrativeBannerFallback : resources['phi_hero_bg'];
   const narrativeVideo = isBrokenPath(resources['vis_doc_video']) ? CDN_BANNER_VIDEO : resources['vis_doc_video'];

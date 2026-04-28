@@ -440,6 +440,24 @@ const en = {
         "role": "Later Martial Saint · Devotion",
         "blurb": "The thread extends to duty and country: wholehearted devotion carries the spirit of Zhi Ge and protection of the people.",
         "alt": "Atmospheric Wusheng Mountain scene (landscape motif)"
+      },
+      "c4": {
+        "name": "Zhang Sanfeng",
+        "role": "Internal Master · Movement",
+        "blurb": "The source of Tai Chi: using harmony and nature to connect martial arts to the Tao, carrying the logic of balance.",
+        "alt": "Atmospheric Wusheng Mountain scene (Tai Chi motif)"
+      },
+      "c5": {
+        "name": "Sun Wu",
+        "role": "God of War · Strategy",
+        "blurb": "The Way of War is the Way of Man: using strategy and global vision so martial arts is about wisdom, not just bravery.",
+        "alt": "Atmospheric Wusheng Mountain scene (Art of War motif)"
+      },
+      "c6": {
+        "name": "Hua Mulan",
+        "role": "Heroine Light · Resilience",
+        "blurb": "Resilience and duty: breaking boundaries to meet force with softness, carrying the core spirit of country and resolve.",
+        "alt": "Atmospheric Wusheng Mountain scene (Heroine motif)"
       }
     },
     "heritage": {
