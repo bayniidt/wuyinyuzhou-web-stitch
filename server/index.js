@@ -195,6 +195,94 @@ app.post('/api/login', (req, res) => {
   res.json({ success: true, member: { id: member.id, name: member.name, phone: member.phone, is_super_admin: member.is_super_admin } });
 });
 
+// Partnership Submissions
+app.post('/api/partnership/submit', (req, res) => {
+  const { company, contact, intent, description } = req.body;
+  if (!company || !contact || !intent) {
+    return res.status(400).json({ error: '必填项不能为空' });
+  }
+  const insert = db.prepare(`
+    INSERT INTO partnership_submissions (company, contact, intent, description)
+    VALUES (?, ?, ?, ?)
+  `);
+  insert.run(company, contact, intent, description);
+  res.json({ success: true });
+});
+
+app.get('/api/partnership/submissions', (req, res) => {
+  const submissions = db.prepare('SELECT * FROM partnership_submissions ORDER BY created_at DESC').all();
+  res.json(submissions);
+});
+
+app.put('/api/partnership/submissions/:id', (req, res) => {
+  const { id } = req.params;
+  const { status, admin_note } = req.body;
+  const update = db.prepare(`
+    UPDATE partnership_submissions SET status = ?, admin_note = ?, updated_at = CURRENT_TIMESTAMP
+    WHERE id = ?
+  `);
+  update.run(status, admin_note, id);
+  res.json({ success: true });
+});
+
+app.delete('/api/partnership/submissions/:id', (req, res) => {
+  const { id } = req.params;
+  db.prepare('DELETE FROM partnership_submissions WHERE id = ?').run(id);
+  res.json({ success: true });
+});
+
+// Member Management
+app.get('/api/members', (req, res) => {
+  const members = db.prepare('SELECT * FROM members ORDER BY created_at DESC').all();
+  res.json(members);
+});
+
+app.post('/api/members', (req, res) => {
+  const { name, phone, is_super_admin } = req.body;
+  if (!name || !phone) {
+    return res.status(400).json({ error: '姓名和手机号不能为空' });
+  }
+  try {
+    const insert = db.prepare(`
+      INSERT INTO members (name, phone, is_super_admin)
+      VALUES (?, ?, ?)
+    `);
+    insert.run(name, phone, is_super_admin ? 1 : 0);
+    res.json({ success: true });
+  } catch (err) {
+    if (err.message.includes('UNIQUE')) {
+      return res.status(400).json({ error: '手机号已存在' });
+    }
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.put('/api/members/:id', (req, res) => {
+  const { id } = req.params;
+  const { name, phone, is_super_admin } = req.body;
+  try {
+    const update = db.prepare(`
+      UPDATE members SET name = ?, phone = ?, is_super_admin = ?
+      WHERE id = ?
+    `);
+    update.run(name, phone, is_super_admin ? 1 : 0, id);
+    res.json({ success: true });
+  } catch (err) {
+    if (err.message.includes('UNIQUE')) {
+      return res.status(400).json({ error: '手机号已存在' });
+    }
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.delete('/api/members/:id', (req, res) => {
+  const { id } = req.params;
+  // Prevent deleting the only super admin or yourself? 
+  // For now simple delete
+  db.prepare('DELETE FROM members WHERE id = ?').run(id);
+  res.json({ success: true });
+});
+
 // Auto-sync from TS to DB on startup if empty
 const contentCount = db.prepare('SELECT COUNT(*) as count FROM site_content').get();
 if (contentCount.count === 0) {

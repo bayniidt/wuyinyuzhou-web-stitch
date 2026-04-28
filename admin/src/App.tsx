@@ -11,6 +11,8 @@ import ResourceManagement from '@/pages/ResourceManagement';
 import NewsManagement from '@/pages/NewsManagement';
 import QuestionManagement from '@/pages/QuestionManagement';
 import ContactSubmissionManagement from '@/pages/ContactSubmissionManagement';
+import PartnershipSubmissionManagement from '@/pages/PartnershipSubmissionManagement';
+import MemberManagement from '@/pages/MemberManagement';
 import NavigationManagement from '@/pages/NavigationManagement';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -98,6 +100,26 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <ContactSubmissionManagement />
+          </ProtectedRoute>
+        }
+      />
+      
+      {/* Partnership Submissions Management */}
+      <Route
+        path="/partnership-submissions"
+        element={
+          <ProtectedRoute>
+            <PartnershipSubmissionManagement />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Member Management */}
+      <Route
+        path="/members"
+        element={
+          <ProtectedRoute>
+            <MemberManagement />
           </ProtectedRoute>
         }
       />

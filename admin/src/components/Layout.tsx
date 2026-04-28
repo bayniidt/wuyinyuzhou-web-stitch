@@ -13,10 +13,11 @@ interface NavLink {
   label: string;
   icon?: string;
   type?: 'header' | 'link';
+  superAdminOnly?: boolean;
 }
 
 const navLinks: NavLink[] = [
-  { path: '/', label: '仪表盘', icon: '📊' },
+  // { path: '/', label: '仪表盘', icon: '📊' },
   { type: 'header', label: '内容管理' },
   { path: '/content/header', label: 'Header 管理', icon: '🔝' },
   { path: '/content/nav', label: '导航文案', icon: '🧭' },
@@ -40,6 +41,9 @@ const navLinks: NavLink[] = [
   { path: '/questions', label: '常见问题', icon: '❓' },
   { path: '/navigation', label: '菜单配置', icon: '🔗' },
   { path: '/contact-submissions', label: '联系表单', icon: '✉️' },
+  { path: '/partnership-submissions', label: '合作申请', icon: '🤝' },
+  { type: 'header', label: '系统管理', superAdminOnly: true },
+  { path: '/members', label: '员工账号', icon: '👥', superAdminOnly: true },
 ];
 
 export default function Layout({ children }: LayoutProps) {
@@ -58,6 +62,14 @@ export default function Layout({ children }: LayoutProps) {
     return null;
   }
 
+  // Filter links based on role
+  const filteredLinks = navLinks.filter(link => {
+    if (link.superAdminOnly && !member?.is_super_admin) {
+      return false;
+    }
+    return true;
+  });
+
   return (
     <div className="min-h-screen bg-zinc-950">
       {/* Sidebar */}
@@ -68,7 +80,7 @@ export default function Layout({ children }: LayoutProps) {
         </div>
 
         <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
-          {navLinks.map((link, idx) => {
+          {filteredLinks.map((link, idx) => {
             if (link.type === 'header') {
               return (
                 <div key={`header-${idx}`} className="px-4 pt-4 pb-2 text-[10px] font-bold text-zinc-600 uppercase tracking-widest">
@@ -80,11 +92,10 @@ export default function Layout({ children }: LayoutProps) {
               <Link
                 key={link.path}
                 to={link.path!}
-                className={`flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all ${
-                  location.pathname === link.path
+                className={`flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all ${location.pathname === link.path
                     ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/20'
                     : 'text-zinc-400 hover:bg-zinc-800 hover:text-white'
-                }`}
+                  }`}
               >
                 <span className="text-base">{link.icon}</span>
                 <span className="font-medium text-sm">{link.label}</span>

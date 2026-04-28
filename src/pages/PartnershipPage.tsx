@@ -3,7 +3,7 @@ import ScrollReveal from "@/components/motion/ScrollReveal";
 import PartnerLogos from "@/components/partners/PartnerLogos";
 import { useLocale } from "@/i18n/LocaleProvider";
 import { useModuleResources } from "@/hooks/useModuleResources";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 // Fallbacks
 import heroFallback from "@/images/page4 (5).png";
@@ -22,6 +22,42 @@ export default function PartnershipPage() {
     { id: 'invest', title: t("partnership.domains.items.invest.title"), code: "INVEST", body: t("partnership.domains.items.invest.body") },
     { id: 'media', title: t("partnership.domains.items.media.title"), code: "MEDIA", body: t("partnership.domains.items.media.body") },
   ], [t]);
+
+  const [formData, setFormData] = useState({
+    company: '',
+    contact: '',
+    intent: t("partnership.form.options.brand"),
+    description: ''
+  });
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
+    try {
+      const response = await fetch('http://localhost:3001/api/partnership/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      if (response.ok) {
+        setFormData({
+          company: '',
+          contact: '',
+          intent: t("partnership.form.options.brand"),
+          description: ''
+        });
+        alert('申请提交成功！我们会尽快联系您。');
+      } else {
+        alert('提交失败，请稍后再试。');
+      }
+    } catch (error) {
+      console.error('Submit error:', error);
+      alert('提交失败，请检查网络连接。');
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   if (loading) return (
     <div className="flex min-h-screen items-center justify-center bg-black">
@@ -128,20 +164,36 @@ export default function PartnershipPage() {
              <h2 className="font-serif text-3xl font-bold text-white text-center">{t("partnership.form.title")}</h2>
              <p className="mt-4 text-sm text-neutral-500 text-center">{t("partnership.form.lead")}</p>
              
-             <form className="mt-12 space-y-6">
+             <form onSubmit={handleSubmit} className="mt-12 space-y-6">
                 <div className="grid gap-6 sm:grid-cols-2">
                    <div className="space-y-2">
                       <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">{t("partnership.form.company")}</label>
-                      <input type="text" className="w-full rounded-lg border border-white/10 bg-black/40 px-5 py-3 text-white focus:border-wuyin-gold-bright/40 focus:outline-none" />
+                      <input 
+                        type="text" 
+                        required
+                        value={formData.company}
+                        onChange={e => setFormData({...formData, company: e.target.value})}
+                        className="w-full rounded-lg border border-white/10 bg-black/40 px-5 py-3 text-white focus:border-wuyin-gold-bright/40 focus:outline-none" 
+                      />
                    </div>
                    <div className="space-y-2">
                       <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">{t("partnership.form.contact")}</label>
-                      <input type="text" className="w-full rounded-lg border border-white/10 bg-black/40 px-5 py-3 text-white focus:border-wuyin-gold-bright/40 focus:outline-none" />
+                      <input 
+                        type="text" 
+                        required
+                        value={formData.contact}
+                        onChange={e => setFormData({...formData, contact: e.target.value})}
+                        className="w-full rounded-lg border border-white/10 bg-black/40 px-5 py-3 text-white focus:border-wuyin-gold-bright/40 focus:outline-none" 
+                      />
                    </div>
                 </div>
                 <div className="space-y-2">
                    <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">{t("partnership.form.intent")}</label>
-                   <select className="w-full rounded-lg border border-white/10 bg-black/40 px-5 py-3 text-white focus:border-wuyin-gold-bright/40 focus:outline-none appearance-none">
+                   <select 
+                     value={formData.intent}
+                     onChange={e => setFormData({...formData, intent: e.target.value})}
+                     className="w-full rounded-lg border border-white/10 bg-black/40 px-5 py-3 text-white focus:border-wuyin-gold-bright/40 focus:outline-none appearance-none"
+                   >
                       <option>{t("partnership.form.options.brand")}</option>
                       <option>{t("partnership.form.options.event")}</option>
                       <option>{t("partnership.form.options.invest")}</option>
@@ -151,10 +203,19 @@ export default function PartnershipPage() {
                 </div>
                 <div className="space-y-2">
                    <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">{t("partnership.form.desc")}</label>
-                   <textarea rows={4} className="w-full rounded-lg border border-white/10 bg-black/40 px-5 py-3 text-white focus:border-wuyin-gold-bright/40 focus:outline-none resize-none"></textarea>
+                   <textarea 
+                     rows={4} 
+                     value={formData.description}
+                     onChange={e => setFormData({...formData, description: e.target.value})}
+                     className="w-full rounded-lg border border-white/10 bg-black/40 px-5 py-3 text-white focus:border-wuyin-gold-bright/40 focus:outline-none resize-none"
+                   ></textarea>
                 </div>
-                <button type="submit" className="w-full rounded-xl bg-linear-to-r from-wuyin-gold-bright to-wuyin-accent py-4 text-xs font-black uppercase tracking-[0.2em] text-black shadow-wuyin-glow transition hover:brightness-110">
-                   {t("partnership.form.submit")}
+                <button 
+                  type="submit" 
+                  disabled={submitting}
+                  className="w-full rounded-xl bg-linear-to-r from-wuyin-gold-bright to-wuyin-accent py-4 text-xs font-black uppercase tracking-[0.2em] text-black shadow-wuyin-glow transition hover:brightness-110 disabled:opacity-50"
+                >
+                   {submitting ? '提交中...' : t("partnership.form.submit")}
                 </button>
              </form>
           </ScrollReveal>
