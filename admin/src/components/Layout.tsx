@@ -21,7 +21,7 @@ const navLinks: NavLink[] = [
   { type: 'header', label: '内容管理' },
   { path: '/content/header', label: 'Header 管理', icon: '🔝' },
   { path: '/content/nav', label: '导航文案', icon: '🧭' },
-  { path: '/content/home', label: '首页管理', icon: '🏠' },
+  { path: '/content/ecosystem', label: '首页管理', icon: '🏠' },
   { path: '/content/narrative', label: '叙事管理', icon: '📖' },
   { path: '/content/timeline', label: '视界管理', icon: '⏳' },
   { path: '/content/pavilion', label: '武印阁管理', icon: '🏛️' },
@@ -37,10 +37,10 @@ const navLinks: NavLink[] = [
   { path: '/resources/pavilion', label: '武印阁资源管理', icon: '💎' },
   { path: '/resources/partnership', label: '合作入口资源管理', icon: '🤝' },
   { type: 'header', label: '业务数据' },
-  { path: '/news', label: '新闻文章', icon: '📝' },
-  { path: '/questions', label: '常见问题', icon: '❓' },
-  { path: '/navigation', label: '菜单配置', icon: '🔗' },
-  { path: '/contact-submissions', label: '联系表单', icon: '✉️' },
+  // { path: '/news', label: '新闻文章', icon: '📝' },
+  // { path: '/questions', label: '常见问题', icon: '❓' },
+  // { path: '/navigation', label: '菜单配置', icon: '🔗' },
+  // { path: '/contact-submissions', label: '联系表单', icon: '✉️' },
   { path: '/partnership-submissions', label: '合作申请', icon: '🤝' },
   { type: 'header', label: '系统管理', superAdminOnly: true },
   { path: '/members', label: '员工账号', icon: '👥', superAdminOnly: true },
@@ -93,8 +93,8 @@ export default function Layout({ children }: LayoutProps) {
                 key={link.path}
                 to={link.path!}
                 className={`flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all ${location.pathname === link.path
-                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/20'
-                    : 'text-zinc-400 hover:bg-zinc-800 hover:text-white'
+                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/20'
+                  : 'text-zinc-400 hover:bg-zinc-800 hover:text-white'
                   }`}
               >
                 <span className="text-base">{link.icon}</span>

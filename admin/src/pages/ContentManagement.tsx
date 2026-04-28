@@ -15,7 +15,7 @@ interface ContentItem {
 const moduleNames: Record<string, string> = {
   header: 'Header 管理',
   nav: '导航管理',
-  home: '首页管理',
+  ecosystem: '首页管理',
   narrative: '叙事管理',
   timeline: '视界管理',
   pavilion: '武印阁管理',
@@ -27,7 +27,7 @@ const moduleNames: Record<string, string> = {
 };
 
 export default function ContentManagement() {
-  const { module = 'home' } = useParams<{ module: string }>();
+  const { module = 'ecosystem' } = useParams<{ module: string }>();
   const [content, setContent] = useState<ContentItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
