@@ -102,6 +102,7 @@ export default function SiteHeader() {
   const closeBtnRef = useRef<HTMLButtonElement>(null);
   const navigate = useNavigate();
 
+  // Use static navigation from config + i18n
   const navGroups = useMemo(() => buildNavGroups(t), [t]);
 
   const closeAll = useCallback(() => {
@@ -115,11 +116,11 @@ export default function SiteHeader() {
 
   const handleScroll = useCallback(() => {
     const currentScrollY = window.scrollY;
-    
-    // 背景磨砂切换
+
+    // Background blur switch
     setIsScrolled(currentScrollY > 20);
 
-    // 动态显隐逻辑
+    // Dynamic show/hide logic
     if (currentScrollY < 10) {
       setIsVisible(true);
     } else if (currentScrollY > lastScrollY.current && currentScrollY > 80) {
@@ -127,7 +128,7 @@ export default function SiteHeader() {
     } else {
       setIsVisible(true);
     }
-    
+
     lastScrollY.current = currentScrollY;
   }, []);
 
@@ -155,7 +156,7 @@ export default function SiteHeader() {
   const handleMouseLeave = () => {
     closeTimerRef.current = window.setTimeout(() => {
       setOpenGroupId(null);
-    }, 160); // Hover bridge: allow mouse to cross gap
+    }, 160);
   };
 
   useEffect(() => {
@@ -200,13 +201,13 @@ export default function SiteHeader() {
   };
 
   return (
-    <header 
+    <header
       className={[
         "fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-[var(--ease-wuyin)] border-b",
         isVisible ? "translate-y-0" : "-translate-y-full",
-        isScrolled 
-          ? "border-white/10 bg-black/60 backdrop-blur-xl py-0" 
-          : "border-transparent bg-transparent py-2"
+        isScrolled
+          ? "border-white/10 bg-black/60 backdrop-blur-xl py-0"
+          : "border-transparent bg-transparent"
       ].join(" ")}
     >
       <div className="container-wuyin flex h-16 items-center justify-between gap-4 lg:h-[4.25rem]">
@@ -276,8 +277,8 @@ export default function SiteHeader() {
                   ].join(" ")}
                 >
                   <ul className="py-1">
-                    {group.children.map((child) => (
-                      <li key={child.href + child.label}>
+                    {group.children.map((child, idx) => (
+                      <li key={`${child.href}-${idx}`}>
                         <a
                           href={child.href}
                           role="menuitem"
@@ -335,111 +336,82 @@ export default function SiteHeader() {
 
       {drawerMounted
         ? createPortal(
-            <div className="fixed inset-0 z-[100] lg:hidden" role="dialog" aria-modal="true">
-              <button
-                type="button"
-                className={[
-                  "absolute inset-0 bg-black/70 transition-opacity duration-300 ease-[var(--ease-wuyin)]",
-                  drawerEntered ? "opacity-100" : "opacity-0",
-                ].join(" ")}
-                aria-label={t("header.menuCloseBackdrop")}
-                onClick={() => setMobileOpen(false)}
-              />
-              <div
-                id={mobilePanelId}
-                className={[
-                  "absolute right-0 top-0 flex h-full w-[min(100%,22rem)] flex-col border-l border-white/10 bg-wuyin-bg shadow-2xl transition-transform duration-300 ease-[var(--ease-wuyin)]",
-                  drawerEntered ? "translate-x-0" : "translate-x-full",
-                ].join(" ")}
-              >
-                <div className="flex shrink-0 items-center justify-between border-b border-white/10 px-4 py-4">
-                  <span className="font-serif text-lg font-semibold text-white">{t("header.menu")}</span>
-                  <button
-                    ref={closeBtnRef}
-                    type="button"
-                    className="rounded-lg p-2 text-neutral-300 hover:bg-white/5"
-                    aria-label={t("header.menuClose")}
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    <IconClose />
-                  </button>
-                </div>
-                <nav
-                  className="min-h-0 flex-1 overflow-y-auto px-3 py-4"
-                  aria-label={t("header.ariaMobileNav")}
+          <div className="fixed inset-0 z-[100] lg:hidden" role="dialog" aria-modal="true">
+            <button
+              type="button"
+              className={[
+                "absolute inset-0 bg-black/70 transition-opacity duration-300 ease-[var(--ease-wuyin)]",
+                drawerEntered ? "opacity-100" : "opacity-0",
+              ].join(" ")}
+              aria-label={t("header.menuCloseBackdrop")}
+              onClick={() => setMobileOpen(false)}
+            />
+            <div
+              id={mobilePanelId}
+              className={[
+                "absolute right-0 top-0 flex h-full w-[min(100%,22rem)] flex-col border-l border-white/10 bg-wuyin-bg shadow-2xl transition-transform duration-300 ease-[var(--ease-wuyin)]",
+                drawerEntered ? "translate-x-0" : "translate-x-full",
+              ].join(" ")}
+            >
+              <div className="flex shrink-0 items-center justify-between border-b border-white/10 px-4 py-4">
+                <span className="font-serif text-lg font-semibold text-white">{t("header.menu")}</span>
+                <button
+                  ref={closeBtnRef}
+                  type="button"
+                  className="rounded-lg p-2 text-neutral-300 hover:bg-white/5"
+                  aria-label={t("header.menuClose")}
+                  onClick={() => setMobileOpen(false)}
                 >
-                  {navGroups.map((group) => {
-                    const meta = getNavPrimaryMeta(group.id);
-                    const primaryTo = meta?.to;
-                    return primaryTo ? (
-                      <div key={group.id} className="border-b border-white/5 py-1">
-                        <NavLink
-                          to={primaryTo}
-                          end={meta?.end ?? false}
-                          className={({ isActive }) =>
-                            [
-                              "block rounded-lg px-3 py-3 text-sm font-medium transition",
-                              isActive
-                                ? "text-white [box-shadow:inset_3px_0_0_0_var(--color-wuyin-accent)]"
-                                : "text-white hover:bg-white/5",
-                            ].join(" ")
-                          }
-                          onClick={() => setMobileOpen(false)}
-                        >
-                          {group.label}
-                        </NavLink>
-                        <ul className="pb-2 pl-1">
-                          {group.children.map((child) => (
-                            <li key={child.href + child.label}>
-                              <a
-                                href={child.href}
-                                className="block rounded-lg px-3 py-2 text-sm text-neutral-300 hover:bg-white/5 hover:text-white"
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  onNavigate(child.href);
-                                }}
-                              >
-                                {child.label}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ) : (
-                      <details key={group.id} className="group border-b border-white/5 py-1">
-                        <summary className="cursor-pointer list-none py-3 font-medium text-white marker:hidden [&::-webkit-details-marker]:hidden">
-                          <span className="flex items-center justify-between">
-                            {group.label}
-                            <span className="text-wuyin-muted">▾</span>
-                          </span>
-                        </summary>
-                        <ul className="pb-2 pl-1">
-                          {group.children.map((child) => (
-                            <li key={child.href + child.label}>
-                              <a
-                                href={child.href}
-                                className="block rounded-lg px-3 py-2 text-sm text-neutral-300 hover:bg-white/5 hover:text-white"
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  onNavigate(child.href);
-                                }}
-                              >
-                                {child.label}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </details>
-                    );
-                  })}
-                </nav>
-                <div className="shrink-0 border-t border-white/10 p-4">
-                  <LanguageSwitcher className="flex w-full justify-center" />
-                </div>
+                  <IconClose />
+                </button>
               </div>
-            </div>,
-            document.body,
-          )
+              <nav
+                className="min-h-0 flex-1 overflow-y-auto px-3 py-4"
+                aria-label={t("header.ariaMobileNav")}
+              >
+                {navGroups.map((group, index) => (
+                  <div key={`${group.id}-${index}`} className="border-b border-white/5 py-1">
+                    <NavLink
+                      to={getNavPrimaryMeta(group.id)?.to}
+                      end={getNavPrimaryMeta(group.id)?.end ?? false}
+                      className={({ isActive }) =>
+                        [
+                          "block rounded-lg px-3 py-3 text-sm font-medium transition",
+                          isActive
+                            ? "text-white [box-shadow:inset_3px_0_0_0_var(--color-wuyin-accent)]"
+                            : "text-white hover:bg-white/5",
+                        ].join(" ")
+                      }
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {group.label}
+                    </NavLink>
+                    <ul className="pb-2 pl-1">
+                      {group.children.map((child, childIdx) => (
+                        <li key={`${child.href}-${childIdx}`}>
+                          <a
+                            href={child.href}
+                            className="block rounded-lg px-3 py-2 text-sm text-neutral-300 hover:bg-white/5 hover:text-white"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              onNavigate(child.href);
+                            }}
+                          >
+                            {child.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </nav>
+              <div className="shrink-0 border-t border-white/10 p-4">
+                <LanguageSwitcher className="flex w-full justify-center" />
+              </div>
+            </div>
+          </div>,
+          document.body,
+        )
         : null}
     </header>
   );
