@@ -56,7 +56,9 @@ db.transaction(() => {
     VALUES (?, ?, ?, ?, ?)
     ON CONFLICT(key) DO UPDATE SET
       value_zh = excluded.value_zh,
-      value_en = excluded.value_en
+      value_en = excluded.value_en,
+      type = excluded.type,
+      module = excluded.module
   `);
 
   for (const key of allKeys) {
@@ -66,9 +68,42 @@ db.transaction(() => {
     const valZh = zhEntry ? (typeof zhEntry.value === 'string' ? zhEntry.value : JSON.stringify(zhEntry.value)) : '';
     const valEn = enEntry ? (typeof enEntry.value === 'string' ? enEntry.value : JSON.stringify(enEntry.value)) : '';
     
-    // Determine type (media if it looks like a path or URL, but for now mostly text)
-    const type = (valZh.includes('/') || valZh.includes('http')) ? 'media' : 'text';
-    const module = key.split('.')[0];
+    // Determine type (media if it looks like a path, URL or has media keywords)
+    const isMedia = 
+      key.toLowerCase().endsWith('_video') || 
+      key.toLowerCase().endsWith('_bg') || 
+      key.toLowerCase().endsWith('_image') || 
+      key.toLowerCase().endsWith('_cover') || 
+      key.toLowerCase().endsWith('_logo') ||
+      key.toLowerCase().includes('/videos/') ||
+      key.toLowerCase().includes('/images/') ||
+      /\.(mp4|webm|ogg|jpg|jpeg|png|gif|svg|webp)$/i.test(valZh);
+      
+    const type = isMedia ? 'media' : 'text';
+    
+    // Map prefixes to modules based on navigation groups
+    let module = key.split(/[\._]/)[0]; // Split by dot or underscore
+    
+    const moduleMap = {
+      'home': 'ecosystem',
+      'phi': 'narrative',
+      'os': 'timeline',
+      'gal': 'pavilion',
+      'all': 'partnership',
+      'vis': 'news',
+      'ome': 'dashboard'
+    };
+    
+    if (moduleMap[module]) {
+      module = moduleMap[module];
+    }
+    
+    // Additional checks for specific navigation groups if needed
+    if (key.startsWith('ecosystem')) module = 'ecosystem';
+    else if (key.startsWith('narrative')) module = 'narrative';
+    else if (key.startsWith('timeline')) module = 'timeline';
+    else if (key.startsWith('pavilion')) module = 'pavilion';
+    else if (key.startsWith('partnership')) module = 'partnership';
     
     insert.run(key, valZh, valEn, type, module);
   }

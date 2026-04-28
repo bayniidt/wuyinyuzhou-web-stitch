@@ -4,57 +4,30 @@ import GhostButton from "@/components/ui/GhostButton";
 import GradientButton from "@/components/ui/GradientButton";
 import { useLocale } from "@/i18n/LocaleProvider";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
-import heroVideo1 from "@/videos/index1.mp4";
-import heroVideo2 from "@/videos/index2.mp4";
+import { useModuleResources } from "@/hooks/useModuleResources";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-const HERO_VIDEO_SOURCES = [heroVideo1, heroVideo2] as const;
+// Fallbacks
+import videoBannerFallback from "@/videos/15440050_1920_1080_30fps.mp4";
+import videoAscentFallback from "@/videos/16548256-hd_1080_1920_30fps.mp4";
 
-function HeroVideoBackground({ active }: { active: 0 | 1 }) {
-  const ref0 = useRef<HTMLVideoElement>(null);
-  const ref1 = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const a = ref0.current;
-    const b = ref1.current;
-    if (!a || !b) return;
-    const activeEl = active === 0 ? a : b;
-    const inactiveEl = active === 0 ? b : a;
-    inactiveEl.pause();
-    try {
-      activeEl.currentTime = 0;
-    } catch {
-      /* seek may fail before metadata */
-    }
-    void activeEl.play().catch(() => {});
-  }, [active]);
-
+function HeroVideoBackground({ src }: { src: string }) {
   const baseVideo =
     "pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-[900ms] ease-out";
 
   return (
     <div className="pointer-events-none absolute inset-0" aria-hidden>
       <video
-        ref={ref0}
-        className={`${baseVideo} ${active === 0 ? "z-[1] opacity-[0.72]" : "z-0 opacity-0"}`}
+        key={src}
+        src={src}
+        className={`${baseVideo} z-[1] opacity-[0.72]`}
         muted
         playsInline
         loop
         preload="auto"
-      >
-        <source src={HERO_VIDEO_SOURCES[0]} type="video/mp4" />
-      </video>
-      <video
-        ref={ref1}
-        className={`${baseVideo} ${active === 1 ? "z-[1] opacity-[0.72]" : "z-0 opacity-0"}`}
-        muted
-        playsInline
-        loop
-        preload="auto"
-      >
-        <source src={HERO_VIDEO_SOURCES[1]} type="video/mp4" />
-      </video>
+        autoPlay
+      />
     </div>
   );
 }
@@ -62,7 +35,20 @@ function HeroVideoBackground({ active }: { active: 0 | 1 }) {
 export default function HeroSection() {
   const reducedMotion = usePrefersReducedMotion();
   const { t } = useLocale();
+  const { resources, loading } = useModuleResources(['', 'ecosystem']);
   const [heroClip, setHeroClip] = useState<0 | 1>(0);
+
+  if (loading) return (
+    <div className="relative flex min-h-[calc(100dvh-4rem)] items-center justify-center bg-black">
+      <div className="w-8 h-8 border-4 border-wuyin-gold-bright border-t-transparent rounded-full animate-spin"></div>
+    </div>
+  );
+
+  const isBrokenPath = (url: string | undefined) => !url || url.includes('/fhzb/');
+
+  const videoSrc = heroClip === 0 
+    ? (isBrokenPath(resources['home_banner_video']) ? videoBannerFallback : resources['home_banner_video']) 
+    : (isBrokenPath(resources['home_ascent_video']) ? videoAscentFallback : resources['home_ascent_video']);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -100,7 +86,7 @@ export default function HeroSection() {
         aria-hidden
       />
       <SectionGoldenBlocks density="sparse" intensity="subtle" variant={0} />
-      {!reducedMotion ? <HeroVideoBackground active={heroClip} /> : null}
+      {!reducedMotion ? <HeroVideoBackground src={videoSrc} /> : null}
       <div className="pointer-events-none absolute inset-0 opacity-[0.58]" aria-hidden>
         <div
           className={[

@@ -5,16 +5,16 @@ import GradientButton from "@/components/ui/GradientButton";
 import CharacterCard from "@/components/universe/CharacterCard";
 import SequenceMap from "@/components/universe/SequenceMap";
 import { useLocale } from "@/i18n/LocaleProvider";
-import imgConceptTrinity from "@/images/page2(2).png";
-import imgLineageObsidian from "@/images/page2(3).png";
-import imgLineageVoid from "@/images/page2(4).png";
-import imgLineageIron from "@/images/page2(5).png";
-import narrativeBanner from "@/images/page2(6).png";
+import { useModuleResources } from "@/hooks/useModuleResources";
 import { scrollToSelector } from "@/lib/scroll";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+
+// Fallbacks
+import narrativeBannerFallback from "@/images/index1.png";
+import narrativeCoverFallback from "@/images/index2.png";
 
 const CDN_BANNER_VIDEO = "https://cdn.51aes.com/video/51Aes/Banner-AES6-logo.mp4";
 
@@ -24,15 +24,15 @@ function NarrativeSectionFireVideo({ reducedMotion, videoSrc = CDN_BANNER_VIDEO 
       <div className="relative mx-auto aspect-video w-full max-w-4xl overflow-hidden rounded-2xl border border-white/10 bg-neutral-950 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
         {!reducedMotion ? (
           <video
+            key={videoSrc}
+            src={videoSrc}
             className="h-full w-full object-cover opacity-60 mix-blend-screen"
             autoPlay
             muted
             loop
             playsInline
             preload="auto"
-          >
-            <source src={videoSrc} type="video/mp4" />
-          </video>
+          />
         ) : null}
         <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-black/20" />
       </div>
@@ -42,9 +42,11 @@ function NarrativeSectionFireVideo({ reducedMotion, videoSrc = CDN_BANNER_VIDEO 
 
 export default function NarrativePage() {
   const { t } = useLocale();
+  const { resources, loading } = useModuleResources(['narrative', 'news']);
   const navigate = useNavigate();
   const location = useLocation();
   const reducedMotion = usePrefersReducedMotion();
+
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
 
   useEffect(() => {
@@ -61,24 +63,43 @@ export default function NarrativePage() {
       name: t("narrative.characters.c1.name"),
       role: t("narrative.characters.c1.role"),
       blurb: t("narrative.characters.c1.blurb"),
-      portrait: imgLineageObsidian,
+      portrait: resources['gal_hq_role1_image'] || '',
       portraitAlt: t("narrative.characters.c1.alt")
     },
     {
       name: t("narrative.characters.c2.name"),
       role: t("narrative.characters.c2.role"),
       blurb: t("narrative.characters.c2.blurb"),
-      portrait: imgLineageVoid,
+      portrait: resources['gal_hq_role2_image'] || '',
       portraitAlt: t("narrative.characters.c2.alt")
     },
     {
       name: t("narrative.characters.c3.name"),
       role: t("narrative.characters.c3.role"),
       blurb: t("narrative.characters.c3.blurb"),
-      portrait: imgLineageIron,
+      portrait: resources['gal_hq_role3_image'] || '',
       portraitAlt: t("narrative.characters.c3.alt")
+    },
+    {
+      name: t("narrative.characters.c4.name"),
+      role: t("narrative.characters.c4.role"),
+      blurb: t("narrative.characters.c4.blurb"),
+      portrait: resources['gal_hq_role4_image'] || '',
+      portraitAlt: t("narrative.characters.c4.alt")
     }
-  ], [t]);
+  ], [t, resources]);
+
+  if (loading) return (
+    <div className="flex min-h-screen items-center justify-center bg-black">
+      <div className="w-8 h-8 border-4 border-wuyin-gold-bright border-t-transparent rounded-full animate-spin"></div>
+    </div>
+  );
+
+  const isBrokenPath = (url: string | undefined) => !url || url.includes('/fhzb/');
+
+  const narrativeBanner = isBrokenPath(resources['phi_hero_bg']) ? narrativeBannerFallback : resources['phi_hero_bg'];
+  const narrativeVideo = isBrokenPath(resources['vis_doc_video']) ? CDN_BANNER_VIDEO : resources['vis_doc_video'];
+  const narrativeCover = isBrokenPath(resources['vis_doc_cover']) ? narrativeCoverFallback : resources['vis_doc_cover'];
 
   return (
     <div className="bg-black">
@@ -179,7 +200,7 @@ export default function NarrativePage() {
               ))}
             </div>
           </ScrollReveal>
-          <NarrativeSectionFireVideo reducedMotion={reducedMotion} videoSrc={CDN_BANNER_VIDEO} />
+          <NarrativeSectionFireVideo reducedMotion={reducedMotion} videoSrc={narrativeVideo} />
         </div>
       </section>
 
@@ -205,7 +226,7 @@ export default function NarrativePage() {
         <div className="container-wuyin relative z-10">
           <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
             <ScrollReveal variant="leftSoft">
-              <img src={imgConceptTrinity} alt="" className="rounded-2xl border border-white/10 shadow-2xl" />
+              <img src={narrativeCover} alt="" className="rounded-2xl border border-white/10 shadow-2xl" />
             </ScrollReveal>
             <ScrollReveal variant="rightSoft" className="space-y-8">
               <h2 className="font-serif text-4xl font-bold text-white sm:text-5xl">{t("narrative.heritage.title")}</h2>
@@ -240,6 +261,7 @@ export default function NarrativePage() {
             <ScrollReveal variant="rightSoft" className="relative aspect-video overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-neutral-900">
                {!reducedMotion ? (
                  <video
+                   key={narrativeVideo}
                    className="h-full w-full object-cover opacity-60 mix-blend-screen"
                    autoPlay
                    muted
@@ -247,7 +269,7 @@ export default function NarrativePage() {
                    playsInline
                    preload="auto"
                  >
-                   <source src={CDN_BANNER_VIDEO} type="video/mp4" />
+                   <source src={narrativeVideo} type="video/mp4" />
                  </video>
                ) : null}
                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-black/20" />

@@ -1,5 +1,8 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
+const fs = require('fs');
+const multer = require('multer');
 const db = require('./db');
 const { syncDbToTs } = require('./utils/i18n-writer');
 require('dotenv').config();
@@ -9,11 +12,33 @@ const port = process.env.PORT || 3001;
 
 app.use(cors());
 app.use(express.json());
+app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
+
+// Multer Config
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, path.join(__dirname, 'public/uploads'));
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+    cb(null, uniqueSuffix + path.extname(file.originalname));
+  }
+});
+const upload = multer({ storage });
+
+// Upload Endpoint
+app.post('/api/upload', upload.single('file'), (req, res) => {
+  if (!req.file) return res.status(400).json({ error: 'No file uploaded' });
+  const url = `http://localhost:3001/uploads/${req.file.filename}`;
+  res.json({ url });
+});
 
 // Site Content Endpoints
 app.get('/api/content', (req, res) => {
   const { module } = req.query;
-  if (module) {
+  console.log('[API] GET /api/content, module:', module === undefined ? 'ALL' : `"${module}"`);
+  
+  if (module !== undefined) {
     const content = db.prepare('SELECT * FROM site_content WHERE module = ? ORDER BY key ASC').all(module);
     return res.json(content);
   }
@@ -24,6 +49,25 @@ app.get('/api/content', (req, res) => {
 app.put('/api/content/:id', (req, res) => {
   const { id } = req.params;
   const { value_zh, value_en, type, module } = req.body;
+
+  // Check if we need to delete an old file
+  if (type === 'media') {
+    const oldItem = db.prepare('SELECT value_zh, value_en FROM site_content WHERE id = ?').get(id);
+    const deleteOldFile = (url) => {
+      if (url && url.includes('http://localhost:3001/uploads/')) {
+        const filename = url.split('/').pop();
+        const filePath = path.join(__dirname, 'public/uploads', filename);
+        if (fs.existsSync(filePath)) {
+          fs.unlinkSync(filePath);
+        }
+      }
+    };
+    
+    // If the value changed, delete the old one
+    if (oldItem.value_zh !== value_zh) deleteOldFile(oldItem.value_zh);
+    if (oldItem.value_en !== value_en) deleteOldFile(oldItem.value_en);
+  }
+
   const update = db.prepare(`
     UPDATE site_content 
     SET value_zh = ?, value_en = ?, type = ?, module = ?

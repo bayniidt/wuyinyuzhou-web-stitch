@@ -18,13 +18,15 @@ export default function CharacterCard({ character }: { character: Character }) {
       className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-wuyin-elevated/80 shadow-wuyin-glow transition-all duration-300 hover:border-wuyin-accent/40"
     >
       <div className="relative aspect-[3/4] overflow-hidden bg-neutral-950">
-        <img
-          src={character.portrait}
-          alt={character.portraitAlt}
-          className="h-full w-full object-cover grayscale transition duration-500 group-hover:scale-105 group-hover:grayscale-0"
-          decoding="async"
-          loading="lazy"
-        />
+        {character.portrait && (
+          <img
+            src={character.portrait}
+            alt={character.portraitAlt}
+            className="h-full w-full object-cover grayscale transition duration-500 group-hover:scale-105 group-hover:grayscale-0"
+            decoding="async"
+            loading="lazy"
+          />
+        )}
         <div
           className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80"
           aria-hidden

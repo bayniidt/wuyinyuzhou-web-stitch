@@ -7,6 +7,7 @@ import AuthForm from '@/components/AuthForm';
 import Layout from '@/components/Layout';
 import Dashboard from '@/pages/Dashboard';
 import ContentManagement from '@/pages/ContentManagement';
+import ResourceManagement from '@/pages/ResourceManagement';
 import NewsManagement from '@/pages/NewsManagement';
 import QuestionManagement from '@/pages/QuestionManagement';
 import ContactSubmissionManagement from '@/pages/ContactSubmissionManagement';
@@ -47,6 +48,16 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <ContentManagement />
+          </ProtectedRoute>
+        }
+      />
+      
+      {/* Resource Management */}
+      <Route
+        path="/resources/:module"
+        element={
+          <ProtectedRoute>
+            <ResourceManagement />
           </ProtectedRoute>
         }
       />

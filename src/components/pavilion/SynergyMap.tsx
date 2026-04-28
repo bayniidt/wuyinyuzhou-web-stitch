@@ -57,7 +57,9 @@ export default function SynergyMap() {
               stroke="var(--color-wuyin-gold-bright)"
               strokeWidth="0.5"
               animate={{ 
-                r: hoveredNode?.id === node.id ? (node.id === 'pavilion' ? 7 : 5) : (node.id === 'pavilion' ? 6 : 4),
+                r: (hoveredNode?.id === node.id) 
+                  ? (node.id === 'pavilion' ? 7 : 5) 
+                  : (node.id === 'pavilion' ? 6 : 4),
                 fillOpacity: hoveredNode?.id === node.id ? 1 : 0.2
               }}
             />

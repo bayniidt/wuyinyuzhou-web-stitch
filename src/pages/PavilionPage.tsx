@@ -3,15 +3,13 @@ import ScrollReveal from "@/components/motion/ScrollReveal"
 import LiveBoard from "@/components/pavilion/LiveBoard"
 import SynergyMap from "@/components/pavilion/SynergyMap"
 import { useLocale } from "@/i18n/LocaleProvider"
-import imgNftBrowser from "@/images/page4 (1).png"
-import imgRwaCurve from "@/images/page4 (2).png"
-import imgCase1 from "@/images/武印阁/unnamed (1).png"
-import imgCase2 from "@/images/武印阁/unnamed (2).png"
-import imgCase3 from "@/images/武印阁/unnamed (3).png"
-import imgCase4 from "@/images/武印阁/unnamed.png"
+import { useModuleResources } from "@/hooks/useModuleResources"
 import { AnimatePresence, motion } from "framer-motion"
 import { useState } from "react"
-import imgPartnerHero from "@/images/wyg.jpg";
+
+// Fallbacks
+import heroFallback from "@/images/page3 (7).png";
+
 
 function CertificateVerification() {
   const { t } = useLocale();
@@ -93,17 +91,29 @@ function CertificateVerification() {
 
 export default function PavilionPage() {
   const { t } = useLocale();
+  const { resources, loading } = useModuleResources('pavilion');
+
+  if (loading) return (
+    <div className="flex min-h-screen items-center justify-center bg-black">
+      <div className="w-8 h-8 border-4 border-wuyin-gold-bright border-t-transparent rounded-full animate-spin"></div>
+    </div>
+  );
+
+  const partnerHero = resources['gal_hq_hero_bg'] || heroFallback;
+
 
   return (
     <div className="bg-black">
       {/* 沉浸式首屏 */}
       <section className="relative flex min-h-[50vh] items-center justify-center overflow-hidden border-b border-white/5 bg-[#080706]">
         <SectionGoldenBlocks density="sparse" intensity="subtle" variant={1} />
-            <img
-          src={imgPartnerHero}
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover opacity-20"
-        />
+        {partnerHero && (
+          <img
+            src={partnerHero}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover opacity-20"
+          />
+        )}
         <div className="container-wuyin relative z-10 py-20 text-center">
           <ScrollReveal variant="upGlow" className="wuyin-reveal-tech" visibleClassName="wuyin-reveal-tech-visible">
             <p className="text-xs font-bold uppercase tracking-[0.5em] text-wuyin-gold-bright">{t("pavilion.hero.kicker")}</p>
@@ -152,12 +162,16 @@ export default function PavilionPage() {
           <LiveBoard />
           <div className="mt-16 grid gap-6 sm:grid-cols-2">
              <div className="aspect-video rounded-xl border border-white/10 bg-neutral-950 flex flex-col items-center justify-center overflow-hidden relative group">
-               <img src={imgNftBrowser} alt="" className="absolute inset-0 h-full w-full object-cover opacity-50 transition-opacity duration-500 group-hover:opacity-80" />
+               {resources['gal_hq_role1_image'] && (
+                 <img src={resources['gal_hq_role1_image']} alt="" className="absolute inset-0 h-full w-full object-cover opacity-50 transition-opacity duration-500 group-hover:opacity-80" />
+               )}
                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
                <p className="relative z-10 text-white font-serif text-lg">{t("pavilion.digital.browserPreview")}</p>
              </div>
              <div className="aspect-video rounded-xl border border-white/10 bg-neutral-950 flex flex-col items-center justify-center overflow-hidden relative group">
-               <img src={imgRwaCurve} alt="" className="absolute inset-0 h-full w-full object-cover opacity-50 transition-opacity duration-500 group-hover:opacity-80" />
+               {resources['gal_hq_role2_image'] && (
+                 <img src={resources['gal_hq_role2_image']} alt="" className="absolute inset-0 h-full w-full object-cover opacity-50 transition-opacity duration-500 group-hover:opacity-80" />
+               )}
                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
                <p className="relative z-10 text-white font-serif text-lg">{t("pavilion.digital.valuationCurve")}</p>
              </div>
@@ -192,9 +206,11 @@ export default function PavilionPage() {
                </div>
              </ScrollReveal>
              <ScrollReveal variant="rightSoft" className="grid grid-cols-2 gap-4">
-               {[imgCase1, imgCase2, imgCase3, imgCase4].map((img, i) => (
+               {[1, 2, 3, 4].map((i) => (
                  <div key={i} className="aspect-square rounded-lg border border-white/5 bg-neutral-900 flex items-center justify-center group cursor-pointer hover:border-wuyin-gold-bright/30 transition-colors relative overflow-hidden">
-                   <img src={img} alt="" className="absolute inset-0 h-full w-full object-cover opacity-40 transition-all duration-500 group-hover:scale-110 group-hover:opacity-60" />
+                   {resources[`gal_hq_role${i}_image`] && (
+                     <img src={resources[`gal_hq_role${i}_image`]} alt="" className="absolute inset-0 h-full w-full object-cover opacity-40 transition-all duration-500 group-hover:scale-110 group-hover:opacity-60" />
+                   )}
                    <p className="relative z-10 text-[10px] font-bold text-white group-hover:text-wuyin-gold-bright transition-colors">{t("pavilion.media.caseLabel")} 0{i+1}</p>
                  </div>
                ))}

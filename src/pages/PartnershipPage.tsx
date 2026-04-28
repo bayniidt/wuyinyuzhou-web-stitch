@@ -2,11 +2,17 @@ import SectionGoldenBlocks from "@/components/decor/SectionGoldenBlocks";
 import ScrollReveal from "@/components/motion/ScrollReveal";
 import PartnerLogos from "@/components/partners/PartnerLogos";
 import { useLocale } from "@/i18n/LocaleProvider";
-import imgPartnerHero from "@/images/模块 4/unnamed.png";
+import { useModuleResources } from "@/hooks/useModuleResources";
 import { useMemo } from "react";
+
+// Fallbacks
+import heroFallback from "@/images/page4 (5).png";
 
 export default function PartnershipPage() {
   const { t } = useLocale();
+  const { resources, loading } = useModuleResources('partnership');
+  const partnerHero = resources['all_hero_bg'] || heroFallback;
+
 
   const domains = useMemo(() => [
     { id: 'brand', title: t("partnership.domains.items.brand.title"), code: "BRAND", body: t("partnership.domains.items.brand.body") },
@@ -17,13 +23,19 @@ export default function PartnershipPage() {
     { id: 'media', title: t("partnership.domains.items.media.title"), code: "MEDIA", body: t("partnership.domains.items.media.body") },
   ], [t]);
 
+  if (loading) return (
+    <div className="flex min-h-screen items-center justify-center bg-black">
+      <div className="w-8 h-8 border-4 border-wuyin-gold-bright border-t-transparent rounded-full animate-spin"></div>
+    </div>
+  );
+
   return (
     <div className="bg-black">
       {/* 沉浸式首屏 */}
       <section className="relative flex min-h-[50vh] items-center justify-center overflow-hidden border-b border-white/5 bg-[#080706]">
         <SectionGoldenBlocks density="sparse" intensity="subtle" variant={1} />
         <img
-          src={imgPartnerHero}
+          src={partnerHero}
           alt=""
           className="absolute inset-0 h-full w-full object-cover opacity-20"
         />

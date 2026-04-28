@@ -1,11 +1,17 @@
 import SectionGoldenBlocks from "@/components/decor/SectionGoldenBlocks";
 import ScrollReveal from "@/components/motion/ScrollReveal";
 import { useLocale } from "@/i18n/LocaleProvider";
-import manifestoVisual from "@/images/index2.png";
+import { useModuleResources } from "@/hooks/useModuleResources";
 import { motion } from "framer-motion";
+import imgManifestoFallback from "@/images/index2.png";
 
 export default function ManifestoSection() {
   const { t } = useLocale();
+  const { resources, loading } = useModuleResources(['', 'ecosystem']);
+  const isBrokenPath = (url: string | undefined) => !url || url.includes('/fhzb/');
+  const manifestoVisual = isBrokenPath(resources['home_manifesto_video']) ? imgManifestoFallback : resources['home_manifesto_video'];
+
+  if (loading) return null;
 
   return (
     <section id="home-manifesto" className="relative overflow-hidden border-b border-white/5 bg-wuyin-bg py-20 sm:py-28">
@@ -19,12 +25,26 @@ export default function ManifestoSection() {
           className="relative aspect-square max-h-[420px] w-full overflow-hidden rounded-2xl border border-white/10 bg-neutral-950 shadow-wuyin-glow"
           aria-hidden
         >
-          <img
-            src={manifestoVisual}
-            alt=""
-            className="absolute inset-0 h-full w-full object-cover"
-            decoding="async"
-          />
+          {manifestoVisual && (
+            manifestoVisual.endsWith('.mp4') ? (
+              <video
+                key={manifestoVisual}
+                src={manifestoVisual}
+                className="absolute inset-0 h-full w-full object-cover"
+                autoPlay
+                muted
+                loop
+                playsInline
+              />
+            ) : (
+              <img
+                src={manifestoVisual}
+                alt=""
+                className="absolute inset-0 h-full w-full object-cover"
+                decoding="async"
+              />
+            )
+          )}
           <div className="absolute inset-0 bg-linear-to-br from-black/70 via-neutral-900/20 to-black/80" />
           <div className="absolute inset-0 mix-blend-soft-light bg-[radial-gradient(circle_at_30%_25%,rgba(228,184,74,0.24),transparent_55%)]" />
           
