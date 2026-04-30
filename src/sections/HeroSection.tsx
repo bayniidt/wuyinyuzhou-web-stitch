@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 // Fallbacks
-import videoBannerFallback from "@/videos/15440050_1920_1080_30fps.mp4";
+import videoBannerFallback from "@/videos/index1.mp4";
 import videoAscentFallback from "@/videos/16548256-hd_1080_1920_30fps.mp4";
 
 function HeroVideoBackground({ src }: { src: string }) {
