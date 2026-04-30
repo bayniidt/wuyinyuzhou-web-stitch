@@ -20,19 +20,17 @@ export function useModuleResources(moduleIds: string | string[]) {
         const allMapped: Record<string, string> = {};
         
         await Promise.all(ids.map(async (id) => {
-          const res = await fetch(`http://localhost:3001/api/content?module=${id}`);
+          const res = await fetch(`/api/content?module=${id}`);
           if (res.ok) {
             const data = await res.json();
             data.forEach((item: any) => {
               if (item.type === 'media') {
                 let url = locale === 'zh' ? item.value_zh : item.value_en;
-                // Prefix relative paths with backend URL
+                // Keep relative paths as-is so the current host serves uploads through reverse proxy.
                 if (url && url.startsWith('/') && !url.startsWith('//')) {
                   // If it starts with /fhzb, it's currently a broken legacy path, discard it to allow fallback
                   if (url.startsWith('/fhzb')) {
                     url = undefined;
-                  } else {
-                    url = `http://localhost:3001${url}`;
                   }
                 }
                 if (url) {

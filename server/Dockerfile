@@ -1,28 +1,27 @@
-FROM node:24-slim
+ARG NODE_VERSION=24.14.1-slim
 
+FROM node:${NODE_VERSION} AS dependencies
 WORKDIR /app
 
-# Use domestic mirror for apt
-RUN sed -i 's/deb.debian.org/mirrors.tencentyun.com/g' /etc/apt/sources.list.d/debian.sources 2>/dev/null || sed -i 's/deb.debian.org/mirrors.tencentyun.com/g' /etc/apt/sources.list
+# better-sqlite3 requires native build tools during dependency install.
+RUN sed -i 's/deb.debian.org/mirrors.tencentyun.com/g' /etc/apt/sources.list.d/debian.sources
+RUN apt-get update && apt-get install -y --no-install-recommends python3 make g++ \
+  && rm -rf /var/lib/apt/lists/*
 
-# Install build dependencies for better-sqlite3
-RUN apt-get update && apt-get install -y python3 make g++ && rm -rf /var/lib/apt/lists/*
+COPY package.json package-lock.json ./
+RUN --mount=type=cache,target=/root/.npm \
+  npm ci --omit=dev --no-audit --no-fund
 
-# Copy package files
-COPY package*.json ./
+FROM node:${NODE_VERSION} AS runner
+WORKDIR /app
 
-# Install production dependencies
-RUN npm install --production
-
-# Copy the rest of the code
+COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
 
-# Ensure the public/uploads directory exists if needed (it will be a volume anyway)
-RUN mkdir -p ../public/uploads
+ENV NODE_ENV=production
+ENV PORT=3001
 
-# Create data and uploads directories
-RUN mkdir -p data uploads
+RUN mkdir -p public/uploads data uploads
 
 EXPOSE 3001
-
 CMD ["node", "index.js"]

@@ -34,7 +34,7 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const fetchTranslations = async () => {
       try {
-        const res = await fetch(`http://localhost:3001/api/translations/${locale}`);
+        const res = await fetch(`/api/translations/${locale}`);
         if (res.ok) {
           const data = await res.json();
           setDynamicCatalog(data);

@@ -1,8 +1,8 @@
 // admin/src/components/AuthForm.tsx
 
+import { useAuth } from '@/contexts/AuthContext';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '@/contexts/AuthContext';
 
 export default function AuthForm() {
   const [phone, setPhone] = useState('');
@@ -32,7 +32,7 @@ export default function AuthForm() {
       <div className="max-w-md w-full">
         <div className="bg-zinc-800/50 backdrop-blur-sm rounded-lg shadow-xl p-8 border border-zinc-700">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-white mb-2">峰壑资本</h1>
+            <h1 className="text-3xl font-bold text-white mb-2">武印视界</h1>
             <h2 className="text-xl text-zinc-400">管理后台</h2>
           </div>
 

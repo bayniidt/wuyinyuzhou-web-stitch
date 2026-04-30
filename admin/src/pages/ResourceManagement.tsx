@@ -35,7 +35,7 @@ export default function ResourceManagement() {
   const fetchContent = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`http://localhost:3001/api/content?module=${module}`);
+      const res = await fetch(`/api/content?module=${module}`);
       const data = await res.json();
       // Filter for media type only
       const mediaContent = data.filter((c: ContentItem) => c.type === 'media');
@@ -56,7 +56,7 @@ export default function ResourceManagement() {
     formData.append('file', file);
 
     try {
-      const res = await fetch('http://localhost:3001/api/upload', {
+      const res = await fetch('/api/upload', {
         method: 'POST',
         body: formData,
       });
@@ -78,7 +78,7 @@ export default function ResourceManagement() {
   const handleUpdate = async (item: ContentItem) => {
     setSaving(true);
     try {
-      const res = await fetch(`http://localhost:3001/api/content/${item.id}`, {
+      const res = await fetch(`/api/content/${item.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(item),

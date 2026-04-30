@@ -35,7 +35,7 @@ export default function PartnershipPage() {
     e.preventDefault();
     setSubmitting(true);
     try {
-      const response = await fetch('http://localhost:3001/api/partnership/submit', {
+      const response = await fetch('/api/partnership/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

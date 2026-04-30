@@ -29,7 +29,7 @@ const upload = multer({ storage });
 // Upload Endpoint
 app.post('/api/upload', upload.single('file'), (req, res) => {
   if (!req.file) return res.status(400).json({ error: 'No file uploaded' });
-  const url = `http://localhost:3001/uploads/${req.file.filename}`;
+  const url = `/uploads/${req.file.filename}`;
   res.json({ url });
 });
 
@@ -53,9 +53,22 @@ app.put('/api/content/:id', (req, res) => {
   // Check if we need to delete an old file
   if (type === 'media') {
     const oldItem = db.prepare('SELECT value_zh, value_en FROM site_content WHERE id = ?').get(id);
+    const extractUploadFilename = (url) => {
+      if (!url || typeof url !== 'string') return null;
+      if (url.startsWith('/uploads/')) return url.split('/').pop();
+      if (url.includes('/uploads/')) {
+        try {
+          const parsed = new URL(url);
+          return parsed.pathname.split('/').pop();
+        } catch {
+          return url.split('/').pop();
+        }
+      }
+      return null;
+    };
     const deleteOldFile = (url) => {
-      if (url && url.includes('http://localhost:3001/uploads/')) {
-        const filename = url.split('/').pop();
+      const filename = extractUploadFilename(url);
+      if (filename) {
         const filePath = path.join(__dirname, 'public/uploads', filename);
         if (fs.existsSync(filePath)) {
           fs.unlinkSync(filePath);

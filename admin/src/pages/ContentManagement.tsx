@@ -42,7 +42,7 @@ export default function ContentManagement() {
   const fetchContent = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`http://localhost:3001/api/content?module=${module}`);
+      const res = await fetch(`/api/content?module=${module}`);
       const data = await res.json();
       // Filter by module on client side if API doesn't support query param yet
       // (My API implementation currently returns all, so I'll filter here)
@@ -61,7 +61,7 @@ export default function ContentManagement() {
   const handleUpdate = async (item: ContentItem) => {
     setSaving(true);
     try {
-      const res = await fetch(`http://localhost:3001/api/content/${item.id}`, {
+      const res = await fetch(`/api/content/${item.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(item),

@@ -1,0 +1,26 @@
+services:
+  api:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: wuyin-api
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+    volumes:
+      - ./server/database.sqlite:/app/database.sqlite
+      - ./server/public/uploads:/app/public/uploads
+    expose:
+      - "3001"
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    container_name: wuyin-web
+    restart: unless-stopped
+    depends_on:
+      - api
+    ports:
+      - "80:80"
