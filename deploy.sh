@@ -33,14 +33,12 @@ rsync -az --delete \
   --exclude 'dist' \
   --exclude 'admin/dist' \
   --exclude 'server/node_modules' \
-  --exclude 'server/database.sqlite' \
-  --exclude 'server/public/uploads/' \
   --exclude '*.log' \
   --exclude '.DS_Store' \
   "${SCRIPT_DIR}/" "${DEPLOY_USER}@${DEPLOY_HOST}:${REMOTE_DIR}/"
 
 echo "[2/3] Rebuilding and starting containers on remote ..."
-ssh -t "${DEPLOY_USER}@${DEPLOY_HOST}" "cd '${REMOTE_DIR}' && docker compose up -d --build"
+ssh -t "${DEPLOY_USER}@${DEPLOY_HOST}" "cd '${REMOTE_DIR}' && docker compose down && docker compose up -d --build"
 
 echo "[3/3] Verifying container status ..."
 ssh -t "${DEPLOY_USER}@${DEPLOY_HOST}" "docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'"
