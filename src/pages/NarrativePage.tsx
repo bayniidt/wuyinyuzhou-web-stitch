@@ -154,14 +154,17 @@ export default function NarrativePage() {
   return (
     <div className="bg-black">
       {/* 沉浸式首屏 */}
-      <section id="narrative-hero" className="relative flex h-screen items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-linear-to-b from-black/60 via-transparent to-black" />
+      <section
+        id="narrative-hero"
+        className="relative flex min-h-[calc(100dvh-4rem)] items-center justify-center overflow-hidden border-b border-white/5 bg-[#080706] lg:min-h-[calc(100dvh-4.25rem)]"
+      >
+        <div className="absolute inset-0 bg-linear-to-b from-black/50 via-transparent to-black/85" />
         <img
           src={narrativeBanner}
           alt=""
-          className="absolute inset-0 h-full w-full object-cover opacity-40"
+          className="absolute inset-0 h-full w-full object-cover object-center opacity-40"
         />
-        <div className="container-wuyin relative z-10 text-center">
+        <div className="container-wuyin relative z-10 py-28 text-center sm:py-32">
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

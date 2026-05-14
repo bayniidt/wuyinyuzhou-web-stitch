@@ -90,7 +90,7 @@ export default function TimelinePage() {
 
   return (
     <div className="bg-black">
-      <section className="relative flex min-h-[68vh] items-center justify-center overflow-hidden border-b border-white/5 bg-[#080706]">
+      <section className="relative flex min-h-[calc(100dvh-4rem)] items-center justify-center overflow-hidden border-b border-white/5 bg-[#080706] lg:min-h-[calc(100dvh-4.25rem)]">
         <div
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(228,184,74,0.18),transparent_55%),linear-gradient(180deg,#080706_0%,#0f0d0b_45%,#080706_100%)]"
           aria-hidden
@@ -99,7 +99,7 @@ export default function TimelinePage() {
         <img
           src={timelineHero}
           alt=""
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.24]"
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center opacity-[0.24]"
           decoding="async"
           aria-hidden
         />

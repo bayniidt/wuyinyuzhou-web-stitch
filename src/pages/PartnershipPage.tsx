@@ -11,11 +11,12 @@ import partnershipFallback from "@/images/page4 (1).png";
 
 const domainKeys = ["brand", "event", "club", "gov", "invest", "media"] as const;
 type DomainKey = (typeof domainKeys)[number];
+const isBrokenPath = (url: string | undefined) => !url || url.includes("/fhzb/");
 
 export default function PartnershipPage() {
   const { t } = useLocale();
   const { resources, loading } = useModuleResources("partnership");
-  const partnerHero = resources["all_hero_bg"] || heroFallback;
+  const partnerHero = isBrokenPath(resources["all_hero_bg"]) ? heroFallback : resources["all_hero_bg"];
 
   const domains = useMemo(
     () =>
@@ -36,7 +37,9 @@ export default function PartnershipPage() {
 
   const [activeDomain, setActiveDomain] = useState<DomainKey>("brand");
   const activeItem = domains.find((item) => item.id === activeDomain) ?? domains[0];
-  const activeVisual = resources[`partnership_${activeDomain}_image`] || partnershipFallback;
+  const activeVisual = isBrokenPath(resources[`partnership_${activeDomain}_image`])
+    ? partnershipFallback
+    : resources[`partnership_${activeDomain}_image`];
 
   const valueItems = useMemo(
     () =>
@@ -104,10 +107,14 @@ export default function PartnershipPage() {
 
   return (
     <div className="bg-black">
-      <section className="relative flex min-h-[56vh] items-center justify-center overflow-hidden border-b border-white/5 bg-[#080706]">
+      <section className="relative flex min-h-[calc(100dvh-4rem)] items-center justify-center overflow-hidden border-b border-white/5 bg-[#080706] lg:min-h-[calc(100dvh-4.25rem)]">
         <SectionGoldenBlocks density="sparse" intensity="subtle" variant={1} />
-        <img src={partnerHero} alt="" className="absolute inset-0 h-full w-full object-cover opacity-20" />
-        <div className="absolute inset-0 bg-linear-to-b from-black/60 via-transparent to-black" />
+        <img
+          src={partnerHero}
+          alt=""
+          className="absolute inset-0 h-full w-full scale-105 object-cover object-center opacity-38"
+        />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(228,184,74,0.2),transparent_42%),linear-gradient(180deg,rgba(8,7,6,0.28)_0%,rgba(8,7,6,0.4)_42%,rgba(8,7,6,0.82)_100%)]" />
         <div className="container-wuyin relative z-10 py-20 text-center">
           <ScrollReveal variant="upGlow" className="wuyin-reveal-tech" visibleClassName="wuyin-reveal-tech-visible">
             <p className="text-xs font-bold uppercase tracking-[0.5em] text-wuyin-gold-bright">{t("partnership.hero.kicker")}</p>
@@ -190,15 +197,15 @@ export default function PartnershipPage() {
 
           <div className="mt-8 grid gap-8 rounded-[32px] border border-white/10 bg-[#0a0a0a] p-6 sm:p-8 lg:grid-cols-[0.95fr_1.05fr]">
             <div>
-              <article className="mb-6 overflow-hidden rounded-[28px] border border-white/10 bg-black/30">
-                <div className="relative aspect-[4/3] overflow-hidden">
+              <article className="mb-6 overflow-hidden rounded-[28px] border border-white/10 bg-[#100d0a]/80 p-3">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-[22px] bg-[radial-gradient(circle_at_top_right,rgba(228,184,74,0.18),transparent_30%),linear-gradient(180deg,#16120d_0%,#0c0a08_100%)]">
                   <img
                     key={activeDomain}
                     src={activeVisual}
                     alt=""
-                    className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                    className="h-full w-full object-contain p-3 transition-transform duration-700 hover:scale-[1.02]"
                   />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/15 to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent" />
                   <div className="absolute inset-x-5 bottom-5 rounded-2xl border border-white/10 bg-black/45 p-4 backdrop-blur-sm">
                     <p className="text-xs font-semibold uppercase tracking-[0.32em] text-wuyin-gold-bright/80">
                       {activeItem.tag}

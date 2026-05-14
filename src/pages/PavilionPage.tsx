@@ -9,6 +9,8 @@ import { useMemo } from "react";
 import heroFallback from "@/images/page3 (7).png";
 import brandFallback from "@/images/page3 (1).png";
 
+const isBrokenPath = (url: string | undefined) => !url || url.includes("/fhzb/");
+
 export default function PavilionPage() {
   const { t } = useLocale();
   const { resources, loading } = useModuleResources("pavilion");
@@ -42,21 +44,23 @@ export default function PavilionPage() {
     );
   }
 
-  const heroImage = resources["gal_hq_hero_bg"] || heroFallback;
-  const brandImage = resources["pavilion_brand_image"] || brandFallback;
+  const heroImage = isBrokenPath(resources["gal_hero_bg"]) ? heroFallback : resources["gal_hero_bg"];
+  const brandImage = isBrokenPath(resources["pavilion_brand_image"])
+    ? brandFallback
+    : resources["pavilion_brand_image"];
 
   return (
     <div className="bg-black">
-      <section className="relative flex min-h-[58vh] items-center justify-center overflow-hidden border-b border-white/5 bg-[#080706]">
+      <section className="relative flex min-h-[calc(100dvh-4rem)] items-center justify-center overflow-hidden border-b border-white/5 bg-[#080706] lg:min-h-[calc(100dvh-4.25rem)]">
         <SectionGoldenBlocks density="sparse" intensity="subtle" variant={1} />
         {heroImage ? (
           <img
             src={heroImage}
             alt=""
-            className="absolute inset-0 h-full w-full object-cover opacity-20"
+            className="absolute inset-0 h-full w-full scale-105 object-cover object-center opacity-40"
           />
         ) : null}
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(228,184,74,0.16),transparent_55%),linear-gradient(180deg,#080706_0%,#0f0d0b_45%,#080706_100%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(228,184,74,0.18),transparent_50%),linear-gradient(180deg,rgba(8,7,6,0.28)_0%,rgba(10,9,7,0.45)_46%,rgba(8,7,6,0.84)_100%)]" />
         <div className="container-wuyin relative z-10 py-20 text-center">
           <ScrollReveal variant="upGlow" className="wuyin-reveal-tech" visibleClassName="wuyin-reveal-tech-visible">
             <p className="text-xs font-bold uppercase tracking-[0.5em] text-wuyin-gold-bright">{t("pavilion.hero.kicker")}</p>
@@ -88,10 +92,14 @@ export default function PavilionPage() {
             <blockquote className="border-l border-wuyin-gold-bright/30 pl-5 font-serif text-2xl leading-relaxed text-neutral-100">
               {t("pavilion.brand.quote")}
             </blockquote>
-            <article className="overflow-hidden rounded-[32px] border border-white/10 bg-black/30">
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <img src={brandImage} alt="" className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" />
-                <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/15 to-transparent" />
+            <article className="overflow-hidden rounded-[32px] border border-white/10 bg-[#100d0a]/80 p-3">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-[24px] bg-[radial-gradient(circle_at_top_right,rgba(228,184,74,0.18),transparent_32%),linear-gradient(180deg,#17120d_0%,#0d0b09_100%)]">
+                <img
+                  src={brandImage}
+                  alt=""
+                  className="h-full w-full object-contain p-3 transition-transform duration-700 hover:scale-[1.02]"
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-black/28 via-transparent to-transparent" />
               </div>
             </article>
           </ScrollReveal>
