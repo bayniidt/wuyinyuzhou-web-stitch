@@ -1,5 +1,4 @@
-import { useLocale } from '@/i18n/LocaleProvider';
-import type { NavChild, NavGroup } from '@/config/navigation';
+import type { NavGroup } from '@/config/navigation';
 
 export interface ApiNavigationItem {
   id: number;

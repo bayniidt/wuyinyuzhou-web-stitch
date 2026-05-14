@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "Backend for fhzb-1400 admin system",
   "main": "index.js",
+  "engines": {
+    "node": ">=20 <25"
+  },
   "scripts": {
     "start": "node index.js",
-    "dev": "node --watch index.js"
+    "dev": "node --watch index.js",
+    "rebuild:native": "pnpm rebuild better-sqlite3"
   },
   "dependencies": {
     "2": "^3.0.0",
@@ -15,5 +19,10 @@
     "express": "^4.21.2",
     "fs-extra": "^11.3.4",
     "multer": "^2.1.1"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "better-sqlite3"
+    ]
   }
 }

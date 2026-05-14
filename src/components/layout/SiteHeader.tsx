@@ -372,7 +372,7 @@ export default function SiteHeader() {
                 {navGroups.map((group, index) => (
                   <div key={`${group.id}-${index}`} className="border-b border-white/5 py-1">
                     <NavLink
-                      to={getNavPrimaryMeta(group.id)?.to}
+                      to={getNavPrimaryMeta(group.id)?.to ?? "/"}
                       end={getNavPrimaryMeta(group.id)?.end ?? false}
                       className={({ isActive }) =>
                         [

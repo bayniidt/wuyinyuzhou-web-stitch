@@ -6,7 +6,7 @@ import { useLocale } from "@/i18n/LocaleProvider";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 import { useModuleResources } from "@/hooks/useModuleResources";
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 // Fallbacks
 import videoBannerFallback from "@/videos/index1.mp4";
@@ -37,6 +37,23 @@ export default function HeroSection() {
   const { t } = useLocale();
   const { resources, loading } = useModuleResources(['', 'ecosystem']);
   const [heroClip, setHeroClip] = useState<0 | 1>(0);
+  const philosophyItems = [
+    {
+      key: "interpretation",
+      title: t("home.hero.cards.interpretation.title"),
+      body: t("home.hero.cards.interpretation.body"),
+    },
+    {
+      key: "practice",
+      title: t("home.hero.cards.practice.title"),
+      body: t("home.hero.cards.practice.body"),
+    },
+    {
+      key: "discipline",
+      title: t("home.hero.cards.discipline.title"),
+      body: t("home.hero.cards.discipline.body"),
+    },
+  ];
 
   if (loading) return (
     <div className="relative flex min-h-[calc(100dvh-4rem)] items-center justify-center bg-black">
@@ -121,6 +138,12 @@ export default function HeroSection() {
         <motion.p variants={itemVariants} className="mt-4 font-serif text-lg text-neutral-300 sm:text-xl md:text-2xl">
           {t("home.hero.subtitle")}
         </motion.p>
+        <motion.p
+          variants={itemVariants}
+          className="mt-6 max-w-3xl text-sm leading-7 text-neutral-300/90 sm:text-base"
+        >
+          {t("home.hero.lead")}
+        </motion.p>
 
         <motion.div variants={itemVariants} className="mt-10">
           <Countdown targetDate="2026-05-20T00:00:00" />
@@ -129,6 +152,24 @@ export default function HeroSection() {
         <motion.div variants={itemVariants} className="mt-10 flex flex-col items-stretch gap-4 sm:mt-12 sm:flex-row sm:items-center sm:justify-center">
           <GradientButton className="w-full min-w-[220px] sm:w-auto">{t("home.hero.ctaCompetition")}</GradientButton>
           <GhostButton className="w-full min-w-[220px] sm:w-auto">{t("home.hero.ctaPartner")}</GhostButton>
+        </motion.div>
+        <motion.div
+          variants={itemVariants}
+          className="mt-12 grid w-full max-w-6xl gap-4 text-left sm:mt-14 md:grid-cols-3"
+        >
+          {philosophyItems.map((item) => (
+            <article
+              key={item.key}
+              className="rounded-2xl border border-white/10 bg-black/30 p-5 backdrop-blur-sm sm:p-6"
+            >
+              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-wuyin-gold-bright/90">
+                {item.title}
+              </p>
+              <p className="mt-3 text-sm leading-7 text-neutral-200/92">
+                {item.body}
+              </p>
+            </article>
+          ))}
         </motion.div>
       </motion.div>
       {!reducedMotion ? (

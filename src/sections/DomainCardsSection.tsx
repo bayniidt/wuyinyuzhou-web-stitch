@@ -1,72 +1,71 @@
 import SectionGoldenBlocks from "@/components/decor/SectionGoldenBlocks";
 import ScrollReveal from "@/components/motion/ScrollReveal";
-import FeatureCard from "@/components/ui/FeatureCard";
 import { useLocale } from "@/i18n/LocaleProvider";
-import imgCulture from "@/images/index3.png";
-import imgFinance from "@/images/index5.png";
-import imgTechnology from "@/images/index4.png";
-
-function CultureVisual() {
-  return (
-    <div className="relative h-full w-full">
-      <img src={imgCulture} alt="" className="h-full w-full object-cover" decoding="async" />
-      <div
-        className="absolute inset-0 bg-[radial-gradient(circle_at_40%_35%,transparent_0%,#050505_78%)] opacity-95"
-        aria-hidden
-      />
-      <div className="absolute inset-0 bg-linear-to-t from-black/75 via-neutral-900/18 to-transparent" aria-hidden />
-    </div>
-  );
-}
-
-function TechnologyVisual() {
-  return (
-    <div className="relative h-full w-full">
-      <img src={imgTechnology} alt="" className="h-full w-full object-cover" decoding="async" />
-      <div className="absolute inset-0 bg-linear-to-br from-neutral-950/40 via-black/40 to-wuyin-gold/10" aria-hidden />
-      <div className="absolute inset-0 bg-black/25" aria-hidden />
-    </div>
-  );
-}
-
-function FinanceVisual() {
-  return (
-    <div className="relative h-full w-full">
-      <img src={imgFinance} alt="" className="h-full w-full object-cover" decoding="async" />
-      <div
-        className="absolute inset-0 bg-[radial-gradient(circle_at_50%_100%,rgba(184,134,11,0.35),transparent_55%)]"
-        aria-hidden
-      />
-      <div className="absolute inset-0 bg-linear-to-t from-black/80 via-neutral-900/16 to-transparent" aria-hidden />
-    </div>
-  );
-}
 
 export default function DomainCardsSection() {
   const { t } = useLocale();
+  const valueCards = [
+    {
+      key: "culture",
+      title: t("home.values.cards.culture.title"),
+      body: t("home.values.cards.culture.body"),
+    },
+    {
+      key: "social",
+      title: t("home.values.cards.social.title"),
+      body: t("home.values.cards.social.body"),
+    },
+    {
+      key: "business",
+      title: t("home.values.cards.business.title"),
+      body: t("home.values.cards.business.body"),
+    },
+    {
+      key: "investment",
+      title: t("home.values.cards.investment.title"),
+      body: t("home.values.cards.investment.body"),
+    },
+    {
+      key: "ecosystem",
+      title: t("home.values.cards.ecosystem.title"),
+      body: t("home.values.cards.ecosystem.body"),
+    },
+  ];
 
   return (
     <section id="home-values" className="relative overflow-hidden border-b border-white/5 py-20 sm:py-28">
       <SectionGoldenBlocks variant={1} />
-      <ScrollReveal className="relative z-10 container-wuyin grid gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-10">
-        <FeatureCard
-          domainLabel={t("home.domains.culture.domainLabel")}
-          title={t("home.domains.culture.title")}
-          description={t("home.domains.culture.description")}
-          image={<CultureVisual />}
-        />
-        <FeatureCard
-          domainLabel={t("home.domains.technology.domainLabel")}
-          title={t("home.domains.technology.title")}
-          description={t("home.domains.technology.description")}
-          image={<TechnologyVisual />}
-        />
-        <FeatureCard
-          domainLabel={t("home.domains.finance.domainLabel")}
-          title={t("home.domains.finance.title")}
-          description={t("home.domains.finance.description")}
-          image={<FinanceVisual />}
-        />
+      <ScrollReveal className="relative z-10 container-wuyin">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.4em] text-wuyin-gold-bright/85">
+            {t("home.values.eyebrow")}
+          </p>
+          <h2 className="mt-4 font-serif text-3xl font-bold text-white sm:text-4xl">
+            {t("home.values.title")}
+          </h2>
+          <p className="mt-5 text-sm leading-7 text-neutral-300 sm:text-base">
+            {t("home.values.subtitle")}
+          </p>
+        </div>
+        <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-5">
+          {valueCards.map((card, index) => (
+            <article
+              key={card.key}
+              className="group relative overflow-hidden rounded-[28px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-6 transition-transform duration-300 hover:-translate-y-1 hover:border-wuyin-gold-bright/30"
+            >
+              <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <div className="absolute -right-10 -top-12 h-32 w-32 rounded-full bg-wuyin-gold-bright/10 blur-3xl" />
+              </div>
+              <div className="relative z-10">
+                <p className="text-xs font-semibold uppercase tracking-[0.32em] text-wuyin-gold-bright/70">
+                  {String(index + 1).padStart(2, "0")}
+                </p>
+                <h3 className="mt-4 font-serif text-2xl text-white">{card.title}</h3>
+                <p className="mt-4 text-sm leading-7 text-neutral-300">{card.body}</p>
+              </div>
+            </article>
+          ))}
+        </div>
       </ScrollReveal>
     </section>
   );

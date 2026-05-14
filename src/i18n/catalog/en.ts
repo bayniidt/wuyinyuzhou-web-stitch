@@ -103,6 +103,18 @@ const en = {
   "all_cluster3_video": "/fhzb/videos/global-compressed.mp4",
   "all_cluster4_video": "/fhzb/videos/banner-m.mp4",
   "all_cta_bg": "/fhzb/videos/alliance_cta_bg.jpg",
+  "home_matrix_logo1": "",
+  "home_matrix_logo2": "",
+  "home_matrix_logo3": "",
+  "home_matrix_logo4": "",
+  "home_matrix_logo5": "",
+  "home_matrix_logo6": "",
+  "home_arrow_right": "",
+  "gal_hq_role1_image": "",
+  "gal_hq_role2_image": "",
+  "gal_hq_role3_image": "",
+  "gal_hq_role4_image": "",
+  "gal_hq_role5_image": "",
   "vis_doc_cover": "/fhzb/videos/背景图_2.jpg",
   "vis_doc_video": "/fhzb/videos/纪录片.mp4",
   "vis_summit_bg": "/fhzb/videos/股市_5.jpg",
@@ -347,39 +359,133 @@ const en = {
       "kicker": "Ancient Soul, Future Core",
       "title": "Zhi Ge as Martial",
       "subtitle": "Oriental Martial Arts Metaverse Ceremony",
+      "lead": "Martial does not begin with attack or conquest. True practice lies in mastering force, calming conflict, and overcoming the self through discipline.",
       "ctaCompetition": "Join Competition",
       "ctaPartner": "Become Partner",
       "videoSwitcherLabel": "Switch Background Video",
       "videoSegment1": "Scene 1: Digital Martial",
-      "videoSegment2": "Scene 2: Zhi Ge Philosophy"
+      "videoSegment2": "Scene 2: Zhi Ge Philosophy",
+      "cards": {
+        "interpretation": {
+          "title": "Reading the Character",
+          "body": "\"Wu\" joins \"stop\" and \"spear.\" Real martial spirit is not reckless struggle, but the strength to hold power and restrain it."
+        },
+        "practice": {
+          "title": "Practice",
+          "body": "Eastern martial arts do not glorify conquering others. They honor inward cultivation: restrain the self first, then wield strength with measure."
+        },
+        "discipline": {
+          "title": "Relentless Growth",
+          "body": "Stopping conflict is not weakness. It is the will to command one's own power, keep growing, and remain true to the heart."
+        }
+      }
     },
     "manifesto": {
-      "title": "Manifesto",
-      "p1": "In today's digital wave, we choose to return to the origin. Wuyin World is more than a spectacle; it's a reflection on 'Martial Virtue'.",
-      "p2": "Via blockchain, 3D frames, and holography, we digitize 3,000 years of lineage, letting ancient wisdom thrive in cyber space.",
-      "quote": "Bear arms to protect, not to bully; hold Zhi Ge in mind, not contention of strength."
+      "eyebrow": "Seal the Heart with Martial Spirit",
+      "title": "Wuyin Manifesto",
+      "subtitle": "See Yourself · See Others · See the World",
+      "intro": "This era is not short on adrenaline. What it lacks are moments that let the soul pause and ask what truly matters. Wuyin World is more than an event. It is a living space for reflection, discipline, and inner clarity.",
+      "bridge": "It is not about glorifying combat. It is about helping people from different walks of life find their own mark through martial practice and moral restraint.",
+      "quote": "Only by stopping the spear do we return to the true beginning of martial practice.",
+      "voices": {
+        "youth": {
+          "title": "Seal of Youth",
+          "body": "In virtual worlds, you may chase intensity. On the martial stage, you learn limits, restraint, and respect. True strength is knowing when to stop."
+        },
+        "adult": {
+          "title": "Seal of Adulthood",
+          "body": "This is not a contest against others. It is a reconciliation with yourself. Those worn down by pressure can recover courage through release, tears, and renewal."
+        },
+        "women": {
+          "title": "Seal of Women",
+          "body": "Your body is never a synonym for weakness. Confidence, radiance, and safety begin the moment you decide to stand upright and face the world directly."
+        },
+        "margin": {
+          "title": "Seal Beyond Labels",
+          "body": "Here, sweat outweighs social labels. Persistence defeats prejudice. Every soul that refuses mediocrity deserves to be seen with dignity."
+        },
+        "era": {
+          "title": "Seal of the Era",
+          "body": "Chinese martial tradition has never been about domination. It is inward cultivation, self-mastery, and breakthrough. Wuyin World aims to be a spiritual outlet for this anxious age."
+        }
+      },
+      "questions": {
+        "eyebrow": "Three Questions of the Heart",
+        "title": "Would you accept a martial appointment with yourself?",
+        "self": {
+          "title": "See Yourself",
+          "body": "Do you have the courage to drop the mask and face your truest self?"
+        },
+        "people": {
+          "title": "See Others",
+          "body": "Do you still hold kindness and compassion strong enough to shelter someone else?"
+        },
+        "world": {
+          "title": "See the World",
+          "body": "Have you seriously searched for the meaning of your life within the human world?"
+        }
+      },
+      "closer": "Here, you may meet the self hidden deep within, witness the many conditions of human life, and finally find a place where a restless soul can breathe again."
     },
-    "domains": {
-      "culture": {
-        "domainLabel": "Cultural Tracing",
-        "title": "Wusheng Lineage & Heritage",
-        "description": "Deeply exploring 3,000 years of martial history, integrating symbols like Longquan swords with digital narratives."
-      },
-      "technology": {
-        "domainLabel": "Digital Engine",
-        "title": "Holography & RWA Protocol",
-        "description": "Utilizing Web3 for on-chain asset rights, presenting visuals beyond reality via 3D holographic stages."
-      },
-      "finance": {
-        "domainLabel": "Industrial Value",
-        "title": "Global IP & Financial Power",
-        "description": "Building a complete loop through licensing and RWA valuation, releasing infinite potential in the martial industry."
+    "values": {
+      "eyebrow": "Strategic Value",
+      "title": "Wuyin World is more than an event",
+      "subtitle": "It is a long-horizon engine for Eastern martial culture, connecting cultural, social, commercial, capital, and ecosystem value into one growth system.",
+      "cards": {
+        "culture": {
+          "title": "Cultural Value",
+          "body": "Centered on 'Zhi Ge as Martial,' it fuses yin-yang thought, intangible craft, and martial philosophy into a contemporary Eastern expression that can impress the world again."
+        },
+        "social": {
+          "title": "Social Value",
+          "body": "It helps youth build restraint and responsibility, adults release anxiety, women strengthen inner safety, and marginalized groups gain respect for their effort and persistence."
+        },
+        "business": {
+          "title": "Commercial Value",
+          "body": "Event traffic, IP assetization, and cultural-tourism destinations form a three-tier model with four revenue loops: sponsorship, licensing, digital assets, and destination experiences."
+        },
+        "investment": {
+          "title": "Investment Value",
+          "body": "The combination of martial IP, digital technology, and tourism execution creates a differentiated moat across culture, technology, and ecosystem operations."
+        },
+        "ecosystem": {
+          "title": "Ecosystem Value",
+          "body": "Athletes, audiences, brands, think tanks, and compliant platforms co-build a shared network that links traffic, assets, and industry outcomes into one lasting loop."
+        }
       }
     },
     "ecosystem": {
       "eyebrow": "Ecosystem",
-      "title": "Six Ecosystem Matrix",
-      "subtitle": "From physical dojos to metaverse narratives, building a complete martial loop."
+      "title": "Wuyin World Ecosystem Matrix",
+      "subtitle": "A full-chain structure across events, digital rights, tourism, business, and partnerships, where traffic, assets, and industry reinforce one another.",
+      "detailEyebrow": "Matrix Detail",
+      "items": {
+        "event": {
+          "title": "Event Ecosystem",
+          "body": "Original martial spectacles anchor a full-day experience with heritage shows, creator markets, hands-on kung fu experiences, and night finals that extend dwell time and conversion."
+        },
+        "digital": {
+          "title": "Digital Ecosystem",
+          "body": "Compliant NFR credentials connect audiences to viewing rights, cultural products, and offline experiences, supported by a controlled blockchain system built for stability and compliance."
+        },
+        "tourism": {
+          "title": "Cultural Tourism",
+          "body": "Permanent martial bases and creative streets connect study camps, themed lodging, and night light shows to build a city-scale cultural landmark."
+        },
+        "business": {
+          "title": "Business Ecosystem",
+          "body": "A four-layer revenue flywheel spans sponsorship, IP licensing, digital assets, and destination commerce, with room for merchandise, co-branding, beverages, and franchise extensions."
+        },
+        "partnership": {
+          "title": "Partnership Ecosystem",
+          "body": "Capital, event operations, compliance, brands, tourism, and think-tank resources are integrated into one collaborative barrier that strengthens execution and scale."
+        }
+      },
+      "triad": {
+        "eyebrow": "Three-Way Closed Loop",
+        "title": "Wuyin Pavilion × Cultural Exchange × Kunyuan Qichen",
+        "body": "IP and traffic, compliant trading, and strategic capital work together to connect monetization, asset legitimacy, and industrial execution into one end-to-end system."
+      }
     },
     "newsTeaser": {
       "kicker": "Latest Updates",

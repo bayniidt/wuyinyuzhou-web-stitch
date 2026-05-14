@@ -13,18 +13,87 @@ interface ContentItem {
 }
 
 const moduleNames: Record<string, string> = {
-  header: 'Header 管理',
-  nav: '导航管理',
-  ecosystem: '首页管理',
-  narrative: '叙事管理',
-  timeline: '视界管理',
-  pavilion: '武印阁管理',
-  partnership: '合作管理',
-  news: '新闻文案',
-  footer: 'Footer 管理',
-  meta: '元数据管理',
+  header: '页头',
+  nav: '导航',
+  ecosystem: '首页',
+  narrative: '止戈之巅',
+  timeline: '武印视界',
+  pavilion: '武印阁',
+  partnership: '合作入口',
+  news: '最新动态',
+  footer: '页脚',
+  meta: '元数据',
   common: '公共文案',
 };
+
+const commonTabNames: Record<string, string> = {
+  all: '全部',
+  general: '通用',
+  hero: '首屏',
+  legal: '法律信息',
+  tags: '标签',
+  items: '条目',
+  title: '标题',
+  subtitle: '副标题',
+};
+
+const moduleTabNames: Record<string, Record<string, string>> = {
+  ecosystem: {
+    culture: '文化价值',
+    ecosystem: '生态矩阵',
+    finalCta: '结尾行动区',
+    finance: '投资价值',
+    hero: '首屏',
+    manifesto: '宣言',
+    newsTeaser: '新闻预告',
+    technology: '科技价值',
+    values: '战略价值',
+  },
+  narrative: {
+    characters: '人物谱系',
+    heritage: '寻源与非遗融合',
+    hero: '首屏',
+    inheritance: '薪火相传',
+    lineage: '人物谱系',
+    map: '宇宙地图',
+    philosophy: '止戈哲学',
+  },
+  timeline: {
+    accessTiers: '参与档位',
+    highlights: '赛事高光',
+    modules: '数字剧场',
+    roster: '武者阵容',
+    venue: '场馆预览',
+  },
+  pavilion: {
+    digital: '功夫印数字科技',
+    hero: '首屏',
+    media: '武印传媒',
+    standard: '武印标准认证',
+    synergy: '六位一体生态导图',
+  },
+  partnership: {
+    domains: '战略领域',
+    flow: '合作流程',
+    form: '合作申请',
+    hero: '首屏',
+    items: '合作类型',
+  },
+  nav: {
+    ecosystem: '首页',
+    narrative: '止戈之巅',
+    pavilion: '武印阁',
+    partnership: '合作入口',
+    timeline: '武印视界',
+  },
+  news: {
+    tags: '标签',
+  },
+};
+
+function getTabLabel(module: string, subModule: string) {
+  return moduleTabNames[module]?.[subModule] || commonTabNames[subModule] || subModule;
+}
 
 export default function ContentManagement() {
   const { module = 'ecosystem' } = useParams<{ module: string }>();
@@ -105,12 +174,14 @@ export default function ContentManagement() {
     return matchesTab && matchesSearch;
   });
 
+  const moduleLabel = moduleNames[module] || module;
+
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-white mb-2">{moduleNames[module] || module}</h1>
-          <p className="text-zinc-500">管理 {module} 模块的所有文案和配置内容</p>
+          <h1 className="text-3xl font-bold text-white mb-2">{moduleLabel}内容管理</h1>
+          <p className="text-zinc-500">管理{moduleLabel}模块的所有文案和配置内容</p>
         </div>
         <div className="relative">
           <input
@@ -134,7 +205,7 @@ export default function ContentManagement() {
                 : 'text-zinc-400 hover:text-white hover:bg-zinc-800'
             }`}
           >
-            全部
+            {commonTabNames.all}
           </button>
           {subModules.map(sub => (
             <button
@@ -143,10 +214,10 @@ export default function ContentManagement() {
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${
                 activeTab === sub
                   ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/20'
-                  : 'text-zinc-400 hover:text-white hover:bg-zinc-800'
+                : 'text-zinc-400 hover:text-white hover:bg-zinc-800'
               }`}
             >
-              {sub.charAt(0).toUpperCase() + sub.slice(1)}
+              {getTabLabel(module, sub)}
             </button>
           ))}
         </div>

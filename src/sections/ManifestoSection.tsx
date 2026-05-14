@@ -4,12 +4,58 @@ import { useLocale } from "@/i18n/LocaleProvider";
 import { useModuleResources } from "@/hooks/useModuleResources";
 import { motion } from "framer-motion";
 import imgManifestoFallback from "@/images/index2.png";
+import { useState } from "react";
 
 export default function ManifestoSection() {
   const { t } = useLocale();
   const { resources, loading } = useModuleResources(['', 'ecosystem']);
   const isBrokenPath = (url: string | undefined) => !url || url.includes('/fhzb/');
   const manifestoVisual = isBrokenPath(resources['home_manifesto_video']) ? imgManifestoFallback : resources['home_manifesto_video'];
+  const [activeVoice, setActiveVoice] = useState("youth");
+  const voices = [
+    {
+      key: "youth",
+      title: t("home.manifesto.voices.youth.title"),
+      body: t("home.manifesto.voices.youth.body"),
+    },
+    {
+      key: "adult",
+      title: t("home.manifesto.voices.adult.title"),
+      body: t("home.manifesto.voices.adult.body"),
+    },
+    {
+      key: "women",
+      title: t("home.manifesto.voices.women.title"),
+      body: t("home.manifesto.voices.women.body"),
+    },
+    {
+      key: "margin",
+      title: t("home.manifesto.voices.margin.title"),
+      body: t("home.manifesto.voices.margin.body"),
+    },
+    {
+      key: "era",
+      title: t("home.manifesto.voices.era.title"),
+      body: t("home.manifesto.voices.era.body"),
+    },
+  ];
+  const questions = [
+    {
+      key: "self",
+      title: t("home.manifesto.questions.self.title"),
+      body: t("home.manifesto.questions.self.body"),
+    },
+    {
+      key: "people",
+      title: t("home.manifesto.questions.people.title"),
+      body: t("home.manifesto.questions.people.body"),
+    },
+    {
+      key: "world",
+      title: t("home.manifesto.questions.world.title"),
+      body: t("home.manifesto.questions.world.body"),
+    },
+  ];
 
   if (loading) return null;
 
@@ -64,16 +110,21 @@ export default function ManifestoSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h2 className="flex items-center gap-3 font-serif text-3xl font-bold text-white sm:text-4xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.4em] text-wuyin-gold-bright/80">
+            {t("home.manifesto.eyebrow")}
+          </p>
+          <h2 className="mt-4 flex items-center gap-3 font-serif text-3xl font-bold text-white sm:text-4xl">
             <span className="inline-block h-8 w-1 rounded-full bg-linear-to-b from-wuyin-accent to-wuyin-seal" />
             {t("home.manifesto.title")}
           </h2>
+          <p className="mt-5 font-serif text-lg text-neutral-200 sm:text-xl">
+            {t("home.manifesto.subtitle")}
+          </p>
           <div className="mt-8 space-y-6 text-sm leading-relaxed text-neutral-300 sm:text-base">
-            <p>{t("home.manifesto.p1")}</p>
-            <p>{t("home.manifesto.p2")}</p>
+            <p>{t("home.manifesto.intro")}</p>
+            <p>{t("home.manifesto.bridge")}</p>
           </div>
-          
-          {/* 武印宣言 水墨渐现动效 */}
+
           <motion.blockquote 
             initial={{ opacity: 0, filter: 'blur(10px)' }}
             whileInView={{ opacity: 1, filter: 'blur(0px)' }}
@@ -84,6 +135,54 @@ export default function ManifestoSection() {
             <span className="relative z-10">“{t("home.manifesto.quote")}”</span>
             <div className="absolute -left-2 -top-4 -z-0 h-16 w-16 opacity-20 blur-xl bg-wuyin-accent rounded-full" />
           </motion.blockquote>
+
+          <div className="mt-10 space-y-3">
+            {voices.map((voice) => {
+              const isActive = activeVoice === voice.key;
+              return (
+                <div
+                  key={voice.key}
+                  className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]"
+                >
+                  <button
+                    type="button"
+                    onClick={() => setActiveVoice(isActive ? "" : voice.key)}
+                    className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left sm:px-6"
+                  >
+                    <span className="font-serif text-lg text-white">{voice.title}</span>
+                    <span className="text-xl leading-none text-wuyin-gold-bright">
+                      {isActive ? "−" : "+"}
+                    </span>
+                  </button>
+                  {isActive ? (
+                    <div className="border-t border-white/10 px-5 py-4 text-sm leading-7 text-neutral-300 sm:px-6">
+                      {voice.body}
+                    </div>
+                  ) : null}
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="mt-12 rounded-[28px] border border-white/10 bg-black/25 p-6 sm:p-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.34em] text-wuyin-gold-bright/85">
+              {t("home.manifesto.questions.eyebrow")}
+            </p>
+            <h3 className="mt-4 font-serif text-2xl text-white sm:text-3xl">
+              {t("home.manifesto.questions.title")}
+            </h3>
+            <div className="mt-6 grid gap-4 md:grid-cols-3">
+              {questions.map((question) => (
+                <article key={question.key} className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                  <p className="font-serif text-lg text-white">{question.title}</p>
+                  <p className="mt-3 text-sm leading-7 text-neutral-300">{question.body}</p>
+                </article>
+              ))}
+            </div>
+            <p className="mt-6 text-sm leading-7 text-neutral-300">
+              {t("home.manifesto.closer")}
+            </p>
+          </div>
         </motion.div>
       </ScrollReveal>
     </section>

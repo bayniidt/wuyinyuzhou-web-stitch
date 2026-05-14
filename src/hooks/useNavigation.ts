@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocale } from '@/i18n/LocaleProvider';
-import type { NavChild, NavGroup } from '@/config/navigation';
+import type { NavGroup } from '@/config/navigation';
 
 interface ApiNavigationItem {
   id: number;
