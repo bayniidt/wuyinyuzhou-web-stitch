@@ -767,102 +767,266 @@ const en = {
   },
   "pavilion": {
     "hero": {
-      "kicker": "Ecosystem",
+      "kicker": "Wuyin Pavilion",
       "title": "Wuyin Pavilion",
-      "lead": "Presenting six entities and ecosystem loops to build trust."
-    },
-    "synergy": {
-      "title": "Six-in-One Synergy Map",
-      "body": "Wuyin Pavilion acts as the brand hub, linking Wuyin Alliance, Kung Fu Yin, Wuyin Standard, Wuyin Media, and Wuyin Tourism to form a complete martial industry loop.",
-      "stats": {
-        "linkage": "Business Linkage",
-        "protection": "On-chain Protection"
+      "lead": "Six boards, one sanctuary for Eastern martial culture in digital form. Brand is the soul, events the skeleton, technology the wings, content the voice, inheritance the pulse, and standards the rule.",
+      "tags": {
+        "ip": "Brand IP",
+        "events": "Event Matrix",
+        "digital": "Kung Fu Seal Tech",
+        "media": "Wuyin Media",
+        "inheritance": "Inheritance",
+        "standard": "Wuyin Standard"
       }
     },
-    "digital": {
-      "title": "Kung Fu Yin Digital Tech",
-      "lead": "Real-time data dashboard witnessing the power of the digital martial engine.",
-      "browserPreview": "NFT Asset Browser Preview",
-      "valuationCurve": "RWA Valuation Curve"
+    "brand": {
+      "kicker": "Brand IP",
+      "title": "Seal the heart, inherit the way",
+      "lead": "Wuyin Pavilion is more than an event wrapper. It is a contemporary narrator and inheritor of Eastern martial civilization, built through a complete worldview, a disciplined symbol system, and exclusive identity language.",
+      "quote": "Brand is the soul, symbols are the bone, and the universe is the territory. Wuyin Pavilion turns Eastern martial culture into a spiritual symbol for young people worldwide.",
+      "items": {
+        "positioning": {
+          "title": "Core Positioning",
+          "body": "A full-chain operator for Eastern martial culture IP, unifying brand, events, content, technology, and inheritance under one long-form narrative."
+        },
+        "symbols": {
+          "title": "Symbol System",
+          "body": "Built around the idea of sealing the heart and inheriting the way, with a unified worldview, naming system, pavilion emblem, martial crests, and black-red-gold palette."
+        },
+        "assets": {
+          "title": "Core Assets",
+          "body": "Registered ownership across 45 trademark classes including Wuyin Pavilion, Wuyin Sight, and related mascot assets, forming a durable IP barrier."
+        },
+        "strategy": {
+          "title": "Strategic Elevation",
+          "body": "Advancing through martial seasonal festivals, a new martial declaration, and global expansion, turning culture into memory, legitimacy, and international reach."
+        },
+        "mascot": {
+          "title": "Mascot · Wu Xiaoyin",
+          "body": "A spirit condensed from the Origin Seal Pool, shifting between playful and heroic forms as the chief resonance officer across all six ecosystem layers."
+        }
+      }
     },
-    "standard": {
-      "title": "Wuyin Standard Certification",
-      "lead": "Rigorous certification system for martial artists, referees, and clubs.",
-      "certSystem": "Certificate Verification System",
-      "certInputHint": "Enter martial artist/referee/club ID",
-      "verifyCta": "Verify Now",
-      "verifying": "Verifying...",
-      "certTitle": "Wuyin Official Certificate",
-      "certHolder": "Holder",
-      "certHolderName": "Ye Yun",
-      "certType": "Certification Type",
-      "certTypeName": "Grade I Martial Artist",
-      "closePreview": "Close Preview",
-      "qrPlaceholder": "QR CODE"
+    "ecosystem": {
+      "kicker": "Ecosystem Map",
+      "title": "Six boards, one universe",
+      "lead": "Wuyin Pavilion operates as the brand center linking IP, events, technology, media, inheritance, and standards into one complete Eastern martial ecosystem.",
+      "quote": "Brand is the soul, events the skeleton, technology the wings, content the voice, inheritance the pulse, and standards the rule. Wuyin Pavilion invites others to build it together.",
+      "items": {
+        "ip": {
+          "title": "Brand IP",
+          "tag": "Seal the Heart | Inherit the Way",
+          "body": "A closed martial universe built through worldview, naming, and symbols, designed to occupy a singular and hard-to-copy mental position."
+        },
+        "events": {
+          "title": "Event Matrix",
+          "tag": "Heavenly Seal Arena | Consecration",
+          "body": "Original spectacles and martial carnivals combine day programs, night holographic finals, and ceremonial seal-granting into a higher-value live experience."
+        },
+        "digital": {
+          "title": "Kung Fu Seal Tech",
+          "tag": "Virtual and Real | Seal in Motion",
+          "body": "A compliant NFR system anchored to real rights, extended into MR viewing, human-machine martial practice, and one-wallet access across the universe."
+        },
+        "media": {
+          "title": "Wuyin Media",
+          "tag": "Content as Seal | Full-Domain Reach",
+          "body": "Documentaries, short video, KOL networks, livestreams, and social topics create a full-distribution chain that helps Eastern martial culture break outward."
+        },
+        "inheritance": {
+          "title": "Inheritance",
+          "tag": "Passing the Flame | Youth as Future",
+          "body": "Youth recruitment, city-school alliances, and annual seal-forging ceremonies build an intergenerational platform for orthodox martial transmission."
+        },
+        "standard": {
+          "title": "Wuyin Standard",
+          "tag": "Set the Rules | Set the Order",
+          "body": "The Wuyin Ten Precepts and related standards for events, digital assets, and heritage application build a long-term moat through rules and legitimacy."
+        }
+      }
     },
-    "media": {
-      "title": "Wuyin Media & IP Ops",
-      "lead": "Immersive content ecosystem including documentaries, podcasts, and film collaborations, plus global asset licensing.",
-      "downloadWhitepaper": "Download Whitepaper",
-      "visitMediaLibrary": "Visit Media Library",
-      "caseLabel": "IP CASE"
+    "map": {
+      "helper": "Hover a node to inspect its ecosystem role",
+      "nodes": {
+        "ip": {
+          "label": "Wuyin Pavilion",
+          "role": "Brand IP center and global asset steward"
+        },
+        "events": {
+          "label": "Event Matrix",
+          "role": "Heavenly Seal Arena and original martial spectacles"
+        },
+        "digital": {
+          "label": "Kung Fu Seal",
+          "role": "NFR system, MR viewing, and digital rights engine"
+        },
+        "media": {
+          "label": "Wuyin Media",
+          "role": "Documentary, short video, KOL, and livestream network"
+        },
+        "inheritance": {
+          "label": "Inheritance",
+          "role": "Youth recruitment, school alliances, and transmission platform"
+        },
+        "standard": {
+          "label": "Wuyin Standard",
+          "role": "Ten precepts plus event, asset, and heritage standards"
+        }
+      }
     }
   },
   "partnership": {
     "hero": {
-      "kicker": "Enterprise Gate",
+      "kicker": "Partnership Portal",
       "title": "Partnership Portal",
-      "lead": "Unified entry for commercial cooperation, reaching global partners."
+      "lead": "Use martial culture as the medium and move alongside strong partners. Wuyin Sight offers full-chain cooperation across brand, events, clubs, city tourism, investment, and media ecosystems.",
+      "tags": {
+        "brand": "Brand Alliance",
+        "event": "Event Partnership",
+        "club": "Club Franchise",
+        "gov": "Gov / Tourism",
+        "invest": "Investment",
+        "media": "Media Matrix"
+      }
+    },
+    "value": {
+      "kicker": "Core Value",
+      "title": "Not a one-off exposure buy, but a long-term ecosystem tie",
+      "lead": "We move beyond traditional sponsorship by combining culture, audience access, digital rights, and long-horizon returns inside one cooperation framework.",
+      "items": {
+        "culture": {
+          "title": "Cultural Differentiation",
+          "body": "Eastern martial philosophy gives partners narrative depth and helps them break away from generic logo-based sponsorship logic."
+        },
+        "exposure": {
+          "title": "Full-Domain Reach",
+          "body": "Events, content, social channels, livestreams, and overseas distribution connect high-value business audiences, Gen Z users, and culture-first communities."
+        },
+        "conversion": {
+          "title": "Brand and Performance Together",
+          "body": "Co-branded goods, on-site conversion, digital rights, private audience sharing, and media amplification work together across one funnel."
+        },
+        "asset": {
+          "title": "Asset Upgrade",
+          "body": "Partnership can extend beyond marketing spend into IP participation, equity alignment, digital rights, and ecosystem-level long-term upside."
+        }
+      }
     },
     "domains": {
-      "title": "Strategic Domains",
-      "lead": "Diverse cooperation models empowering the new martial industry ecosystem.",
+      "title": "Six Cooperation Tracks",
+      "lead": "Different partner types face different constraints. We use separate structures, rights packages, and execution models to match each one properly.",
+      "painLabel": "Core Problem / Cooperation Brief",
+      "fitLabel": "Best Fit / Use Cases",
       "items": {
         "brand": {
           "title": "Brand Alliance",
-          "body": "Sponsor benefit packages, digital medals, and co-branding."
+          "tag": "Martial Culture as Medium",
+          "summary": "A long-cycle cooperation system covering exposure, conversion, digital rights, and even strategic upside for aligned brand partners.",
+          "pain": "Brands increasingly need more than short-term exposure. They need cultural depth, differentiated positioning, and conversion systems that can compound over time.",
+          "value1": "Brand sponsorship: pre-event, live-event, and post-event visibility combined with VIP hospitality, private client programs, and champion co-branded products.",
+          "value2": "Technology co-creation: co-build human-machine martial modules, smart merchandise, NFR assets, and industry whitepapers.",
+          "value3": "Strategic equity: gain access to Wuyin Pavilion equity, IP dividends, digital asset revenue share, and future capital upside.",
+          "value4": "Rights matrix spans exposure, commerce, private audience sharing, digital rights, high-end experiences, and capital return.",
+          "fit": "Best for premium liquor, automotive, finance, luxury lifestyle brands, frontier-tech collaborators, and strategic capital partners."
         },
         "event": {
           "title": "Event Partnership",
-          "body": "Wuyin standard output, event hosting empowerment, and point systems."
+          "tag": "Join the Wuyin Alliance",
+          "summary": "Turn every event into a cultural event through four engines: culture, digital rights, commercial structure, and operations.",
+          "pain": "Many events suffer from weak identity, no retained audience assets, narrow monetization, and disconnected relationships across athletes, fans, and organizers.",
+          "value1": "Cultural empowerment: inject the Wuyin Universe worldview, event storytelling, honor badges, and athlete narrative framing.",
+          "value2": "Digital empowerment: launch event-specific Kung Fu Seal NFR collections so moments, athlete honor, and fan participation become durable digital assets.",
+          "value3": "Commercial and operating support: sponsorship referrals, NFR revenue share, offline income extensions, plus SOPs, directing support, and training.",
+          "value4": "Three alliance tiers plus flexible structures including growth-sharing, asset swaps, and talent-value participation.",
+          "fit": "Best for fight promotions, regional event operators, city alliance nodes, venue upgrades, and teams seeking standardized operations."
         },
         "club": {
           "title": "Club Franchise",
-          "body": "City alliance policies, joining guides, and professional athlete pipelines."
+          "tag": "Become a Regional Node",
+          "summary": "Joining Wuyin Pavilion is not just opening a school. It means becoming a local anchor point in a wider martial ecosystem.",
+          "pain": "Traditional dojos often lack brand trust, structured curriculum, digital tools, competition pathways, and diversified revenue beyond tuition.",
+          "value1": "Brand and curriculum support: official certified-dojo identity and a standardized Wuyin cultivation system from entry to advanced stages.",
+          "value2": "Digital and competition pathways: student growth NFRs plus access to regional trials and Tianyin Arena progression channels.",
+          "value3": "Commercial and capital upside: revenue share on minting, registration, and derivatives, with city-alliance and equity incentive opportunities for strong operators.",
+          "value4": "Headquarters support includes space design, operating SOPs, systems integration, annual training, and traffic support across media channels.",
+          "fit": "Best for standard加盟 locations, regional flagship schools, city partners, and operators wanting to evolve into branded martial chains."
         },
         "gov": {
-          "title": "Gov / Tourism",
-          "body": "City branding, tourism integration, and offline complex development."
+          "title": "Government / Cultural Tourism",
+          "tag": "Seal a City with Martial Spirit",
+          "summary": "Use Eastern martial IP, digital technology, and full-chain execution to build landmarks, premium events, and new tourism growth engines for cities.",
+          "pain": "Many urban cultural-tourism projects struggle with weak landmark identity, short-term traffic, poor online-offline conversion, underused heritage, and weak post-launch operations.",
+          "value1": "Flagship landmark co-build: develop Tianyin Arena-style martial culture complexes with venues, heritage workshops, creative streets, and study camps.",
+          "value2": "IP event import: signature ceremonies and annual spectacles can drive full-chain local consumption across travel, lodging, food, and retail.",
+          "value3": "Digital tourism customization: issue city-limited Kung Fu Seal NFRs tied to tickets, hotels, and spending rights to form smart-tourism loops.",
+          "value4": "Heritage activation and long-term operation: combine local intangible heritage with SOPs, systems, and training so the project has both cultural and commercial life.",
+          "fit": "Best for new districts, tourism groups, scenic areas, theme parks, cultural blocks, smart-tourism upgrades, and local government initiatives."
         },
         "invest": {
           "title": "Investment",
-          "body": "Business plans, financing portals, and industrial capital linkage."
+          "tag": "Invest in a Cultural Totem",
+          "summary": "An integrated growth model where premium events attract traffic, digital rights create commercial links, and cultural-tourism assets provide physical grounding.",
+          "pain": "Investors care about moats, growth, payback, exits, and execution depth. Those are exactly the questions culture-led projects must answer clearly.",
+          "value1": "Investment case: rare IP moat, 45 trademark classes, a team spanning events, tech, and tourism, plus a low-valuation, high-upside Pre-A entry point.",
+          "value2": "Profit flywheel: event income, IP licensing, Kung Fu Seal NFRs, and tourism/industry layers create a diversified and compounding revenue model.",
+          "value3": "Financing plan: a Pre-A round focused on technology, marketing, team expansion, and working capital with a clear capital deployment story.",
+          "value4": "Exit and protection: IPO, future rounds, strategic M&A, and founder repurchase backstop, alongside board rights and investor protections.",
+          "fit": "Best for industrial capital, strategic investors, culture-tech funds, and long-horizon partners seeking deeper ecosystem participation."
         },
         "media": {
-          "title": "Media Collab",
-          "body": "Media matrix construction, content co-creation, and KOL engagement."
+          "title": "Full-Media Matrix",
+          "tag": "Culture Shapes the Signal",
+          "summary": "A four-layer communication system across official channels, flagship programs, creator alliances, and platform-wide topics to reach new generations globally.",
+          "pain": "Many culture projects lack repeatable flagship formats, cross-platform rhythm, overseas outlets, and creator-collaboration structures that can sustain attention.",
+          "value1": "Platform matrix across WeChat, short video, Bilibili, Xiaohongshu, Weibo, and YouTube/TikTok with different content roles by channel.",
+          "value2": "Flagship formats include Masters · Fighters · Craft, Youth of Zhi Ge, Guardian Interviews, Xiao Yin Asks the Way, Wuyin Diary, and Tianyin Expedition.",
+          "value3": "Topic and creator engine built around flagship hashtags and a mix of sports, tech, culture, and lifestyle creators.",
+          "value4": "A full rhythm covering always-on publishing, pre-event buildup, live-event amplification, and post-event long-tail operation toward billion-scale annual exposure.",
+          "fit": "Best for media platforms, content studios, MCNs, KOL alliances, brand communication teams, and global storytelling partners."
         }
       }
     },
     "flow": {
       "title": "Cooperation Flow",
-      "lead": "Clear and transparent stages for efficient value creation.",
+      "lead": "From the first intent to execution, we provide a process that is repeatable, trackable, and clear enough to be verified on delivery.",
       "steps": {
         "s1": {
-          "label": "Apply Online",
-          "desc": "Submit basic cooperation needs"
+          "label": "Submit Intent",
+          "desc": "Start through the website form or a confidential initial approach and define the broad cooperation direction."
         },
         "s2": {
-          "label": "Review",
-          "desc": "Dedicated team one-on-one follow-up"
+          "label": "Customize Plan",
+          "desc": "A dedicated team maps resources, budget, goals, and timing, then builds the execution and financial logic."
         },
         "s3": {
-          "label": "Signing",
-          "desc": "Establish strategic partnership"
+          "label": "Sign and Integrate",
+          "desc": "Clarify rights, responsibilities, system access, revenue structure, and acceptance standards before launch."
         },
         "s4": {
-          "label": "Execution",
-          "desc": "Full ecosystem resource integration"
+          "label": "Joint Launch",
+          "desc": "Move into execution, communications, operational review, and longer-term ecosystem coordination."
+        }
+      }
+    },
+    "safeguards": {
+      "title": "Cooperation Safeguards",
+      "lead": "We do not just hand over a resource list. We provide delivery logic, risk control, and practical boundaries for partnership success.",
+      "items": {
+        "team": {
+          "title": "Dedicated Project Squad",
+          "body": "A one-to-one project team covers planning, execution, media, operations, and post-deal coordination in one unified workflow."
+        },
+        "contract": {
+          "title": "Clear Rights and Deliverables",
+          "body": "Contracts define rights, output, acceptance standards, revenue logic, and schedule mechanisms so the cooperation target stays explicit."
+        },
+        "risk": {
+          "title": "Risk and Fallback Planning",
+          "body": "We prepare public-opinion control, technical contingency, exposure compensation, and backup execution paths across the full cycle."
+        },
+        "exclusive": {
+          "title": "Limited Cooperation Windows",
+          "body": "Industry or regional exclusivity can be built into deals to help partners create stronger competitive positioning."
         }
       }
     },
@@ -874,9 +1038,15 @@ const en = {
       "intent": "Cooperation Intent",
       "desc": "Detailed Needs",
       "submit": "Submit Application",
+      "submitting": "Submitting...",
+      "success": "Application submitted successfully. We will contact you soon.",
+      "error": "Submission failed. Please try again later.",
+      "networkError": "Submission failed. Please check your network connection.",
       "options": {
         "brand": "Brand Sponsor",
         "event": "Event Hosting",
+        "club": "Club Franchise",
+        "gov": "Gov / Tourism",
         "invest": "Investment Inquiry",
         "media": "Media Collab",
         "other": "Other"
