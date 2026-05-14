@@ -1,7 +1,5 @@
 import SectionGoldenBlocks from "@/components/decor/SectionGoldenBlocks";
 import ScrollReveal from "@/components/motion/ScrollReveal";
-import GhostButton from "@/components/ui/GhostButton";
-import GradientButton from "@/components/ui/GradientButton";
 import CharacterCard from "@/components/universe/CharacterCard";
 import SequenceMap from "@/components/universe/SequenceMap";
 import { useLocale } from "@/i18n/LocaleProvider";
@@ -9,7 +7,7 @@ import { useModuleResources } from "@/hooks/useModuleResources";
 import { scrollToSelector } from "@/lib/scroll";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 import { motion } from "framer-motion";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 // Fallbacks
@@ -19,8 +17,6 @@ import char1Fallback from "@/images/page3 (1).png";
 import char2Fallback from "@/images/page3 (2).png";
 import char3Fallback from "@/images/page3 (3).png";
 import char4Fallback from "@/images/page3 (4).png";
-import char5Fallback from "@/images/page3 (5).png";
-import char6Fallback from "@/images/page3 (6).png";
 
 const CDN_BANNER_VIDEO = "https://cdn.51aes.com/video/51Aes/Banner-AES6-logo.mp4";
 
@@ -55,8 +51,6 @@ export default function NarrativePage() {
 
   const isBrokenPath = (url: string | undefined) => !url || url.includes('/fhzb/');
 
-  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
-
   useEffect(() => {
     if (location.hash) {
       const id = location.hash.replace("#", "");
@@ -65,6 +59,15 @@ export default function NarrativePage() {
       window.scrollTo(0, 0);
     }
   }, [location.hash]);
+
+  const cosmosSites = useMemo(
+    () =>
+      ["temple", "arena", "alley", "home", "mountain", "realm"].map((key) => ({
+        key,
+        title: t(`narrative.map.hotspots.${key}.label`),
+      })),
+    [t],
+  );
 
   const characters = useMemo(() => [
     {
@@ -94,22 +97,49 @@ export default function NarrativePage() {
       blurb: t("narrative.characters.c4.blurb"),
       portrait: isBrokenPath(resources['gal_hq_role4_image']) ? char4Fallback : resources['gal_hq_role4_image'],
       portraitAlt: t("narrative.characters.c4.alt")
-    },
-    {
-      name: t("narrative.characters.c5.name"),
-      role: t("narrative.characters.c5.role"),
-      blurb: t("narrative.characters.c5.blurb"),
-      portrait: isBrokenPath(resources['gal_hq_role5_image']) ? char5Fallback : resources['gal_hq_role5_image'],
-      portraitAlt: t("narrative.characters.c5.alt")
-    },
-    {
-      name: t("narrative.characters.c6.name"),
-      role: t("narrative.characters.c6.role"),
-      blurb: t("narrative.characters.c6.blurb"),
-      portrait: isBrokenPath(resources['gal_hq_role6_image']) ? char6Fallback : resources['gal_hq_role6_image'],
-      portraitAlt: t("narrative.characters.c6.alt")
     }
   ], [t, resources]);
+
+  const philosophyQuestions = useMemo(
+    () =>
+      ["self", "people", "world"].map((key) => ({
+        key,
+        title: t(`narrative.philosophy.questions.${key}.title`),
+        body: t(`narrative.philosophy.questions.${key}.body`),
+      })),
+    [t],
+  );
+
+  const philosophyPrinciples = useMemo(
+    () =>
+      ["restraint", "growth"].map((key) => ({
+        key,
+        title: t(`narrative.philosophy.principles.${key}.title`),
+        body: t(`narrative.philosophy.principles.${key}.body`),
+      })),
+    [t],
+  );
+
+  const heritageItems = useMemo(
+    () =>
+      ["sword", "silk", "umbrella", "alley"].map((key) => ({
+        key,
+        title: t(`narrative.heritage.items.${key}.title`),
+        subtitle: t(`narrative.heritage.items.${key}.subtitle`),
+        body: t(`narrative.heritage.items.${key}.body`),
+      })),
+    [t],
+  );
+
+  const inheritanceItems = useMemo(
+    () =>
+      ["youth", "schools", "ceremony", "nation"].map((key) => ({
+        key,
+        title: t(`narrative.inheritance.items.${key}.title`),
+        body: t(`narrative.inheritance.items.${key}.body`),
+      })),
+    [t],
+  );
 
   if (loading) return (
     <div className="flex min-h-screen items-center justify-center bg-black">
@@ -147,6 +177,29 @@ export default function NarrativePage() {
           >
             {t("narrative.hero.title")}
           </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="mx-auto mt-6 max-w-3xl text-sm leading-7 text-neutral-200 sm:text-base"
+          >
+            {t("narrative.heroLead")}
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="mt-10 flex flex-wrap justify-center gap-3"
+          >
+            {cosmosSites.map((site) => (
+              <span
+                key={site.key}
+                className="rounded-full border border-white/10 bg-black/30 px-4 py-2 text-xs tracking-[0.24em] text-neutral-200"
+              >
+                {site.title}
+              </span>
+            ))}
+          </motion.div>
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -184,40 +237,41 @@ export default function NarrativePage() {
         <SectionGoldenBlocks variant={1} />
         <div className="container-wuyin relative z-10 grid gap-16 lg:grid-cols-2 lg:items-center">
           <ScrollReveal variant="leftSoft" className="space-y-8">
-            <div className="flex items-center gap-4">
-              <h2 className="font-serif text-4xl font-bold text-white sm:text-5xl">{t("narrative.philosophy.title")}</h2>
-              {/* 音频导览按钮 */}
-              <button 
-                onClick={() => setIsAudioPlaying(!isAudioPlaying)}
-                className={`flex h-10 w-10 items-center justify-center rounded-full border ${isAudioPlaying ? 'bg-wuyin-gold-bright border-transparent text-black' : 'border-white/10 text-wuyin-gold-bright hover:border-wuyin-gold-bright/40'} transition-all`}
-                title={t("common.playAudioGuide")}
-              >
-                {isAudioPlaying ? (
-                  <div className="flex gap-0.5 items-end h-3">
-                    <motion.div animate={{ height: [4, 12, 4] }} transition={{ repeat: Infinity, duration: 0.5 }} className="w-0.5 bg-black" />
-                    <motion.div animate={{ height: [8, 4, 8] }} transition={{ repeat: Infinity, duration: 0.6 }} className="w-0.5 bg-black" />
-                    <motion.div animate={{ height: [4, 10, 4] }} transition={{ repeat: Infinity, duration: 0.4 }} className="w-0.5 bg-black" />
-                  </div>
-                ) : (
-                  <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M11 5L6 9H2v6h4l5 4V5zM19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
-                  </svg>
-                )}
-              </button>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.42em] text-wuyin-gold-bright/80">
+                {t("narrative.philosophy.eyebrow")}
+              </p>
+              <h2 className="mt-4 font-serif text-4xl font-bold text-white sm:text-5xl">{t("narrative.philosophy.title")}</h2>
+              <p className="mt-6 text-lg leading-relaxed text-neutral-300">{t("narrative.philosophy.lead")}</p>
             </div>
-            <div className="space-y-6 text-lg leading-relaxed text-neutral-300">
-              <p>{t("narrative.philosophy.p1")}</p>
-              <p>{t("narrative.philosophy.p2")}</p>
+            <div className="rounded-[28px] border border-white/10 bg-black/35 p-6 sm:p-8">
+              <p className="text-xs font-semibold uppercase tracking-[0.34em] text-wuyin-gold-bright/75">
+                {t("narrative.philosophy.interpretation.title")}
+              </p>
+              <p className="mt-4 text-base leading-8 text-neutral-300">
+                {t("narrative.philosophy.interpretation.body")}
+              </p>
+              <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                {philosophyPrinciples.map((item) => (
+                  <article key={item.key} className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                    <p className="font-serif text-xl text-white">{item.title}</p>
+                    <p className="mt-3 text-sm leading-7 text-neutral-300">{item.body}</p>
+                  </article>
+                ))}
+              </div>
             </div>
-            <div className="grid grid-cols-3 gap-6 pt-8">
-              {['zhi', 'ge', 'yin'].map((key) => (
-                <div key={key} className="text-center">
-                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full border border-wuyin-gold-bright/20 bg-black/40 font-serif text-2xl text-wuyin-gold-bright">
-                    {t(`narrative.philosophy.concepts.${key}.char`)}
-                  </div>
-                  <p className="text-xs font-bold tracking-widest text-neutral-500">{t(`narrative.philosophy.concepts.${key}.label`)}</p>
-                </div>
-              ))}
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.34em] text-wuyin-gold-bright/75">
+                {t("narrative.philosophy.questionsTitle")}
+              </p>
+              <div className="mt-5 grid gap-4 sm:grid-cols-3">
+                {philosophyQuestions.map((item) => (
+                  <article key={item.key} className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                    <p className="font-serif text-xl text-white">{item.title}</p>
+                    <p className="mt-3 text-sm leading-7 text-neutral-300">{item.body}</p>
+                  </article>
+                ))}
+              </div>
             </div>
           </ScrollReveal>
           <NarrativeSectionFireVideo reducedMotion={reducedMotion} videoSrc={narrativeVideo} />
@@ -230,13 +284,16 @@ export default function NarrativePage() {
         <div className="container-wuyin relative z-10">
           <div className="mb-16 text-center">
             <h2 className="font-serif text-4xl font-bold text-white sm:text-5xl">{t("narrative.lineage.title")}</h2>
-            <p className="mt-4 text-wuyin-muted">{t("narrative.lineage.lead")}</p>
+            <p className="mx-auto mt-4 max-w-3xl text-wuyin-muted">{t("narrative.lineage.lead")}</p>
           </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {characters.map((char) => (
               <CharacterCard key={char.name} character={char} />
             ))}
           </div>
+          <p className="mx-auto mt-10 max-w-3xl text-center text-sm leading-7 text-neutral-400">
+            {t("narrative.lineage.closer")}
+          </p>
         </div>
       </section>
 
@@ -249,16 +306,23 @@ export default function NarrativePage() {
               <img src={narrativeCover} alt="" className="rounded-2xl border border-white/10 shadow-2xl" />
             </ScrollReveal>
             <ScrollReveal variant="rightSoft" className="space-y-8">
-              <h2 className="font-serif text-4xl font-bold text-white sm:text-5xl">{t("narrative.heritage.title")}</h2>
-              <div className="space-y-6 text-lg leading-relaxed text-neutral-300">
-                <p>{t("narrative.heritage.p1")}</p>
-                <p>{t("narrative.heritage.p2")}</p>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.42em] text-wuyin-gold-bright/80">
+                  {t("narrative.heritage.eyebrow")}
+                </p>
+                <h2 className="mt-4 font-serif text-4xl font-bold text-white sm:text-5xl">{t("narrative.heritage.title")}</h2>
               </div>
-              <div className="flex gap-4 pt-6">
-                {['sword', 'silk', 'umbrella'].map((item) => (
-                  <div key={item} className="flex-1 rounded-lg border border-white/5 bg-black/40 p-4 text-center">
-                    <p className="font-serif text-wuyin-gold-bright">{t(`narrative.heritage.items.${item}`)}</p>
-                  </div>
+              <div className="space-y-6 text-lg leading-relaxed text-neutral-300">
+                <p>{t("narrative.heritage.lead")}</p>
+                <p>{t("narrative.heritage.closer")}</p>
+              </div>
+              <div className="grid gap-4 pt-2 sm:grid-cols-2">
+                {heritageItems.map((item) => (
+                  <article key={item.key} className="rounded-2xl border border-white/10 bg-black/35 p-5">
+                    <p className="font-serif text-2xl text-wuyin-gold-bright">{item.title}</p>
+                    <p className="mt-2 text-sm uppercase tracking-[0.24em] text-neutral-500">{item.subtitle}</p>
+                    <p className="mt-4 text-sm leading-7 text-neutral-300">{item.body}</p>
+                  </article>
                 ))}
               </div>
             </ScrollReveal>
@@ -271,12 +335,24 @@ export default function NarrativePage() {
         <div className="container-wuyin relative z-10">
           <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
             <ScrollReveal className="space-y-8">
-              <h2 className="font-serif text-4xl font-bold text-white sm:text-5xl">{t("narrative.inheritance.title")}</h2>
-              <p className="text-lg leading-relaxed text-neutral-300">{t("narrative.inheritance.lead")}</p>
-              <div className="flex flex-col gap-4 pt-8 sm:flex-row">
-                <GradientButton className="min-w-[200px]">{t("narrative.inheritance.ctaVideo")}</GradientButton>
-                <GhostButton className="min-w-[200px]">{t("narrative.inheritance.ctaInterview")}</GhostButton>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.42em] text-wuyin-gold-bright/80">
+                  {t("narrative.inheritance.eyebrow")}
+                </p>
+                <h2 className="mt-4 font-serif text-4xl font-bold text-white sm:text-5xl">{t("narrative.inheritance.title")}</h2>
               </div>
+              <p className="text-lg leading-relaxed text-neutral-300">{t("narrative.inheritance.lead")}</p>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {inheritanceItems.map((item) => (
+                  <article key={item.key} className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                    <p className="font-serif text-xl text-white">{item.title}</p>
+                    <p className="mt-3 text-sm leading-7 text-neutral-300">{item.body}</p>
+                  </article>
+                ))}
+              </div>
+              <blockquote className="border-l border-wuyin-gold-bright/30 pl-5 font-serif text-xl text-neutral-100">
+                {t("narrative.inheritance.quote")}
+              </blockquote>
             </ScrollReveal>
             <ScrollReveal variant="rightSoft" className="relative aspect-video overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-neutral-900">
                {!reducedMotion ? (
@@ -293,13 +369,15 @@ export default function NarrativePage() {
                  </video>
                ) : null}
                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-black/20" />
-               {/* 视频交互提示 */}
                <div className="absolute inset-0 flex items-center justify-center">
-                 <button className="h-20 w-20 rounded-full bg-wuyin-gold-bright/20 border border-wuyin-gold-bright/40 text-wuyin-gold-bright flex items-center justify-center hover:scale-110 transition-transform">
-                   <svg viewBox="0 0 24 24" className="h-8 w-8 ml-1" fill="currentColor">
-                     <path d="M8 5v14l11-7z" />
-                   </svg>
-                 </button>
+                 <div className="rounded-2xl border border-wuyin-gold-bright/30 bg-black/55 px-6 py-5 text-center backdrop-blur-sm">
+                   <p className="text-xs font-semibold uppercase tracking-[0.34em] text-wuyin-gold-bright/85">
+                     {t("narrative.inheritance.videoEyebrow")}
+                   </p>
+                   <p className="mt-3 font-serif text-2xl text-white">
+                     {t("narrative.inheritance.videoTitle")}
+                   </p>
+                 </div>
                </div>
             </ScrollReveal>
           </div>

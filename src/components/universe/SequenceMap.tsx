@@ -17,9 +17,12 @@ export default function SequenceMap() {
   const [activeHotspot, setActiveHotspot] = useState<Hotspot | null>(null);
 
   const HOTSPOTS: Hotspot[] = useMemo(() => [
-    { id: "shanhe", x: 30, y: 40, label: t("narrative.map.hotspots.shanhe.label"), description: t("narrative.map.hotspots.shanhe.description") },
-    { id: "fengyun", x: 65, y: 30, label: t("narrative.map.hotspots.fengyun.label"), description: t("narrative.map.hotspots.fengyun.description") },
-    { id: "tiangang", x: 50, y: 70, label: t("narrative.map.hotspots.tiangang.label"), description: t("narrative.map.hotspots.tiangang.description") },
+    { id: "temple", x: 22, y: 30, label: t("narrative.map.hotspots.temple.label"), description: t("narrative.map.hotspots.temple.description") },
+    { id: "arena", x: 49, y: 22, label: t("narrative.map.hotspots.arena.label"), description: t("narrative.map.hotspots.arena.description") },
+    { id: "alley", x: 72, y: 36, label: t("narrative.map.hotspots.alley.label"), description: t("narrative.map.hotspots.alley.description") },
+    { id: "home", x: 23, y: 67, label: t("narrative.map.hotspots.home.label"), description: t("narrative.map.hotspots.home.description") },
+    { id: "mountain", x: 52, y: 74, label: t("narrative.map.hotspots.mountain.label"), description: t("narrative.map.hotspots.mountain.description") },
+    { id: "realm", x: 77, y: 63, label: t("narrative.map.hotspots.realm.label"), description: t("narrative.map.hotspots.realm.description") },
   ], [t]);
   
   const { scrollYProgress } = useScroll({
@@ -31,7 +34,7 @@ export default function SequenceMap() {
     <>
       <button
         className="absolute right-3 top-3 text-neutral-500 transition-colors hover:text-white"
-        aria-label="Close hotspot details"
+        aria-label={t("narrative.map.closeDetail")}
         onClick={() => setActiveHotspot(null)}
       >
         ✕
@@ -112,11 +115,27 @@ export default function SequenceMap() {
         <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
           <motion.div 
             style={{ opacity: useTransform(scrollYProgress, [0, 0.2, 0.4], [1, 1, 0]) }}
-            className="text-center"
+            className="max-w-3xl px-6 text-center"
           >
             <h2 className="font-serif text-4xl font-black text-white sm:text-6xl">{t("narrative.map.title")}</h2>
-            <p className="mt-4 text-wuyin-muted tracking-[0.5em]">{t("narrative.map.subtitle")}</p>
+            <p className="mt-4 text-sm leading-7 text-neutral-300 sm:text-base">{t("narrative.map.subtitle")}</p>
+            <p className="mt-5 text-[10px] uppercase tracking-[0.42em] text-wuyin-muted">{t("narrative.map.helper")}</p>
           </motion.div>
+        </div>
+
+        <div className="absolute inset-x-4 bottom-4 z-10 hidden lg:block">
+          <div className="mx-auto grid max-w-6xl grid-cols-6 gap-3">
+            {HOTSPOTS.map((spot) => (
+              <button
+                key={spot.id}
+                type="button"
+                onClick={() => setActiveHotspot(spot)}
+                className="rounded-2xl border border-white/10 bg-black/40 px-4 py-3 text-left backdrop-blur-sm transition-colors hover:border-wuyin-gold-bright/35 hover:bg-white/[0.06]"
+              >
+                <p className="font-serif text-base text-white">{spot.label}</p>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </div>

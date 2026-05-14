@@ -499,104 +499,160 @@ const en = {
   },
   "narrative": {
     "hero": {
-      "kicker": "Wuyin Pavilion · Wusheng Mountain",
-      "title": "Summit of Zhi Ge — Narrative Space"
+      "kicker": "Wuyin Universe",
+      "title": "Seal the Heart with Martial Spirit"
     },
-    "heroLead": "A global youth martial seal grand ceremony—the first top-tier youth martial IP centered on martial virtue and reflective dialogue. Grounded in Wusheng lineage and Zhi Ge philosophy: youth seek the Way and forge character.",
+    "heroLead": "Wuyin Universe is where the virtual and the physical grow together. Six sacred sites shape a complete map of Eastern martial civilization, inviting every fellow traveler to co-build a new martial culture.",
     "openScroll": "Go deeper",
     "backHome": "Back to home",
     "philosophy": {
-      "title": "Zhi·Gou·Yin",
-      "p1": "Stop, not retreat, is knowing when to stop before achieving stability - warriors use stillness to gain the upper hand, and with courtesy, they command power. In the midst of chaos, they maintain the inner balance. The sword, not for conquest, but for transforming into harmony - in a confrontation, it is not about destruction, but about understanding the opponent and seeing oneself in the collision. The seal, it is the trace left by the law of nature - every punch, every decision, leaves an unalterable mark in the universe of martial arts.",
-      "p2": "\"Wu\" represents form, \"Yin\" represents spirit, \"Shi\" represents contemplation, and \"Jie\" represents framework.",
-      "concepts": {
-        "zhi": {
-          "char": "Zhi",
-          "label": "Blank"
+      "eyebrow": "Philosophical Core",
+      "title": "Martial is not war. It is the stopping of the spear.",
+      "lead": "The arena is also a place of cultivation. Every strike is a question turned inward. The martial path is not about conquering others, but mastering oneself.",
+      "interpretation": {
+        "title": "Reading the Character",
+        "body": "The character for martial joins stop and spear. Real martial practice is not conquest, but the ability to calm conflict, hold back force, and steady the heart."
+      },
+      "principles": {
+        "restraint": {
+          "title": "Zhi Ge as Martial",
+          "body": "When it is time to stop, you can still your fist. Restraint and strength belong together; only by knowing when to stop can you move well."
         },
-        "ge": {
-          "char": "Ge",
-          "label": "Covenant"
+        "growth": {
+          "title": "Relentless Self-Strengthening",
+          "body": "When it is time to advance, you keep surpassing yesterday's self. Only those who can master themselves can truly grow strong."
+        }
+      },
+      "questionsTitle": "Three Ways of Seeing",
+      "questions": {
+        "self": {
+          "title": "See Yourself",
+          "body": "Can you face your real fear and weakness?"
         },
-        "yin": {
-          "char": "Yin",
-          "label": "Carving"
+        "people": {
+          "title": "See Others",
+          "body": "Would you hold out an umbrella for someone else?"
+        },
+        "world": {
+          "title": "See the World",
+          "body": "Have you ever felt your life carries real meaning?"
         }
       }
     },
     "lineage": {
-      "title": "Personnel lineage",
-      "lead": "Inheriting the same tradition, all the scriptures converge to a common origin."
+      "title": "Role Constellation",
+      "lead": "Wuyin Universe is forged by every one of you.",
+      "closer": "Everyone can find a place in this universe. Seal the heart with martial spirit, and let the way travel in every direction."
     },
     "characters": {
       "c1": {
-        "name": "Jiang Ziya",
-        "role": "First Martial Saint · Enshrined",
-        "blurb": "Wusheng Palace decreed in the Tang: Jiang Ziya as chief deity. Strategy and humane wisdom mark the source of “martial” in Chinese lineage.",
-        "alt": "Atmospheric Wusheng Mountain scene (lineage motif)"
+        "name": "Seal Bearer | Martial Practitioner",
+        "role": "Cultivator on the Stage",
+        "blurb": "The one who forges a seal through sweat and asks the Way with the fist. Background does not matter here. Persistence does.",
+        "alt": "Seal bearer and martial practitioner motif"
       },
       "c2": {
-        "name": "Guan Yu",
-        "role": "Middle Martial Saint · Loyalty",
-        "blurb": "A pillar of the martial-saint arc: loyalty and integrity show that martial practice is bound to virtue and faith, not only technique.",
-        "alt": "Atmospheric Wusheng Mountain scene (loyalty motif)"
+        "name": "Pavilion Friend | Seal Companion",
+        "role": "Companion Below the Stage",
+        "blurb": "Not a bystander, but a co-builder. Watching, voting, co-creating, and practicing all feed energy back into the Wuyin Universe.",
+        "alt": "Pavilion friend and seal companion motif"
       },
       "c3": {
-        "name": "Yue Fei",
-        "role": "Later Martial Saint · Devotion",
-        "blurb": "The thread extends to duty and country: wholehearted devotion carries the spirit of Zhi Ge and protection of the people.",
-        "alt": "Atmospheric Wusheng Mountain scene (landscape motif)"
+        "name": "Guardian of the Seal",
+        "role": "Annual Spiritual Axis",
+        "blurb": "A standard-bearer or challenger who protects the original intent of Zhi Ge and guides both practitioners and community members back for yearly refinement.",
+        "alt": "Guardian of the seal motif"
       },
       "c4": {
-        "name": "Zhang Sanfeng",
-        "role": "Internal Master · Movement",
-        "blurb": "The source of Tai Chi: using harmony and nature to connect martial arts to the Tao, carrying the logic of balance.",
-        "alt": "Atmospheric Wusheng Mountain scene (Tai Chi motif)"
-      },
-      "c5": {
-        "name": "Sun Wu",
-        "role": "God of War · Strategy",
-        "blurb": "The Way of War is the Way of Man: using strategy and global vision so martial arts is about wisdom, not just bravery.",
-        "alt": "Atmospheric Wusheng Mountain scene (Art of War motif)"
-      },
-      "c6": {
-        "name": "Hua Mulan",
-        "role": "Heroine Light · Resilience",
-        "blurb": "Resilience and duty: breaking boundaries to meet force with softness, carrying the core spirit of country and resolve.",
-        "alt": "Atmospheric Wusheng Mountain scene (Heroine motif)"
+        "name": "Youth of Zhi Ge",
+        "role": "Future Inheritor",
+        "blurb": "The young sprouts of martial culture. Chosen from around the world, they learn restraint, responsibility, and protection here.",
+        "alt": "Youth of Zhi Ge motif"
       }
     },
     "heritage": {
-      "title": "Tracing & Intangible Heritage",
-      "p1": "Scholars, masters, and explorers document the real terrain and story—building trust and narrative before the finals.",
-      "p2": "Heritage shown in bearing, cultivation in detail. Deeply integrating cultural symbols like Longquan swords, silk, and oil-paper umbrellas with the martial spirit.",
+      "eyebrow": "Tracing Heritage",
+      "title": "Martial form, heritage soul",
+      "lead": "A thousand years of craftsmanship can renew itself on the stage. Heritage is not frozen in museums. It lives in blades, robes, gestures, and the everyday smoke of the alley.",
+      "closer": "Wuyin World uses martial culture as a medium so Eastern heritage can live in the present and pass on as living fire.",
       "items": {
-        "sword": "Longquan Sword",
-        "silk": "Hangzhou Silk",
-        "umbrella": "Heritage Umbrella"
+        "sword": {
+          "title": "Longquan Sword",
+          "subtitle": "Tempered steel, upright spirit",
+          "body": "Warriors enter with the sword as a vessel of inquiry. Every Longquan blade holds the poise and rigor of Eastern craft."
+        },
+        "silk": {
+          "title": "Silk Battle Robe",
+          "subtitle": "Fine threads, strength and softness",
+          "body": "Silk moves with the wind in the arena, translating martial force through refined Eastern dress and visual elegance."
+        },
+        "umbrella": {
+          "title": "Oil-Paper Umbrella",
+          "subtitle": "Bamboo spine, measured opening",
+          "body": "Its rhythm of opening and closing suggests measure, protection, and the old wisdom of how to carry oneself through weather."
+        },
+        "alley": {
+          "title": "Kung Fu Seal Alley",
+          "subtitle": "Handcraft in the living street",
+          "body": "Sword making, embroidery, and umbrella painting become immersive experiences so visitors can touch the warmth of living heritage."
+        }
       }
     },
     "inheritance": {
-      "title": "Inheritance",
-      "lead": "Let martial virtue become a power to be heard and debated. Youth seek the Way, possessing not only strength but also character.",
-      "ctaVideo": "Watch Documentary",
-      "ctaInterview": "Interviews"
+      "eyebrow": "Passing the Flame",
+      "title": "Martial spirit survives because youth keeps growing",
+      "lead": "Wuyin World believes every young person who finds the seal within will one day become a backbone strong enough to change the future.",
+      "quote": "Yesterday's youth becomes today's seal bearer. Today's youth becomes tomorrow's backbone. The flame carries on without end.",
+      "videoEyebrow": "Youth Seal Ceremony",
+      "videoTitle": "At Wusheng Mountain, they forge the seal of youth",
+      "items": {
+        "youth": {
+          "title": "Youth of Zhi Ge",
+          "body": "Seeking young representatives worldwide who hold upright intention. The goal is not titles, but a generation that understands restraint, duty, and protection."
+        },
+        "schools": {
+          "title": "Hundreds of Cities, Thousands of Schools",
+          "body": "Story collection online and martial forums offline create a public platform for transmission, so every child can say with confidence: I can do this too."
+        },
+        "ceremony": {
+          "title": "Youth Seal Ceremony",
+          "body": "Young martial representatives gather at Wusheng Mountain to forge their own seal, receiving not just a mark but a mission carried across centuries."
+        },
+        "nation": {
+          "title": "Foundation of the Nation",
+          "body": "It helps youth step away from virtual drift, build self-restraint, and grow courage. When the young stand strong, the nation stands strong."
+        }
+      }
     },
     "map": {
-      "title": "Universe Map",
-      "subtitle": "Scroll to explore 3D realms",
+      "title": "Map of the Wuyin Universe",
+      "subtitle": "Six sacred sites shape a complete geography of Eastern martial civilization.",
+      "helper": "Tap the hotspots to inspect each sacred site",
+      "closeDetail": "Close sacred site details",
       "hotspots": {
-        "shanhe": {
-          "label": "Shanhe Seal",
-          "description": "Condensing earthly aura, guarding the Wusheng lineage."
+        "temple": {
+          "label": "Martial Sanctuary",
+          "description": "The central spiritual coordinate. It is both the starting point of cultivation and the place where the whole community longs to return."
         },
-        "fengyun": {
-          "label": "Fengyun Duel",
-          "description": "Shifting clouds in the high heavens, witnessing masters' ascent."
+        "arena": {
+          "label": "Heavenly Seal Arena",
+          "description": "The core arena of competition and consecration, where immersive staging turns every exclusive seal into a moment of coronation."
         },
-        "tiangang": {
-          "label": "Tiangang Seal",
-          "description": "Empowered by stellar forces, the path for youth seeking the Way."
+        "alley": {
+          "label": "Kung Fu Seal Alley",
+          "description": "A living creative quarter filled with craft, dress, tea, and limited IP goods, where martial culture folds into daily life."
+        },
+        "home": {
+          "label": "Return to the Pavilion",
+          "description": "The private home of the community, where growth, voting, co-creation, and shared rights turn every member into a co-owner of the universe."
+        },
+        "mountain": {
+          "label": "Wusheng Mountain",
+          "description": "The sacred ground of youth inheritance, home of the annual seal-forging ceremony where martial spirit is passed to the next generation."
+        },
+        "realm": {
+          "label": "Seal Realm",
+          "description": "A digital territory for NFR-based identity, privileges, and rights, connecting all parts of the Wuyin experience into one shared resonance."
         }
       }
     }
