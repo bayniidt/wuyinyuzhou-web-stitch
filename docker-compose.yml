@@ -22,5 +22,8 @@ services:
     restart: unless-stopped
     depends_on:
       - api
+    volumes:
+      - ./src/证书:/etc/nginx/certs:ro
     ports:
       - "80:80"
+      - "443:443"

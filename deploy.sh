@@ -28,36 +28,20 @@ if ! command -v ssh >/dev/null 2>&1; then
 fi
 
 echo "[1/3] Syncing files to ${DEPLOY_USER}@${DEPLOY_HOST}:${REMOTE_DIR} ..."
-RSYNC_ARGS=(
-  -az
-  --delete
-  --exclude '.git'
-  --exclude '.github'
-  --exclude 'node_modules'
-  --exclude 'admin/node_modules'
-  --exclude 'dist'
-  --exclude 'admin/dist'
-  --exclude 'server/node_modules'
-  --exclude '*.log'
-  --exclude '.DS_Store'
-)
-
-if [[ "${SYNC_DB}" != "1" ]]; then
-  RSYNC_ARGS+=(--exclude 'server/database.sqlite')
-fi
-
-if [[ "${SYNC_UPLOADS}" != "1" ]]; then
-  RSYNC_ARGS+=(--exclude 'server/public/uploads/')
-fi
-
-rsync "${RSYNC_ARGS[@]}" "${SCRIPT_DIR}/" "${DEPLOY_USER}@${DEPLOY_HOST}:${REMOTE_DIR}/"
+rsync -az --delete \
+  --exclude '.git' \
+  --exclude '.github' \
+  --exclude 'node_modules' \
+  --exclude 'admin/node_modules' \
+  --exclude 'dist' \
+  --exclude 'admin/dist' \
+  --exclude 'server/node_modules' \
+  --exclude '*.log' \
+  --exclude '.DS_Store' \
+  "${SCRIPT_DIR}/" "${DEPLOY_USER}@${DEPLOY_HOST}:${REMOTE_DIR}/"
 
 echo "[2/3] Rebuilding and starting containers on remote ..."
-if [[ "${NO_CACHE}" == "1" ]]; then
-  ssh -t "${DEPLOY_USER}@${DEPLOY_HOST}" "cd '${REMOTE_DIR}' && docker compose build --no-cache && docker compose up -d --force-recreate"
-else
-  ssh -t "${DEPLOY_USER}@${DEPLOY_HOST}" "cd '${REMOTE_DIR}' && docker compose up -d --build --force-recreate"
-fi
+ssh -t "${DEPLOY_USER}@${DEPLOY_HOST}" "cd '${REMOTE_DIR}' && docker compose down && docker compose up -d --build"
 
 echo "[3/3] Verifying container status ..."
 ssh -t "${DEPLOY_USER}@${DEPLOY_HOST}" "docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'"

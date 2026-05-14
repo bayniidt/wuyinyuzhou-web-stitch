@@ -3,14 +3,12 @@ ARG NODE_VERSION=24.14.1-slim
 FROM node:${NODE_VERSION} AS dependencies-root
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN --mount=type=cache,target=/root/.npm \
-  npm ci --no-audit --no-fund
+RUN npm ci --no-audit --no-fund
 
 FROM node:${NODE_VERSION} AS dependencies-admin
 WORKDIR /app/admin
 COPY admin/package.json admin/package-lock.json ./
-RUN --mount=type=cache,target=/root/.npm \
-  npm ci --no-audit --no-fund
+RUN npm ci --no-audit --no-fund
 
 FROM node:${NODE_VERSION} AS builder
 WORKDIR /app
