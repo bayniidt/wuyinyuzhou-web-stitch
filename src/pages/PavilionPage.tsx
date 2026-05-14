@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { useMemo } from "react";
 
 import heroFallback from "@/images/page3 (7).png";
+import brandFallback from "@/images/page3 (1).png";
 
 export default function PavilionPage() {
   const { t } = useLocale();
@@ -42,6 +43,7 @@ export default function PavilionPage() {
   }
 
   const heroImage = resources["gal_hq_hero_bg"] || heroFallback;
+  const brandImage = resources["pavilion_brand_image"] || brandFallback;
 
   return (
     <div className="bg-black">
@@ -86,6 +88,12 @@ export default function PavilionPage() {
             <blockquote className="border-l border-wuyin-gold-bright/30 pl-5 font-serif text-2xl leading-relaxed text-neutral-100">
               {t("pavilion.brand.quote")}
             </blockquote>
+            <article className="overflow-hidden rounded-[32px] border border-white/10 bg-black/30">
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <img src={brandImage} alt="" className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/15 to-transparent" />
+              </div>
+            </article>
           </ScrollReveal>
           <ScrollReveal variant="rightSoft" className="grid gap-4 sm:grid-cols-2">
             {brandItems.map((item, index) => (

@@ -13,6 +13,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import heroFallback from "@/images/page2(6).png";
 import videoFallback from "@/videos/15440050_1920_1080_30fps.mp4";
 import workflowFallback from "@/images/page2(2).png";
+import dialogueFallback from "@/images/page2(6).png";
+import aestheticsFallback from "@/images/page2(2).png";
 
 export default function TimelinePage() {
   const { t } = useLocale();
@@ -35,6 +37,8 @@ export default function TimelinePage() {
   const timelineHero = isBrokenPath(resources["os_hero_bg"]) ? heroFallback : resources["os_hero_bg"];
   const timelineTheater = isBrokenPath(resources["os_stage1_video"]) ? videoFallback : resources["os_stage1_video"];
   const mechaVisual = isBrokenPath(resources["os_workflow_bg"]) ? workflowFallback : resources["os_workflow_bg"];
+  const dialogueVisual = resources["timeline_dialogue_image"] || dialogueFallback;
+  const aestheticsVisual = resources["timeline_aesthetics_image"] || aestheticsFallback;
 
   const theaterItems = useMemo(
     () =>
@@ -182,7 +186,20 @@ export default function TimelinePage() {
             <h2 className="mt-4 font-serif text-4xl font-bold text-white sm:text-5xl">{t("timeline.dialogue.title")}</h2>
             <p className="mt-6 text-lg leading-relaxed text-neutral-300">{t("timeline.dialogue.lead")}</p>
           </div>
-          <div className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-14 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+            <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-black/30">
+              <div className="relative aspect-[4/5] overflow-hidden">
+                <img src={dialogueVisual} alt="" className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/20 to-transparent" />
+                <div className="absolute inset-x-6 bottom-6 rounded-2xl border border-white/10 bg-black/45 p-5 backdrop-blur-sm">
+                  <p className="text-xs font-semibold uppercase tracking-[0.32em] text-wuyin-gold-bright/80">
+                    {t("timeline.dialogue.kicker")}
+                  </p>
+                  <p className="mt-3 font-serif text-2xl text-white">{t("timeline.dialogue.title")}</p>
+                </div>
+              </div>
+            </div>
+            <div className="grid gap-5 md:grid-cols-2">
             {dialogueItems.map((item, index) => (
               <motion.article
                 key={item.key}
@@ -196,6 +213,7 @@ export default function TimelinePage() {
                 <p className="mt-4 text-sm leading-7 text-neutral-300">{item.body}</p>
               </motion.article>
             ))}
+            </div>
           </div>
           <p className="mx-auto mt-10 max-w-3xl text-center text-sm leading-7 text-neutral-400">
             {t("timeline.dialogue.closer")}
@@ -241,13 +259,21 @@ export default function TimelinePage() {
             <h2 className="mt-4 font-serif text-4xl font-bold text-white sm:text-5xl">{t("timeline.aesthetics.title")}</h2>
             <p className="mt-6 text-lg leading-relaxed text-neutral-300">{t("timeline.aesthetics.lead")}</p>
           </div>
-          <div className="mt-14 grid gap-5 md:grid-cols-2">
+          <div className="mt-14 grid gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-start">
+            <article className="overflow-hidden rounded-[32px] border border-white/10 bg-black/30">
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <img src={aestheticsVisual} alt="" className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/15 to-transparent" />
+              </div>
+            </article>
+            <div className="grid gap-5 md:grid-cols-2">
             {aestheticItems.map((item) => (
               <article key={item.key} className="rounded-[28px] border border-white/10 bg-black/30 p-6">
                 <p className="font-serif text-3xl text-wuyin-gold-bright">{item.title}</p>
                 <p className="mt-4 text-sm leading-8 text-neutral-300">{item.body}</p>
               </article>
             ))}
+            </div>
           </div>
           <blockquote className="mx-auto mt-12 max-w-4xl border-t border-white/10 pt-8 text-center font-serif text-2xl leading-relaxed text-neutral-100">
             {t("timeline.aesthetics.quote")}

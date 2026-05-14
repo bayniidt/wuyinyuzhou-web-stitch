@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { useMemo, useState } from "react";
 
 import heroFallback from "@/images/page4 (5).png";
+import partnershipFallback from "@/images/page4 (1).png";
 
 const domainKeys = ["brand", "event", "club", "gov", "invest", "media"] as const;
 type DomainKey = (typeof domainKeys)[number];
@@ -35,6 +36,7 @@ export default function PartnershipPage() {
 
   const [activeDomain, setActiveDomain] = useState<DomainKey>("brand");
   const activeItem = domains.find((item) => item.id === activeDomain) ?? domains[0];
+  const activeVisual = resources[`partnership_${activeDomain}_image`] || partnershipFallback;
 
   const valueItems = useMemo(
     () =>
@@ -188,6 +190,23 @@ export default function PartnershipPage() {
 
           <div className="mt-8 grid gap-8 rounded-[32px] border border-white/10 bg-[#0a0a0a] p-6 sm:p-8 lg:grid-cols-[0.95fr_1.05fr]">
             <div>
+              <article className="mb-6 overflow-hidden rounded-[28px] border border-white/10 bg-black/30">
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <img
+                    key={activeDomain}
+                    src={activeVisual}
+                    alt=""
+                    className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/15 to-transparent" />
+                  <div className="absolute inset-x-5 bottom-5 rounded-2xl border border-white/10 bg-black/45 p-4 backdrop-blur-sm">
+                    <p className="text-xs font-semibold uppercase tracking-[0.32em] text-wuyin-gold-bright/80">
+                      {activeItem.tag}
+                    </p>
+                    <p className="mt-2 font-serif text-2xl text-white">{activeItem.title}</p>
+                  </div>
+                </div>
+              </article>
               <p className="text-xs font-semibold uppercase tracking-[0.34em] text-wuyin-gold-bright/80">
                 {activeItem.tag}
               </p>

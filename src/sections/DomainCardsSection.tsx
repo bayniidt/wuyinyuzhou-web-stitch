@@ -1,9 +1,13 @@
 import SectionGoldenBlocks from "@/components/decor/SectionGoldenBlocks";
 import ScrollReveal from "@/components/motion/ScrollReveal";
 import { useLocale } from "@/i18n/LocaleProvider";
+import { useModuleResources } from "@/hooks/useModuleResources";
+import valuesPanelFallback from "@/images/index3.png";
 
 export default function DomainCardsSection() {
   const { t } = useLocale();
+  const { resources, loading } = useModuleResources(["", "ecosystem"]);
+  const valuesPanel = resources["home_values_panel_image"] || valuesPanelFallback;
   const valueCards = [
     {
       key: "culture",
@@ -32,6 +36,8 @@ export default function DomainCardsSection() {
     },
   ];
 
+  if (loading) return null;
+
   return (
     <section id="home-values" className="relative overflow-hidden border-b border-white/5 py-20 sm:py-28">
       <SectionGoldenBlocks variant={1} />
@@ -47,7 +53,22 @@ export default function DomainCardsSection() {
             {t("home.values.subtitle")}
           </p>
         </div>
-        <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-5">
+        <div className="mt-12 grid gap-8 xl:grid-cols-[1.05fr_1.15fr] xl:items-start">
+          <article className="overflow-hidden rounded-[32px] border border-white/10 bg-black/30">
+            <div className="relative aspect-[4/3] overflow-hidden">
+              <img src={valuesPanel} alt="" className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/15 to-transparent" />
+              <div className="absolute inset-x-6 bottom-6 rounded-2xl border border-white/10 bg-black/45 p-5 backdrop-blur-sm">
+                <p className="text-xs font-semibold uppercase tracking-[0.32em] text-wuyin-gold-bright/80">
+                  {t("home.values.eyebrow")}
+                </p>
+                <p className="mt-3 font-serif text-2xl text-white">
+                  {t("home.values.title")}
+                </p>
+              </div>
+            </div>
+          </article>
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-2">
           {valueCards.map((card, index) => (
             <article
               key={card.key}
@@ -65,6 +86,7 @@ export default function DomainCardsSection() {
               </div>
             </article>
           ))}
+          </div>
         </div>
       </ScrollReveal>
     </section>
