@@ -44,7 +44,7 @@ function NarrativeSectionFireVideo({ reducedMotion, videoSrc = CDN_BANNER_VIDEO 
 
 export default function NarrativePage() {
   const { t } = useLocale();
-  const { resources, loading } = useModuleResources(['narrative', 'news']);
+  const { resources, loading } = useModuleResources(['narrative', 'news', 'pavilion']);
   const navigate = useNavigate();
   const location = useLocation();
   const reducedMotion = usePrefersReducedMotion();

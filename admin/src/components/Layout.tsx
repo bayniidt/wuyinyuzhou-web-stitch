@@ -33,7 +33,7 @@ const navLinks: NavLink[] = [
   { type: 'header', label: '资源管理' },
   { path: '/resources/ecosystem', label: '生态体系资源管理', icon: '🖼️' },
   { path: '/resources/narrative', label: '武印宇宙资源管理', icon: '🌌' },
-  { path: '/resources/timeline', label: '武印世界资源管理', icon: '📽️' },
+  { path: '/resources/timeline', label: '武印视界资源管理', icon: '📽️' },
   { path: '/resources/pavilion', label: '武印阁资源管理', icon: '💎' },
   { path: '/resources/partnership', label: '合作入口资源管理', icon: '🤝' },
   { type: 'header', label: '业务数据' },

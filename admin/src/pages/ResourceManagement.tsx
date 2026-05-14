@@ -2,6 +2,12 @@
 
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import {
+  getResourceView,
+  resolvePreviewType,
+  resolvePreviewUrl,
+  resolveSourceLabel,
+} from '@/lib/resourceCatalog';
 
 interface ContentItem {
   id: number;
@@ -11,14 +17,6 @@ interface ContentItem {
   type: string;
   module: string;
 }
-
-const moduleNames: Record<string, string> = {
-  ecosystem: '生态体系资源管理',
-  narrative: '武印宇宙资源管理',
-  timeline: '武印世界资源管理',
-  pavilion: '武印阁资源管理',
-  partnership: '合作入口资源管理',
-};
 
 export default function ResourceManagement() {
   const { module = 'ecosystem' } = useParams<{ module: string }>();
@@ -35,11 +33,29 @@ export default function ResourceManagement() {
   const fetchContent = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`/api/content?module=${module}`);
-      const data = await res.json();
-      // Filter for media type only
-      const mediaContent = data.filter((c: ContentItem) => c.type === 'media');
-      setContent(mediaContent);
+      const view = getResourceView(module);
+      const responses = await Promise.all(
+        view.modules.map(async (moduleId) => {
+          const res = await fetch(`/api/content?module=${moduleId}`);
+          return res.json();
+        }),
+      );
+
+      const mediaByKey = new Map<string, ContentItem>();
+      responses
+        .flat()
+        .filter((item: ContentItem) => item.type === 'media')
+        .forEach((item: ContentItem) => {
+          if (!mediaByKey.has(item.key)) {
+            mediaByKey.set(item.key, item);
+          }
+        });
+
+      const ordered = view.resources
+        .map((resource) => mediaByKey.get(resource.key))
+        .filter((item): item is ContentItem => Boolean(item));
+
+      setContent(ordered);
     } catch (err) {
       console.error('Failed to fetch resources:', err);
     } finally {
@@ -94,13 +110,13 @@ export default function ResourceManagement() {
     }
   };
 
-  const isVideo = (url: string) => url.toLowerCase().match(/\.(mp4|webm|ogg)$/) || url.includes('/videos/');
+  const view = getResourceView(module);
 
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
       <div>
-        <h1 className="text-3xl font-bold text-white mb-2">{moduleNames[module] || module}</h1>
-        <p className="text-zinc-500">管理 {module} 模块下的图片与视频资源</p>
+        <h1 className="text-3xl font-bold text-white mb-2">{view.title}</h1>
+        <p className="text-zinc-500">{view.description}</p>
       </div>
 
       {loading ? (
@@ -113,13 +129,27 @@ export default function ResourceManagement() {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {content.map((item) => (
+          {content.map((item) => {
+            const previewUrl = resolvePreviewUrl(item.key, item.value_zh);
+            const previewType = resolvePreviewType(item.key, item.value_zh);
+            const sourceLabel = resolveSourceLabel(item.key, item.value_zh);
+            const resourceLabel = view.resources.find((resource) => resource.key === item.key)?.label ?? item.key;
+
+            return (
             <div key={item.id} className="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden group hover:border-zinc-700 transition-all">
               <div className="aspect-video bg-zinc-950 relative overflow-hidden flex items-center justify-center">
-                {isVideo(item.value_zh) ? (
-                  <video src={item.value_zh} className="w-full h-full object-cover" muted />
+                {previewType === 'video' ? (
+                  <video
+                    src={previewUrl}
+                    className="w-full h-full object-cover"
+                    muted
+                    autoPlay
+                    loop
+                    playsInline
+                    preload="metadata"
+                  />
                 ) : (
-                  <img src={item.value_zh} alt="" className="w-full h-full object-cover" />
+                  <img src={previewUrl} alt="" className="w-full h-full object-cover" />
                 )}
                 <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                   <button
@@ -129,8 +159,11 @@ export default function ResourceManagement() {
                     更换资源
                   </button>
                 </div>
-                <div className="absolute top-2 left-2 px-2 py-1 bg-black/50 backdrop-blur-md rounded text-[10px] text-white font-bold uppercase tracking-wider">
-                  {item.key.includes('_') ? item.key.split('_').slice(1).join(' ') : item.key}
+                <div className="absolute top-2 left-2 px-2 py-1 bg-black/50 backdrop-blur-md rounded text-[10px] text-white font-bold tracking-wider">
+                  {resourceLabel}
+                </div>
+                <div className="absolute bottom-2 left-2 px-2 py-1 bg-black/55 backdrop-blur-md rounded text-[10px] text-zinc-200 font-medium">
+                  {sourceLabel}
                 </div>
               </div>
               <div className="p-4">
@@ -138,17 +171,26 @@ export default function ResourceManagement() {
                 <div className="text-sm text-zinc-300 truncate">{item.value_zh}</div>
               </div>
             </div>
-          ))}
+          )})}
         </div>
       )}
 
       {/* Resource Edit Modal */}
       {editingItem && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+          {(() => {
+            const previewZhUrl = resolvePreviewUrl(editingItem.key, editingItem.value_zh);
+            const previewZhType = resolvePreviewType(editingItem.key, editingItem.value_zh);
+            const previewEnUrl = resolvePreviewUrl(editingItem.key, editingItem.value_en);
+            const previewEnType = resolvePreviewType(editingItem.key, editingItem.value_en);
+            const resourceLabel = view.resources.find((resource) => resource.key === editingItem.key)?.label ?? editingItem.key;
+
+            return (
           <div className="bg-zinc-900 border border-zinc-800 rounded-3xl w-full max-w-4xl shadow-2xl animate-in fade-in zoom-in duration-300">
             <div className="p-8 border-b border-zinc-800 flex items-center justify-between">
               <div>
                 <h2 className="text-2xl font-bold text-white">管理媒体资源</h2>
+                <p className="text-sm text-zinc-300 mt-1">{resourceLabel}</p>
                 <p className="text-sm text-zinc-500 font-mono mt-1">{editingItem.key}</p>
               </div>
               <button onClick={() => setEditingItem(null)} className="w-10 h-10 flex items-center justify-center rounded-full bg-zinc-800 text-zinc-400 hover:text-white transition-colors">✕</button>
@@ -159,10 +201,10 @@ export default function ResourceManagement() {
               <div className="space-y-4">
                 <label className="text-sm font-bold text-zinc-400 uppercase tracking-widest">中文版资源 (ZH)</label>
                 <div className="aspect-video bg-zinc-950 rounded-2xl overflow-hidden border border-zinc-800 flex items-center justify-center relative">
-                  {isVideo(editingItem.value_zh) ? (
-                    <video src={editingItem.value_zh} controls className="w-full h-full object-contain" />
+                  {previewZhType === 'video' ? (
+                    <video src={previewZhUrl} controls className="w-full h-full object-contain" />
                   ) : (
-                    <img src={editingItem.value_zh} alt="" className="w-full h-full object-contain" />
+                    <img src={previewZhUrl} alt="" className="w-full h-full object-contain" />
                   )}
                   {uploading === 'zh' && (
                     <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
@@ -189,10 +231,10 @@ export default function ResourceManagement() {
               <div className="space-y-4">
                 <label className="text-sm font-bold text-zinc-400 uppercase tracking-widest">英文版资源 (EN)</label>
                 <div className="aspect-video bg-zinc-950 rounded-2xl overflow-hidden border border-zinc-800 flex items-center justify-center relative">
-                  {isVideo(editingItem.value_en) ? (
-                    <video src={editingItem.value_en} controls className="w-full h-full object-contain" />
+                  {previewEnType === 'video' ? (
+                    <video src={previewEnUrl} controls className="w-full h-full object-contain" />
                   ) : (
-                    <img src={editingItem.value_en} alt="" className="w-full h-full object-contain" />
+                    <img src={previewEnUrl} alt="" className="w-full h-full object-contain" />
                   )}
                   {uploading === 'en' && (
                     <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
@@ -227,6 +269,8 @@ export default function ResourceManagement() {
               </button>
             </div>
           </div>
+            );
+          })()}
         </div>
       )}
     </div>
