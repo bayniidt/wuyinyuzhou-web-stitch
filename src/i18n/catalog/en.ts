@@ -658,88 +658,110 @@ const en = {
     }
   },
   "timeline": {
-    "heroKicker": "Visual Spectacle",
+    "heroKicker": "Wuyin Sight",
     "heroTitle": "Wuyin Sight",
-    "heroLead": "Presenting traditional martial arts as a futuristic digital wonder through holographic imagery and 3D staging.",
+    "heroLead": "Where virtual and physical worlds grow together. This is not a decorative tech shell, but a digitally empowered martial experience where dialogue, machinery, staging, and Eastern aesthetics move in one field.",
+    "heroTags": {
+      "immersive": "Digital Theater",
+      "dialogue": "Dialogue Matrix",
+      "mecha": "Mecha Martial",
+      "aesthetics": "Eastern Aesthetics"
+    },
     "viewRoadmap": "View Roadmap",
     "backHome": "Back to Home",
-    "modules": {
-      "manifesto": {
-        "kicker": "Digital Theater",
-        "title": "Holography & Zhi Ge Narrative",
-        "body": "Visualizing the kinetic energy of traditional forms via top-tier holography, crowning the spirit of Zhi Ge at the edge of virtuality."
+    "digitalTheater": {
+      "kicker": "Digital Theater",
+      "title": "Virtual and real, moving with the seal",
+      "lead": "MR viewing, Kung Fu Seal NFR rights, human-machine co-combat, and one-wallet access turn the martial experience into a fully connected system of presence, identity, and participation.",
+      "overlayKicker": "Between virtual and real",
+      "overlayTitle": "Only the seal remains constant",
+      "quote": "Tickets, merchandise, value points, and digital seals are gathered into one martial system that can be seen, joined, and kept.",
+      "items": {
+        "mr": {
+          "title": "MR Viewing",
+          "body": "Dedicated gear breaks the screen boundary and turns the arena into an immersive martial illusion, with flames, lightning, and movement trails fully visible."
+        },
+        "nfr": {
+          "title": "Kung Fu Seal NFR",
+          "body": "A compliant digital rights credential tied to real-world benefits such as VIP seats, limited merchandise, and exclusive practice access."
+        },
+        "mecha": {
+          "title": "Human-Machine Co-Martial",
+          "body": "Robotic fighters meet human seal-bearers in direct exchange. This is not substitution, but a deep co-evolution between martial culture and frontier technology."
+        },
+        "wallet": {
+          "title": "One Wallet Across the Universe",
+          "body": "A formal account system unifies tickets, merch, seal power points, and digital credentials so every act of participation has tangible return."
+        }
       }
     },
-    "accessTiers": {
-      "title": "Participation Tiers",
-      "subtitle": "Official ticketing and study tour pricing subject to official announcement.",
-      "ethNote": "Price · Placeholder only",
-      "standard": {
-        "name": "Observer",
-        "desc": "Standard seating with a vibrant atmosphere.",
-        "price": "From ¥ 280",
-        "feat1": "Designated viewing area",
-        "feat2": "Event souvenir materials",
-        "cta": "Learn More",
-        "alert": "This is a placeholder, not a real purchase."
-      },
-      "vip": {
-        "name": "VIP",
-        "desc": "Front-row interaction with exclusive souvenir packs.",
-        "price": "¥ 1,280",
-        "badge": "Recommended",
-        "badgeAria": "Recommended tier",
-        "feat1": "Priority interactive seating",
-        "feat2": "Limited edition gift set",
-        "feat3": "Extended event invitations",
-        "cta": "Consult Now",
-        "alert": "This is a placeholder, not a real purchase."
-      },
-      "metaverse": {
-        "name": "Metaverse",
-        "desc": "Global live stream with 360° immersive views.",
-        "price": "¥ 99",
-        "feat1": "Online reading / Streaming",
-        "feat2": "Digital participation certificate",
-        "cta": "Notify Me",
-        "alert": "This is a placeholder."
+    "dialogue": {
+      "kicker": "Dialogue Matrix",
+      "title": "Thought in collision, hearts in reflection",
+      "lead": "True martial culture is never closed off. It sees the self through dialogue and leaves lasting marks through the meeting of minds.",
+      "closer": "Questions, stories, and community proposals are not background noise here. They are part of how martial culture keeps growing.",
+      "items": {
+        "masters": {
+          "title": "Masters · Fighters · Craft",
+          "body": "Metal artisans and top martial practitioners meet across disciplines, showing how craftsmanship and martial character reach the same awakening through repetition and refinement."
+        },
+        "guardian": {
+          "title": "Guardian Interview",
+          "body": "A once-a-year spiritual coordinate. Here the guardian speaks about what it means to take up the blade, to fight, and to protect."
+        },
+        "youth": {
+          "title": "Youth Asking the Way",
+          "body": "A dedicated youth forum where younger voices ask with honesty and elders answer with care. Every question leaves a mark of growth."
+        },
+        "echo": {
+          "title": "Community Echo",
+          "body": "Community members are not spectators. Their stories, doubts, and co-creation proposals are heard, answered, and remembered."
+        }
       }
     },
-    "venue": {
-      "kicker": "2026 Hangzhou Debut",
-      "title": "Venue Perspective Preview",
-      "timeLabel": "Time",
-      "timeValue": "2026.12.12",
-      "locationLabel": "Location",
-      "locationValue": "Hangzhou · Little Lotus"
+    "mecha": {
+      "kicker": "Mecha Martial",
+      "title": "Human and machine in martial practice",
+      "lead": "When algorithms enter the striking path and steel learns restraint, tradition and future technology can stand on the same stage. Mecha is not a replacement, but a partner in sharpening the human limit.",
+      "visualKicker": "The future is already here",
+      "visualTitle": "Flesh, bone, and code resonating together",
+      "items": {
+        "combat": {
+          "title": "Human-Machine Co-Martial",
+          "body": "Intelligent mecha fighters step onto the arena against human seal-bearers, pushing the visible edge of martial exchange through speed, precision, and hard endurance."
+        },
+        "training": {
+          "title": "Technology as Empowerment",
+          "body": "The mecha is not merely an opponent. It is a training mirror that helps practitioners confront limits, break through barriers, and sharpen stronger force."
+        },
+        "future": {
+          "title": "The Future Arrives",
+          "body": "This meeting proves the martial path never stops evolving. Mecha martial continues a new chapter for Eastern martial culture."
+        }
+      }
     },
-    "highlights": {
-      "season": "2025 Season",
-      "title": "Hangzhou Prelims Highlights"
-    },
-    "roster": {
-      "title": "Fighter Roster",
-      "lead": "Bringing together world-class martial artists to witness extraordinary records.",
-      "record": "Record",
-      "viewProfile": "View Profile",
-      "hasNftTitle": "Holds NFT Badge",
-      "filterAria": "Filter (Placeholder)",
-      "filterAlert": "Filter functionality is a placeholder.",
-      "ghost": {
-        "name": "Sinology Master",
-        "role": "× Combat Champ"
-      },
-      "iron": {
-        "name": "Psychologist",
-        "role": "× Martial Mentor"
-      },
-      "neon": {
-        "name": "Cultural Scholar",
-        "role": "× Youth Blogger"
-      },
-      "void": {
-        "name": "Zhi Ge Youth",
-        "role": "On-site Inquirer"
+    "aesthetics": {
+      "kicker": "Eastern Aesthetics",
+      "title": "Strength and grace on the same stage",
+      "lead": "Wuyin Sight uses Eastern aesthetics as its brush so that every strike becomes part of a larger visual scroll, carrying ritual, rhythm, and atmosphere together.",
+      "quote": "Western combat often chases brute force. Eastern martial culture pursues bearing, rhythm, and inner character.",
+      "items": {
+        "taiji": {
+          "title": "Taiji Yin-Yang",
+          "body": "The arena becomes a place of practice where each motion follows a cosmic order, with black-and-white circulation and a natural sense of balance."
+        },
+        "heritage": {
+          "title": "Heritage in the Soul",
+          "body": "Longquan swords, silk battle robes, and oil-paper umbrellas bring living heritage onto the stage as a uniquely Eastern visual epic."
+        },
+        "palette": {
+          "title": "Dark Black, Red Gold",
+          "body": "Black forms the bone of depth, while red-gold becomes the soul of presence, building a martial sanctuary through classical Chinese color logic."
+        },
+        "space": {
+          "title": "Minimal Negative Space",
+          "body": "No clutter, no forced excess. The practitioner's body becomes the landscape, and restraint opens room for breath, mood, and imagination."
+        }
       }
     }
   },

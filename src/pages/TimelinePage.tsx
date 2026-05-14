@@ -1,7 +1,5 @@
 import SectionGoldenBlocks from "@/components/decor/SectionGoldenBlocks";
 import ScrollReveal from "@/components/motion/ScrollReveal";
-import FighterRoster from "@/components/sight/FighterRoster";
-import VenueViewer from "@/components/sight/VenueViewer";
 import GhostButton from "@/components/ui/GhostButton";
 import GradientButton from "@/components/ui/GradientButton";
 import { useLocale } from "@/i18n/LocaleProvider";
@@ -9,17 +7,16 @@ import { useModuleResources } from "@/hooks/useModuleResources";
 import { scrollToSelector } from "@/lib/scroll";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 import { motion } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-// Fallbacks
 import heroFallback from "@/images/page2(6).png";
 import videoFallback from "@/videos/15440050_1920_1080_30fps.mp4";
 import workflowFallback from "@/images/page2(2).png";
 
 export default function TimelinePage() {
   const { t } = useLocale();
-  const { resources, loading } = useModuleResources('timeline');
+  const { resources, loading } = useModuleResources("timeline");
   const navigate = useNavigate();
   const location = useLocation();
   const reducedMotion = usePrefersReducedMotion();
@@ -33,21 +30,63 @@ export default function TimelinePage() {
     }
   }, [location.hash]);
 
-  if (loading) return (
-    <div className="flex min-h-screen items-center justify-center bg-black">
-      <div className="w-8 h-8 border-4 border-wuyin-gold-bright border-t-transparent rounded-full animate-spin"></div>
-    </div>
-  );
-  const isBrokenPath = (url: string | undefined) => !url || url.includes('/fhzb/');
+  const isBrokenPath = (url: string | undefined) => !url || url.includes("/fhzb/");
 
-  const timelineHero = isBrokenPath(resources['os_hero_bg']) ? heroFallback : resources['os_hero_bg'];
-  const timelineTheater = isBrokenPath(resources['os_stage1_video']) ? videoFallback : resources['os_stage1_video'];
-  const historyFallback = isBrokenPath(resources['os_workflow_bg']) ? workflowFallback : resources['os_workflow_bg'];
+  const timelineHero = isBrokenPath(resources["os_hero_bg"]) ? heroFallback : resources["os_hero_bg"];
+  const timelineTheater = isBrokenPath(resources["os_stage1_video"]) ? videoFallback : resources["os_stage1_video"];
+  const mechaVisual = isBrokenPath(resources["os_workflow_bg"]) ? workflowFallback : resources["os_workflow_bg"];
+
+  const theaterItems = useMemo(
+    () =>
+      ["mr", "nfr", "mecha", "wallet"].map((key) => ({
+        key,
+        title: t(`timeline.digitalTheater.items.${key}.title`),
+        body: t(`timeline.digitalTheater.items.${key}.body`),
+      })),
+    [t],
+  );
+
+  const dialogueItems = useMemo(
+    () =>
+      ["masters", "guardian", "youth", "echo"].map((key) => ({
+        key,
+        title: t(`timeline.dialogue.items.${key}.title`),
+        body: t(`timeline.dialogue.items.${key}.body`),
+      })),
+    [t],
+  );
+
+  const mechaItems = useMemo(
+    () =>
+      ["combat", "training", "future"].map((key) => ({
+        key,
+        title: t(`timeline.mecha.items.${key}.title`),
+        body: t(`timeline.mecha.items.${key}.body`),
+      })),
+    [t],
+  );
+
+  const aestheticItems = useMemo(
+    () =>
+      ["taiji", "heritage", "palette", "space"].map((key) => ({
+        key,
+        title: t(`timeline.aesthetics.items.${key}.title`),
+        body: t(`timeline.aesthetics.items.${key}.body`),
+      })),
+    [t],
+  );
+
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-black">
+        <div className="h-8 w-8 rounded-full border-4 border-wuyin-gold-bright border-t-transparent animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <div className="bg-black">
-      {/* 沉浸式首屏 */}
-      <section className="relative flex min-h-[60vh] items-center justify-center overflow-hidden border-b border-white/5 bg-[#080706]">
+      <section className="relative flex min-h-[68vh] items-center justify-center overflow-hidden border-b border-white/5 bg-[#080706]">
         <div
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(228,184,74,0.18),transparent_55%),linear-gradient(180deg,#080706_0%,#0f0d0b_45%,#080706_100%)]"
           aria-hidden
@@ -64,9 +103,19 @@ export default function TimelinePage() {
           <ScrollReveal variant="upGlow" className="wuyin-reveal-tech" visibleClassName="wuyin-reveal-tech-visible" staggerChildren staggerStepMs={100}>
             <p className="text-xs font-bold uppercase tracking-[0.5em] text-wuyin-gold-bright">{t("timeline.heroKicker")}</p>
             <h1 className="mt-6 font-serif text-5xl font-black text-white sm:text-7xl">{t("timeline.heroTitle")}</h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-neutral-400">{t("timeline.heroLead")}</p>
+            <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-neutral-300">{t("timeline.heroLead")}</p>
+            <div className="mt-10 flex flex-wrap justify-center gap-3">
+              {["immersive", "dialogue", "mecha", "aesthetics"].map((key) => (
+                <span
+                  key={key}
+                  className="rounded-full border border-white/10 bg-black/30 px-4 py-2 text-xs tracking-[0.24em] text-neutral-200"
+                >
+                  {t(`timeline.heroTags.${key}`)}
+                </span>
+              ))}
+            </div>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-center">
-              <GradientButton type="button" onClick={() => scrollToSelector("#timeline-overview")}>
+              <GradientButton type="button" onClick={() => scrollToSelector("#timeline-digital-theater")}>
                 {t("timeline.viewRoadmap")}
               </GradientButton>
               <GhostButton type="button" onClick={() => navigate("/")}>
@@ -77,158 +126,132 @@ export default function TimelinePage() {
         </div>
       </section>
 
-      {/* 购票入口与场馆预览 */}
-      <section id="timeline-overview" className="relative overflow-hidden border-b border-white/5 bg-wuyin-surface py-20 sm:py-32">
+      <section id="timeline-digital-theater" className="relative overflow-hidden border-b border-white/5 bg-wuyin-surface py-20 sm:py-32">
         <SectionGoldenBlocks variant={0} />
-        <div className="container-wuyin relative z-10">
-          <div className="mb-16 grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
-            <ScrollReveal variant="leftSoft">
-              <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-wuyin-gold-bright">{t("timeline.venue.kicker")}</p>
-              <h2 className="mt-4 font-serif text-4xl font-bold text-white sm:text-5xl">{t("timeline.venue.title")}</h2>
-            </ScrollReveal>
-            <ScrollReveal variant="rightSoft" className="flex gap-4">
-               <div className="rounded-lg border border-white/10 bg-black/40 px-6 py-4 text-center">
-                 <p className="text-[10px] text-neutral-500 uppercase tracking-widest">{t("timeline.venue.timeLabel")}</p>
-                 <p className="mt-1 font-serif text-white">{t("timeline.venue.timeValue")}</p>
-               </div>
-               <div className="rounded-lg border border-white/10 bg-black/40 px-6 py-4 text-center">
-                 <p className="text-[10px] text-neutral-500 uppercase tracking-widest">{t("timeline.venue.locationLabel")}</p>
-                 <p className="mt-1 font-serif text-white">{t("timeline.venue.locationValue")}</p>
-               </div>
-            </ScrollReveal>
-          </div>
-          
-          <VenueViewer />
-          
-          <div className="mt-20 grid gap-6 sm:grid-cols-3">
-            {[
-              { 
-                type: t("timeline.accessTiers.standard.name"), 
-                price: t("timeline.accessTiers.standard.price"), 
-                desc: t("timeline.accessTiers.standard.desc") 
-              },
-              { 
-                type: t("timeline.accessTiers.vip.name"), 
-                price: t("timeline.accessTiers.vip.price"), 
-                desc: t("timeline.accessTiers.vip.desc"), 
-                featured: true 
-              },
-              { 
-                type: t("timeline.accessTiers.metaverse.name"), 
-                price: t("timeline.accessTiers.metaverse.price"), 
-                desc: t("timeline.accessTiers.metaverse.desc") 
-              },
-            ].map((tier) => (
-              <motion.div
-                key={tier.type}
-                whileHover={{ y: -5 }}
-                className={`flex flex-col rounded-2xl border p-8 ${
-                  tier.featured 
-                    ? 'border-wuyin-gold-bright/40 bg-wuyin-gold-bright/5 shadow-wuyin-glow' 
-                    : 'border-white/10 bg-black/40'
-                }`}
+        <div className="container-wuyin relative z-10 grid gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+          <ScrollReveal variant="leftSoft" className="space-y-8">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.4em] text-wuyin-gold-bright">{t("timeline.digitalTheater.kicker")}</p>
+              <h2 className="mt-4 font-serif text-4xl font-bold text-white sm:text-5xl">{t("timeline.digitalTheater.title")}</h2>
+            </div>
+            <p className="text-lg leading-relaxed text-neutral-300">{t("timeline.digitalTheater.lead")}</p>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {theaterItems.map((item) => (
+                <article key={item.key} className="rounded-2xl border border-white/10 bg-black/35 p-5">
+                  <p className="font-serif text-2xl text-wuyin-gold-bright">{item.title}</p>
+                  <p className="mt-4 text-sm leading-7 text-neutral-300">{item.body}</p>
+                </article>
+              ))}
+            </div>
+            <blockquote className="border-l border-wuyin-gold-bright/30 pl-5 font-serif text-xl text-neutral-100">
+              {t("timeline.digitalTheater.quote")}
+            </blockquote>
+          </ScrollReveal>
+          <ScrollReveal variant="rightSoft" className="relative aspect-video overflow-hidden rounded-2xl border border-white/10 bg-neutral-900 shadow-2xl">
+            {!reducedMotion ? (
+              <video
+                key={timelineTheater}
+                className="h-full w-full object-cover opacity-60"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
               >
-                <h3 className="font-serif text-xl font-bold text-white">{tier.type}</h3>
-                <p className="mt-2 text-sm text-neutral-400 leading-relaxed">{tier.desc}</p>
-                <div className="mt-8">
-                  <p className="font-serif text-3xl font-bold text-wuyin-gold-bright">{tier.price}</p>
-                </div>
-                <button className={`mt-8 w-full rounded-lg py-3 text-xs font-bold tracking-widest uppercase transition-all ${
-                  tier.featured 
-                    ? 'bg-wuyin-gold-bright text-black hover:brightness-110' 
-                    : 'border border-white/20 text-white hover:bg-white/5'
-                }`}>
-                  立即订票
-                </button>
-              </motion.div>
-            ))}
-          </div>
+                <source src={timelineTheater} type="video/mp4" />
+              </video>
+            ) : (
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(228,184,74,0.1),transparent_70%)]" />
+            )}
+            <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-transparent" />
+            <div className="absolute inset-x-6 bottom-6 rounded-2xl border border-white/10 bg-black/55 p-5 backdrop-blur-sm">
+              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-wuyin-gold-bright/80">
+                {t("timeline.digitalTheater.overlayKicker")}
+              </p>
+              <p className="mt-3 font-serif text-2xl text-white">{t("timeline.digitalTheater.overlayTitle")}</p>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* 仪式感剧场 */}
-      <section id="timeline-theater" className="relative overflow-hidden border-b border-white/5 py-24 sm:py-32">
+      <section id="timeline-dialogue" className="relative overflow-hidden border-b border-white/5 py-24 sm:py-32">
         <SectionGoldenBlocks variant={2} />
         <div className="container-wuyin relative z-10">
-          <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
-            <ScrollReveal variant="leftSoft" className="space-y-8">
-              <p className="text-xs font-bold uppercase tracking-[0.4em] text-wuyin-gold-bright">{t("timeline.modules.manifesto.kicker")}</p>
-              <h2 className="font-serif text-4xl font-bold text-white sm:text-5xl">{t("timeline.modules.manifesto.title")}</h2>
-              <p className="text-lg leading-relaxed text-neutral-300">{t("timeline.modules.manifesto.body")}</p>
-              <div className="space-y-4">
-                {['天罡三十六阶', '盟誓环节', '封印加冕'].map((item, i) => (
-                  <div key={item} className="flex items-center gap-4">
-                    <span className="font-serif text-wuyin-gold-bright">0{i+1}</span>
-                    <span className="text-white font-medium">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </ScrollReveal>
-            <ScrollReveal variant="rightSoft" className="relative aspect-video overflow-hidden rounded-2xl border border-white/10 bg-neutral-900 shadow-2xl">
-               {!reducedMotion ? (
-                 <video
-                   key={timelineTheater}
-                   className="h-full w-full object-cover opacity-60"
-                   autoPlay
-                   muted
-                   loop
-                   playsInline
-                   preload="auto"
-                 >
-                   <source src={timelineTheater} type="video/mp4" />
-                 </video>
-               ) : (
-                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(228,184,74,0.1),transparent_70%)]" />
-               )}
-               <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
-               <div className="absolute inset-0 flex items-center justify-center">
-                 <button className="group flex h-20 w-20 items-center justify-center rounded-full border border-wuyin-gold-bright/30 bg-black/40 backdrop-blur-sm transition-all hover:scale-110 hover:border-wuyin-gold-bright/60">
-                   <svg viewBox="0 0 24 24" className="h-8 w-8 ml-1 text-wuyin-gold-bright" fill="currentColor">
-                     <path d="M8 5v14l11-7z" />
-                   </svg>
-                 </button>
-               </div>
-            </ScrollReveal>
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-xs font-bold uppercase tracking-[0.4em] text-wuyin-gold-bright">{t("timeline.dialogue.kicker")}</p>
+            <h2 className="mt-4 font-serif text-4xl font-bold text-white sm:text-5xl">{t("timeline.dialogue.title")}</h2>
+            <p className="mt-6 text-lg leading-relaxed text-neutral-300">{t("timeline.dialogue.lead")}</p>
           </div>
-        </div>
-      </section>
-
-      {/* 武者阵容 */}
-      <section id="timeline-roster" className="relative overflow-hidden border-b border-white/5 bg-wuyin-surface py-24 sm:py-32">
-        <SectionGoldenBlocks variant={1} />
-        <div className="container-wuyin relative z-10">
-          <div className="mb-16 text-center">
-            <h2 className="font-serif text-4xl font-bold text-white sm:text-5xl">{t("timeline.roster.title")}</h2>
-            <p className="mt-4 text-wuyin-muted">{t("timeline.roster.lead")}</p>
-          </div>
-          <FighterRoster />
-        </div>
-      </section>
-
-      {/* 往期回顾 */}
-      <section id="timeline-history" className="relative overflow-hidden py-24 sm:py-32">
-        <div className="container-wuyin relative z-10">
-          <div className="mb-16 flex items-end justify-between">
-            <h2 className="font-serif text-4xl font-bold text-white sm:text-5xl">往期回顾</h2>
-            <button className="text-xs font-bold uppercase tracking-[0.2em] text-wuyin-gold-bright hover:underline">查看全部集锦</button>
-          </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {[1, 2, 3, 4].map((i) => (
-              <ScrollReveal key={i} delayMs={i * 80} className="group relative aspect-video overflow-hidden rounded-xl border border-white/10 bg-neutral-900">
-                <img src={resources[`os_stage${i}_video`] || historyFallback} alt="" className="absolute inset-0 h-full w-full object-cover opacity-60 transition-transform duration-500 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent opacity-60 z-10" />
-                <div className="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <svg viewBox="0 0 24 24" className="h-10 w-10 text-white" fill="currentColor">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </div>
-                <div className="absolute bottom-4 left-4 z-20">
-                  <p className="text-[10px] font-bold text-wuyin-gold-bright">{t("timeline.highlights.season")}</p>
-                  <p className="text-xs text-white font-medium">{t("timeline.highlights.title")}</p>
-                </div>
-              </ScrollReveal>
+          <div className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {dialogueItems.map((item, index) => (
+              <motion.article
+                key={item.key}
+                whileHover={{ y: -6 }}
+                className="rounded-[28px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-6"
+              >
+                <p className="text-xs font-semibold uppercase tracking-[0.32em] text-wuyin-gold-bright/70">
+                  {String(index + 1).padStart(2, "0")}
+                </p>
+                <p className="mt-4 font-serif text-2xl text-white">{item.title}</p>
+                <p className="mt-4 text-sm leading-7 text-neutral-300">{item.body}</p>
+              </motion.article>
             ))}
           </div>
+          <p className="mx-auto mt-10 max-w-3xl text-center text-sm leading-7 text-neutral-400">
+            {t("timeline.dialogue.closer")}
+          </p>
+        </div>
+      </section>
+
+      <section id="timeline-mecha" className="relative overflow-hidden border-b border-white/5 bg-wuyin-surface py-24 sm:py-32">
+        <SectionGoldenBlocks variant={1} />
+        <div className="container-wuyin relative z-10 grid gap-16 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+          <ScrollReveal variant="leftSoft" className="relative overflow-hidden rounded-[32px] border border-white/10 bg-black/35 shadow-2xl">
+            <img src={mechaVisual} alt="" className="h-full w-full object-cover opacity-60" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
+            <div className="absolute inset-x-6 bottom-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.34em] text-wuyin-gold-bright/80">
+                {t("timeline.mecha.visualKicker")}
+              </p>
+              <p className="mt-3 font-serif text-3xl text-white">{t("timeline.mecha.visualTitle")}</p>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal variant="rightSoft" className="space-y-8">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.4em] text-wuyin-gold-bright">{t("timeline.mecha.kicker")}</p>
+              <h2 className="mt-4 font-serif text-4xl font-bold text-white sm:text-5xl">{t("timeline.mecha.title")}</h2>
+            </div>
+            <p className="text-lg leading-relaxed text-neutral-300">{t("timeline.mecha.lead")}</p>
+            <div className="space-y-4">
+              {mechaItems.map((item) => (
+                <article key={item.key} className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                  <p className="font-serif text-2xl text-white">{item.title}</p>
+                  <p className="mt-3 text-sm leading-7 text-neutral-300">{item.body}</p>
+                </article>
+              ))}
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      <section id="timeline-aesthetics" className="relative overflow-hidden py-24 sm:py-32">
+        <div className="container-wuyin relative z-10">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-xs font-bold uppercase tracking-[0.4em] text-wuyin-gold-bright">{t("timeline.aesthetics.kicker")}</p>
+            <h2 className="mt-4 font-serif text-4xl font-bold text-white sm:text-5xl">{t("timeline.aesthetics.title")}</h2>
+            <p className="mt-6 text-lg leading-relaxed text-neutral-300">{t("timeline.aesthetics.lead")}</p>
+          </div>
+          <div className="mt-14 grid gap-5 md:grid-cols-2">
+            {aestheticItems.map((item) => (
+              <article key={item.key} className="rounded-[28px] border border-white/10 bg-black/30 p-6">
+                <p className="font-serif text-3xl text-wuyin-gold-bright">{item.title}</p>
+                <p className="mt-4 text-sm leading-8 text-neutral-300">{item.body}</p>
+              </article>
+            ))}
+          </div>
+          <blockquote className="mx-auto mt-12 max-w-4xl border-t border-white/10 pt-8 text-center font-serif text-2xl leading-relaxed text-neutral-100">
+            {t("timeline.aesthetics.quote")}
+          </blockquote>
         </div>
       </section>
     </div>
