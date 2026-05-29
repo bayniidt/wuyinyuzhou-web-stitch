@@ -12,7 +12,7 @@ function Logo({ onClick }: { onClick?: () => void }) {
   return (
     <Link
       to={{ pathname: "/", hash: "hero" }}
-      className="flex shrink-0 items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright"
+      className="flex items-center shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright"
       onClick={onClick}
     >
       <img
@@ -64,7 +64,7 @@ function LanguageSwitcher({ className = "" }: { className?: string }) {
 
 function IconUser() {
   return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden>
+    <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden>
       <path d="M20 21a8 8 0 1 0-16 0" />
       <circle cx="12" cy="7" r="4" />
     </svg>
@@ -73,7 +73,7 @@ function IconUser() {
 
 function IconMenu() {
   return (
-    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
+    <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
       <path d="M4 7h16M4 12h16M4 17h16" />
     </svg>
   );
@@ -81,7 +81,7 @@ function IconMenu() {
 
 function IconClose() {
   return (
-    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
+    <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
       <path d="M6 6l12 12M18 6 6 18" />
     </svg>
   );
@@ -203,17 +203,17 @@ export default function SiteHeader() {
   return (
     <header
       className={[
-        "fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-[var(--ease-wuyin)] border-b",
+        "fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-[var(--ease-wuyin)] border-b  ",
         isVisible ? "translate-y-0" : "-translate-y-full",
         isScrolled
-          ? "border-white/10 bg-black/60 backdrop-blur-xl py-0"
+          ? "border-white/10 bg-black/20 backdrop-blur-xl py-0"
           : "border-transparent bg-transparent"
       ].join(" ")}
     >
-      <div className="container-wuyin flex h-16 items-center justify-between gap-4 lg:h-[4.25rem]">
+      <div className="container-wuyin flex h-16 items-center justify-between gap-4 lg:h-[4.25rem] ">
         <Logo onClick={closeAll} />
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label={t("header.ariaMainNav")}>
+        <nav className="items-center hidden gap-1 lg:flex" aria-label={t("header.ariaMainNav")}>
           {navGroups.map((group) => {
             const meta = getNavPrimaryMeta(group.id);
             const primaryTo = meta?.to;
@@ -253,7 +253,7 @@ export default function SiteHeader() {
                 ) : (
                   <button
                     type="button"
-                    className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-neutral-300 transition hover:text-white hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright"
+                    className="flex items-center gap-1 px-3 py-2 text-sm font-medium transition rounded-lg text-neutral-300 hover:text-white hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright"
                     aria-haspopup="true"
                   >
                     {group.label}
@@ -306,7 +306,7 @@ export default function SiteHeader() {
           <LanguageSwitcher className="hidden sm:inline-flex" />
           <button
             type="button"
-            className="hidden rounded-lg p-2 text-neutral-300 transition hover:bg-white/5 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright sm:inline-flex"
+            className="hidden p-2 transition rounded-lg text-neutral-300 hover:bg-white/5 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright sm:inline-flex"
             aria-label={t("header.ariaUser")}
           >
             <IconUser />
@@ -323,7 +323,7 @@ export default function SiteHeader() {
 
           <button
             type="button"
-            className="inline-flex rounded-lg p-2 text-neutral-200 transition hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright lg:hidden"
+            className="inline-flex p-2 transition rounded-lg text-neutral-200 hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright lg:hidden"
             aria-expanded={mobileOpen}
             aria-controls={mobilePanelId}
             aria-label={mobileOpen ? t("header.menuClose") : t("header.menuOpen")}
@@ -353,12 +353,12 @@ export default function SiteHeader() {
                 drawerEntered ? "translate-x-0" : "translate-x-full",
               ].join(" ")}
             >
-              <div className="flex shrink-0 items-center justify-between border-b border-white/10 px-4 py-4">
+              <div className="flex items-center justify-between px-4 py-4 border-b shrink-0 border-white/10">
                 <span className="font-serif text-lg font-semibold text-white">{t("header.menu")}</span>
                 <button
                   ref={closeBtnRef}
                   type="button"
-                  className="rounded-lg p-2 text-neutral-300 hover:bg-white/5"
+                  className="p-2 rounded-lg text-neutral-300 hover:bg-white/5"
                   aria-label={t("header.menuClose")}
                   onClick={() => setMobileOpen(false)}
                 >
@@ -366,11 +366,11 @@ export default function SiteHeader() {
                 </button>
               </div>
               <nav
-                className="min-h-0 flex-1 overflow-y-auto px-3 py-4"
+                className="flex-1 min-h-0 px-3 py-4 overflow-y-auto"
                 aria-label={t("header.ariaMobileNav")}
               >
                 {navGroups.map((group, index) => (
-                  <div key={`${group.id}-${index}`} className="border-b border-white/5 py-1">
+                  <div key={`${group.id}-${index}`} className="py-1 border-b border-white/5">
                     <NavLink
                       to={getNavPrimaryMeta(group.id)?.to ?? "/"}
                       end={getNavPrimaryMeta(group.id)?.end ?? false}
@@ -391,7 +391,7 @@ export default function SiteHeader() {
                         <li key={`${child.href}-${childIdx}`}>
                           <a
                             href={child.href}
-                            className="block rounded-lg px-3 py-2 text-sm text-neutral-300 hover:bg-white/5 hover:text-white"
+                            className="block px-3 py-2 text-sm rounded-lg text-neutral-300 hover:bg-white/5 hover:text-white"
                             onClick={(e) => {
                               e.preventDefault();
                               onNavigate(child.href);
@@ -405,8 +405,8 @@ export default function SiteHeader() {
                   </div>
                 ))}
               </nav>
-              <div className="shrink-0 border-t border-white/10 p-4">
-                <LanguageSwitcher className="flex w-full justify-center" />
+              <div className="p-4 border-t shrink-0 border-white/10">
+                <LanguageSwitcher className="flex justify-center w-full" />
               </div>
             </div>
           </div>,

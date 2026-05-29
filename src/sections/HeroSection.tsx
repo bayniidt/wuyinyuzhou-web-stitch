@@ -1,4 +1,4 @@
-import heroBackground from "../../官网首页素材/1.首屏/主屏背景.jpg";
+import heroBackgroundVideo from "../../官网首页素材/1.首屏/主屏背景.mp4";
 
 export default function HeroSection() {
   return (
@@ -6,11 +6,14 @@ export default function HeroSection() {
       id="home-hero"
       className="relative overflow-hidden bg-black border-b isolate border-white/5"
     >
-      <img
-        src={heroBackground}
-        alt=""
-        className="absolute inset-0 object-cover w-full h-full"
-        decoding="async"
+      <video
+        src={heroBackgroundVideo}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        className="absolute inset-0 h-full w-full object-cover"
       />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.18),rgba(0,0,0,0.08)_24%,rgba(0,0,0,0.34)_68%,rgba(0,0,0,0.46))]" />
 
