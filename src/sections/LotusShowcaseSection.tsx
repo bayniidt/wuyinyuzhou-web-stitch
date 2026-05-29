@@ -1,9 +1,11 @@
 import SectionGoldenBlocks from "@/components/decor/SectionGoldenBlocks";
 import ScrollReveal from "@/components/motion/ScrollReveal";
 import { useLocale } from "@/i18n/LocaleProvider";
-import lotusHeadline from "../../官网首页素材/3.杭州小莲花/+.png";
 import lotusDetailButton from "../../官网首页素材/3.杭州小莲花/了解详情.png";
 import lotusVisual from "../../官网首页素材/3.杭州小莲花/图层-0.png";
+
+const lotusVideoUrl =
+  "https://homevideo-1319530839.cos.ap-guangzhou.myqcloud.com/homevideo.mp4";
 
 export default function LotusShowcaseSection() {
   const { locale } = useLocale();
@@ -34,41 +36,34 @@ export default function LotusShowcaseSection() {
     <section className="relative overflow-hidden border-b border-white/5 bg-[#090908] py-16 sm:py-20 lg:py-24">
       <SectionGoldenBlocks variant={0} intensity="subtle" />
       <ScrollReveal className="relative z-10 container-wuyin">
-        <div className="relative overflow-hidden rounded-[2rem] border border-[rgb(var(--wuyin-gold-rgb)/0.12)] shadow-[0_32px_80px_rgba(0,0,0,0.24)]">
-          <img
-            src={lotusVisual}
-            alt=""
-            className="absolute inset-0 h-full w-full object-cover"
-            decoding="async"
-          />
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,8,8,0.82),rgba(8,8,8,0.58)_38%,rgba(8,8,8,0.18)_100%)]" />
-          <div className="relative z-10 grid min-h-[22rem] gap-8 p-6 sm:p-8 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)] lg:p-10">
-            <div className="max-w-md self-center">
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-wuyin-gold-bright/80">
+        <div className="relative mx-auto max-w-[63rem] overflow-hidden rounded-[1.9rem] border border-[rgb(var(--wuyin-gold-rgb)/0.18)] bg-[radial-gradient(circle_at_50%_102%,rgba(247,215,156,0.96),rgba(217,160,83,0.4)_16%,rgba(82,51,26,0.24)_34%,rgba(16,11,9,0)_54%),linear-gradient(90deg,#120d0b_0%,#1d140f_24%,#3b2515_56%,#2e1e11_76%,#16100d_100%)] shadow-[0_34px_90px_rgba(0,0,0,0.34)]">
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.025),rgba(255,255,255,0)_30%,rgba(0,0,0,0.08)_100%)]" />
+          <div className="relative z-10 flex min-h-[19rem] flex-col justify-center gap-8 px-7 py-8 sm:px-10 sm:py-10 lg:flex-row lg:items-center lg:justify-between lg:gap-14 lg:px-14 lg:py-11">
+            <div className="mx-auto w-full max-w-[18.5rem] lg:mx-0">
+              <p className="text-[0.72rem] font-medium tracking-[0.02em] text-white/88 sm:text-xs">
                 {copy.eyebrow}
               </p>
-              {locale === "zh" ? (
-                <img
-                  src={lotusHeadline}
-                  alt={`${copy.title} ${copy.subtitle}`}
-                  className="mt-5 w-full max-w-[25rem] object-contain"
-                  decoding="async"
-                />
-              ) : (
-                <h2 className="mt-5 font-serif text-4xl font-bold leading-tight text-white sm:text-5xl">
-                  {copy.title}
-                  <span className="block">{copy.subtitle}</span>
-                </h2>
-              )}
+              <h2 className="mt-4 font-serif text-[2.05rem] font-bold leading-[1.18] text-white sm:text-[2.4rem] lg:text-[2.9rem]">
+                {copy.title}
+                <span className="block">{copy.subtitle}</span>
+              </h2>
 
-              <div className="mt-8 flex gap-10">
+              <div className="mt-6 flex items-start gap-8 sm:gap-10">
                 <div>
-                  <p className="text-3xl font-bold text-white sm:text-4xl">{copy.stat1Value}</p>
-                  <p className="mt-2 text-sm text-neutral-300">{copy.stat1Label}</p>
+                  <p className="text-[2.15rem] font-bold leading-none text-white sm:text-[2.65rem]">
+                    {copy.stat1Value}
+                  </p>
+                  <p className="mt-1.5 text-[0.72rem] leading-5 text-white/84 sm:text-xs">
+                    {copy.stat1Label}
+                  </p>
                 </div>
                 <div>
-                  <p className="text-3xl font-bold text-white sm:text-4xl">{copy.stat2Value}</p>
-                  <p className="mt-2 text-sm text-neutral-300">{copy.stat2Label}</p>
+                  <p className="text-[2.15rem] font-bold leading-none text-white sm:text-[2.65rem]">
+                    {copy.stat2Value}
+                  </p>
+                  <p className="mt-1.5 text-[0.72rem] leading-5 text-white/84 sm:text-xs">
+                    {copy.stat2Label}
+                  </p>
                 </div>
               </div>
 
@@ -85,7 +80,22 @@ export default function LotusShowcaseSection() {
               </a>
             </div>
 
-            <div aria-hidden />
+            <div className="mx-auto flex w-full max-w-[29rem] items-center justify-center lg:mx-0 lg:max-w-[31rem]">
+              <div className="w-full overflow-hidden rounded-[1.35rem] bg-black shadow-[0_18px_54px_rgba(0,0,0,0.34)]">
+                <div className="aspect-[1.84/1] w-full">
+                  <video
+                    src={lotusVideoUrl}
+                    poster={lotusVisual}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </ScrollReveal>

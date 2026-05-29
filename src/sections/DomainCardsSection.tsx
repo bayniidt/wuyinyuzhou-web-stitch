@@ -94,7 +94,7 @@ export default function DomainCardsSection() {
           })}
         </div>
 
-        <div className="mt-12 overflow-hidden rounded-[2rem] border border-white/10 bg-black/30 shadow-[0_32px_80px_rgba(0,0,0,0.28)]">
+        <div className="mx-auto mt-12 max-w-[63rem] overflow-hidden rounded-[2rem] border border-white/10 bg-black/30 shadow-[0_32px_80px_rgba(0,0,0,0.28)]">
           <div className="grid lg:grid-cols-[minmax(0,0.54fr)_minmax(0,1.46fr)] lg:items-stretch">
             <div className="flex flex-col justify-center bg-[linear-gradient(180deg,rgba(0,0,0,0.9),rgba(15,15,15,0.82))] p-8 sm:p-10 lg:p-12">
               <h3 className="font-serif text-3xl text-white sm:text-4xl">{activeCard.title}</h3>
