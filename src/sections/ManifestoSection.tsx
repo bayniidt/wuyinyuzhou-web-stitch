@@ -69,7 +69,7 @@ export default function ManifestoSection() {
   return (
     <section
       id="home-manifesto"
-      className="relative overflow-hidden border-b border-white/5 bg-[#080909] py-20 sm:py-24 lg:py-28"
+      className="relative overflow-hidden border-b border-white/5 bg-[#080909] py-15 sm:py-24 lg:py-28"
     >
       <SectionGoldenBlocks variant={0} intensity="subtle" />
       <ScrollReveal className="relative z-10 container-wuyin">
