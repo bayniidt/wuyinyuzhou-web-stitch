@@ -95,14 +95,14 @@ export default function DomainCardsSection() {
         </div>
 
         <div className="mx-auto mt-12 max-w-[63rem] overflow-hidden rounded-[2rem] border border-white/10 bg-black/30 shadow-[0_32px_80px_rgba(0,0,0,0.28)]">
-          <div className="grid lg:grid-cols-[minmax(0,0.54fr)_minmax(0,1.46fr)] lg:items-stretch">
-            <div className="flex flex-col justify-center bg-[linear-gradient(180deg,rgba(0,0,0,0.9),rgba(15,15,15,0.82))] p-8 sm:p-10 lg:p-12">
+          <div className="grid min-h-[36rem] h-full lg:h-[32rem] lg:min-h-[32rem] lg:grid-cols-[minmax(0,0.54fr)_minmax(0,1.46fr)] lg:items-stretch">
+            <div className="flex min-h-[16rem] h-full flex-col justify-center bg-[linear-gradient(180deg,rgba(0,0,0,0.9),rgba(15,15,15,0.82))] p-8 sm:p-10 lg:p-12">
               <h3 className="font-serif text-3xl text-white sm:text-4xl">{activeCard.title}</h3>
               <p className="mt-6 text-sm leading-8 text-neutral-300 sm:text-base">
                 {activeCard.body}
               </p>
             </div>
-            <div className="min-h-[18rem] lg:min-h-[32rem]">
+            <div className="h-[20rem] min-h-[20rem] sm:h-[24rem] sm:min-h-[24rem] lg:h-full lg:min-h-[32rem]">
               <img
                 src={activeCard.image}
                 alt={activeCard.title}
