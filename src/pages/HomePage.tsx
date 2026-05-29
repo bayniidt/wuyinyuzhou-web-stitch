@@ -4,6 +4,7 @@ import FinalCtaSection from "@/sections/FinalCtaSection";
 import NewsTeaserSection from "@/sections/NewsTeaserSection";
 import HeroSection from "@/sections/HeroSection";
 import ManifestoSection from "@/sections/ManifestoSection";
+import LotusShowcaseSection from "@/sections/LotusShowcaseSection";
 import ScrollReveal from "@/components/motion/ScrollReveal";
 import { scrollToSelector } from "@/lib/scroll";
 import { useEffect } from "react";
@@ -22,10 +23,9 @@ export default function HomePage() {
 
   return (
     <>
-      <ScrollReveal variant="upGlow" visibleClassName="wuyin-reveal-tech-visible" className="wuyin-reveal-tech">
-        <HeroSection />
-      </ScrollReveal>
+      <HeroSection />
       <ManifestoSection />
+      <LotusShowcaseSection />
       <DomainCardsSection />
       <EcosystemMatrixSection />
       <ScrollReveal variant="upSoft" visibleClassName="wuyin-reveal-tech-visible" className="wuyin-reveal-tech">

@@ -1,91 +1,115 @@
 import SectionGoldenBlocks from "@/components/decor/SectionGoldenBlocks";
 import ScrollReveal from "@/components/motion/ScrollReveal";
 import { useLocale } from "@/i18n/LocaleProvider";
-import { useModuleResources } from "@/hooks/useModuleResources";
-import valuesPanelFallback from "@/images/index3.png";
+import { useState } from "react";
+import valueCultureImage from "../../官网首页素材/4.武印视界战略价值/01.jpg";
+import valueSocialImage from "../../官网首页素材/4.武印视界战略价值/02.jpg";
+import valueBusinessImage from "../../官网首页素材/4.武印视界战略价值/03.jpg";
+import valueInvestmentImage from "../../官网首页素材/4.武印视界战略价值/04.jpg";
+import valueEcosystemImage from "../../官网首页素材/4.武印视界战略价值/05.jpg";
+
+const valueKeys = ["culture", "social", "business", "investment", "ecosystem"] as const;
+
+type ValueKey = (typeof valueKeys)[number];
 
 export default function DomainCardsSection() {
   const { t } = useLocale();
-  const { resources, loading } = useModuleResources(["", "ecosystem"]);
-  const valuesPanel = resources["home_values_panel_image"] || valuesPanelFallback;
-  const valueCards = [
+  const [activeKey, setActiveKey] = useState<ValueKey>("culture");
+
+  const valueCards: Record<
+    ValueKey,
     {
-      key: "culture",
+      image: string;
+      title: string;
+      body: string;
+    }
+  > = {
+    culture: {
+      image: valueCultureImage,
       title: t("home.values.cards.culture.title"),
       body: t("home.values.cards.culture.body"),
     },
-    {
-      key: "social",
+    social: {
+      image: valueSocialImage,
       title: t("home.values.cards.social.title"),
       body: t("home.values.cards.social.body"),
     },
-    {
-      key: "business",
+    business: {
+      image: valueBusinessImage,
       title: t("home.values.cards.business.title"),
       body: t("home.values.cards.business.body"),
     },
-    {
-      key: "investment",
+    investment: {
+      image: valueInvestmentImage,
       title: t("home.values.cards.investment.title"),
       body: t("home.values.cards.investment.body"),
     },
-    {
-      key: "ecosystem",
+    ecosystem: {
+      image: valueEcosystemImage,
       title: t("home.values.cards.ecosystem.title"),
       body: t("home.values.cards.ecosystem.body"),
     },
-  ];
+  };
 
-  if (loading) return null;
+  const activeCard = valueCards[activeKey];
 
   return (
-    <section id="home-values" className="relative overflow-hidden border-b border-white/5 py-20 sm:py-28">
-      <SectionGoldenBlocks variant={1} />
+    <section
+      id="home-values"
+      className="relative overflow-hidden border-b border-white/5 bg-[#0b0b0b] py-20 sm:py-24 lg:py-28"
+    >
+      <SectionGoldenBlocks variant={1} intensity="subtle" />
       <ScrollReveal className="relative z-10 container-wuyin">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.4em] text-wuyin-gold-bright/85">
+          <p className="text-xs font-semibold uppercase tracking-[0.34em] text-wuyin-gold-bright/82">
             {t("home.values.eyebrow")}
           </p>
           <h2 className="mt-4 font-serif text-3xl font-bold text-white sm:text-4xl">
             {t("home.values.title")}
           </h2>
-          <p className="mt-5 text-sm leading-7 text-neutral-300 sm:text-base">
+          <p className="mt-4 text-sm leading-7 text-neutral-300 sm:text-base">
             {t("home.values.subtitle")}
           </p>
         </div>
-        <div className="mt-12 grid gap-8 xl:grid-cols-[1.05fr_1.15fr] xl:items-start">
-          <article className="overflow-hidden rounded-[32px] border border-white/10 bg-black/30">
-            <div className="relative aspect-[4/3] overflow-hidden">
-              <img src={valuesPanel} alt="" className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" />
-              <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/15 to-transparent" />
-              <div className="absolute inset-x-6 bottom-6 rounded-2xl border border-white/10 bg-black/45 p-5 backdrop-blur-sm">
-                <p className="text-xs font-semibold uppercase tracking-[0.32em] text-wuyin-gold-bright/80">
-                  {t("home.values.eyebrow")}
-                </p>
-                <p className="mt-3 font-serif text-2xl text-white">
-                  {t("home.values.title")}
-                </p>
-              </div>
+
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-5 text-sm text-white/72 sm:text-base">
+          {valueKeys.map((key) => {
+            const card = valueCards[key];
+            const isActive = activeKey === key;
+            return (
+              <button
+                key={key}
+                type="button"
+                onClick={() => setActiveKey(key)}
+                className={[
+                  "border-b pb-2 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright",
+                  isActive
+                    ? "border-wuyin-gold-bright text-white"
+                    : "border-transparent text-white/72 hover:border-white/28 hover:text-white",
+                ].join(" ")}
+              >
+                {card.title}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="mt-12 overflow-hidden rounded-[2rem] border border-white/10 bg-black/30 shadow-[0_32px_80px_rgba(0,0,0,0.28)]">
+          <div className="grid lg:grid-cols-[minmax(0,0.54fr)_minmax(0,1.46fr)] lg:items-stretch">
+            <div className="flex flex-col justify-center bg-[linear-gradient(180deg,rgba(0,0,0,0.9),rgba(15,15,15,0.82))] p-8 sm:p-10 lg:p-12">
+              <h3 className="font-serif text-3xl text-white sm:text-4xl">{activeCard.title}</h3>
+              <p className="mt-6 text-sm leading-8 text-neutral-300 sm:text-base">
+                {activeCard.body}
+              </p>
             </div>
-          </article>
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-2">
-          {valueCards.map((card, index) => (
-            <article
-              key={card.key}
-              className="group relative overflow-hidden rounded-[28px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-6 transition-transform duration-300 hover:-translate-y-1 hover:border-wuyin-gold-bright/30"
-            >
-              <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <div className="absolute -right-10 -top-12 h-32 w-32 rounded-full bg-wuyin-gold-bright/10 blur-3xl" />
-              </div>
-              <div className="relative z-10">
-                <p className="text-xs font-semibold uppercase tracking-[0.32em] text-wuyin-gold-bright/70">
-                  {String(index + 1).padStart(2, "0")}
-                </p>
-                <h3 className="mt-4 font-serif text-2xl text-white">{card.title}</h3>
-                <p className="mt-4 text-sm leading-7 text-neutral-300">{card.body}</p>
-              </div>
-            </article>
-          ))}
+            <div className="min-h-[18rem] lg:min-h-[32rem]">
+              <img
+                src={activeCard.image}
+                alt={activeCard.title}
+                className="h-full w-full object-cover"
+                decoding="async"
+              />
+            </div>
           </div>
         </div>
       </ScrollReveal>

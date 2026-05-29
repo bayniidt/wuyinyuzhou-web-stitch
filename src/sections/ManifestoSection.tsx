@@ -1,189 +1,115 @@
 import SectionGoldenBlocks from "@/components/decor/SectionGoldenBlocks";
 import ScrollReveal from "@/components/motion/ScrollReveal";
 import { useLocale } from "@/i18n/LocaleProvider";
-import { useModuleResources } from "@/hooks/useModuleResources";
-import { motion } from "framer-motion";
-import imgManifestoFallback from "@/images/index2.png";
 import { useState } from "react";
+import manifestoOverviewImage from "../../官网首页素材/2.武印宣言/1-以武印心.jpg";
+import manifestoYouthImage from "../../官网首页素材/2.武印宣言/2-少年之印.jpg";
+import manifestoAdultImage from "../../官网首页素材/2.武印宣言/3-成年之印.jpg";
+import manifestoWomenImage from "../../官网首页素材/2.武印宣言/4-女性之印.jpg";
+import manifestoMarginImage from "../../官网首页素材/2.武印宣言/5-边缘之印.jpg";
+import manifestoEraImage from "../../官网首页素材/2.武印宣言/6-时代之印.jpg";
 
 export default function ManifestoSection() {
   const { t } = useLocale();
-  const { resources, loading } = useModuleResources(['', 'ecosystem']);
-  const isBrokenPath = (url: string | undefined) => !url || url.includes('/fhzb/');
-  const manifestoVisual = isBrokenPath(resources['home_manifesto_video']) ? imgManifestoFallback : resources['home_manifesto_video'];
-  const [activeVoice, setActiveVoice] = useState("youth");
-  const voices = [
+  const [activeIndex, setActiveIndex] = useState(0);
+  const voiceCards = [
     {
-      key: "youth",
-      title: t("home.manifesto.voices.youth.title"),
-      body: t("home.manifesto.voices.youth.body"),
-    },
-    {
-      key: "adult",
-      title: t("home.manifesto.voices.adult.title"),
-      body: t("home.manifesto.voices.adult.body"),
+      key: "overview",
+      image: manifestoOverviewImage,
+      title: t("home.manifesto.title"),
+      body: `${t("home.manifesto.p1")}${t("home.manifesto.p2")}`,
+      quote: "以武印心：见自己・见众生・见天地",
     },
     {
       key: "women",
+      image: manifestoWomenImage,
       title: t("home.manifesto.voices.women.title"),
       body: t("home.manifesto.voices.women.body"),
+      quote: "一挺直腰杆，以内心力量，驱散所有胆怯。",
+    },
+    {
+      key: "youth",
+      image: manifestoYouthImage,
+      title: t("home.manifesto.voices.youth.title"),
+      body: t("home.manifesto.voices.youth.body"),
+      quote: "止戈为武，方为少年武道初心。",
     },
     {
       key: "margin",
+      image: manifestoMarginImage,
       title: t("home.manifesto.voices.margin.title"),
       body: t("home.manifesto.voices.margin.body"),
+      quote: "一汗水为重，执着坚守，打破一切偏见标签。",
+    },
+    {
+      key: "adult",
+      image: manifestoAdultImage,
+      title: t("home.manifesto.voices.adult.title"),
+      body: t("home.manifesto.voices.adult.body"),
+      quote: "一直面自我，与内心和解，勇敢突围。",
     },
     {
       key: "era",
+      image: manifestoEraImage,
       title: t("home.manifesto.voices.era.title"),
       body: t("home.manifesto.voices.era.body"),
+      quote: "一向内修行，降服己心，突破自我，震烁闪耀。",
     },
   ];
-  const questions = [
-    {
-      key: "self",
-      title: t("home.manifesto.questions.self.title"),
-      body: t("home.manifesto.questions.self.body"),
-    },
-    {
-      key: "people",
-      title: t("home.manifesto.questions.people.title"),
-      body: t("home.manifesto.questions.people.body"),
-    },
-    {
-      key: "world",
-      title: t("home.manifesto.questions.world.title"),
-      body: t("home.manifesto.questions.world.body"),
-    },
-  ];
-
-  if (loading) return null;
+  const activeCard = voiceCards[activeIndex];
 
   return (
-    <section id="home-manifesto" className="relative overflow-hidden border-b border-white/5 bg-wuyin-bg py-20 sm:py-28">
-      <SectionGoldenBlocks variant={0} />
-      <ScrollReveal className="relative z-10 container-wuyin grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          className="relative aspect-square max-h-[420px] w-full overflow-hidden rounded-2xl border border-white/10 bg-neutral-950 shadow-wuyin-glow"
-          aria-hidden
-        >
-          {manifestoVisual && (
-            manifestoVisual.endsWith('.mp4') ? (
-              <video
-                key={manifestoVisual}
-                src={manifestoVisual}
-                className="absolute inset-0 h-full w-full object-cover"
-                autoPlay
-                muted
-                loop
-                playsInline
-              />
-            ) : (
+    <section
+      id="home-manifesto"
+      className="relative overflow-hidden border-b border-white/5 bg-[#080909] py-20 sm:py-24 lg:py-28"
+    >
+      <SectionGoldenBlocks variant={0} intensity="subtle" />
+      <ScrollReveal className="relative z-10 container-wuyin">
+        <div className="overflow-hidden ">
+          <div className="grid gap-8 p-5 sm:p-6 lg:grid-cols-[minmax(0,1.03fr)_minmax(0,0.97fr)] lg:items-center lg:gap-10 lg:p-8">
+            <div className="relative overflow-hidden rounded-[1.6rem] ">
               <img
-                src={manifestoVisual}
-                alt=""
-                className="absolute inset-0 h-full w-full object-cover"
+                src={activeCard.image}
+                alt={activeCard.title}
+                className="object-cover w-full h-full"
                 decoding="async"
               />
-            )
-          )}
-          <div className="absolute inset-0 bg-linear-to-br from-black/70 via-neutral-900/20 to-black/80" />
-          <div className="absolute inset-0 mix-blend-soft-light bg-[radial-gradient(circle_at_30%_25%,rgba(228,184,74,0.24),transparent_55%)]" />
-          
-          {/* 水墨叠加效果纹理 */}
-          <div 
-            className="absolute inset-0 opacity-40 mix-blend-multiply pointer-events-none"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-              maskImage: 'radial-gradient(circle at center, black, transparent 80%)'
-            }}
-          />
-        </motion.div>
-        
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <p className="text-xs font-semibold uppercase tracking-[0.4em] text-wuyin-gold-bright/80">
-            {t("home.manifesto.eyebrow")}
-          </p>
-          <h2 className="mt-4 flex items-center gap-3 font-serif text-3xl font-bold text-white sm:text-4xl">
-            <span className="inline-block h-8 w-1 rounded-full bg-linear-to-b from-wuyin-accent to-wuyin-seal" />
-            {t("home.manifesto.title")}
-          </h2>
-          <p className="mt-5 font-serif text-lg text-neutral-200 sm:text-xl">
-            {t("home.manifesto.subtitle")}
-          </p>
-          <div className="mt-8 space-y-6 text-sm leading-relaxed text-neutral-300 sm:text-base">
-            <p>{t("home.manifesto.intro")}</p>
-            <p>{t("home.manifesto.bridge")}</p>
-          </div>
-
-          <motion.blockquote 
-            initial={{ opacity: 0, filter: 'blur(10px)' }}
-            whileInView={{ opacity: 1, filter: 'blur(0px)' }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.5, delay: 0.5 }}
-            className="relative mt-10 border-l border-white/15 pl-6 font-serif text-lg  text-neutral-200 sm:text-xl"
-          >
-            <span className="relative z-10">“{t("home.manifesto.quote")}”</span>
-            <div className="absolute -left-2 -top-4 -z-0 h-16 w-16 opacity-20 blur-xl bg-wuyin-accent rounded-full" />
-          </motion.blockquote>
-
-          <div className="mt-10 space-y-3">
-            {voices.map((voice) => {
-              const isActive = activeVoice === voice.key;
-              return (
-                <div
-                  key={voice.key}
-                  className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]"
-                >
-                  <button
-                    type="button"
-                    onClick={() => setActiveVoice(isActive ? "" : voice.key)}
-                    className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left sm:px-6"
-                  >
-                    <span className="font-serif text-lg text-white">{voice.title}</span>
-                    <span className="text-xl leading-none text-wuyin-gold-bright">
-                      {isActive ? "−" : "+"}
-                    </span>
-                  </button>
-                  {isActive ? (
-                    <div className="border-t border-white/10 px-5 py-4 text-sm leading-7 text-neutral-300 sm:px-6">
-                      {voice.body}
-                    </div>
-                  ) : null}
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="mt-12 rounded-[28px] border border-white/10 bg-black/25 p-6 sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.34em] text-wuyin-gold-bright/85">
-              {t("home.manifesto.questions.eyebrow")}
-            </p>
-            <h3 className="mt-4 font-serif text-2xl text-white sm:text-3xl">
-              {t("home.manifesto.questions.title")}
-            </h3>
-            <div className="mt-6 grid gap-4 md:grid-cols-3">
-              {questions.map((question) => (
-                <article key={question.key} className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-                  <p className="font-serif text-lg text-white">{question.title}</p>
-                  <p className="mt-3 text-sm leading-7 text-neutral-300">{question.body}</p>
-                </article>
-              ))}
             </div>
-            <p className="mt-6 text-sm leading-7 text-neutral-300">
-              {t("home.manifesto.closer")}
-            </p>
+
+            <div className="flex flex-col justify-center px-1 lg:px-4">
+              <h3 className="relative pl-6 font-serif text-3xl font-bold text-white sm:text-4xl">
+                <span className="absolute left-0 top-1/2 h-8 w-1 -translate-y-1/2 rounded-full bg-[linear-gradient(180deg,#f3c58a,#b24c45)]" />
+                {activeCard.title}
+              </h3>
+              <p className="mt-7 text-base leading-[2.1] text-white/92 sm:text-[1.05rem]">
+                {activeCard.body}
+              </p>
+              <p className="mt-10 border-l border-white/18 pl-5 font-serif text-xl font-semibold text-white sm:text-[2rem]">
+                {activeCard.quote}
+              </p>
+            </div>
           </div>
-        </motion.div>
+        </div>
+
+        <div className="flex items-center justify-center gap-3 mt-8">
+          {voiceCards.map((card, index) => {
+            const isActive = index === activeIndex;
+            return (
+              <button
+                key={card.key}
+                type="button"
+                onClick={() => setActiveIndex(index)}
+                aria-label={`切换到${card.title}`}
+                className={[
+                  "h-2.5 rounded-full transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wuyin-gold-bright",
+                  isActive
+                    ? "w-10 bg-[linear-gradient(90deg,#f0c892,#d24a44)]"
+                    : "w-2.5 bg-white/28 hover:bg-white/45",
+                ].join(" ")}
+              />
+            );
+          })}
+        </div>
       </ScrollReveal>
     </section>
   );
