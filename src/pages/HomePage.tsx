@@ -3,6 +3,7 @@ import EcosystemMatrixSection from "@/sections/EcosystemMatrixSection";
 import FinalCtaSection from "@/sections/FinalCtaSection";
 import NewsTeaserSection from "@/sections/NewsTeaserSection";
 import HeroSection from "@/sections/HeroSection";
+import { useModuleResources } from "@/hooks/useModuleResources";
 import ManifestoSection from "@/sections/ManifestoSection";
 import LotusShowcaseSection from "@/sections/LotusShowcaseSection";
 import ScrollReveal from "@/components/motion/ScrollReveal";
@@ -12,6 +13,7 @@ import { useLocation } from "react-router-dom";
 
 export default function HomePage() {
   const location = useLocation();
+  const { resources } = useModuleResources("ecosystem");
 
   useEffect(() => {
     const hash = location.hash;
@@ -23,11 +25,11 @@ export default function HomePage() {
 
   return (
     <>
-      <HeroSection />
-      <ManifestoSection />
-      <LotusShowcaseSection />
-      <DomainCardsSection />
-      <EcosystemMatrixSection />
+      <HeroSection resources={resources} />
+      <ManifestoSection resources={resources} />
+      <LotusShowcaseSection resources={resources} />
+      <DomainCardsSection resources={resources} />
+      <EcosystemMatrixSection resources={resources} />
       <ScrollReveal variant="upSoft" visibleClassName="wuyin-reveal-tech-visible" className="wuyin-reveal-tech">
         <NewsTeaserSection />
       </ScrollReveal>

@@ -12,7 +12,11 @@ const valueKeys = ["culture", "social", "business", "investment", "ecosystem"] a
 
 type ValueKey = (typeof valueKeys)[number];
 
-export default function DomainCardsSection() {
+type DomainCardsSectionProps = {
+  resources?: Record<string, string>;
+};
+
+export default function DomainCardsSection({ resources = {} }: DomainCardsSectionProps) {
   const { t } = useLocale();
   const [activeKey, setActiveKey] = useState<ValueKey>("culture");
 
@@ -25,27 +29,27 @@ export default function DomainCardsSection() {
     }
   > = {
     culture: {
-      image: valueCultureImage,
+      image: resources["home_values_culture_image"] ?? valueCultureImage,
       title: t("home.values.cards.culture.title"),
       body: t("home.values.cards.culture.body"),
     },
     social: {
-      image: valueSocialImage,
+      image: resources["home_values_social_image"] ?? valueSocialImage,
       title: t("home.values.cards.social.title"),
       body: t("home.values.cards.social.body"),
     },
     business: {
-      image: valueBusinessImage,
+      image: resources["home_values_business_image"] ?? valueBusinessImage,
       title: t("home.values.cards.business.title"),
       body: t("home.values.cards.business.body"),
     },
     investment: {
-      image: valueInvestmentImage,
+      image: resources["home_values_investment_image"] ?? valueInvestmentImage,
       title: t("home.values.cards.investment.title"),
       body: t("home.values.cards.investment.body"),
     },
     ecosystem: {
-      image: valueEcosystemImage,
+      image: resources["home_values_ecosystem_image"] ?? valueEcosystemImage,
       title: t("home.values.cards.ecosystem.title"),
       body: t("home.values.cards.ecosystem.body"),
     },

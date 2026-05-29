@@ -14,6 +14,31 @@ const en = {
   "home_news_subtitle": "LATEST UPDATES",
   "home_ascent_title": "Start Your Ascent",
   "home_ascent_video": "/fhzb/videos/背景_1.mp4",
+  "home_hero_video": "/fhzb/videos/home-hero.mp4",
+  "home_manifesto_overview_image": "/fhzb/images/home-manifesto-overview.jpg",
+  "home_manifesto_women_image": "/fhzb/images/home-manifesto-women.jpg",
+  "home_manifesto_youth_image": "/fhzb/images/home-manifesto-youth.jpg",
+  "home_manifesto_margin_image": "/fhzb/images/home-manifesto-margin.jpg",
+  "home_manifesto_adult_image": "/fhzb/images/home-manifesto-adult.jpg",
+  "home_manifesto_era_image": "/fhzb/images/home-manifesto-era.jpg",
+  "home_lotus_video": "/fhzb/videos/home-lotus.mp4",
+  "home_values_culture_image": "/fhzb/images/home-values-culture.jpg",
+  "home_values_social_image": "/fhzb/images/home-values-social.jpg",
+  "home_values_business_image": "/fhzb/images/home-values-business.jpg",
+  "home_values_investment_image": "/fhzb/images/home-values-investment.jpg",
+  "home_values_ecosystem_image": "/fhzb/images/home-values-ecosystem.jpg",
+  "home_matrix_wuyinge_logo": "/fhzb/images/home-matrix-wuyinge-logo.png",
+  "home_matrix_gongfuyin_logo": "/fhzb/images/home-matrix-gongfuyin-logo.png",
+  "home_matrix_wuyinmeng_logo": "/fhzb/images/home-matrix-wuyinmeng-logo.png",
+  "home_matrix_standard_logo": "/fhzb/images/home-matrix-standard-logo.png",
+  "home_matrix_media_logo": "/fhzb/images/home-matrix-media-logo.png",
+  "home_matrix_yincheng_logo": "/fhzb/images/home-matrix-yincheng-logo.png",
+  "home_matrix_wuyinge_image": "/fhzb/images/home-matrix-wuyinge.jpg",
+  "home_matrix_gongfuyin_image": "/fhzb/images/home-matrix-gongfuyin.jpg",
+  "home_matrix_wuyinmeng_image": "/fhzb/images/home-matrix-wuyinmeng.jpg",
+  "home_matrix_standard_image": "/fhzb/images/home-matrix-standard.jpg",
+  "home_matrix_media_image": "/fhzb/images/home-matrix-media.jpg",
+  "home_matrix_yincheng_image": "/fhzb/images/home-matrix-yincheng.jpg",
   "phi_hero_title": "Linear Mindset",
   "phi_hero_bg": "/fhzb/videos/股市_3.jpg",
   "phi_mission_content": "Empowering industries to climb capital summits, safeguarding long-term value through through historical cycles.",
@@ -318,9 +343,10 @@ const en = {
   },
   "home": {
     "hero": {
-      "kicker": "Ancient Soul, Future Core",
-      "title": "Zhi Ge as Martial",
-      "subtitle": "Oriental Martial Arts Metaverse Ceremony",
+      "kicker": "Martial does not begin with attack or conquest.",
+      "title": "Wuyin World · The Way of Ending Conflict",
+      "subtitle": "Only one who can restrain force is fit to wield it, master the self, and surpass others.",
+      "cta": "Learn More",
       "ctaCompetition": "Join Competition",
       "ctaPartner": "Become Partner",
       "videoSwitcherLabel": "Switch Background Video",
@@ -346,6 +372,8 @@ const en = {
       "title": "Wuyin Manifesto",
       "p1": "In today's digital wave, we choose to return to the origin. Wuyin World is more than a spectacle; it's a reflection on 'Martial Virtue'.",
       "p2": "Via blockchain, 3D frames, and holography, we digitize 3,000 years of lineage, letting ancient wisdom thrive in cyber space.",
+      "overviewBody": "This era is not short on adrenaline. What it lacks are moments that let the soul pause and ask what truly matters.",
+      "overviewQuote": "Seal the heart with martial spirit: See yourself · See others · See the world",
       "quote": "Only by stopping the spear do we return to the true beginning of martial practice.",
       "bridge": "It is not about glorifying combat. It is about helping people from different walks of life find their own mark through martial practice and moral restraint.",
       "closer": "Here, you may meet the self hidden deep within, witness the many conditions of human life, and finally find a place where a restless soul can breathe again.",
@@ -371,25 +399,40 @@ const en = {
       "voices": {
         "adult": {
           "body": "This is not a contest against others. It is a reconciliation with yourself. Those worn down by pressure can recover courage through release, tears, and renewal.",
+          "quote": "Face yourself, reconcile inwardly, and break through with courage.",
           "title": "Seal of Adulthood"
         },
         "era": {
           "body": "Chinese martial tradition has never been about domination. It is inward cultivation, self-mastery, and breakthrough. Wuyin World aims to be a spiritual outlet for this anxious age.",
+          "quote": "Cultivate inwardly, discipline the heart, break through the self, and shine.",
           "title": "Seal of the Era"
         },
         "margin": {
           "body": "Here, sweat outweighs social labels. Persistence defeats prejudice. Every soul that refuses mediocrity deserves to be seen with dignity.",
+          "quote": "Honor sweat, stay steadfast, and break every imposed label.",
           "title": "Seal Beyond Labels"
         },
         "women": {
           "body": "Your body is never a synonym for weakness. Confidence, radiance, and safety begin the moment you decide to stand upright and face the world directly.",
+          "quote": "Stand upright, draw strength from within, and drive away all fear.",
           "title": "Seal of Women"
         },
         "youth": {
           "body": "In virtual worlds, you may chase intensity. On the martial stage, you learn limits, restraint, and respect. True strength is knowing when to stop.",
+          "quote": "To stop the spear is the true beginning of a young martial heart.",
           "title": "Seal of Youth"
         }
       }
+    },
+    "lotus": {
+      "eyebrow": "Wuyin World Global Premiere",
+      "title": "Hangzhou · Lotus Arena",
+      "subtitle": "A spiritual gathering for ten thousand hearts",
+      "stat1Value": "18000+",
+      "stat1Label": "audience members on site",
+      "stat2Value": "50+",
+      "stat2Label": "martial creators in collaboration",
+      "cta": "Learn More"
     },
     "domains": {
       "culture": {

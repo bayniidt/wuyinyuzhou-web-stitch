@@ -44,6 +44,7 @@ const moduleTabNames: Record<string, Record<string, string>> = {
     finalCta: '结尾行动区',
     finance: '投资价值',
     hero: '首屏',
+    lotus: '小莲花',
     manifesto: '宣言',
     newsTeaser: '新闻预告',
     technology: '科技价值',

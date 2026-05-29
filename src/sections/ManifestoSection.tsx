@@ -9,51 +9,55 @@ import manifestoWomenImage from "../../官网首页素材/2.武印宣言/4-女�
 import manifestoMarginImage from "../../官网首页素材/2.武印宣言/5-边缘之印.jpg";
 import manifestoEraImage from "../../官网首页素材/2.武印宣言/6-时代之印.jpg";
 
-export default function ManifestoSection() {
+type ManifestoSectionProps = {
+  resources?: Record<string, string>;
+};
+
+export default function ManifestoSection({ resources = {} }: ManifestoSectionProps) {
   const { t } = useLocale();
   const [activeIndex, setActiveIndex] = useState(0);
   const voiceCards = [
     {
       key: "overview",
-      image: manifestoOverviewImage,
+      image: resources["home_manifesto_overview_image"] ?? manifestoOverviewImage,
       title: t("home.manifesto.title"),
-      body: `${t("home.manifesto.p1")}${t("home.manifesto.p2")}`,
-      quote: "以武印心：见自己・见众生・见天地",
+      body: t("home.manifesto.overviewBody"),
+      quote: t("home.manifesto.overviewQuote"),
     },
     {
       key: "women",
-      image: manifestoWomenImage,
+      image: resources["home_manifesto_women_image"] ?? manifestoWomenImage,
       title: t("home.manifesto.voices.women.title"),
       body: t("home.manifesto.voices.women.body"),
-      quote: "一挺直腰杆，以内心力量，驱散所有胆怯。",
+      quote: t("home.manifesto.voices.women.quote"),
     },
     {
       key: "youth",
-      image: manifestoYouthImage,
+      image: resources["home_manifesto_youth_image"] ?? manifestoYouthImage,
       title: t("home.manifesto.voices.youth.title"),
       body: t("home.manifesto.voices.youth.body"),
-      quote: "止戈为武，方为少年武道初心。",
+      quote: t("home.manifesto.voices.youth.quote"),
     },
     {
       key: "margin",
-      image: manifestoMarginImage,
+      image: resources["home_manifesto_margin_image"] ?? manifestoMarginImage,
       title: t("home.manifesto.voices.margin.title"),
       body: t("home.manifesto.voices.margin.body"),
-      quote: "一汗水为重，执着坚守，打破一切偏见标签。",
+      quote: t("home.manifesto.voices.margin.quote"),
     },
     {
       key: "adult",
-      image: manifestoAdultImage,
+      image: resources["home_manifesto_adult_image"] ?? manifestoAdultImage,
       title: t("home.manifesto.voices.adult.title"),
       body: t("home.manifesto.voices.adult.body"),
-      quote: "一直面自我，与内心和解，勇敢突围。",
+      quote: t("home.manifesto.voices.adult.quote"),
     },
     {
       key: "era",
-      image: manifestoEraImage,
+      image: resources["home_manifesto_era_image"] ?? manifestoEraImage,
       title: t("home.manifesto.voices.era.title"),
       body: t("home.manifesto.voices.era.body"),
-      quote: "一向内修行，降服己心，突破自我，震烁闪耀。",
+      quote: t("home.manifesto.voices.era.quote"),
     },
   ];
   const activeCard = voiceCards[activeIndex];

@@ -1,7 +1,28 @@
-import homeBannerVideoFallback from "../../../src/videos/index1.mp4";
-import homeAscentVideoFallback from "../../../src/videos/16548256-hd_1080_1920_30fps.mp4";
-import homeManifestoFallback from "../../../src/images/index2.png";
-import homeValuesPanelFallback from "../../../public/images/generated/home-values-panel.svg?url";
+import homeHeroVideoFallback from "../../../官网首页素材/1.首屏/主屏背景.mp4";
+import homeManifestoOverviewFallback from "../../../官网首页素材/2.武印宣言/1-以武印心.jpg";
+import homeManifestoWomenFallback from "../../../官网首页素材/2.武印宣言/4-女性之印.jpg";
+import homeManifestoYouthFallback from "../../../官网首页素材/2.武印宣言/2-少年之印.jpg";
+import homeManifestoMarginFallback from "../../../官网首页素材/2.武印宣言/5-边缘之印.jpg";
+import homeManifestoAdultFallback from "../../../官网首页素材/2.武印宣言/3-成年之印.jpg";
+import homeManifestoEraFallback from "../../../官网首页素材/2.武印宣言/6-时代之印.jpg";
+const homeLotusVideoFallback = "https://homevideo-1319530839.cos.ap-guangzhou.myqcloud.com/homevideo.mp4";
+import homeValuesCultureFallback from "../../../官网首页素材/4.武印视界战略价值/01.jpg";
+import homeValuesSocialFallback from "../../../官网首页素材/4.武印视界战略价值/02.jpg";
+import homeValuesBusinessFallback from "../../../官网首页素材/4.武印视界战略价值/03.jpg";
+import homeValuesInvestmentFallback from "../../../官网首页素材/4.武印视界战略价值/04.jpg";
+import homeValuesEcosystemFallback from "../../../官网首页素材/4.武印视界战略价值/05.jpg";
+import homeMatrixWuyingeLogoFallback from "../../../src/images/logo1000X400透明底/武印阁.png";
+import homeMatrixGongfuyinLogoFallback from "../../../src/images/logo1000X400透明底/功夫印.png";
+import homeMatrixWuyinmengLogoFallback from "../../../src/images/logo1000X400透明底/武印盟.png";
+import homeMatrixStandardLogoFallback from "../../../src/images/logo1000X400透明底/武印标准.png";
+import homeMatrixMediaLogoFallback from "../../../src/images/logo1000X400透明底/武印传媒.png";
+import homeMatrixYinchengLogoFallback from "../../../src/images/logo1000X400透明底/印承天下.png";
+import homeMatrixWuyingeFallback from "../../../官网首页素材/5.武印世界生态布局/01.jpg";
+import homeMatrixGongfuyinFallback from "../../../官网首页素材/5.武印世界生态布局/02.jpg";
+import homeMatrixWuyinmengFallback from "../../../官网首页素材/5.武印世界生态布局/03.jpg";
+import homeMatrixStandardFallback from "../../../官网首页素材/5.武印世界生态布局/04.jpg";
+import homeMatrixMediaFallback from "../../../官网首页素材/5.武印世界生态布局/05.jpg";
+import homeMatrixYinchengFallback from "../../../官网首页素材/5.武印世界生态布局/06.jpg";
 
 import narrativeHeroFallback from "../../../src/images/index1.png";
 import narrativeCoverFallback from "../../../src/images/index2.png";
@@ -48,10 +69,31 @@ export const resourceViews: Record<string, ResourceViewConfig> = {
     description: "管理首页当前前台实际使用的图片与视频资源",
     modules: ["ecosystem"],
     resources: [
-      { key: "home_banner_video", label: "首页 Banner 视频 1", fallbackUrl: homeBannerVideoFallback },
-      { key: "home_ascent_video", label: "首页 Banner 视频 2", fallbackUrl: homeAscentVideoFallback },
-      { key: "home_manifesto_video", label: "首页宣言视觉", fallbackUrl: homeManifestoFallback },
-      { key: "home_values_panel_image", label: "首页价值视觉图", fallbackUrl: homeValuesPanelFallback },
+      { key: "home_hero_video", label: "首页 Banner 视频", fallbackUrl: homeHeroVideoFallback },
+      { key: "home_manifesto_overview_image", label: "宣言总览图", fallbackUrl: homeManifestoOverviewFallback },
+      { key: "home_manifesto_women_image", label: "女性之印图", fallbackUrl: homeManifestoWomenFallback },
+      { key: "home_manifesto_youth_image", label: "少年之印图", fallbackUrl: homeManifestoYouthFallback },
+      { key: "home_manifesto_margin_image", label: "边缘之印图", fallbackUrl: homeManifestoMarginFallback },
+      { key: "home_manifesto_adult_image", label: "成年之印图", fallbackUrl: homeManifestoAdultFallback },
+      { key: "home_manifesto_era_image", label: "时代之印图", fallbackUrl: homeManifestoEraFallback },
+      { key: "home_lotus_video", label: "小莲花视频", fallbackUrl: homeLotusVideoFallback },
+      { key: "home_values_culture_image", label: "文化价值图", fallbackUrl: homeValuesCultureFallback },
+      { key: "home_values_social_image", label: "社会价值图", fallbackUrl: homeValuesSocialFallback },
+      { key: "home_values_business_image", label: "商业价值图", fallbackUrl: homeValuesBusinessFallback },
+      { key: "home_values_investment_image", label: "投资价值图", fallbackUrl: homeValuesInvestmentFallback },
+      { key: "home_values_ecosystem_image", label: "生态价值图", fallbackUrl: homeValuesEcosystemFallback },
+      { key: "home_matrix_wuyinge_logo", label: "生态矩阵-武印阁 Logo", fallbackUrl: homeMatrixWuyingeLogoFallback },
+      { key: "home_matrix_gongfuyin_logo", label: "生态矩阵-功夫印 Logo", fallbackUrl: homeMatrixGongfuyinLogoFallback },
+      { key: "home_matrix_wuyinmeng_logo", label: "生态矩阵-武印盟 Logo", fallbackUrl: homeMatrixWuyinmengLogoFallback },
+      { key: "home_matrix_standard_logo", label: "生态矩阵-武印标准 Logo", fallbackUrl: homeMatrixStandardLogoFallback },
+      { key: "home_matrix_media_logo", label: "生态矩阵-武印传媒 Logo", fallbackUrl: homeMatrixMediaLogoFallback },
+      { key: "home_matrix_yincheng_logo", label: "生态矩阵-印承天下 Logo", fallbackUrl: homeMatrixYinchengLogoFallback },
+      { key: "home_matrix_wuyinge_image", label: "生态矩阵-武印阁背景", fallbackUrl: homeMatrixWuyingeFallback },
+      { key: "home_matrix_gongfuyin_image", label: "生态矩阵-功夫印背景", fallbackUrl: homeMatrixGongfuyinFallback },
+      { key: "home_matrix_wuyinmeng_image", label: "生态矩阵-武印盟背景", fallbackUrl: homeMatrixWuyinmengFallback },
+      { key: "home_matrix_standard_image", label: "生态矩阵-武印标准背景", fallbackUrl: homeMatrixStandardFallback },
+      { key: "home_matrix_media_image", label: "生态矩阵-武印传媒背景", fallbackUrl: homeMatrixMediaFallback },
+      { key: "home_matrix_yincheng_image", label: "生态矩阵-印承天下背景", fallbackUrl: homeMatrixYinchengFallback },
     ],
   },
   narrative: {

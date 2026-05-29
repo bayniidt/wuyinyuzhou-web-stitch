@@ -14,6 +14,31 @@ const zh = {
   "home_news_subtitle": "LATEST UPDATES",
   "home_ascent_title": "开启攀登之路",
   "home_ascent_video": "/fhzb/videos/背景_1.mp4",
+  "home_hero_video": "/fhzb/videos/home-hero.mp4",
+  "home_manifesto_overview_image": "/fhzb/images/home-manifesto-overview.jpg",
+  "home_manifesto_women_image": "/fhzb/images/home-manifesto-women.jpg",
+  "home_manifesto_youth_image": "/fhzb/images/home-manifesto-youth.jpg",
+  "home_manifesto_margin_image": "/fhzb/images/home-manifesto-margin.jpg",
+  "home_manifesto_adult_image": "/fhzb/images/home-manifesto-adult.jpg",
+  "home_manifesto_era_image": "/fhzb/images/home-manifesto-era.jpg",
+  "home_lotus_video": "/fhzb/videos/home-lotus.mp4",
+  "home_values_culture_image": "/fhzb/images/home-values-culture.jpg",
+  "home_values_social_image": "/fhzb/images/home-values-social.jpg",
+  "home_values_business_image": "/fhzb/images/home-values-business.jpg",
+  "home_values_investment_image": "/fhzb/images/home-values-investment.jpg",
+  "home_values_ecosystem_image": "/fhzb/images/home-values-ecosystem.jpg",
+  "home_matrix_wuyinge_logo": "/fhzb/images/home-matrix-wuyinge-logo.png",
+  "home_matrix_gongfuyin_logo": "/fhzb/images/home-matrix-gongfuyin-logo.png",
+  "home_matrix_wuyinmeng_logo": "/fhzb/images/home-matrix-wuyinmeng-logo.png",
+  "home_matrix_standard_logo": "/fhzb/images/home-matrix-standard-logo.png",
+  "home_matrix_media_logo": "/fhzb/images/home-matrix-media-logo.png",
+  "home_matrix_yincheng_logo": "/fhzb/images/home-matrix-yincheng-logo.png",
+  "home_matrix_wuyinge_image": "/fhzb/images/home-matrix-wuyinge.jpg",
+  "home_matrix_gongfuyin_image": "/fhzb/images/home-matrix-gongfuyin.jpg",
+  "home_matrix_wuyinmeng_image": "/fhzb/images/home-matrix-wuyinmeng.jpg",
+  "home_matrix_standard_image": "/fhzb/images/home-matrix-standard.jpg",
+  "home_matrix_media_image": "/fhzb/images/home-matrix-media.jpg",
+  "home_matrix_yincheng_image": "/fhzb/images/home-matrix-yincheng.jpg",
   "phi_hero_title": "平原思维与峰峦思维",
   "phi_hero_bg": "/fhzb/videos/股市_3.jpg",
   "phi_mission_content": "赋能实体产业攀登资本峰峦，守护长期价值穿越时代周期。",
@@ -318,9 +343,10 @@ const zh = {
   },
   "home": {
     "hero": {
-      "kicker": "古老的灵魂，未来的核心",
-      "title": "止戈为武",
-      "subtitle": "东方武道元宇宙盛典",
+      "kicker": "武，非攻非战，止戈为武。",
+      "title": "武印视界 · 止戈之道",
+      "subtitle": "能止戈，方执戈，能克己，方胜人",
+      "cta": "了解详情",
       "ctaCompetition": "立即参与赛事",
       "ctaPartner": "成为合作伙伴",
       "videoSwitcherLabel": "切换背景视频",
@@ -346,6 +372,8 @@ const zh = {
       "title": "武印宣言",
       "p1": "在数字浪潮席卷全球的今日，我们选择回归原点。武印宇宙不仅是一场视觉盛典，",
       "p2": "更是一次关于“武德”的当代思辨。",
+      "overviewBody": "这个时代，从不缺热血赛事，缺的是，能让灵魂驻足、叩问生命本心的片刻。",
+      "overviewQuote": "一以武印心：见自己・见众生・见天地",
       "quote": "止戈为武，方为少年武道初心。",
       "bridge": "无关格斗，只为镌刻时代精神印记。这里不是比谁更好斗，而是让不同处境的人，都能在武道中找到自己的那一枚印。",
       "closer": "在这里，你会遇见藏在心底的真实自我，看见世间百态的芸芸众生，也终将寻得一方让浮躁灵魂得以喘息、让心灵重归安宁的净土。",
@@ -371,25 +399,40 @@ const zh = {
       "voices": {
         "adult": {
           "body": "它不是你与他人的较量，而是你与内心的和解。那些被压力裹挟、被疲惫磨平棱角的人，也能在挥拳与落泪之间，重新找回前行的勇气。",
+          "quote": "一直面自我，与内心和解，勇敢突围。",
           "title": "成年之印"
         },
         "era": {
           "body": "中国武道从来不是征服与对抗，而是向内修行、降伏己心、突破自我。武印视界愿成为这个时代舒缓情绪、安放心灵的精神出口。",
+          "quote": "一向内修行，降服己心，突破自我，震烁闪耀。",
           "title": "时代之印"
         },
         "margin": {
           "body": "在这里，汗水的重量远胜出身标签，执着的坚守足以打败偏见。每一个不甘平庸、勇敢起身的灵魂，都值得被温柔看见。",
+          "quote": "一汗水为重，执着坚守，打破一切偏见标签。",
           "title": "边缘之印"
         },
         "women": {
           "body": "你的身体从不是软弱的代名词。底气、光芒与安全感，始于你决定挺直腰杆、直面一切的那一刻。",
+          "quote": "一挺直腰杆，以内心力量，驱散所有胆怯。",
           "title": "女性之印"
         },
         "youth": {
           "body": "虚拟世界里纵情厮杀，武道擂台上却学会收敛与守界。真正的强者，不在击倒多少对手，而在心怀敬畏，于该止之时从容收拳。",
+          "quote": "止戈为武，方为少年武道初心。",
           "title": "少年之印"
         }
       }
+    },
+    "lotus": {
+      "eyebrow": "武印视界·全球首发",
+      "title": "杭州 · 小莲花",
+      "subtitle": "万人共赴心灵之约",
+      "stat1Value": "18000+",
+      "stat1Label": "现场观众共赴盛会",
+      "stat2Value": "50+",
+      "stat2Label": "格斗名家深度共创",
+      "cta": "了解详情"
     },
     "domains": {
       "culture": {

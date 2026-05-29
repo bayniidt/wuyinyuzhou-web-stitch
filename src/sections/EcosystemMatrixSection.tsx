@@ -18,7 +18,11 @@ const rowKeys = ["wuyinge", "gongfuyin", "wuyinmeng", "standard", "media", "yinc
 
 type RowKey = (typeof rowKeys)[number];
 
-export default function EcosystemMatrixSection() {
+type EcosystemMatrixSectionProps = {
+  resources?: Record<string, string>;
+};
+
+export default function EcosystemMatrixSection({ resources = {} }: EcosystemMatrixSectionProps) {
   const { t } = useLocale();
   const [activeKey, setActiveKey] = useState<RowKey>("wuyinge");
 
@@ -31,34 +35,34 @@ export default function EcosystemMatrixSection() {
     }
   > = {
     wuyinge: {
-      logo: logoWuyinGe,
+      logo: resources["home_matrix_wuyinge_logo"] ?? logoWuyinGe,
       alt: "武印阁",
-      image: matrixImage01,
+      image: resources["home_matrix_wuyinge_image"] ?? matrixImage01,
     },
     gongfuyin: {
-      logo: logoGongfu,
+      logo: resources["home_matrix_gongfuyin_logo"] ?? logoGongfu,
       alt: "功夫印",
-      image: matrixImage02,
+      image: resources["home_matrix_gongfuyin_image"] ?? matrixImage02,
     },
     wuyinmeng: {
-      logo: logoWuyinMeng,
+      logo: resources["home_matrix_wuyinmeng_logo"] ?? logoWuyinMeng,
       alt: "武印盟",
-      image: matrixImage03,
+      image: resources["home_matrix_wuyinmeng_image"] ?? matrixImage03,
     },
     standard: {
-      logo: logoWuyinStandard,
+      logo: resources["home_matrix_standard_logo"] ?? logoWuyinStandard,
       alt: "武印标准",
-      image: matrixImage04,
+      image: resources["home_matrix_standard_image"] ?? matrixImage04,
     },
     media: {
-      logo: logoWuyinMedia,
+      logo: resources["home_matrix_media_logo"] ?? logoWuyinMedia,
       alt: "武印传媒",
-      image: matrixImage05,
+      image: resources["home_matrix_media_image"] ?? matrixImage05,
     },
     yincheng: {
-      logo: logoYincheng,
+      logo: resources["home_matrix_yincheng_logo"] ?? logoYincheng,
       alt: "印承天下",
-      image: matrixImage06,
+      image: resources["home_matrix_yincheng_image"] ?? matrixImage06,
     },
   };
 
