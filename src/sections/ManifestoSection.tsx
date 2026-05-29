@@ -1,7 +1,7 @@
 import SectionGoldenBlocks from "@/components/decor/SectionGoldenBlocks";
 import ScrollReveal from "@/components/motion/ScrollReveal";
 import { useLocale } from "@/i18n/LocaleProvider";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import manifestoOverviewImage from "../../官网首页素材/2.武印宣言/1-以武印心.jpg";
 import manifestoYouthImage from "../../官网首页素材/2.武印宣言/2-少年之印.jpg";
 import manifestoAdultImage from "../../官网首页素材/2.武印宣言/3-成年之印.jpg";
@@ -58,6 +58,14 @@ export default function ManifestoSection() {
   ];
   const activeCard = voiceCards[activeIndex];
 
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveIndex((current) => (current + 1) % voiceCards.length);
+    }, 4000);
+
+    return () => window.clearInterval(timer);
+  }, [voiceCards.length]);
+
   return (
     <section
       id="home-manifesto"
@@ -66,11 +74,11 @@ export default function ManifestoSection() {
       <SectionGoldenBlocks variant={0} intensity="subtle" />
       <ScrollReveal className="relative z-10 container-wuyin">
         <div className="overflow-hidden ">
-          <div className="grid gap-8 p-5 sm:p-6 lg:grid-cols-[minmax(0,1.03fr)_minmax(0,0.97fr)] lg:items-center lg:gap-10 lg:p-8">
-            <div className="relative overflow-hidden rounded-[1.6rem] ">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1.03fr)_minmax(0,0.97fr)] lg:items-center lg:gap-10 ">
+            <div className="relative overflow-hidden rounded-[1.6rem] shadow-[0_22px_60px_rgba(0,0,0,0.3),0_0_28px_rgba(222,181,135,0.08)]">
               <img
                 src={activeCard.image}
-                alt={activeCard.title}
+                alt="武印宣言"
                 className="object-cover w-full h-full"
                 decoding="async"
               />
